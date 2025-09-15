@@ -1,0 +1,12 @@
+id,name,program,faculty,description,source_url
+architectural-eng,Architectural Engineering,BASc,Engineering,Architectural Engineering program requirements,
+civil-eng,Civil Engineering,BASc,Engineering,Civil Engineering program requirements,
+environmental-eng,Environmental Engineering,BASc,Engineering,Environmental Engineering program requirements,
+geological-eng,Geological Engineering,BASc,Engineering,Geological Engineering program requirements,
+computer-eng,Computer Engineering,BASc,Engineering,Computer Engineering program requirements,
+electrical-eng,Electrical Engineering,BASc,Engineering,Electrical Engineering program requirements,
+mechanical-eng,Mechanical Engineering,BASc,Engineering,Mechanical Engineering program requirements,
+mechatronics-eng,Mechatronics Engineering,BASc,Engineering,Mechatronics Engineering program requirements,
+systems-design-eng,Systems Design Engineering,BASc,Engineering,Systems Design Engineering program requirements,
+nanotechnology-eng,Nanotechnology Engineering,BASc,Engineering,Nanotechnology Engineering program requirements,
+software-eng,Software Engineering,BSE,Engineering,Software Engineering program requirements,

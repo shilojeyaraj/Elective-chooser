@@ -1,0 +1,35 @@
+# Python dependencies for data processing and web scraping
+# Install with: pip install -r requirements.txt
+
+# Web scraping and text extraction
+trafilatura>=1.6.4
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# PDF processing
+pypdf>=5.0.1
+pdfminer.six>=20231228
+unstructured>=0.15.12
+pytesseract>=0.3.10
+
+# Database connectivity
+psycopg2-binary>=2.9.9
+pgvector>=0.3.5
+
+# OpenAI API
+openai>=4.67.3
+
+# LangChain for AI/ML
+langchain>=0.3.7
+langchain-openai>=0.3.12
+langchain-community>=0.3.15
+
+# Web search APIs
+tavily>=0.3.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Environment management
+python-dotenv>=1.0.0

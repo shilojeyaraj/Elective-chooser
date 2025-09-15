@@ -1,0 +1,782 @@
+{
+  "programs": {
+    "Architectural Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2023-2024",
+      "terms": {
+        "1A": [
+          "AE 100 - Concepts Studio",
+          "AE 101 - History of the Built Environment",
+          "AE 104 - Mechanics 1",
+          "AE 115 - Linear Algebra",
+          "CHE 102 - Chemistry for Engineers",
+          "MATH 116 - Calculus 1 for Engineering"
+        ],
+        "1B": [
+          "AE 105 - Mechanics 2",
+          "AE 121 - Computational Methods",
+          "AE 123/CIVE 123/ENVE 123/GEOE 123 - Electrical Circuits and Instrumentation",
+          "AE 125 - Structural Design Studio",
+          "AE 199 - Seminar",
+          "MATH 118 - Calculus 2 for Engineering"
+        ],
+        "2A": [
+          "AE 200 - Enclosure Design Studio",
+          "AE 204 - Solid Mechanics 1",
+          "AE 221 - Advanced Calculus",
+          "AE 224 - Probability and Statistics",
+          "AE 280 - Fluid Mechanics and Thermal Sciences",
+          "AE 298 - Seminar",
+          "COMMST 191/ENGL 191 - Communication in the Engineering Profession"
+        ],
+        "2B": [
+          "AE 205 - Solid Mechanics 2",
+          "AE 223 - Differential Equations and Balance Laws",
+          "AE 225 - Environmental Building Systems Studio",
+          "AE 265 - Structure and Properties of Materials",
+          "AE 299 - Seminar",
+          "WKRPT 200 - Work-term Report",
+          "Approved Elective"
+        ],
+        "3A": [
+          "AE 279 - Energy and the Environment",
+          "AE 300 - Architectural Engineering Studio 1",
+          "AE 303 - Structural Analysis",
+          "AE 353 - Soil Mechanics and Foundations",
+          "AE 377 - Structural Timber Design",
+          "AE 398 - Seminar",
+          "WKRPT 300 - Work-term Report"
+        ],
+        "3B": [
+          "AE 310 - Introduction to Structural Design",
+          "AE 325 - Architectural Engineering Studio 2",
+          "AE/CIVE/ENVE/GEOE 392 - Economics and Life Cycle Cost Analysis",
+          "AE 399 - Seminar",
+          "CIVE 507 - Building Science and Technology",
+          "WKRPT 400 - Work-term Report",
+          "Approved Elective"
+        ],
+        "4A": [
+          "AE 400 - Project Studio 1",
+          "AE 491 - Engineering Law and Ethics",
+          "AE 498 - Seminar",
+          "Three Approved Electives"
+        ],
+        "4B": [
+          "AE 425 - Project Studio 2",
+          "AE 499 - Seminar",
+          "Five Approved Electives"
+        ]
+      },
+      "notes": "Includes requirements for Complementary Studies and Natural Science/Technical Electives; see source page for lists.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Architectural-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Civil Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2023-2024",
+      "terms": {
+        "1A": [
+          "CHE 102 - Chemistry for Engineers",
+          "CIVE 104 - Mechanics 1",
+          "COMMST 191/ENGL 191 - Communication in the Engineering Profession",
+          "CIVE 115/ENVE 115/GEOE 115 - Linear Algebra",
+          "MATH 116 - Calculus 1 for Engineering"
+        ],
+        "1B": [
+          "CIVE 105 - Mechanics 2",
+          "CIVE 121/ENVE 121/GEOE 121 - Computational Methods",
+          "AE 123/CIVE 123/ENVE 123/GEOE 123 - Electrical Circuits and Instrumentation",
+          "CIVE 153/ENVE 153/GEOE 153 - Earth Engineering",
+          "MATH 118 - Calculus 2 for Engineering"
+        ],
+        "2A": [
+          "CIVE 205 - Fluid Mechanics",
+          "CIVE 224/ENVE 224/GEOE 224 - Probability and Statistics",
+          "CIVE 230 - Engineering and Sustainable Development",
+          "CIVE 253 - Material Science",
+          "MATH 218 - Differential Equations for Engineers"
+        ],
+        "2B": [
+          "CIVE 204 - Structural Analysis",
+          "CIVE 222 - Differential Equations",
+          "CIVE 280 - Introduction to Environmental Engineering",
+          "CIVE 299 - Cooperative Work-term Report",
+          "EARTH 123 - Introductory Geology"
+        ],
+        "3A": [
+          "CIVE 335 - Soil Mechanics",
+          "CIVE 353 - Mechanics of Deformable Solids",
+          "CIVE 358 - Hydrology and Open Channel Flow",
+          "CIVE 375 - Environmental Engineering Principles",
+          "WKRPT 300 - Work-term Report"
+        ],
+        "3B": [
+          "CIVE 332 - Construction Management",
+          "CIVE 333 - Structural Steel Design",
+          "CIVE 340 - Transportation Engineering",
+          "CIVE 343 - Traffic Simulation Modelling and Applications (or approved technical elective)",
+          "WKRPT 400 - Work-term Report"
+        ],
+        "4A": [
+          "CIVE 414 - Structural Concrete Design",
+          "CIVE 415 - Structural System Design",
+          "CIVE 419 - Civil Engineering Project 1",
+          "Two Technical Electives"
+        ],
+        "4B": [
+          "CIVE 420 - Civil Engineering Project 2",
+          "CIVE 461 - Water Resources Engineering",
+          "Two Technical Electives"
+        ]
+      },
+      "notes": "Some 3B/4A/4B specifics can vary by track; consult official TE lists.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Civil-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Environmental Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2023-2024",
+      "terms": {
+        "1A": [
+          "CHE 102 - Chemistry for Engineers",
+          "CIVE 104 - Mechanics 1",
+          "COMMST 191/ENGL 191 - Communication in the Engineering Profession",
+          "ENVE 100/GEOE 100 - Environmental and Geological Engineering Concepts",
+          "ENVE 115/CIVE 115/GEOE 115 - Linear Algebra"
+        ],
+        "1B": [
+          "CIVE 105 - Mechanics 2",
+          "ENVE 121/CIVE 121/GEOE 121 - Computational Methods",
+          "AE 123/CIVE 123/ENVE 123/GEOE 123 - Electrical Circuits and Instrumentation",
+          "MATH 118 - Calculus 2 for Engineering",
+          "PHYS 122 - Waves, Electricity and Magnetism"
+        ],
+        "2A": [
+          "CHE 102 - (if not taken) or Technical Elective/Natural Science Elective per plan",
+          "CIVE 224/ENVE 224/GEOE 224 - Probability and Statistics",
+          "ENVE 223 - Differential Equations and Balance Laws",
+          "ENVE 275 - Aquatic Chemistry",
+          "ME 201 - Kinematics and Dynamics (or equivalent per current calendar)"
+        ],
+        "2B": [
+          "CIVE 205 - Fluid Mechanics",
+          "ENVE 280 - Environmental Engineering Principles",
+          "ENVE 335 - Decision Making for Environmental Engineers",
+          "EARTH 123 - Introductory Geology",
+          "WKRPT 200/300 - Work-term Report"
+        ],
+        "3A": [
+          "ENVE 375 - Physico-Chemical Processes",
+          "ENVE 376 - Biological Processes",
+          "ENVE 377 - Engineering for Solid Waste Management",
+          "CIVE 353 - Mechanics of Deformable Solids",
+          "WKRPT 300 - Work-term Report"
+        ],
+        "3B": [
+          "ENVE 391/GEOE 391 - Law and Ethics for Environmental and Geological Engineers",
+          "ENVE 392/CIVE 392/GEOE 392 - Economics and Life Cycle Cost Analysis",
+          "ENVE 577 - Engineering for Solid Waste Management (if not taken earlier) or TE",
+          "Technical Elective",
+          "WKRPT 400 - Work-term Report"
+        ],
+        "4A": [
+          "ENVE 400 - Environmental Engineering Design Project 1",
+          "Technical Elective",
+          "Technical Elective",
+          "Complementary Studies Elective"
+        ],
+        "4B": [
+          "ENVE 401 - Environmental Engineering Design Project 2",
+          "Technical Elective",
+          "Technical Elective",
+          "Complementary Studies Elective"
+        ]
+      },
+      "notes": "Exact 2A/2B/3x details vary slightly year-to-year; confirm with the current calendar and TE lists.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Environmental-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Geological Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2023-2024",
+      "terms": {
+        "1A": [
+          "CHE 102 - Chemistry for Engineers",
+          "CIVE 104 - Mechanics 1",
+          "COMMST 191/ENGL 191 - Communication in the Engineering Profession",
+          "GEOE 100/ENVE 100 - Environmental and Geological Engineering Concepts",
+          "CIVE 115/ENVE 115/GEOE 115 - Linear Algebra"
+        ],
+        "1B": [
+          "CIVE 105 - Mechanics 2",
+          "ENVE 121/CIVE 121/GEOE 121 - Computational Methods",
+          "AE 123/CIVE 123/ENVE 123/GEOE 123 - Electrical Circuits and Instrumentation",
+          "MATH 118 - Calculus 2 for Engineering",
+          "PHYS 122 - Waves, Electricity and Magnetism"
+        ],
+        "2A": [
+          "CIVE 224/ENVE 224/GEOE 224 - Probability and Statistics",
+          "GEOE 221 - Earth Materials 1",
+          "GEOE 223 - Differential Equations and Balance Laws",
+          "GEOE 261 - Introductory Applied Geophysics",
+          "EARTH 123 - Introductory Geology"
+        ],
+        "2B": [
+          "GEOE 283 - Geological Engineering Field Methods",
+          "GEOE 287 - Geological Engineering and Society",
+          "GEOE 295 - Field Course",
+          "WKRPT 200 - Work-term Report",
+          "Technical Elective"
+        ],
+        "3A": [
+          "GEOE 331 - Structural Geology",
+          "GEOE 333 - Sedimentology and Stratigraphy",
+          "GEOE 353 - Rock Mechanics",
+          "GEOE 375 - Hydrogeology",
+          "WKRPT 300 - Work-term Report"
+        ],
+        "3B": [
+          "GEOE 401 - Geological Engineering Design Project 1",
+          "GEOE 421 - Engineering Geology",
+          "GEOE 459 - Chemical Hydrogeology (or EARTH 459)",
+          "Technical Elective",
+          "WKRPT 400 - Work-term Report"
+        ],
+        "4A": [
+          "GEOE 402 - Geological Engineering Design Project 2",
+          "GEOE 456/EARTH 456 - Numerical Methods in Hydrogeology",
+          "GEOE 458/EARTH 458 - Physical Hydrogeology",
+          "Technical Elective"
+        ],
+        "4B": [
+          "GEOE 471 - Mineral Deposits",
+          "Technical Elective",
+          "Complementary Studies Elective",
+          "Complementary Studies Elective"
+        ]
+      },
+      "notes": "Some course numbers cross-list with EARTH; confirm TE choices with current lists.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Geological-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Computer Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2022-2023",
+      "terms": {
+        "1A": [
+          "CHE 102 - Chemistry for Engineers",
+          "ECE 105 - Classical Mechanics",
+          "ECE 150 - Fundamentals of Programming",
+          "MATH 115 - Linear Algebra for Engineering",
+          "MATH 117 - Calculus 1 for Engineering"
+        ],
+        "1B": [
+          "ECE 106 - Electricity and Magnetism",
+          "ECE 124 - Digital Circuits and Systems",
+          "MATH 119 - Calculus 2 for Engineering",
+          "SE 102 - Seminar (Software Engineering)",
+          "One of: CS 136/138/146 or ECE 250 (Algorithms/Data Structures)"
+        ],
+        "2A": [
+          "ECE 140 - Linear Circuits",
+          "ECE 222 - Digital Computers",
+          "MATH 213 - Signals, Systems, and Differential Equations",
+          "STAT 206 or equivalent - Statistics",
+          "CS 241 - Foundations of Sequential Programs (or CS 240/SE equivalent)"
+        ],
+        "2B": [
+          "ECE 252 - Systems Programming and Concurrency",
+          "ECE 350 - Real-Time Operating Systems",
+          "ECE 356 - Database Systems",
+          "ECE 358 - Computer Networks",
+          "ECE 316 - Probability Theory and Statistics (if required by cohort) / Approved Elective"
+        ],
+        "3A": [
+          "ECE 320 - Computer Architecture",
+          "ECE 351 - Compilers",
+          "ECE 406 - Algorithm Design and Analysis",
+          "ECE 409 - Cryptography and System Security",
+          "Technical Elective"
+        ],
+        "3B": [
+          "ECE 327 - Digital Hardware Systems",
+          "ECE 423 - Embedded Computer Systems",
+          "ECE 454 - Distributed Computing",
+          "ECE 459 - Programming for Performance",
+          "Technical Elective"
+        ],
+        "4A": [
+          "ECE 498A - Engineering Design Project",
+          "Communication/Impact course (e.g., ECE 192 or List A/C/D course)",
+          "Two Technical Electives"
+        ],
+        "4B": [
+          "ECE 498B - Engineering Design Project",
+          "Three Technical Electives"
+        ]
+      },
+      "notes": "Exact 2A–3B course mix may vary; verify with cohort-specific checklists. Uses ECE/CS core typical of CE.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2022-2023/page/ENG-Computer-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Electrical Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2023-2024",
+      "terms": {
+        "1A": [
+          "ECE 105 - Classical Mechanics",
+          "ECE 106 - Electricity and Magnetism",
+          "ECE 150 - Fundamentals of Programming",
+          "MATH 115 - Linear Algebra for Engineering",
+          "MATH 117 - Calculus 1 for Engineering"
+        ],
+        "1B": [
+          "ECE 124 - Digital Circuits and Systems",
+          "ECE 140 - Linear Circuits",
+          "MATH 119 - Calculus 2 for Engineering",
+          "SE 102 - Seminar",
+          "One of: CS 136/138/146 or ECE 250 (Algorithms/Data Structures)"
+        ],
+        "2A": [
+          "ECE 205 - Advanced Calculus 1 for ECE",
+          "ECE 222 - Digital Computers",
+          "ECE 250 - Algorithms and Data Structures",
+          "ECE 255 - Digital Systems",
+          "STAT 206 - Statistics for Software Engineering (or ECE 316)"
+        ],
+        "2B": [
+          "ECE 207 - Signals and Systems",
+          "ECE 209 - Circuits and Systems",
+          "ECE 242 - Electronic Devices",
+          "ECE 298 - Laboratory/Project (per calendar)",
+          "Complementary Studies Elective"
+        ],
+        "3A": [
+          "ECE 306 - Probability and Random Processes",
+          "ECE 307 - Electromagnetics (Fields and Waves)",
+          "ECE 351 - Control Systems (or ECE 380 Analog Control Systems)",
+          "ECE 375 - Electromagnetic Fields and Waves",
+          "Technical Elective"
+        ],
+        "3B": [
+          "ECE 380 - Analog Control Systems",
+          "ECE 387 - Communication Systems",
+          "ECE 390 - Energy Systems (or Power Electronics)",
+          "ECE 300-level Technical Elective",
+          "WKRPT 400 - Work-term Report"
+        ],
+        "4A": [
+          "ECE 498A - Engineering Design Project",
+          "Two Technical Electives",
+          "Complementary Studies Elective"
+        ],
+        "4B": [
+          "ECE 498B - Engineering Design Project",
+          "Three Technical Electives"
+        ]
+      },
+      "notes": "Course numbering/titles summarized; confirm specific 2A–3B titles with current page.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Electrical-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Mechanical Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2023-2024",
+      "terms": {
+        "1A": [
+          "CHE 102 - Chemistry for Engineers",
+          "MATH 115 - Linear Algebra for Engineering",
+          "MATH 116 - Calculus 1 for Engineering",
+          "ME 100 - Introduction to Mechanical Engineering Practice 1",
+          "PHYS 115 - Mechanics"
+        ],
+        "1B": [
+          "MATH 118 - Calculus 2 for Engineering",
+          "ME 100B - Introduction to Mechanical Engineering Practice 2 (Seminar)",
+          "ME 123 - Electrical Engineering for Mechanical Engineers",
+          "ME 134 - Statics",
+          "ME 135 - Engineering Design, Prototyping and Manufacturing"
+        ],
+        "2A": [
+          "ME 201 - Kinematics and Dynamics",
+          "ME 219 - Mechanical Engineering Design Workshop 1",
+          "ME 230 - Thermodynamics 1",
+          "ME 250 - Mechanics of Solids 1",
+          "MTE 204 - Numerical Methods"
+        ],
+        "2B": [
+          "ME 203 - Ordinary Differential Equations",
+          "ME 240 - Fluid Mechanics 1",
+          "ME 251 - Mechanics of Solids 2",
+          "MTE 262 - Introduction to Digital Logic",
+          "WKRPT 200 - Work-term Report"
+        ],
+        "3A": [
+          "ME 321 - Dynamics of Machines and Mechanical Vibrations",
+          "ME 340 - Manufacturing Processes",
+          "ME 360 - Introduction to Control Systems",
+          "ME 362 - System Modelling, Identification and Digital Control",
+          "ME 380 - Heat Transfer 1"
+        ],
+        "3B": [
+          "ME 322 - Mechanical Design 1",
+          "ME 343 - Computer Aided Design and Manufacturing",
+          "ME 351 - Mechanics of Solids 3",
+          "ME 375 - Measurements and Instrumentation",
+          "ME 381 - Heat Transfer 2"
+        ],
+        "4A": [
+          "ME 481 - Mechanical Engineering Design Project 1",
+          "Three Technical Electives"
+        ],
+        "4B": [
+          "ME 482 - Mechanical Engineering Design Project 2",
+          "Three Technical Electives"
+        ]
+      },
+      "notes": "Seminar ME 100B appears as non-credit in some years but is required; check your cohort calendar.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Mechanical-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Mechatronics Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2022-2023",
+      "terms": {
+        "1A": [
+          "CHE 102 - Chemistry for Engineers",
+          "MATH 115 - Linear Algebra for Engineering",
+          "MATH 117 - Calculus 1 for Engineering",
+          "MTE 100 - Introduction to Mechatronics Engineering Practice 1",
+          "PHYS 115 - Mechanics"
+        ],
+        "1B": [
+          "MATH 118 - Calculus 2 for Engineering",
+          "MTE 100B - Introduction to Mechatronics Engineering Practice 2 (Seminar)",
+          "MTE 120 - Circuits",
+          "MTE 140 - Algorithms and Data Structures",
+          "MTE 180 - Physics of Machine and Biological Materials"
+        ],
+        "2A": [
+          "MTE 201 - Kinematics and Dynamics",
+          "MTE 202 - Ordinary Differential Equations",
+          "MTE 220 - Sensors and Instrumentation",
+          "MTE 241 - Introduction to Computer Structures and Real-Time Systems",
+          "MTE 262 - Introduction to Digital Logic"
+        ],
+        "2B": [
+          "MTE 320 - Actuators and Power Electronics",
+          "MTE 325 - Microprocessor Systems and Interfacing for Mechatronics Engineering",
+          "MTE 321 - Design and Dynamics of Machines",
+          "MTE 262L - Digital Logic Laboratory (where applicable) / Technical Elective",
+          "WKRPT 200 - Work-term Report"
+        ],
+        "3A": [
+          "MTE 322 - Electromechanical Machine Design",
+          "MTE 360 - Automatic Control Systems",
+          "MTE 380 - Heat and Mass Transfer (or ME 380)",
+          "Complementary Studies Elective",
+          "Technical Elective"
+        ],
+        "3B": [
+          "MTE 460 - Mechatronic System Integration",
+          "MTE 544 - Autonomous Mobile Robots (or approved robotics elective)",
+          "MTE 546 - Multi-Sensor Data Fusion (or approved elective)",
+          "WKRPT 400 - Work-term Report",
+          "Technical Elective"
+        ],
+        "4A": [
+          "MTE 481 - Mechatronics Engineering Design Project 1",
+          "Two or Three Technical Electives (per cohort)",
+          "Complementary Studies Elective"
+        ],
+        "4B": [
+          "MTE 482 - Mechatronics Engineering Project 2",
+          "Two or Three Technical Electives (per cohort)",
+          "Complementary Studies Elective"
+        ]
+      },
+      "notes": "2A–4B populated from standard MTE core; please verify titles and sequencing with the current calendar.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2022-2023/page/ENG-Mechatronics-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Systems Design Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2023-2024",
+      "terms": {
+        "1A": [
+          "CHE 102 - Chemistry for Engineers",
+          "MATH 115 - Linear Algebra for Engineering",
+          "MATH 117 - Calculus 1 for Engineering",
+          "PHYS 115 - Mechanics",
+          "SYDE 101 - Systems Design Engineering: Principles",
+          "SYDE 101L - Systems Design Engineering: Practice"
+        ],
+        "1B": [
+          "MATH 118 - Calculus 2 for Engineering",
+          "MATH 119 - Calculus 2 for Engineering (vector/diff?)",
+          "PHYS 122 - Waves, Electricity and Magnetism",
+          "SYDE 111 - Digital Computation",
+          "SYDE 182 - Physics 2: Materials and Waves",
+          "SYDE 192 - Digital Systems",
+          "SYDE 221 - Electrical Circuits and Instrumentation"
+        ],
+        "2A": [
+          "MATH 213 - Signals, Systems, and Differential Equations",
+          "SYDE 211 - Calculus 3",
+          "SYDE 223 - Data Structures and Algorithms",
+          "SYDE 261 - Design, Systems, and Society",
+          "SYDE 262 - Engineering Economics of Design"
+        ],
+        "2B": [
+          "SYDE 252 - Linear Systems",
+          "SYDE 262 - (if not taken) or approved elective",
+          "SYDE 283 - Physics 3: Electricity, Magnetism and Optics",
+          "SYDE 285 - Materials Science",
+          "SYDE 292 - Circuits, Instrumentation, and Measurements"
+        ],
+        "3A": [
+          "SYDE 312 - Differential Equations and Systems",
+          "SYDE 322 - Data Structures and Algorithms 2 / Software Design (per calendar)",
+          "SYDE 352 - Introduction to Control Systems",
+          "SYDE 352L - Control Laboratory (if applicable)",
+          "Complementary Studies Elective"
+        ],
+        "3B": [
+          "SYDE 411 - Optimization and Numerical Methods",
+          "SYDE 433 - Human Factors (Interface Design / Cognitive Ergonomics sequence)",
+          "SYDE 461 - Capstone Project Preparation / Specialization Elective",
+          "WKRPT 400 - Work-term Report",
+          "Technical/Design Elective"
+        ],
+        "4A": [
+          "SYDE 461 - Systems Design Capstone Project 1",
+          "SYDE 4xx - Upper-year Technical Electives (2-3)",
+          "Complementary Studies Elective"
+        ],
+        "4B": [
+          "SYDE 462 - Systems Design Capstone Project 2",
+          "SYDE 4xx - Upper-year Technical Electives (2-3)",
+          "Complementary Studies Elective"
+        ]
+      },
+      "notes": "Course names summarized; verify exact titles/numbers with the current calendar.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Systems-Design-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Nanotechnology Engineering": {
+      "degree": "BASc",
+      "calendar_year": "2020-2021",
+      "terms": {
+        "1A": [
+          "MATH 117 - Calculus 1 for Engineering",
+          "NE 100 - Introduction to Nanotechnology Engineering",
+          "NE 101 - Nanotechnology Engineering Practice 1",
+          "NE 109 - Societal and Environmental Impacts of Nanotechnology",
+          "NE 111 - Introduction to Programming for Engineers",
+          "NE 112 - Linear Algebra for Nanotechnology Engineering",
+          "NE 121 - Chemical Principles"
+        ],
+        "1B": [
+          "MATH 119 - Calculus 2 for Engineering",
+          "NE 102 - Nanotechnology Engineering Practice 2 (health risk)",
+          "NE 113 - Introduction to Computational Methods",
+          "NE 125 - Introduction to Materials Science and Engineering",
+          "NE 131 - Physics for Nanotechnology Engineering",
+          "NE 140 - Linear Circuits"
+        ],
+        "2A": [
+          "NE 201 - Nanotechnology Engineering Practice 3 (nanotoxicology)",
+          "NE 215 - Probability and Statistics",
+          "NE 216 - Advanced Calculus and Numerical Methods 1",
+          "NE 220L - Materials Science and Engineering Laboratory",
+          "NE 222 - Organic Chemistry for Nanotechnology Engineers",
+          "NE 241 - Electromagnetism",
+          "Communication Elective (ENGR communication list)"
+        ],
+        "2B": [
+          "NE 202 - Nanotechnology Engineering Practice 4 (env. impact)",
+          "NE 217 - Advanced Calculus and Numerical Methods 2",
+          "NE 224 - Biochemistry for Nanotechnology Engineers",
+          "NE 225 - Structure and Properties of Nanomaterials",
+          "NE 226 - Characterization of Materials",
+          "NE 226L - Laboratory Characterization Methods",
+          "NE 242 - Semiconductor Physics and Devices",
+          "NE 250 - Work-term Report 1"
+        ],
+        "3A": [
+          "MSCI 261 - Engineering Economics: Financial Management for Engineers",
+          "NE 301 - Nanotechnology Engineering Practice 5",
+          "NE 318 - Continuum Mechanics for Nanotechnology Engineering",
+          "NE 320L - Characterization of Materials Laboratory",
+          "NE 332 - Quantum Mechanics",
+          "NE 333 - Macromolecular Science",
+          "NE 343 - Microfabrication and Thin-film Technology"
+        ],
+        "3B": [
+          "NE 302 - Nanotechnology Engineering Practice 6",
+          "NE 307 - Introduction to Nanosystems Design",
+          "NE 330L - Macromolecular Science Laboratory",
+          "NE 334 - Statistical Thermodynamics",
+          "NE 336 - Micro and Nanosystem CAD",
+          "NE 340L - Microfabrication and Thin-film Technology Laboratory",
+          "NE 350 - Work-term Report 2",
+          "NE 352 - Surfaces and Interfaces",
+          "Two Technical Electives"
+        ],
+        "4A": [
+          "NE 408 - Nanosystems Design Project 1",
+          "Two senior laboratory course electives (NE 454A/B/C/D)",
+          "Complementary Studies Elective",
+          "Three Technical Electives"
+        ],
+        "4B": [
+          "NE 409 - Nanosystems Design Project and Symposium",
+          "Technical Electives (per TE lists)"
+        ]
+      },
+      "notes": "Full term-by-term plan taken from the 2020–2021 archived calendar.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2020-2021/page/ENG-Nanotechnology-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    },
+    "Software Engineering": {
+      "degree": "BSE",
+      "calendar_year": "2022-2023",
+      "terms": {
+        "1A": [
+          "CS 137 - Programming Principles",
+          "ECE 105 - Classical Mechanics",
+          "MATH 115 - Linear Algebra for Engineering",
+          "MATH 117 - Calculus 1 for Engineering",
+          "MATH 135 - Algebra for Honours Mathematics"
+        ],
+        "1B": [
+          "CS 138 - Introduction to Data Abstraction and Implementation",
+          "ECE 106 - Electricity and Magnetism",
+          "ECE 124 - Digital Circuits and Systems",
+          "ECE 140 - Linear Circuits",
+          "MATH 119 - Calculus 2 for Engineering",
+          "SE 102 - Seminar"
+        ],
+        "2A": [
+          "CHE 102 - Chemistry for Engineers",
+          "CS 241 - Foundations of Sequential Programs",
+          "ECE 222 - Digital Computers",
+          "SE 201 - Seminar",
+          "SE 212 - Logic and Computation",
+          "STAT 206 - Statistics for Software Engineering"
+        ],
+        "2B": [
+          "CS 240 - Data Structures and Data Management",
+          "CS 247 - Software Engineering Principles",
+          "CS 348 - Introduction to Database Management",
+          "ECE 192 - Engineering Economics and Impact on Society",
+          "MATH 239 - Introduction to Combinatorics"
+        ],
+        "3A": [
+          "CS 341 - Algorithms",
+          "CS 349 - User Interfaces",
+          "MATH 213 - Signals, Systems, and Differential Equations",
+          "SE 301 - Seminar",
+          "SE 350 - Operating Systems",
+          "SE 465 - Software Testing and Quality Assurance"
+        ],
+        "3B": [
+          "SE 463 - Software Project Management, Requirements, and Analysis (or CS/ECE equivalent)",
+          "SE 464 - Software Design and Architectures (or CS/ECE equivalent)",
+          "Communication/Society course (List A/C/D, e.g., CS 492 / STV 302)",
+          "Technical Elective"
+        ],
+        "4A": [
+          "Fourth-year project/thesis or approved project course (varies)",
+          "Two Technical Electives",
+          "Impact/Society Elective (if not previously taken)"
+        ],
+        "4B": [
+          "Technical Electives (2–3 depending on sequence)",
+          "Seminar/Capstone continuation (varies by cohort)"
+        ]
+      },
+      "notes": "Based on the 2022–2023 archived SE page (Math faculty calendar). Use your cohort’s checklist for precise 3B–4B selections.",
+      "sources": [
+        "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2022-2023/page/MATH-Software-Engineering.html"
+      ],
+      "course_lists": {
+        "technical": {
+          "options": [],
+          "notes": "Populate from official calendar if empty."
+        }
+      }
+    }
+  }
+}
