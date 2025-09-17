@@ -1,36 +1,27 @@
 {
-  "name": "waterloo-elective-chooser",
-  "version": "0.1.0",
+  "name": "uw-elective-chooser-monorepo",
+  "version": "1.0.0",
   "private": true,
+  "description": "University of Waterloo Elective Chooser - Full Stack Application",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "cd frontend && npm run dev",
+    "dev:turbo": "cd frontend && npm run dev:turbo",
+    "dev:debug": "cd frontend && npm run dev:debug",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm run start",
+    "lint": "cd frontend && npm run lint",
+    "type-check": "cd frontend && npm run type-check",
+    "clean": "cd frontend && npm run clean",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && pip install -r requirements.txt",
+    "install:all": "npm run install:frontend && npm run install:backend",
+    "setup": "npm run install:all && npm run build"
   },
-  "dependencies": {
-    "next": "15.5.3",
-    "react": "^18",
-    "react-dom": "^18",
-    "@supabase/supabase-js": "^2.45.4",
-    "@supabase/auth-helpers-nextjs": "^0.10.0",
-    "langchain": "^0.3.7",
-    "@langchain/openai": "^0.3.12",
-    "@langchain/community": "^0.3.15",
-    "openai": "^4.67.3",
-    "csv-parse": "^5.5.6",
-    "lucide-react": "^0.468.0",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^2.5.4"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "15.5.3"
+  "workspaces": [
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }

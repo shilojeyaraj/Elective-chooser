@@ -1,0 +1,11 @@
+List,Category,Course_Code,Course_Name,Units,Subject_Code,Course_Type
+A,Social_Impact_Tech,ANTH106,Technologies of Being Human,0.50,ANTH,Regular
+A,Social_Impact_Tech,BET360,Design Frameworks for Social Ventures,0.50,BET,Regular
+A,Social_Impact_Tech,BET420,Entrepreneurship for Social Impact,0.50,BET,Regular
+A,Social_Impact_Tech,BME381,Biomedical Engineering Ethics,0.50,BME,Regular
+A,Social_Impact_Tech,CS492,The Social Implications of Computing,0.50,CS,Regular
+A,Social_Impact_Tech,ENVS105,Environmental Sustainability and Ethics,0.50,ENVS,Regular
+A,Social_Impact_Tech,ENVS205,"Sustainability: The Future We Want",0.50,ENVS,Regular
+...
+EXCLUSION,Ineligible,SOC280,Social Statistics,0.50,SOC,Excluded
+EXCLUSION,Ineligible,SRF230,Introduction to Statistics,0.50,SRF,Excluded

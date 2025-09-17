@@ -1,0 +1,672 @@
+{
+  "generated_at": "2025-09-17",
+  "institution": "University of Waterloo",
+  "faculty": "Engineering",
+  "programs": [
+    {
+      "program": "Architectural Engineering",
+      "specializations": [
+        {
+          "name": "Building Structures Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Complete at least 5 approved technical electives, including at least one of CIVE 413 or CIVE 414.",
+          "course_requirements": {
+            "required": [
+              "CIVE 413 or CIVE 414"
+            ],
+            "choose_from": {
+              "examples": [
+                "CIVE 413 Structural Steel Design",
+                "CIVE 414 Structural Concrete Design",
+                "CIVE 415 Structural System Design",
+                "CIVE 422 Finite Element Analysis",
+                "CIVE 505 Structural Dynamics",
+                "CIVE 512 Rehabilitation of Structures"
+              ]
+            }
+          },
+          "source": "UW AE degree-planning page / Calendar (Building Structures)"
+        },
+        {
+          "name": "Building Systems Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Complete at least 4 approved technical electives from the Building Systems lists.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "AE 315 Building Environmental Systems",
+                "AE 405 Building Performance Measurement Lab",
+                "AE 450 Building Service Systems",
+                "AE 572/ME 572 Building Energy Analysis",
+                "AE 573/ME 573 HVAC Systems, Equipment, and Energy Efficiency",
+                "ME 452 HVAC Load Analysis and Design Fundamentals"
+              ]
+            }
+          },
+          "source": "UW AE degree-planning page / Calendar (Building Systems)"
+        }
+      ]
+    },
+    {
+      "program": "Biomedical Engineering",
+      "specializations": [
+        {
+          "name": "Biomaterials and Tissues Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Select five technical electives from the approved list for this specialization per the current Calendar.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": []
+            }
+          },
+          "source": "UW Biomedical Engineering degree-planning (specialization mappings)"
+        },
+        {
+          "name": "Medical Devices Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Five technical electives focused on medical devices, plus capstone (BME 461/462, GENE 403/404, or SYDE 461/462) or BME 499 with a medical devices focus.",
+          "course_requirements": {
+            "required": [
+              "Capstone (device-focused) OR BME 499 (device-focused)"
+            ],
+            "choose_from": {
+              "examples": [
+                "BME 540/ME 540 Medical Device Design",
+                "BME 454 Biomedical Instrumentation",
+                "SYDE 556 Autonomous Robotics (if device focus)",
+                "ECE 414 Wireless Communications (device connectivity)"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (Biomedical Engineering Specializations)"
+        },
+        {
+          "name": "Medical Artificial Intelligence Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Select five technical electives from the approved list for this specialization per the current Calendar.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": []
+            }
+          },
+          "source": "UW Biomedical Engineering degree-planning (specialization mappings)"
+        },
+        {
+          "name": "Neural Engineering Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Select five technical electives from the approved list for this specialization per the current Calendar.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": []
+            }
+          },
+          "source": "UW Biomedical Engineering degree-planning (specialization mappings)"
+        },
+        {
+          "name": "Sports Engineering Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Select five technical electives from the approved list for this specialization per the current Calendar.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": []
+            }
+          },
+          "source": "UW Biomedical Engineering degree-planning (specialization mappings)"
+        }
+      ]
+    },
+    {
+      "program": "Chemical Engineering",
+      "specializations": [
+        {
+          "name": "Chemical Process Modelling, Optimization & Control Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Take 4 approved technical electives for the specialization; \u226550% in each and \u226560% average across the four.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": []
+            }
+          },
+          "source": "Chemical Engineering degree planning (specializations & 60% rule)"
+        },
+        {
+          "name": "Energy & Environmental Systems & Processes Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Take 4 approved technical electives for the specialization; \u226550% in each and \u226560% average across the four.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": []
+            }
+          },
+          "source": "Chemical Engineering degree planning (specializations & 60% rule)"
+        },
+        {
+          "name": "Materials & Manufacturing Processes Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Take 4 approved technical electives for the specialization; \u226550% in each and \u226560% average across the four.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": []
+            }
+          },
+          "source": "Chemical Engineering degree planning (specializations & 60% rule)"
+        }
+      ]
+    },
+    {
+      "program": "Civil Engineering",
+      "specializations": [
+        {
+          "name": "Building Science Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Minimum of 4 technical electives from lists below.",
+          "course_requirements": {
+            "choose_from": {
+              "TE_List_1": [
+                "AE 405 Building Performance Measurement Lab",
+                "AE 450 Building Service Systems",
+                "AE 572/ME 572 Building Energy Analysis",
+                "AE 573/ME 573 HVAC Systems, Equipment, and Energy Efficiency",
+                "ME 452 HVAC Load Analysis and Design Fundamentals"
+              ],
+              "TE_List_2": [
+                "CIVE 507 Building Science and Technology",
+                "ENVE 277 Air Quality Engineering",
+                "ENVE 279 Energy and the Environment"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (2023\u201324) Civil Engineering"
+        },
+        {
+          "name": "Geotechnical Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Minimum of 4 technical electives, including 2 required courses.",
+          "course_requirements": {
+            "required": [
+              "CIVE 354/GEOE 354 Geotechnical Engineering 2",
+              "CIVE 554/GEOE 554 Geotechnical Engineering 3"
+            ],
+            "choose_from": {
+              "TE_List_1": [
+                "CIVE 414 Structural Concrete Design",
+                "CIVE 542 Pavement Structural Design"
+              ],
+              "TE_List_2": [
+                "CIVE 422 Finite Element Analysis",
+                "ME 559 Finite Element Methods",
+                "EARTH 438 Engineering Geology"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (2023\u201324) Civil Engineering"
+        },
+        {
+          "name": "Structural Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Minimum of 5 technical electives; one must be CIVE 413 or CIVE 414.",
+          "course_requirements": {
+            "required": [
+              "CIVE 413 or CIVE 414"
+            ],
+            "choose_from": {
+              "TE_List_1": [
+                "CIVE 413 Structural Steel Design",
+                "CIVE 414 Structural Concrete Design",
+                "CIVE 415 Structural System Design",
+                "CIVE 460/ME 574 Engineering Biomechanics",
+                "CIVE 512 Rehabilitation of Structures",
+                "CIVE 596 Construction Engineering"
+              ],
+              "TE_List_2": [
+                "CIVE 306 Solid Mechanics 3",
+                "CIVE 422 Finite Element Analysis",
+                "CIVE 505 Structural Dynamics"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (2023\u201324) Civil Engineering"
+        },
+        {
+          "name": "Transportation Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Minimum of 4 technical electives; at least 3 must be CIVE courses.",
+          "course_requirements": {
+            "choose_from": {
+              "TE_List_1": [
+                "CIVE 343 Traffic Simulation Modelling and Applications",
+                "CIVE 542 Pavement Structural Design"
+              ],
+              "TE_List_2": [
+                "CIVE 440/PLAN 478 Transit Planning and Operations",
+                "CIVE 484/PLAN 484 Physical Infrastructure Planning",
+                "GEOG 381/PLAN 381 Advanced Geographic Information Systems",
+                "PLAN 416 Modelling the City",
+                "PLAN 477 Freight Planning and Policy"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (2023\u201324) Civil Engineering"
+        },
+        {
+          "name": "Water Resources Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Minimum of 4 technical electives including 1 required course.",
+          "course_requirements": {
+            "required": [
+              "ENVE 383 Advanced Hydrology and Hydraulics"
+            ],
+            "choose_from": {
+              "TE_List_1": [
+                "CIVE 583/ENVE 583 Design of Urban Water Systems",
+                "SYDE 533 Conflict Resolution"
+              ],
+              "TE_List_2": [
+                "EARTH 444/BIOL 462 Applied Wetland Science",
+                "EARTH 458 Physical Hydrogeology",
+                "ENVE 376 Biological Processes",
+                "ENVE 573 Contaminant Transport",
+                "GEOG 209 Hydroclimatology",
+                "GEOG 305 Fluvial Geomorphology",
+                "GEOG 371 Advanced Remote Sensing Techniques",
+                "GEOG 381/PLAN 381 Advanced Geographic Information Systems",
+                "PLAN 453/GEOG 453 Urban Stormwater Management"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (2023\u201324) Civil Engineering"
+        }
+      ]
+    },
+    {
+      "program": "Computer Engineering",
+      "specializations": [
+        {
+          "name": "Communications & Signal Processing Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Must achieve \u226560% average across specialization courses and \u226550% in each.",
+          "course_requirements": {
+            "required": [
+              "ECE 313 Digital Signal Processing",
+              "ECE 318 Communication Systems"
+            ],
+            "choose_from": {
+              "any_three_of": [
+                "ECE 358 Computer Networks",
+                "ECE 414 Wireless Communications",
+                "ECE 416 Advanced Topics in Networking",
+                "ECE 417 Image Processing",
+                "ECE 474 Radio and Wireless Systems"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (2023\u201324) Electrical Engineering"
+        },
+        {
+          "name": "Quantum Engineering Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Complete 4 courses: ECE 305 + any 3 of the approved ECE 405x courses.",
+          "course_requirements": {
+            "required": [
+              "ECE 305 Introduction to Quantum Mechanics"
+            ],
+            "choose_from": {
+              "any_three_of": [
+                "ECE 405A Quantum Information Processing Devices",
+                "ECE 405B Fundamentals of Experimental Quantum Information",
+                "ECE 405C Programming of Quantum Computing Algorithms",
+                "ECE 405D Superconducting Quantum Circuits"
+              ]
+            }
+          },
+          "source": "Senate Undergraduate Council approvals (2023\u20132025)"
+        }
+      ]
+    },
+    {
+      "program": "Electrical Engineering",
+      "specializations": [
+        {
+          "name": "Communications & Signal Processing Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Must achieve \u226560% average across specialization courses and \u226550% in each.",
+          "course_requirements": {
+            "required": [
+              "ECE 313 Digital Signal Processing",
+              "ECE 318 Communication Systems"
+            ],
+            "choose_from": {
+              "any_three_of": [
+                "ECE 358 Computer Networks",
+                "ECE 414 Wireless Communications",
+                "ECE 416 Advanced Topics in Networking",
+                "ECE 417 Image Processing",
+                "ECE 474 Radio and Wireless Systems"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (2023\u201324) Electrical Engineering"
+        },
+        {
+          "name": "Quantum Engineering Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Complete 4 courses: ECE 305 + any 3 of the approved ECE 405x courses.",
+          "course_requirements": {
+            "required": [
+              "ECE 305 Introduction to Quantum Mechanics"
+            ],
+            "choose_from": {
+              "any_three_of": [
+                "ECE 405A Quantum Information Processing Devices",
+                "ECE 405B Fundamentals of Experimental Quantum Information",
+                "ECE 405C Programming of Quantum Computing Algorithms",
+                "ECE 405D Superconducting Quantum Circuits"
+              ]
+            }
+          },
+          "source": "Senate Undergraduate Council approvals (2023\u20132025)"
+        }
+      ]
+    },
+    {
+      "program": "Environmental Engineering",
+      "specializations": [
+        {
+          "name": "Energy & Climate Change Specialization"
+        },
+        {
+          "name": "Modelling & Data Analytics Specialization"
+        },
+        {
+          "name": "Pollution & Restoration Specialization"
+        },
+        {
+          "name": "Sustainable Cities Specialization"
+        },
+        {
+          "name": "Water Resources Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Minimum of 4 TEs from lists below.",
+          "course_requirements": {
+            "choose_from": {
+              "TE_List_1": [
+                "ENVE 583/CIVE 583 Design of Urban Water Systems",
+                "SYDE 532 Introduction to Complex Systems",
+                "SYDE 533 Conflict Resolution"
+              ],
+              "TE_List_2": [
+                "BIOL 470 Methods of Aquatic Ecology",
+                "EARTH 439 Flow and Transport Through Fractured Rocks",
+                "EARTH 444/BIOL 462 Applied Wetland Science",
+                "EARTH 459 Chemical Hydrogeology",
+                "ENVE 573 Contaminant Transport",
+                "GEOG 209 Hydroclimatology",
+                "GEOG 305 Fluvial Geomorphology",
+                "GEOG 371 Advanced Remote Sensing Techniques",
+                "GEOG 381/PLAN 381 Advanced Geographic Information Systems",
+                "PLAN 453/GEOG 453 Urban Stormwater Management"
+              ]
+            }
+          },
+          "source": "UW Undergraduate Calendar (2023\u201324) Environmental Engineering"
+        }
+      ]
+    },
+    {
+      "program": "Geological Engineering",
+      "specializations": [
+        {
+          "name": "Geology Specialization"
+        },
+        {
+          "name": "Hydrogeology Specialization"
+        },
+        {
+          "name": "Soil, Rock & Structures Specialization"
+        }
+      ]
+    },
+    {
+      "program": "Mechanical Engineering",
+      "specializations": [
+        {
+          "name": "Welding & Joining Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete 5 listed courses; ME 547 may be taken as an optional sixth.",
+          "course_requirements": {
+            "required": [
+              "ME 435 Industrial Metallurgy",
+              "ME 436 Welding and Joining Processes",
+              "ME 526 Fatigue and Fracture Analysis",
+              "ME 535 Welding Metallurgy",
+              "ME 538 Welding Design, Fabrication and Quality Control"
+            ],
+            "optional": [
+              "ME 547 Robotics Manipulators: Kinematics, Dynamics, Control"
+            ]
+          },
+          "source": "MME Welding & Joining Specialization page"
+        }
+      ]
+    },
+    {
+      "program": "Nanotechnology Engineering",
+      "specializations": [
+        {
+          "name": "Nanobiosystems Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete required number of Technical Electives from the specialization lists as per the current Calendar.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "NE 353 Biomedical Devices and Systems",
+                "NE 451 Nanobiotechnology",
+                "BME 356 Biomechanics",
+                "CHE 361 Bioprocess Engineering"
+              ]
+            }
+          },
+          "source": "Nanotechnology Engineering degree planning & Calendar (track examples)"
+        },
+        {
+          "name": "Nanoelectronics Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete required number of Technical Electives from the specialization lists as per the current Calendar.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "NE 343 Semiconductor Devices",
+                "NE 445 Nanoelectronic Circuits",
+                "ECE 474 Radio and Wireless Systems",
+                "ECE 477 Photonic Devices and Systems"
+              ]
+            }
+          },
+          "source": "Nanotechnology Engineering degree planning & Calendar (track examples)"
+        },
+        {
+          "name": "Nanofabrication Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete required number of Technical Electives from the specialization lists as per the current Calendar.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "NE 332 Micro- and Nanofabrication",
+                "NE 432 Advanced Micro/Nanofabrication",
+                "NE 444 Nanomanufacturing",
+                "ME 538 Welding Design (as manufacturing example)"
+              ]
+            }
+          },
+          "source": "Nanotechnology Engineering degree planning & Calendar (track examples)"
+        },
+        {
+          "name": "Nanomaterials Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete required number of Technical Electives from the specialization lists as per the current Calendar.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "NE 352 Nanomaterials",
+                "NE 441 Materials Characterization",
+                "CHE 516 Polymer Science and Engineering",
+                "ME 435 Industrial Metallurgy"
+              ]
+            }
+          },
+          "source": "Nanotechnology Engineering degree planning & Calendar (track examples)"
+        }
+      ]
+    },
+    {
+      "program": "Software Engineering",
+      "specializations": [
+        {
+          "name": "Artificial Intelligence Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete required AI list for BSE/CS specialization rules (e.g., core AI plus advanced electives).",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "CS 486 Introduction to Artificial Intelligence",
+                "CS 480 Introduction to Machine Learning",
+                "CS 485 Statistical and Computational Foundations of ML",
+                "CS 489 Applied Machine Learning",
+                "CS 457 Image Processing and Recognition",
+                "CS 485/686, 684/685 advanced AI/ML topics (when allowed for undergrad)"
+              ]
+            }
+          },
+          "source": "SE degree-planning & CS specialization pages (AI)"
+        },
+        {
+          "name": "Business Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete Business list for BSE specialization (often includes ACC/ACTSC/AFM courses).",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "AFM 101 Introduction to Financial Accounting",
+                "AFM 102 Introduction to Managerial Accounting",
+                "MSCI 211 Introduction to Management Sciences",
+                "MSCI 263 Managerial Economics",
+                "MSCI 442 Integrated Business Strategy"
+              ]
+            }
+          },
+          "source": "SE degree-planning (Business specialization)"
+        },
+        {
+          "name": "Computational Fine Art Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete CFA list (joint with Fine Arts/CS; includes digital media and graphics).",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "FINE 204 Digital Imaging",
+                "FINE 228 Introduction to Digital Photography",
+                "CS 488 Introduction to Computer Graphics",
+                "CS 474 Computational Image Processing",
+                "FINE 371 Interactive Media Art"
+              ]
+            }
+          },
+          "source": "SE degree-planning (Computational Fine Art)"
+        },
+        {
+          "name": "Human-Computer Interaction Specialization",
+          "min_average_in_specialization": null,
+          "graduation_requirements": "Complete HCI list for BSE/CS specialization rules.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "CS 349 User Interfaces",
+                "CS 444 Compiler Construction (if UI tooling focus)",
+                "CS 445 Software Requirements Specification and Analysis",
+                "CS 446 Software Design and Architecture",
+                "CS 447 Software Testing, Quality Assurance, and Maintenance",
+                "CS 448 Database Management Systems (UX data)",
+                "CS 449 Human-Computer Interaction",
+                "CS 486 (AI for interaction if allowed)"
+              ]
+            }
+          },
+          "source": "SE degree-planning & CS specialization pages (HCI)"
+        }
+      ]
+    },
+    {
+      "program": "Systems Design Engineering",
+      "specializations": [
+        {
+          "name": "Human Factors and Interfaces Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Select required number of Technical Electives (6\u20137 total across degree), with courses from the approved lists that map to this specialization. Some STV electives may count.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "SYDE 348 Human Factors in Design",
+                "SYDE 544 Human-Computer Interaction",
+                "SYDE 548 Cognitive Ergonomics",
+                "PSYCH 253 Social Psychology",
+                "CS 349 User Interfaces"
+              ]
+            }
+          },
+          "source": "SYDE Course Electives page (specialization mapping); current Undergraduate Calendar"
+        },
+        {
+          "name": "Physical and Mechatronics Systems Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Select required number of Technical Electives (6\u20137 total across degree), with courses from the approved lists that map to this specialization. Some STV electives may count.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "SYDE 384 Kinematics and Dynamics",
+                "SYDE 461/462 Capstone with physical systems focus",
+                "ME 321 Kinematics of Machines",
+                "ME 547 Robotics Manipulators",
+                "ECE 488 Multivariable Control Systems"
+              ]
+            }
+          },
+          "source": "SYDE Course Electives page (specialization mapping); current Undergraduate Calendar"
+        },
+        {
+          "name": "Intelligent and Automated Systems Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Select required number of Technical Electives (6\u20137 total across degree), with courses from the approved lists that map to this specialization. Some STV electives may count.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "SYDE 552 Artificial Intelligence",
+                "SYDE 556 Autonomous Robotics",
+                "SYDE 575 Machine Learning",
+                "ECE 457A Co-operative and Adaptive Algorithms",
+                "ECE 486 Robot Dynamics and Control"
+              ]
+            }
+          },
+          "source": "SYDE Course Electives page (specialization mapping); current Undergraduate Calendar"
+        },
+        {
+          "name": "Societal and Environmental Systems Specialization",
+          "min_average_in_specialization": 0.6,
+          "graduation_requirements": "Select required number of Technical Electives (6\u20137 total across degree), with courses from the approved lists that map to this specialization. Some STV electives may count.",
+          "course_requirements": {
+            "choose_from": {
+              "examples": [
+                "SYDE 430 Societal Issues in Design",
+                "SYDE 411 Systems Models in Human Physiology (as systems example)",
+                "PLAN 473 Environmental Planning",
+                "ENVE 279 Energy and the Environment",
+                "STV 202 Design and Society"
+              ]
+            }
+          },
+          "source": "SYDE Course Electives page (specialization mapping); current Undergraduate Calendar"
+        }
+      ]
+    }
+  ]
+}

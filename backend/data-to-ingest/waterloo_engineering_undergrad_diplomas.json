@@ -1,0 +1,278 @@
+{
+  "generated_on": "2025-09-17",
+  "institution": "University of Waterloo",
+  "scope": "Undergraduate diplomas recognized on the Waterloo Engineering 'Specializations & more' page, available to Engineering students.",
+  "source_summary": {
+    "engineering_overview": "Engineering: Specializations and more (Diplomas list)",
+    "calendar_pages": [
+      "Diploma in Applied Language Studies (Arts/CLS) – minimum 2.0 units of APPLS",
+      "Diploma in Ecological Restoration and Rehabilitation (Environment/ERS) – 6 courses incl. ERS 335 & ENVS 469",
+      "Diploma in Environmental Assessment (Environment/ERS) – 5 courses: ERS 215, ERS 315, ERS 415 + 2 electives from Lists A/B",
+      "Diploma in Future Cities (Environment) – 2.5 units: ENVS 210; ENVS 310 or STV 305; ENVS 410 (1.0); one of a specified list",
+      "Diploma in Sustainability (Environment) – 2.0 units: ENVS 205 + 1 course from each of 3 areas (≥2 outside home faculty)"
+    ]
+  },
+  "diplomas": [
+    {
+      "name": "Diploma in Applied Language Studies",
+      "administered_by": "Faculty of Arts – Culture and Language Studies (CLS)",
+      "uw_engineering_listed": true,
+      "eligibility": "Open to students in any program, including all Engineering programs.",
+      "minimum_average": 65,
+      "requirements": {
+        "total_units_min": 2.0,
+        "required_courses": [],
+        "elective_rules": [
+          "Complete four APPLS courses (≥2.0 units) from the Applied Language Studies offerings."
+        ],
+        "allowed_prefixes": [
+          "APPLS*"
+        ]
+      },
+      "engineering_programs_eligible": [
+        "Architectural Engineering (BASc)",
+        "Biomedical Engineering (BASc)",
+        "Chemical Engineering (BASc)",
+        "Civil Engineering (BASc)",
+        "Computer Engineering (BASc)",
+        "Electrical Engineering (BASc)",
+        "Environmental Engineering (BASc)",
+        "Geological Engineering (BASc)",
+        "Management Engineering (BASc)",
+        "Mechanical Engineering (BASc)",
+        "Mechatronics Engineering (BASc)",
+        "Nanotechnology Engineering (BASc)",
+        "Software Engineering (BSE)",
+        "Systems Design Engineering (BASc)",
+        "Architecture (BAS)"
+      ]
+    },
+    {
+      "name": "Diploma in Ecological Restoration and Rehabilitation",
+      "administered_by": "Faculty of Environment – Environment, Resources & Sustainability (ERS)",
+      "uw_engineering_listed": true,
+      "eligibility": "Open to students in any program, including all Engineering programs.",
+      "minimum_average": 70,
+      "requirements": {
+        "total_courses_min": 6,
+        "required_courses": [
+          "ERS 335",
+          "ENVS 469"
+        ],
+        "elective_rules": [
+          "Choose four courses from the published ERS/BIOL/GEOG/PLAN lists (field/skills-oriented; some are 1.0 or 1.5 unit courses)."
+        ],
+        "notes": [
+          "Many courses have prerequisites; check the calendar for term offerings and cross-listings."
+        ]
+      },
+      "engineering_programs_eligible": [
+        "Architectural Engineering (BASc)",
+        "Biomedical Engineering (BASc)",
+        "Chemical Engineering (BASc)",
+        "Civil Engineering (BASc)",
+        "Computer Engineering (BASc)",
+        "Electrical Engineering (BASc)",
+        "Environmental Engineering (BASc)",
+        "Geological Engineering (BASc)",
+        "Management Engineering (BASc)",
+        "Mechanical Engineering (BASc)",
+        "Mechatronics Engineering (BASc)",
+        "Nanotechnology Engineering (BASc)",
+        "Software Engineering (BSE)",
+        "Systems Design Engineering (BASc)",
+        "Architecture (BAS)"
+      ]
+    },
+    {
+      "name": "Diploma in Environmental Assessment",
+      "administered_by": "Faculty of Environment – Environment, Resources & Sustainability (ERS)",
+      "uw_engineering_listed": true,
+      "eligibility": "Open to students in any program, including all Engineering programs.",
+      "minimum_average": 65,
+      "requirements": {
+        "total_courses_min": 5,
+        "core": [
+          "ERS 215",
+          "ERS 315",
+          "ERS 415"
+        ],
+        "electives": {
+          "List A (Biophysical environment) – choose 1": [
+            "BIOL 351",
+            "BIOL 354",
+            "BIOL 383/ERS 383",
+            "BIOL 447",
+            "EARTH 342",
+            "EARTH 358",
+            "EARTH 458",
+            "GEOG 405 (1.0)",
+            "HLTH 340"
+          ],
+          "List B (Skills: modeling/survey/analysis) – choose 1": [
+            "BIOL 470",
+            "EARTH 456",
+            "ENBUS 308",
+            "ENVE 573",
+            "ENVS 278",
+            "ENVS 444",
+            "ERS 375",
+            "ERS 382 (1.0)",
+            "GEOG 281/PLAN 281",
+            "GEOG 319/PLAN 320",
+            "LS 373/SDS 311R/SWREN 311R"
+          ]
+        }
+      },
+      "engineering_programs_eligible": [
+        "Architectural Engineering (BASc)",
+        "Biomedical Engineering (BASc)",
+        "Chemical Engineering (BASc)",
+        "Civil Engineering (BASc)",
+        "Computer Engineering (BASc)",
+        "Electrical Engineering (BASc)",
+        "Environmental Engineering (BASc)",
+        "Geological Engineering (BASc)",
+        "Management Engineering (BASc)",
+        "Mechanical Engineering (BASc)",
+        "Mechatronics Engineering (BASc)",
+        "Nanotechnology Engineering (BASc)",
+        "Software Engineering (BSE)",
+        "Systems Design Engineering (BASc)",
+        "Architecture (BAS)"
+      ]
+    },
+    {
+      "name": "Diploma in Future Cities",
+      "administered_by": "Faculty of Environment",
+      "uw_engineering_listed": true,
+      "eligibility": "Open to students in any program, including all Engineering programs.",
+      "minimum_average": 65,
+      "requirements": {
+        "total_units_min": 2.5,
+        "required": [
+          "ENVS 210",
+          "ENVS 310 or STV 305",
+          "ENVS 410 (1.0)"
+        ],
+        "choose_one_of": [
+          "EARTH 122",
+          "ENGL 208B",
+          "ENGL 248/ERS 288",
+          "ENVS 195",
+          "GEOG 203",
+          "GEOG 219",
+          "HLTH 370",
+          "PHIL 228",
+          "PHIL 259",
+          "PLAN 100",
+          "PSYCH 372",
+          "RS 285",
+          "SCI 201",
+          "SOC 369J",
+          "STV 100"
+        ]
+      },
+      "engineering_programs_eligible": [
+        "Architectural Engineering (BASc)",
+        "Biomedical Engineering (BASc)",
+        "Chemical Engineering (BASc)",
+        "Civil Engineering (BASc)",
+        "Computer Engineering (BASc)",
+        "Electrical Engineering (BASc)",
+        "Environmental Engineering (BASc)",
+        "Geological Engineering (BASc)",
+        "Management Engineering (BASc)",
+        "Mechanical Engineering (BASc)",
+        "Mechatronics Engineering (BASc)",
+        "Nanotechnology Engineering (BASc)",
+        "Software Engineering (BSE)",
+        "Systems Design Engineering (BASc)",
+        "Architecture (BAS)"
+      ]
+    },
+    {
+      "name": "Diploma in Sustainability",
+      "administered_by": "Faculty of Environment",
+      "uw_engineering_listed": true,
+      "eligibility": "Open to students in any program, including all Engineering programs.",
+      "minimum_average": 65,
+      "requirements": {
+        "total_units_min": 2.0,
+        "required": [
+          "ENVS 205"
+        ],
+        "areas": {
+          "Environmental Science (choose 1)": [
+            "BIOL 485",
+            "BIOL 489",
+            "CHE 571",
+            "CIVE 230",
+            "EARTH 270",
+            "ENVE 279",
+            "ENVS 200",
+            "GEOG 207",
+            "GEOG 459",
+            "NE 109",
+            "SCI 200",
+            "SCI 201",
+            "SYDE 532"
+          ],
+          "Social Wellbeing (choose 1)": [
+            "ENGL 248",
+            "ENVS 105",
+            "ERS 215",
+            "ERS 225",
+            "ERS 253",
+            "ERS 270",
+            "ERS 294/RS 285",
+            "ERS 316",
+            "ERS 361/GEOG 361",
+            "ERS 372",
+            "GEOG 225",
+            "GEOG 368/PLAN 341",
+            "GEOG 432/HLTH 420/PLAN 432",
+            "PACS 310",
+            "PHIL 224",
+            "PLAN 451",
+            "SDS 260R",
+            "THPERF 374"
+          ],
+          "Economic Prosperity (choose 1)": [
+            "ECON 255",
+            "ENBUS 102",
+            "ENBUS 211",
+            "ENVS 220",
+            "ERS 320",
+            "ERS 328",
+            "ERS 370",
+            "ERS 404/PSCI 432",
+            "GEOG 203",
+            "GEOG 416/AVIA 416",
+            "GEOG 323/REC 383"
+          ]
+        },
+        "constraints": [
+          "At least two of the three area courses must be from outside your home faculty."
+        ]
+      },
+      "engineering_programs_eligible": [
+        "Architectural Engineering (BASc)",
+        "Biomedical Engineering (BASc)",
+        "Chemical Engineering (BASc)",
+        "Civil Engineering (BASc)",
+        "Computer Engineering (BASc)",
+        "Electrical Engineering (BASc)",
+        "Environmental Engineering (BASc)",
+        "Geological Engineering (BASc)",
+        "Management Engineering (BASc)",
+        "Mechanical Engineering (BASc)",
+        "Mechatronics Engineering (BASc)",
+        "Nanotechnology Engineering (BASc)",
+        "Software Engineering (BSE)",
+        "Systems Design Engineering (BASc)",
+        "Architecture (BAS)"
+      ]
+    }
+  ]
+}

@@ -1,196 +1,157 @@
-# Waterloo Elective Chooser
+# University of Waterloo Elective Chooser
 
-An AI-powered chatbot that helps Waterloo Engineering students choose the best electives based on their goals, program, and academic standing.
+A full-stack application for helping students choose electives at the University of Waterloo.
 
-## Features
+## 🏗️ Project Structure
 
-- 🤖 **AI Chatbot**: Powered by OpenAI GPT-4 with LangChain for conversation memory
-- 🎯 **Personalized Recommendations**: Course suggestions based on user goals and constraints
-- 🔍 **Smart Search**: Database search with web search fallback for missing information
-- 📊 **Scoring System**: Comprehensive scoring algorithm considering prerequisites, workload, and goal alignment
-- 🔐 **User Authentication**: Secure login with Supabase Auth
-- 📱 **Modern UI**: Clean, responsive interface built with Next.js and Tailwind CSS
-
-## Tech Stack
-
-- **Frontend**: Next.js 15, React, TypeScript, Tailwind CSS
-- **Backend**: Next.js API Routes, Supabase
-- **Database**: PostgreSQL with pgvector for embeddings
-- **AI**: OpenAI GPT-4, LangChain for memory management
-- **Authentication**: Supabase Auth
-- **Search**: Vector similarity search + web search fallback
-
-## Quick Start
-
-### 1. Clone and Install
-
-```bash
-git clone <your-repo>
-cd waterloo-elective-chooser
-npm install
+```
+├── frontend/          # Next.js React application
+│   ├── src/          # Source code
+│   ├── public/       # Static assets
+│   └── package.json  # Frontend dependencies
+├── backend/          # Data processing and scripts
+│   ├── data-to-ingest/  # CSV/JSON data files
+│   ├── scripts/         # Python processing scripts
+│   └── requirements.txt # Python dependencies
+└── package.json      # Root package.json for monorepo
 ```
 
-### 2. Set up Supabase
+## 🚀 Quick Start
 
-1. Create a new project at [supabase.com](https://supabase.com)
-2. Run the SQL schema from `supabase-schema.sql` in your Supabase SQL editor
-3. Get your project URL and anon key from Settings > API
+### Prerequisites
+- Node.js 18+ 
+- Python 3.8+
+- Supabase account
 
-### 3. Environment Variables
+### Installation
+```bash
+# Install all dependencies
+npm run install:all
 
-Create a `.env.local` file:
-
-```env
-# Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-
-# OpenAI Configuration
-OPENAI_API_KEY=your_openai_api_key
-
-# Optional: Web Search API
-TAVILY_API_KEY=your_tavily_api_key
+# Or install separately
+npm run install:frontend  # Frontend dependencies
+npm run install:backend   # Backend dependencies
 ```
 
-### 4. Run the Application
-
+### Development
 ```bash
+# Start frontend development server
 npm run dev
+
+# Start with Turbopack (faster)
+npm run dev:turbo
+
+# Start with debugging
+npm run dev:debug
 ```
 
-Visit `http://localhost:3000` to see the application.
-
-## Data Upload
-
-### Upload Course Data
-
-Use the sample CSV files in `sample-data/` or create your own:
-
+### Production
 ```bash
-# Upload courses
-curl -X POST http://localhost:3000/api/admin/upload-courses \
-  -F "file=@sample-data/courses.csv"
-
-# Upload options
-curl -X POST http://localhost:3000/api/admin/upload-options \
-  -F "file=@sample-data/options.csv"
+# Build and start production server
+npm run build
+npm run start
 ```
 
-### CSV Format
+## 🎨 Styling Debug
 
-**Courses CSV:**
-```csv
-id,title,dept,units,level,description,terms_offered,prereqs,skills,workload,assessments,source_url
-ECE486,Robot Dynamics and Control,ECE,0.5,400,"Advanced robotics course...","[""F"",""W""]","ECE 380","[""robotics"",""control""]","{""reading"": 3, ""assignments"": 4}","{""midterm"": 30, ""final"": 40}","https://..."
-```
+The admin page includes comprehensive styling debugging:
 
-**Options CSV:**
-```csv
-id,name,program,faculty,required_courses,selective_rules,description,source_url
-robotics-option,Robotics Option,MTE,Engineering,"[""ECE486""]","{""selectNfrom"": [""MTE380""], ""N"": 1}","Robotics specialization...","https://..."
-```
+1. **Visual Test Section** - Shows colored boxes to test Tailwind classes
+2. **Console Logging** - Detailed logs about CSS loading status
+3. **Status Indicator** - Real-time styling status in the header
 
-## How It Works
+### Debugging Steps:
+1. Open browser console (F12)
+2. Look for `🎨` prefixed logs
+3. Check if colored test boxes are visible
+4. Verify styling status indicator
 
-### 1. User Onboarding
-- Users sign up and create a profile with their program, term, goals, and constraints
-- Profile data is used to personalize recommendations
+## 📁 Data Management
 
-### 2. Chat Interface
-- Users ask questions about electives, options, or academic planning
-- The system searches the database for relevant courses and information
-- If information is missing, it falls back to web search
+### Frontend (Next.js)
+- **Admin Interface**: Upload and manage data
+- **API Routes**: Handle file uploads and processing
+- **Styling**: Tailwind CSS with debugging
 
-### 3. Recommendation Engine
-- Courses are scored based on:
-  - Goal alignment (40 points)
-  - Program fit (15 points)
-  - Prerequisites met (15 points)
-  - Term availability (10 points)
-  - Workload alignment (10 points)
-  - Level progression (10 points)
+### Backend (Python)
+- **Data Processing**: CSV/JSON parsing and transformation
+- **Database Scripts**: SQL migrations and setup
+- **Data Files**: Raw and processed data storage
 
-### 4. RAG (Retrieval Augmented Generation)
-- Document chunks are stored with embeddings for semantic search
-- Relevant chunks are retrieved and provided as context to the LLM
-- Responses include citations and source links
+## 🔧 Troubleshooting
 
-## Database Schema
+### Styling Issues
+- Check browser console for `🎨` logs
+- Verify Tailwind CSS is loading
+- Try hard refresh (Ctrl+F5)
+- Clear browser cache
 
-### Core Tables
-- `courses`: Course information (prerequisites, skills, workload, etc.)
-- `options`: Waterloo specializations/options
-- `course_option_map`: Many-to-many mapping of courses to options
-- `profiles`: User profiles and preferences
-- `chat_sessions`: Chat conversation sessions
-- `messages`: Individual chat messages
-- `elective_docs`: Document chunks for RAG with embeddings
+### Compilation Issues
+- Run `npm run clean` to clear cache
+- Check TypeScript errors with `npm run type-check`
+- Restart development server
 
-### Vector Search
-- Uses pgvector extension for similarity search
-- Embeddings generated with OpenAI text-embedding-3-large
-- Supports both keyword and semantic search
+### Data Upload Issues
+- Check Supabase connection
+- Verify environment variables
+- Check browser network tab for API errors
 
-## API Endpoints
+## 📊 Features
 
-- `POST /api/chat` - Main chat endpoint
-- `POST /api/chat/session` - Create new chat session
-- `POST /api/admin/upload-courses` - Upload course data
-- `POST /api/admin/upload-options` - Upload option data
+- **Course Management**: Upload and manage course data
+- **Program Options**: Handle different engineering programs
+- **CSE Electives**: Specialized computer science electives
+- **Technical Electives**: All engineering technical electives
+- **AI Recommendations**: Smart course recommendations
+- **Admin Interface**: Easy data management
 
-## Customization
+## 🎯 Next Steps
 
-### Adding New Programs
-1. Update the programs list in `ProfileSetup.tsx`
-2. Add program-specific logic in the scoring functions
-3. Update the database schema if needed
+1. **Test Styling**: Verify all colors and gradients are working
+2. **Upload Data**: Test all upload functionality
+3. **Debug Issues**: Use console logs to identify problems
+4. **Optimize Performance**: Use turbo mode for faster development
 
-### Modifying Scoring Algorithm
-Edit the scoring functions in `src/lib/search.ts`:
-- `calculateGoalMatch()`
-- `calculateProgramFit()`
-- `checkPrerequisites()`
-- `checkTermAvailability()`
-- `checkWorkloadAlignment()`
-- `checkLevelProgression()`
+## 🔄 Recent Updates (Latest)
 
-### Adding New Data Sources
-1. Implement text extraction in `src/lib/data-ingestion.ts`
-2. Add new upload endpoints in `src/app/api/admin/`
-3. Update the web search fallback in `src/lib/web-search.ts`
+### ✅ **Fixed Issues (December 2024)**
 
-## Deployment
+#### **Database Query Errors Fixed:**
+- **JSONB Query Syntax**: Fixed `jsonb && unknown` operator errors
+- **Session ID Generation**: Fixed UUID generation for chat sessions
+- **Skills Filter**: Fixed JSONB array searching for course skills
+- **Term Filter**: Fixed JSONB array searching for course terms
 
-### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Add environment variables in Vercel dashboard
-3. Deploy automatically on push to main
+#### **Chatbot Improvements:**
+- **Conversational Tone**: Made chatbot more friendly and chatty
+- **Smart Recommendations**: Only gives recommendations when explicitly asked
+- **Better Greetings**: Responds to "hello" with friendly greeting instead of immediate recommendations
+- **Reduced Formality**: Removed academic jargon, made responses more natural
 
-### Other Platforms
-- **Frontend**: Deploy to Vercel, Netlify, or similar
-- **Database**: Use Supabase (hosted PostgreSQL)
-- **API**: Deploy to Vercel, Railway, or similar
+#### **Environment Configuration:**
+- **Frontend Variables**: Added `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- **Backend Variables**: Maintained separate backend environment variables
+- **Environment Files**: Created proper `.env.local` for Next.js frontend
 
-## Contributing
+#### **Search Functionality:**
+- **Course Search**: Fixed JSONB query operators for better course filtering
+- **Vector Search**: Temporarily disabled due to database function type mismatch
+- **Web Search**: Disabled to prevent 404 errors from non-existent URLs
+- **Skills Matching**: Improved skills-based course filtering
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+#### **Profile Setup:**
+- **Engineering Programs**: Added comprehensive list of Waterloo Engineering programs
+- **Program Names**: Included both short codes and full names (e.g., "AE - Architectural Engineering")
+- **User Experience**: Improved program selection interface
 
-## License
+### 🐛 **Known Issues:**
+- **Vector Search**: Database function needs type correction (option_id should be TEXT not UUID)
+- **Web Search**: Disabled due to 404 errors from mock URLs
+- **RLS Policies**: May need adjustment for production use
 
-MIT License - see LICENSE file for details
-
-## Support
-
-For questions or issues:
-1. Check the GitHub issues
-2. Create a new issue with detailed description
-3. Contact the development team
-
----
-
-Built with ❤️ for Waterloo Engineering students
+### 🔧 **Technical Details:**
+- **Database**: Supabase with PostgreSQL
+- **Frontend**: Next.js 14 with TypeScript
+- **Backend**: Python scripts for data processing
+- **AI**: OpenAI GPT-4o-mini for chat responses
+- **Search**: Course search with JSONB filtering
