@@ -53,8 +53,8 @@ export async function ingestCourses(courses: Course[]): Promise<void> {
   const filteredCourses = courses.map(course => {
     const filtered: any = {}
     validCourseFields.forEach(field => {
-      if (course[field] !== undefined && course[field] !== null) {
-        filtered[field] = course[field]
+      if ((course as any)[field] !== undefined && (course as any)[field] !== null) {
+        filtered[field] = (course as any)[field]
       }
     })
     return filtered

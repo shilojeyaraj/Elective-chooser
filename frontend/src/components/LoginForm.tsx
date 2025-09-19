@@ -1,12 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { authenticateUser, registerUser } from '@/lib/custom-auth'
 
-export default function LoginForm() {
-  const [isLogin, setIsLogin] = useState(true)
+interface LoginFormProps {
+  onLogin?: (user: any) => void
+  isSignup?: boolean
+}
+
+export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps) {
+  const [isLogin, setIsLogin] = useState(!isSignup)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -16,94 +22,151 @@ export default function LoginForm() {
     setError('')
 
     try {
-      if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        })
-        if (error) throw error
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-        })
-        if (error) throw error
+      console.log('🚀 Starting authentication process...')
+      console.log('🔍 Mode:', isLogin ? 'LOGIN' : 'REGISTRATION')
+      console.log('🔍 Email:', email)
+      console.log('🔍 Username:', username || 'Not provided')
+      console.log('🔍 Password length:', password.length)
+
+      const response = isLogin 
+        ? await authenticateUser(email, password)
+        : await registerUser(email, password, username || undefined)
+
+      console.log('🔍 Auth response:', response)
+
+      if (!response.success) {
+        console.error('❌ Authentication failed:', response.error)
+        throw new Error(response.error || (isLogin ? 'Authentication failed' : 'Registration failed'))
+      }
+      
+      if (response.user) {
+        console.log('✅ User authenticated successfully:', response.user.username)
+        console.log('💾 Storing user in localStorage...')
+        
+        // Store user in localStorage for session persistence
+        localStorage.setItem('currentUser', JSON.stringify(response.user))
+        
+        console.log('✅ User stored, calling onLogin callback...')
+        if (onLogin) {
+          onLogin(response.user)
+        } else {
+          // If no onLogin callback, trigger a custom event to notify parent components
+          window.dispatchEvent(new CustomEvent('userAuthenticated', { detail: response.user }))
+        }
+      } else if (!isLogin) {
+        console.log('✅ Account created successfully')
         alert('Account created successfully! You can now sign in.')
       }
     } catch (error: any) {
+      console.error('❌ Auth error:', error)
+      console.error('❌ Error stack:', error.stack)
       setError(error.message)
     } finally {
+      console.log('🏁 Authentication process completed')
       setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <div className="w-full space-y-6">
+      <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
             {isLogin ? 'Sign in to your account' : 'Create your account'}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="text-sm text-gray-600">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="font-medium text-waterloo-blue hover:text-waterloo-blue/80"
-            >
-              {isLogin ? 'Sign up' : 'Sign in'}
-            </button>
+            {isLogin ? (
+              <a
+                href="/signup"
+                className="font-medium text-purple-600 hover:text-purple-500"
+              >
+                Sign up
+              </a>
+            ) : (
+              <a
+                href="/login"
+                className="font-medium text-purple-600 hover:text-purple-500"
+              >
+                Sign in
+              </a>
+            )}
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          {!isLogin && (
             <div>
-              <label htmlFor="email" className="sr-only">
-                Email address
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                Username
               </label>
               <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="username"
+                name="username"
+                type="text"
+                autoComplete="username"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                placeholder="Choose a username"
               />
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue focus:z-10 sm:text-sm"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+          )}
+          
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email address
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
 
           {error && (
-            <div className="text-red-600 text-sm text-center">{error}</div>
+            <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-3 rounded-md">
+              {error}
+            </div>
           )}
 
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-waterloo-blue hover:bg-waterloo-blue/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-waterloo-blue disabled:opacity-50"
-            >
-              {loading ? 'Loading...' : (isLogin ? 'Sign in' : 'Sign up')}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
+                Loading...
+              </div>
+            ) : (
+              isLogin ? 'Sign In' : 'Create Account'
+            )}
+          </button>
         </form>
       </div>
     </div>

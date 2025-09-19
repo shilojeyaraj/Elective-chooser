@@ -4,12 +4,15 @@ import { useState, useRef, useEffect } from 'react'
 import { UserProfile, Message, CourseRecommendation } from '@/lib/types'
 import MessageBubble from './MessageBubble'
 import CourseRecommendations from './CourseRecommendations'
+import ThemeToggle from './ThemeToggle'
 
 interface ChatInterfaceProps {
+  user: any
   profile: UserProfile
+  onProfileUpdate?: (profile: UserProfile) => void
 }
 
-export default function ChatInterface({ profile }: ChatInterfaceProps) {
+export default function ChatInterface({ user, profile, onProfileUpdate }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -18,6 +21,22 @@ export default function ChatInterface({ profile }: ChatInterfaceProps) {
   const [sources, setSources] = useState<string[]>([])
   const [usedWebSearch, setUsedWebSearch] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const startNewChat = () => {
+    setMessages([])
+    setRecommendations([])
+    setSources([])
+    setUsedWebSearch(false)
+    setInput('')
+    
+    // Create a new session ID
+    const newSessionId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0
+      const v = c === 'x' ? r : (r & 0x3 | 0x8)
+      return v.toString(16)
+    })
+    setSessionId(newSessionId)
+  }
 
   // Create new session on mount
   useEffect(() => {
@@ -71,17 +90,26 @@ export default function ChatInterface({ profile }: ChatInterfaceProps) {
       // Add a small delay to ensure database is ready
       await new Promise(resolve => setTimeout(resolve, 1000))
       
+      console.log('🔍 Profile object:', profile)
+      console.log('🔍 Profile ID:', profile?.id, 'Profile user_id:', profile?.user_id)
+      
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: input,
           sessionId,
-          userId: profile.user_id
+          userId: profile?.id || profile?.user_id
         })
       })
 
       const data = await response.json()
+
+      console.log('📥 Frontend received:', {
+        responseLength: data.response?.length,
+        recommendationsCount: data.recommendations?.length,
+        recommendations: data.recommendations?.map((r: any) => ({ id: r.course?.id, title: r.course?.title, score: r.score }))
+      })
 
       if (response.ok) {
         const assistantMessage: Message = {
@@ -123,106 +151,139 @@ export default function ChatInterface({ profile }: ChatInterfaceProps) {
   ]
 
   return (
-    <div className="flex h-[calc(100vh-8rem)] bg-chat-dark rounded-lg shadow-2xl overflow-hidden border border-chat-gray">
-      {/* Chat Panel */}
-      <div className="flex-1 flex flex-col">
-        {/* Chat Header */}
-        <div className="bg-chat-gray border-b border-chat-light p-4">
-          <div className="flex items-center">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center mr-3">
-              <span className="text-chat-dark font-bold text-sm">UI</span>
+    <div className="h-screen flex flex-col bg-white dark:bg-gray-900">
+      {/* Fixed Header - Full Width */}
+      <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 flex-shrink-0">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-sm">W</span>
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-white">Elective Advisor</h2>
-              <p className="text-sm text-chat-muted">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Elective Advisor</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 Ask me about courses, options, and academic planning
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-chat-darker">
-          {messages.length === 0 && (
-            <div className="text-center text-chat-muted py-8">
-              <div className="w-16 h-16 bg-chat-gray rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🎓</span>
-              </div>
-              <p className="text-lg font-medium text-white mb-4">Welcome to your elective advisor!</p>
-              <p className="mb-6 text-chat-muted">I can help you find the best electives based on your goals and program.</p>
-              <div className="space-y-2 max-w-md mx-auto">
-                <p className="text-sm font-medium text-white">Try asking:</p>
-                {quickQuestions.map((question, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setInput(question)}
-                    className="block w-full text-left px-4 py-3 text-sm bg-chat-gray hover:bg-chat-light rounded-lg transition-colors text-white border border-chat-light"
-                  >
-                    {question}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {messages.map((message) => (
-            <MessageBubble key={message.id} message={message} />
-          ))}
-
-          {loading && (
-            <div className="flex justify-start">
-              <div className="bg-chat-gray rounded-2xl p-4 max-w-xs">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-chat-muted rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-chat-muted rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                  <div className="w-2 h-2 bg-chat-muted rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Input */}
-        <form onSubmit={handleSubmit} className="p-4 border-t border-chat-gray bg-chat-dark">
-          <div className="flex space-x-3">
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-gray-600 dark:text-gray-400">Welcome, {user.username}!</span>
+            <ThemeToggle />
             <button
-              type="button"
-              className="w-10 h-10 bg-chat-gray hover:bg-chat-light rounded-full flex items-center justify-center transition-colors"
+              onClick={startNewChat}
+              className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors flex items-center gap-2"
             >
-              <svg className="w-5 h-5 text-chat-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
+              <span>💬</span>
+              New Chat
             </button>
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Send a message..."
-              className="flex-1 px-4 py-3 bg-chat-gray border border-chat-light rounded-full text-white placeholder-chat-muted focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              disabled={loading}
-            />
             <button
-              type="submit"
-              disabled={loading || !input.trim()}
-              className="w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-full flex items-center justify-center transition-colors"
+              onClick={() => {
+                localStorage.removeItem('currentUser')
+                window.location.href = '/login'
+              }}
+              className="bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
             >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
+              Logout
             </button>
           </div>
-        </form>
+        </div>
       </div>
 
-      {/* Recommendations Panel */}
-      <div className="w-96 border-l border-chat-gray bg-chat-dark overflow-y-auto">
-        <CourseRecommendations 
-          recommendations={recommendations}
-          sources={sources}
-          usedWebSearch={usedWebSearch}
-        />
+      {/* Main Content Area */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Chat Panel */}
+        <div className="flex-1 flex flex-col">
+          {/* Messages - Scrollable */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white dark:bg-gray-900">
+            {messages.length === 0 && (
+              <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+                <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🎓</span>
+                </div>
+                <p className="text-lg font-medium text-gray-900 dark:text-white mb-4">Welcome to your elective advisor!</p>
+                <p className="mb-6 text-gray-500 dark:text-gray-400">I can help you find the best electives based on your goals and program.</p>
+                <div className="space-y-2 max-w-md mx-auto">
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">Try asking:</p>
+                  {quickQuestions.map((question, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setInput(question)}
+                      className="block w-full text-left px-4 py-3 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600"
+                    >
+                      {question}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {messages.map((message) => (
+              <MessageBubble key={message.id} message={message} />
+            ))}
+
+            {loading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl p-4 max-w-xs">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Fixed Input */}
+          <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 flex-shrink-0">
+            <div className="flex space-x-3">
+              <button
+                type="button"
+                className="w-10 h-10 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </button>
+              <textarea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Send a message..."
+                className="flex-1 px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none min-h-[48px] max-h-32"
+                disabled={loading}
+                rows={1}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault()
+                    handleSubmit(e)
+                  }
+                }}
+              />
+              <button
+                type="submit"
+                disabled={loading || !input.trim()}
+                className="w-10 h-10 bg-purple-600 hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-full flex items-center justify-center transition-colors"
+              >
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+            {/* Recommendations Panel - Aligned with Chat */}
+            <div className="w-96 border-l border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 overflow-y-auto">
+              <div className="p-4">
+                <CourseRecommendations 
+                  recommendations={recommendations}
+                  sources={sources}
+                  usedWebSearch={usedWebSearch}
+                />
+              </div>
+            </div>
       </div>
     </div>
   )

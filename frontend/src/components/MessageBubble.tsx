@@ -14,15 +14,15 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
       <div
         className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
           isUser
-            ? 'bg-blue-600 text-white'
-            : 'bg-chat-gray text-white'
+            ? 'bg-purple-600 text-white'
+            : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
         }`}
       >
         <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>
         
         {message.citations && message.citations.length > 0 && (
-          <div className="mt-3 pt-3 border-t border-white/20">
-            <p className="text-xs font-medium mb-2 text-white/80">Sources:</p>
+          <div className={`mt-3 pt-3 border-t ${isUser ? 'border-white/20' : 'border-gray-300 dark:border-gray-600'}`}>
+            <p className={`text-xs font-medium mb-2 ${isUser ? 'text-white/80' : 'text-gray-600 dark:text-gray-400'}`}>Sources:</p>
             <div className="space-y-1">
               {message.citations.map((citation, index) => (
                 <a
@@ -30,7 +30,11 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
                   href={citation.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-blue-300 hover:text-blue-200 block truncate underline"
+                  className={`text-xs block truncate underline ${
+                    isUser 
+                      ? 'text-purple-300 hover:text-purple-200' 
+                      : 'text-blue-600 hover:text-blue-500'
+                  }`}
                 >
                   {citation.url}
                 </a>

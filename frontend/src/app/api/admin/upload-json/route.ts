@@ -18,8 +18,8 @@ export async function POST(request: NextRequest) {
     const jsonData = JSON.parse(fileContent)
 
     // Process the JSON data to extract courses and programs
-    const courses = []
-    const programs = []
+    const courses: any[] = []
+    const programs: any[] = []
 
     // Process each program
     for (const [programName, programData] of Object.entries(jsonData.programs || {})) {

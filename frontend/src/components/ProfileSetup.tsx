@@ -54,6 +54,21 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
     setError('')
 
     try {
+      // First, create a dummy user in the users table to satisfy foreign key constraint
+      const { error: userError } = await supabase
+        .from('users')
+        .insert({
+          id: userId,
+          email: `user-${userId}@example.com`, // Dummy email
+          password_hash: 'dummy',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })
+
+      if (userError) {
+        console.warn('⚠️ User creation warning (might already exist):', userError)
+      }
+
       const profileData = {
         user_id: userId,
         username: formData.username,
@@ -66,20 +81,47 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
         constraints: formData.constraints
       }
 
-      console.log('🔧 Creating profile with data:', profileData)
+      console.log('🔧 Creating/updating profile with data:', profileData)
 
-      const { data, error } = await supabase
+      // Check if profile already exists
+      const { data: existingProfile } = await supabase
         .from('profiles')
-        .insert(profileData)
-        .select()
+        .select('user_id')
+        .eq('user_id', userId)
         .single()
 
+      let data, error
+
+      if (existingProfile) {
+        // Update existing profile
+        console.log('📝 Updating existing profile')
+        const result = await supabase
+          .from('profiles')
+          .update(profileData)
+          .eq('user_id', userId)
+          .select()
+          .single()
+        data = result.data
+        error = result.error
+      } else {
+        // Create new profile
+        console.log('➕ Creating new profile')
+        const result = await supabase
+          .from('profiles')
+          .insert(profileData)
+          .select()
+          .single()
+        data = result.data
+        error = result.error
+      }
+
       if (error) {
-        console.error('❌ Profile creation error:', error)
+        console.error('❌ Profile creation/update error:', error)
+        console.error('❌ Full error details:', JSON.stringify(error, null, 2))
         throw error
       }
 
-      console.log('✅ Profile created successfully:', data)
+      console.log('✅ Profile created/updated successfully:', data)
       onComplete(data)
     } catch (error: any) {
       console.error('❌ Profile setup error:', error)
@@ -89,12 +131,24 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
     }
   }
 
-  const handleArrayChange = (field: 'interests' | 'goal_tags' | 'schedule_preferences', value: string) => {
+  const handleArrayChange = (field: 'interests' | 'goal_tags', value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: prev[field].includes(value) 
-        ? prev[field].filter(item => item !== value)
+        ? prev[field].filter((item: string) => item !== value)
         : [...prev[field], value]
+    }))
+  }
+
+  const handleSchedulePreferenceChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      constraints: {
+        ...prev.constraints,
+        schedule_preferences: prev.constraints.schedule_preferences.includes(value)
+          ? prev.constraints.schedule_preferences.filter((item: string) => item !== value)
+          : [...prev.constraints.schedule_preferences, value]
+      }
     }))
   }
 

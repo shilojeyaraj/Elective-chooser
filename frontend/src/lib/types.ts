@@ -2,6 +2,7 @@ export interface Course {
   id: string
   title: string
   dept: string
+  number: number
   units: number
   level: number
   description?: string

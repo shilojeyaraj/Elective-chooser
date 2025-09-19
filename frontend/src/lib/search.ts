@@ -1,6 +1,31 @@
 import { supabase } from './supabase'
 import { getEmbedding } from './openai'
 import { Course, CourseRecommendation, SearchFilters, UserProfile } from './types'
+import { demoCourses } from './demo-data'
+
+// Map program abbreviations to full names
+const PROGRAM_ABBREVIATIONS: { [key: string]: string } = {
+  'ARCH': 'Architecture',
+  'AE': 'Architectural Engineering',
+  'BME': 'Biomedical Engineering',
+  'CHE': 'Chemical Engineering',
+  'CIVE': 'Civil Engineering',
+  'ECE': 'Computer Engineering',
+  'EE': 'Electrical Engineering',
+  'ENVE': 'Environmental Engineering',
+  'GEOE': 'Geological Engineering',
+  'MGT': 'Management Engineering',
+  'ME': 'Mechanical Engineering',
+  'MTE': 'Mechatronics Engineering',
+  'NANO': 'Nanotechnology Engineering',
+  'SE': 'Software Engineering',
+  'SYDE': 'Systems Design Engineering'
+}
+
+// Convert program abbreviation to full name
+function getFullProgramName(abbreviation: string): string {
+  return PROGRAM_ABBREVIATIONS[abbreviation] || abbreviation
+}
 
 // Vector similarity search for RAG
 export async function searchElectiveDocs(
@@ -30,6 +55,38 @@ export async function searchCourses(
   filters: SearchFilters = {},
   limit: number = 20
 ): Promise<Course[]> {
+  console.log('🔍 searchCourses called with:', { query, filters, limit })
+  console.log('🔍 NEW VERSION - Updated search function is running!')
+  
+        // Check if this is a CSE elective query (only when explicitly mentioned)
+        const isCSEQuery = query.toLowerCase().includes('cse') || 
+                           query.toLowerCase().includes('complementary studies')
+  
+  if (isCSEQuery) {
+    console.log('🔍 Detected CSE query, searching courses table for CSE electives')
+    try {
+      // Search for courses that are CSE electives (typically 100-200 level non-engineering courses)
+      const { data: cseCourses, error: cseError } = await supabase
+        .from('courses')
+        .select('*')
+        .or('title.ilike.%ethics%,title.ilike.%society%,title.ilike.%sustainability%,title.ilike.%social%,title.ilike.%environment%')
+        .limit(limit)
+      
+      if (!cseError && cseCourses && cseCourses.length > 0) {
+        console.log('✅ Found CSE electives:', cseCourses.length)
+        return cseCourses
+      } else {
+        console.log('⚠️ No CSE electives found in courses table')
+      }
+    } catch (error) {
+      console.log('⚠️ CSE search failed:', error)
+    }
+  }
+  
+  // Skip vector search for now - use text search directly
+  console.log('🔍 Skipping vector search, using text search directly')
+  
+  // Fallback to text search
   let supabaseQuery = supabase
     .from('courses')
     .select('*')
@@ -37,15 +94,47 @@ export async function searchCourses(
   
   // Apply text search
   if (query) {
-    supabaseQuery = supabaseQuery.or(
-      `title.ilike.%${query}%,description.ilike.%${query}%`
-    )
+    // Extract key terms from the query for better matching
+    const keyTerms = query
+      .toLowerCase()
+      .replace(/[^\w\s]/g, ' ') // Remove special characters including commas
+      .split(/\s+/)
+      .filter(term => 
+        term.length > 2 && 
+        !['what', 'can', 'i', 'choose', 'to', 'do', 'want', 'the', 'and', 'or', 'for', 'with', 'about', 'from', 'are', 'is', 'in', 'on', 'at', 'by', 'of', 'a', 'an', 'havent', 'taken', 'any', 'give', 'me', 'please'].includes(term)
+      )
+      .slice(0, 3) // Take top 3 key terms
+    
+    console.log('🔍 Extracted key terms:', keyTerms)
+    
+    if (keyTerms.length > 0) {
+      // Build search conditions for each key term
+      const searchConditions = keyTerms.map(term => {
+        const cleanTerm = term.replace(/[%_]/g, '\\$&')
+        return `title.ilike.%${cleanTerm}%,description.ilike.%${cleanTerm}%,skills.cs.["${cleanTerm}"]`
+      }).join(',')
+      
+      supabaseQuery = supabaseQuery.or(searchConditions)
+    } else {
+      // Fallback to searching for common elective terms
+      supabaseQuery = supabaseQuery.or(
+        `title.ilike.%elective%,description.ilike.%elective%,title.ilike.%course%,description.ilike.%course%`
+      )
+    }
+    
+    // If no results found, try broader search terms
+    if (keyTerms.includes('machine') || keyTerms.includes('learning')) {
+      console.log('🔍 Adding AI/ML related search terms')
+      supabaseQuery = supabaseQuery.or(
+        `title.ilike.%artificial%,title.ilike.%intelligence%,title.ilike.%ai%,title.ilike.%ml%,description.ilike.%artificial%,description.ilike.%intelligence%,description.ilike.%ai%,description.ilike.%ml%`
+      )
+    }
   }
   
-  // Apply filters
+  // Apply filters (but don't restrict by term - use it as guidance only)
   if (filters.term) {
-    // Use the correct JSONB operator for array contains
-    supabaseQuery = supabaseQuery.filter('terms_offered', 'cs', `["${filters.term}"]`)
+    console.log('🔍 Term filter provided but not applied - showing courses for all terms')
+    // Note: We don't filter by term to allow future course recommendations
   }
   
   if (filters.dept && filters.dept.length > 0) {
@@ -57,6 +146,7 @@ export async function searchCourses(
   }
   
   if (filters.skills && filters.skills.length > 0) {
+    console.log('🔍 Applying skills filter:', filters.skills)
     // Use the correct JSONB operator for array intersection
     supabaseQuery = supabaseQuery.filter('skills', 'cs', `["${filters.skills.join('","')}"]`)
   }
@@ -66,14 +156,269 @@ export async function searchCourses(
     supabaseQuery = supabaseQuery.lte('workload->total', filters.max_workload)
   }
   
+  console.log('🔍 Executing database query...')
+  console.log('🔍 Query details:', { query, filters, limit })
+  
+  // First, let's test if we can query the database at all
+  const { data: testData, error: testError } = await supabase
+    .from('courses')
+    .select('id, title')
+    .limit(3)
+  
+  console.log('🔍 Database connectivity test:', { 
+    testFound: testData?.length || 0, 
+    testError: testError?.message || 'None',
+    sampleCourses: testData?.slice(0, 2).map(c => ({ id: c.id, title: c.title })) || []
+  })
+  
   const { data, error } = await supabaseQuery
   
   if (error) {
-    console.error('Course search error:', error)
+    console.error('❌ Course search error:', error)
     return []
   }
   
+  console.log('📚 Database search result:', { found: data?.length || 0, query, filters })
+  if (data && data.length > 0) {
+    console.log('📚 Sample courses found:', data.slice(0, 3).map(c => ({ id: c.id, title: c.title })))
+  }
+  
+  // If no data found in database, fall back to demo data
+  if (!data || data.length === 0) {
+    console.log('📚 No courses found in database, using demo data')
+    const demoResults = filterDemoCourses(query, filters, limit)
+    console.log('📚 Demo data results:', demoResults.length)
+    return demoResults
+  }
+  
+  console.log('✅ Database search returned', data.length, 'courses')
   return data || []
+}
+
+// Extract meaningful keywords from query
+function extractSearchKeywords(query: string): string[] {
+  // Remove common words and extract meaningful terms
+  const stopWords = ['i', 'havent', 'have', 'taken', 'any', 'can', 'you', 'give', 'me', 'recommendations', 'for', 'please', 'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by']
+  
+  return query
+    .toLowerCase()
+    .replace(/[^\w\s]/g, ' ') // Remove special characters
+    .split(/\s+/)
+    .filter(word => word.length > 2 && !stopWords.includes(word))
+    .slice(0, 3) // Take top 3 keywords
+}
+
+// Search specializations
+export async function searchSpecializations(
+  query: string,
+  program?: string,
+  limit: number = 3
+): Promise<any[]> {
+  let supabaseQuery = supabase
+    .from('specializations')
+    .select('*')
+    .limit(limit)
+  
+  // Apply text search with extracted keywords
+  if (query) {
+    const keywords = extractSearchKeywords(query)
+    if (keywords.length > 0) {
+      const searchConditions = keywords.map(keyword => {
+        const cleanKeyword = keyword.replace(/[%_]/g, '\\$&')
+        return `name.ilike.%${cleanKeyword}%,description.ilike.%${cleanKeyword}%`
+      }).join(',')
+      supabaseQuery = supabaseQuery.or(searchConditions)
+    }
+  }
+  
+  // Filter by program if specified - convert abbreviation to full name
+  if (program) {
+    const fullProgramName = getFullProgramName(program)
+    console.log(`🔍 Searching specializations for program: "${program}" -> "${fullProgramName}"`)
+    supabaseQuery = supabaseQuery.eq('program', fullProgramName)
+  }
+  
+  const { data, error } = await supabaseQuery
+  
+  if (error) {
+    console.error('Specialization search error:', error)
+    return []
+  }
+  
+  console.log(`✅ Found ${data?.length || 0} specializations for program: ${program}`)
+  return data || []
+}
+
+// Search certificates
+export async function searchCertificates(
+  query: string,
+  program?: string,
+  limit: number = 3
+): Promise<any[]> {
+  let supabaseQuery = supabase
+    .from('certificates')
+    .select('*')
+    .eq('uw_engineering_listed', true) // Only show engineering-listed certificates
+    .limit(limit)
+  
+  // Apply text search with extracted keywords
+  if (query) {
+    const keywords = extractSearchKeywords(query)
+    if (keywords.length > 0) {
+      const searchConditions = keywords.map(keyword => {
+        const cleanKeyword = keyword.replace(/[%_]/g, '\\$&')
+        return `name.ilike.%${cleanKeyword}%,description.ilike.%${cleanKeyword}%`
+      }).join(',')
+      supabaseQuery = supabaseQuery.or(searchConditions)
+    }
+  }
+  
+  // Note: certificates table doesn't have program column, so we skip program filtering
+  if (program) {
+    console.log(`🔍 Searching certificates (no program filter available)`)
+  }
+  
+  const { data, error } = await supabaseQuery
+  
+  if (error) {
+    console.error('Certificate search error:', error)
+    return []
+  }
+  
+  console.log(`✅ Found ${data?.length || 0} certificates for program: ${program}`)
+  return data || []
+}
+
+// Search diplomas
+export async function searchDiplomas(
+  query: string,
+  program?: string,
+  limit: number = 3
+): Promise<any[]> {
+  let supabaseQuery = supabase
+    .from('diplomas')
+    .select('*')
+    .eq('uw_engineering_listed', true) // Only show engineering-listed diplomas
+    .limit(limit)
+  
+  // Apply text search with extracted keywords
+  if (query) {
+    const keywords = extractSearchKeywords(query)
+    if (keywords.length > 0) {
+      const searchConditions = keywords.map(keyword => {
+        const cleanKeyword = keyword.replace(/[%_]/g, '\\$&')
+        return `name.ilike.%${cleanKeyword}%,description.ilike.%${cleanKeyword}%`
+      }).join(',')
+      supabaseQuery = supabaseQuery.or(searchConditions)
+    }
+  }
+  
+  // Note: diplomas table doesn't have program column, so we skip program filtering
+  if (program) {
+    console.log(`🔍 Searching diplomas (no program filter available)`)
+  }
+  
+  const { data, error } = await supabaseQuery
+  
+  if (error) {
+    console.error('Diploma search error:', error)
+    return []
+  }
+  
+  console.log(`✅ Found ${data?.length || 0} diplomas for program: ${program}`)
+  return data || []
+}
+
+// Filter demo courses based on query and filters
+function filterDemoCourses(
+  query: string,
+  filters: SearchFilters = {},
+  limit: number = 20
+): Course[] {
+  let filteredCourses = [...demoCourses]
+  
+  // Apply text search
+  if (query) {
+    const queryLower = query.toLowerCase()
+    
+    // Handle common query patterns
+    const isElectiveQuery = queryLower.includes('elective') || queryLower.includes('course') || queryLower.includes('2a') || queryLower.includes('2b') || queryLower.includes('3a') || queryLower.includes('3b')
+    const isCSEQuery = queryLower.includes('cse') || queryLower.includes('complementary studies')
+    
+    if (isCSEQuery) {
+      // For CSE queries, show courses that match CSE themes
+      filteredCourses = filteredCourses.filter(course => 
+        course.title.toLowerCase().includes(queryLower) ||
+        course.description.toLowerCase().includes(queryLower) ||
+        course.skills.some(skill => skill.toLowerCase().includes(queryLower)) ||
+        course.id.toLowerCase().includes(queryLower) ||
+        // Show courses that match CSE themes
+        course.skills.some(skill => 
+          ['ethics', 'society', 'sustainability', 'social', 'environment', 'complementary studies'].some(theme => 
+            skill.toLowerCase().includes(theme)
+          )
+        ) ||
+        course.title.toLowerCase().includes('ethics') ||
+        course.title.toLowerCase().includes('society') ||
+        course.title.toLowerCase().includes('sustainability') ||
+        course.title.toLowerCase().includes('social') ||
+        course.title.toLowerCase().includes('environment')
+      )
+    } else if (isElectiveQuery) {
+      // For elective queries, be more permissive and show relevant courses
+      filteredCourses = filteredCourses.filter(course => 
+        course.title.toLowerCase().includes(queryLower) ||
+        course.description.toLowerCase().includes(queryLower) ||
+        course.skills.some(skill => skill.toLowerCase().includes(queryLower)) ||
+        course.id.toLowerCase().includes(queryLower) ||
+        // Show courses that match common elective themes
+        course.skills.some(skill => 
+          ['programming', 'software', 'ai', 'robotics', 'data', 'algorithms', 'systems'].some(theme => 
+            skill.toLowerCase().includes(theme)
+          )
+        )
+      )
+    } else {
+      // For specific queries, use exact matching
+      filteredCourses = filteredCourses.filter(course => 
+        course.title.toLowerCase().includes(queryLower) ||
+        course.description.toLowerCase().includes(queryLower) ||
+        course.skills.some(skill => skill.toLowerCase().includes(queryLower)) ||
+        course.id.toLowerCase().includes(queryLower)
+      )
+    }
+  }
+  
+  // Apply filters (but don't restrict by term - use it as guidance only)
+  if (filters.term) {
+    console.log('🔍 Demo data: Term filter provided but not applied - showing courses for all terms')
+    // Note: We don't filter by term to allow future course recommendations
+  }
+  
+  if (filters.dept && filters.dept.length > 0) {
+    filteredCourses = filteredCourses.filter(course => 
+      filters.dept!.includes(course.dept)
+    )
+  }
+  
+  if (filters.level && filters.level.length > 0) {
+    filteredCourses = filteredCourses.filter(course => 
+      filters.level!.includes(course.level)
+    )
+  }
+  
+  if (filters.skills && filters.skills.length > 0) {
+    filteredCourses = filteredCourses.filter(course => 
+      course.skills.some(skill => 
+        filters.skills!.some(filterSkill => 
+          skill.toLowerCase().includes(filterSkill.toLowerCase()) ||
+          filterSkill.toLowerCase().includes(skill.toLowerCase())
+        )
+      )
+    )
+  }
+  
+  return filteredCourses.slice(0, limit)
 }
 
 // Calculate course recommendation score
