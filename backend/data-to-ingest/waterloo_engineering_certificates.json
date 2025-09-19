@@ -1,0 +1,91 @@
+{
+  "institution": "University of Waterloo",
+  "generated_on": "2025-09-17",
+  "scope": "Undergraduate certificates available to Engineering students (from Engineering 'Specializations & more').",
+  "engineering_programs_eligible": [
+    "Architectural Engineering (BASc)",
+    "Biomedical Engineering (BASc)",
+    "Chemical Engineering (BASc)",
+    "Civil Engineering (BASc)",
+    "Computer Engineering (BASc)",
+    "Electrical Engineering (BASc)",
+    "Environmental Engineering (BASc)",
+    "Geological Engineering (BASc)",
+    "Management Engineering (BASc)",
+    "Mechanical Engineering (BASc)",
+    "Mechatronics Engineering (BASc)",
+    "Nanotechnology Engineering (BASc)",
+    "Software Engineering (BSE)",
+    "Systems Design Engineering (BASc)",
+    "Architecture (BAS)"
+  ],
+  "certificates": [
+    {
+      "name": "Certificate in Co-operative Education Research",
+      "administered_by": "Co‑operative and Experiential Education (CEE), University of Waterloo",
+      "eligibility": "Open to Engineering undergrads pursuing a co‑op degree designation.",
+      "requirements": {
+        "core_components": [
+          "At least three research work terms approved by CEE.",
+          "Completion of PD‑13: Research in the Workplace.",
+          "Completion of Co‑op Research Certificate Capstone (panel interview + networking)."
+        ],
+        "other_requirements": [
+          "Must meet all co‑op degree designation requirements.",
+          "Work terms cannot be counted for more than one co‑op certificate."
+        ]
+      },
+      "engineering_programs_eligible": [
+        "Architectural Engineering (BASc)",
+        "Biomedical Engineering (BASc)",
+        "Chemical Engineering (BASc)",
+        "Civil Engineering (BASc)",
+        "Computer Engineering (BASc)",
+        "Electrical Engineering (BASc)",
+        "Environmental Engineering (BASc)",
+        "Geological Engineering (BASc)",
+        "Management Engineering (BASc)",
+        "Mechanical Engineering (BASc)",
+        "Mechatronics Engineering (BASc)",
+        "Nanotechnology Engineering (BASc)",
+        "Software Engineering (BSE)",
+        "Systems Design Engineering (BASc)",
+        "Architecture (BAS)"
+      ]
+    },
+    {
+      "name": "GLIDE (Global Learning, Intercultural Development & Engagement) Certificate",
+      "administered_by": "International Experience / Intercultural Competence Office",
+      "eligibility": "Open to all undergraduates, including Engineering students.",
+      "requirements": {
+        "components": [
+          "Understand – workshops, online modules on intercultural competence.",
+          "Engage – volunteering / community engagement hours (both UW and outside).",
+          "Expand – attendance at intercultural/global events with follow-up activities.",
+          "Showcase – development of an ePortfolio demonstrating learning outcomes."
+        ],
+        "notes": [
+          "Not strictly course-based; largely experiential.",
+          "Hours/events subject to change; verify with GLIDE office."
+        ]
+      },
+      "engineering_programs_eligible": [
+        "Architectural Engineering (BASc)",
+        "Biomedical Engineering (BASc)",
+        "Chemical Engineering (BASc)",
+        "Civil Engineering (BASc)",
+        "Computer Engineering (BASc)",
+        "Electrical Engineering (BASc)",
+        "Environmental Engineering (BASc)",
+        "Geological Engineering (BASc)",
+        "Management Engineering (BASc)",
+        "Mechanical Engineering (BASc)",
+        "Mechatronics Engineering (BASc)",
+        "Nanotechnology Engineering (BASc)",
+        "Software Engineering (BSE)",
+        "Systems Design Engineering (BASc)",
+        "Architecture (BAS)"
+      ]
+    }
+  ]
+}

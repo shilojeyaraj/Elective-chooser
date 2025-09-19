@@ -1,0 +1,83 @@
+{
+  "institution": "University of Waterloo",
+  "generated_on": "2025-09-18",
+  "scope": "Information for Waterloo Engineering students on minors, concurrent degrees, and the Accelerated Master's program.",
+  "engineering_programs": [
+    "Architectural Engineering (BASc)",
+    "Biomedical Engineering (BASc)",
+    "Chemical Engineering (BASc)",
+    "Civil Engineering (BASc)",
+    "Computer Engineering (BASc)",
+    "Electrical Engineering (BASc)",
+    "Environmental Engineering (BASc)",
+    "Geological Engineering (BASc)",
+    "Management Engineering (BASc)",
+    "Mechanical Engineering (BASc)",
+    "Mechatronics Engineering (BASc)",
+    "Nanotechnology Engineering (BASc)",
+    "Software Engineering (BSE)",
+    "Systems Design Engineering (BASc)",
+    "Architecture (BAS)"
+  ],
+  "minors": {
+    "general_info": {
+      "description": "Engineering does not offer minors to students enrolled in engineering; however, minors are offered by other faculties (e.g., Arts, Science, Environment, Math).",
+      "diploma_note": "Minors are noted on your diploma.",
+      "requirements": "Normally requires a minimum of 10 courses (approx. 5.0 units).",
+      "advice": "If you are interested in a minor, visit the undergraduate calendar or contact your academic advisor for more information."
+    },
+    "examples": [
+      "Economics Minor (Faculty of Arts)",
+      "Psychology Minor (Faculty of Arts)",
+      "Entrepreneurship Minor (Conrad School)",
+      "Legal Studies Minor (Faculty of Arts)",
+      "Human Resources Management Minor (Faculty of Arts)",
+      "Music Minor (Faculty of Arts)"
+    ]
+  },
+  "concurrent_degrees": {
+    "general_info": {
+      "description": "Engineering students may complete requirements for a concurrent Bachelor of Arts (BA) degree in addition to their BASc/BSE.",
+      "requirements": "This process requires a significant number of extra courses and agreement from both Faculties.",
+      "advice": "Students must consult both their Engineering academic advisor and the Faculty of Arts to plan and confirm degree requirements."
+    }
+  },
+  "accelerated_masters": {
+    "program_name": "Accelerated Master's Program (MASc Fast Track)",
+    "description": "Allows undergraduate Engineering students at Waterloo to fast track into a Master of Applied Science (MASc) degree.",
+    "eligibility": {
+      "average_requirement": "80% cumulative average at the end of 3B term.",
+      "record_requirement": "Must have consistently achieved excellent academic records."
+    },
+    "structure": {
+      "graduate_courses": "Take up to two graduate-level courses during final undergraduate year (one in 4A, one in 4B or during a co-op term).",
+      "research": "Opportunity to conduct research during final co-op term(s), which may serve as foundation for MASc work."
+    },
+    "funding_options": [
+      "Undergraduate Research Assistantship (URA) – part-time research during an academic term.",
+      "Undergraduate Student Research Award (USRA) – full-time research (NSERC government grant) during a work term.",
+      "Accelerated Master's students with an NSERC USRA: eligible for a one-time $4,500 from the Dean of Engineering.",
+      "NSERC USRA holders in Accelerated Master's: eligible for graduate course tuition reimbursement (one course max)."
+    ],
+    "application_process": [
+      "Confirm academic eligibility by end of 3B term.",
+      "Find a faculty supervisor.",
+      "Document academic plan.",
+      "Document research plan.",
+      "Obtain approvals from department/faculty.",
+      "Submit Accelerated Master's application form to Graduate Studies."
+    ],
+    "tuition_reimbursement": {
+      "eligibility": "Students holding NSERC USRA and registering in a graduate course during co-op.",
+      "requirements": [
+        "Course must be extra to degree (NRNA/TRIA).",
+        "Tuition/fees must be paid up front.",
+        "Course completed with a minimum grade of 80%.",
+        "Submit documentation (Quest screenshot + course details) to Departmental Graduate Coordinator."
+      ],
+      "process": "If approved, reimbursement deposited into Quest account within ~3 weeks."
+    },
+    "administered_by": "Faculty of Engineering in coordination with Graduate Studies Office",
+    "offered_by": "All Engineering departments at Waterloo"
+  }
+}

@@ -165,8 +165,8 @@ export async function enhancedSearch(
   const allResults = [...dbResults]
   const sources = [
     ...new Set([
-      ...dbResults.map(r => r.source_url).filter(Boolean),
-      ...webResults.map(r => r.url)
+      ...dbResults.map(r => r.source_url).filter(Boolean) as string[],
+      ...webResults.map(r => r.url).filter(Boolean) as string[]
     ])
   ]
   

@@ -91,7 +91,7 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
       await new Promise(resolve => setTimeout(resolve, 1000))
       
       console.log('🔍 Profile object:', profile)
-      console.log('🔍 Profile ID:', profile?.id, 'Profile user_id:', profile?.user_id)
+      console.log('🔍 Profile ID:', (profile as any)?.id, 'Profile user_id:', profile?.user_id)
       
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -99,7 +99,7 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
         body: JSON.stringify({
           message: input,
           sessionId,
-          userId: profile?.id || profile?.user_id
+          userId: (profile as any)?.id || profile?.user_id
         })
       })
 

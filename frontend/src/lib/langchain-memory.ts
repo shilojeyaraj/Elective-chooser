@@ -5,6 +5,7 @@ import { supabase } from './supabase'
 export class SupabaseChatMessageHistory extends BaseChatMessageHistory {
   public sessionId: string
   public userId: string
+  public lc_namespace: string[] = ['supabase', 'chat_message_history']
 
   constructor(sessionId: string, userId: string) {
     super()
@@ -42,13 +43,15 @@ export class SupabaseChatMessageHistory extends BaseChatMessageHistory {
     const role = message._getType() === 'human' ? 'user' : 
                  message._getType() === 'ai' ? 'assistant' : 'system'
     
+    const content = typeof message.content === 'string' ? message.content : JSON.stringify(message.content)
+    
     const { error } = await supabase
       .from('messages')
       .insert({
         session_id: this.sessionId,
         role,
-        content: message.content,
-        tokens: this.estimateTokens(message.content)
+        content,
+        tokens: this.estimateTokens(content)
       })
 
     if (error) {
@@ -61,6 +64,10 @@ export class SupabaseChatMessageHistory extends BaseChatMessageHistory {
   }
 
   async addAIMessage(message: string): Promise<void> {
+    await this.addMessage(new AIMessage(message))
+  }
+
+  async addAIChatMessage(message: string): Promise<void> {
     await this.addMessage(new AIMessage(message))
   }
 

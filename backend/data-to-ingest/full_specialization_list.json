@@ -1,0 +1,667 @@
+{
+  "institution": "University of Waterloo",
+  "faculty": "Engineering",
+  "schema_version": "1.0",
+  "generated_at": "2025-09-18",
+  "programs": [
+    {
+      "program": "Architectural Engineering",
+      "specializations": [
+        {
+          "name": "Building Structures Specialization",
+          "available_to_majors": ["H-Architectural Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete at least five approved technical electives; at least one must be CIVE 413 or CIVE 414.",
+          "course_requirements": {
+            "required_courses": [
+              "CIVE 413 - Structural Steel Design (0.50) OR CIVE 414 - Structural Concrete Design (0.50)"
+            ],
+            "choose_from": [
+              "CIVE 415 - Structural System Design (0.50)",
+              "CIVE 422 - Finite Element Analysis (0.50)",
+              "CIVE 505 - Structural Dynamics (0.50)",
+              "CIVE 512 - Rehabilitation of Structures (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Building Systems Specialization",
+          "available_to_majors": ["H-Architectural Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete at least four approved technical electives from Building Systems lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "AE 315 - Building Environmental Systems (0.50)",
+              "AE 405 - Building Performance Measurement Lab (0.50)",
+              "AE 450 - Building Service Systems (0.50)",
+              "AE 572/ME 572 - Building Energy Analysis (0.50)",
+              "AE 573/ME 573 - HVAC Systems, Equipment, and Energy Efficiency (0.50)",
+              "ME 452 - HVAC Load Analysis and Design Fundamentals (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Biomedical Engineering",
+      "specializations": [
+        {
+          "name": "Biomaterials and Tissues Specialization",
+          "available_to_majors": ["H-Biomedical Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete five technical electives from the approved list for this specialization.",
+          "course_requirements": {
+            "required_courses": [
+              "Capstone (BME 461/462 or GENE 403/404 or SYDE 461/462) OR BME 499 - Research Project (specialization-focused)"
+            ],
+            "choose_from": [
+              "Example: BME 454 - Biomedical Instrumentation (0.50)",
+              "Example: CHE 516 - Polymer Science and Engineering (0.50)",
+              "Example: NE 441 - Materials Characterization (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Medical Devices Specialization",
+          "available_to_majors": ["H-Biomedical Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete five technical electives in the Medical Devices stream plus a capstone project or BME 499 with a devices focus.",
+          "course_requirements": {
+            "required_courses": [
+              "Capstone (BME 461/462 or GENE 403/404 or SYDE 461/462) OR BME 499 - Research Project (device-focused)"
+            ],
+            "choose_from": [
+              "BME 540/ME 540 - Medical Device Design (0.50)",
+              "BME 454 - Biomedical Instrumentation (0.50)",
+              "Example: SYDE 556 - Autonomous Robotics (0.50)",
+              "Example: ECE 414 - Wireless Communications (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Medical Artificial Intelligence Specialization",
+          "available_to_majors": ["H-Biomedical Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete five technical electives from the approved Medical AI list.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "Example: CS 486 - Introduction to Artificial Intelligence (0.50)",
+              "Example: CS 480 - Introduction to Machine Learning (0.50)",
+              "Example: SYDE 575 - Machine Learning (0.50)",
+              "Example: ECE 457A - Co-operative and Adaptive Algorithms (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Neural Engineering Specialization",
+          "available_to_majors": ["H-Biomedical Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete five technical electives from the approved Neural Engineering list.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "Example: BME 356 - Biomechanics (0.50)",
+              "Example: BME 454 - Biomedical Instrumentation (0.50)",
+              "Example: SYDE 544 - Human-Computer Interaction (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Sports Engineering Specialization",
+          "available_to_majors": ["H-Biomedical Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete five technical electives from the approved Sports Engineering list.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "Example: BME 356 - Biomechanics (0.50)",
+              "Example: ME 321 - Kinematics of Machines (0.50)",
+              "Example: ME 547 - Robotics Manipulators: Kinematics, Dynamics, Control (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Chemical Engineering",
+      "specializations": [
+        {
+          "name": "Chemical Process Modelling, Optimization and Control Specialization",
+          "available_to_majors": ["H-Chemical Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete four approved technical electives; minimum 50% in each and 60% average across specialization courses.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "Example: CHE 521 - Process Dynamics and Control (0.50)",
+              "Example: CHE 522 - Process Optimization (0.50)",
+              "Example: CHE 571 - Industrial Ecology (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Energy and Environmental Systems and Processes Specialization",
+          "available_to_majors": ["H-Chemical Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete four approved technical electives; minimum 50% in each and 60% average across specialization courses.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "Example: CHE 572 - Air Pollution Control (0.50)",
+              "Example: CHE 574 - Industrial Wastewater Pollution Control (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Materials and Manufacturing Processes Specialization",
+          "available_to_majors": ["H-Chemical Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete four approved technical electives; minimum 50% in each and 60% average across specialization courses.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "Example: CHE 516 - Polymer Science and Engineering (0.50)",
+              "Example: CHE 561 - Advanced Materials Engineering (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Civil Engineering",
+      "specializations": [
+        {
+          "name": "Building Science Specialization",
+          "available_to_majors": ["H-Civil Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete four technical electives from Building Science lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "AE 405 - Building Performance Measurement Lab (0.50)",
+              "AE 450 - Building Service Systems (0.50)",
+              "AE 572/ME 572 - Building Energy Analysis (0.50)",
+              "AE 573/ME 573 - HVAC Systems, Equipment, and Energy Efficiency (0.50)",
+              "CIVE 507 - Building Science and Technology (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Geotechnical Specialization",
+          "available_to_majors": ["H-Civil Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete four technical electives including the required geotechnical courses.",
+          "course_requirements": {
+            "required_courses": [
+              "CIVE 354/GEOE 354 - Geotechnical Engineering 2 (0.50)",
+              "CIVE 554/GEOE 554 - Geotechnical Engineering 3 (0.50)"
+            ],
+            "choose_from": [
+              "CIVE 414 - Structural Concrete Design (0.50)",
+              "CIVE 542 - Pavement Structural Design (0.50)",
+              "CIVE 422 - Finite Element Analysis (0.50)",
+              "EARTH 438 - Engineering Geology (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Structural Specialization",
+          "available_to_majors": ["H-Civil Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete five technical electives; at least one must be CIVE 413 or CIVE 414.",
+          "course_requirements": {
+            "required_courses": [
+              "CIVE 413 - Structural Steel Design (0.50) OR CIVE 414 - Structural Concrete Design (0.50)"
+            ],
+            "choose_from": [
+              "CIVE 415 - Structural System Design (0.50)",
+              "CIVE 422 - Finite Element Analysis (0.50)",
+              "CIVE 505 - Structural Dynamics (0.50)",
+              "CIVE 512 - Rehabilitation of Structures (0.50)",
+              "CIVE 596 - Construction Engineering (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Transportation Specialization",
+          "available_to_majors": ["H-Civil Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete four technical electives; at least three must be CIVE courses.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "CIVE 343 - Traffic Simulation Modelling and Applications (0.50)",
+              "CIVE 542 - Pavement Structural Design (0.50)",
+              "CIVE 440/PLAN 478 - Transit Planning and Operations (0.50)",
+              "CIVE 484/PLAN 484 - Physical Infrastructure Planning (0.50)",
+              "GEOG 381/PLAN 381 - Advanced Geographic Information Systems (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Water Resources Specialization",
+          "available_to_majors": ["H-Civil Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete four technical electives including the required course ENVE 383.",
+          "course_requirements": {
+            "required_courses": [
+              "ENVE 383 - Advanced Hydrology and Hydraulics (0.50)"
+            ],
+            "choose_from": [
+              "CIVE 583/ENVE 583 - Design of Urban Water Systems (0.50)",
+              "EARTH 444/BIOL 462 - Applied Wetland Science (0.50)",
+              "EARTH 458 - Physical Hydrogeology (0.50)",
+              "ENVE 573 - Contaminant Transport (0.50)",
+              "GEOG 209 - Hydroclimatology (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Computer Engineering",
+      "specializations": [
+        {
+          "name": "Communications and Signal Processing Specialization",
+          "available_to_majors": ["H-Computer Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Achieve at least 60% average across specialization courses and at least 50% in each; complete required courses plus electives.",
+          "course_requirements": {
+            "required_courses": [
+              "ECE 313 - Digital Signal Processing (0.50)",
+              "ECE 318 - Communication Systems (0.50)"
+            ],
+            "choose_from": [
+              "ECE 358 - Computer Networks (0.50)",
+              "ECE 414 - Wireless Communications (0.50)",
+              "ECE 416 - Advanced Topics in Networking (0.50)",
+              "ECE 417 - Image Processing (0.50)",
+              "ECE 474 - Radio and Wireless Systems (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Quantum Engineering Specialization",
+          "available_to_majors": ["H-Computer Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete a total of four courses: ECE 305 plus any three of ECE 405A/B/C/D.",
+          "course_requirements": {
+            "required_courses": [
+              "ECE 305 - Introduction to Quantum Mechanics (0.50)"
+            ],
+            "choose_from": [
+              "ECE 405A - Quantum Information Processing Devices (0.50)",
+              "ECE 405B - Fundamentals of Experimental Quantum Information (0.50)",
+              "ECE 405C - Programming of Quantum Computing Algorithms (0.50)",
+              "ECE 405D - Superconducting Quantum Circuits (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Electrical Engineering",
+      "specializations": [
+        {
+          "name": "Communications and Signal Processing Specialization",
+          "available_to_majors": ["H-Electrical Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Achieve at least 60% average across specialization courses and at least 50% in each; complete required courses plus electives.",
+          "course_requirements": {
+            "required_courses": [
+              "ECE 313 - Digital Signal Processing (0.50)",
+              "ECE 318 - Communication Systems (0.50)"
+            ],
+            "choose_from": [
+              "ECE 358 - Computer Networks (0.50)",
+              "ECE 414 - Wireless Communications (0.50)",
+              "ECE 416 - Advanced Topics in Networking (0.50)",
+              "ECE 417 - Image Processing (0.50)",
+              "ECE 474 - Radio and Wireless Systems (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Quantum Engineering Specialization",
+          "available_to_majors": ["H-Electrical Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete a total of four courses: ECE 305 plus any three of ECE 405A/B/C/D.",
+          "course_requirements": {
+            "required_courses": [
+              "ECE 305 - Introduction to Quantum Mechanics (0.50)"
+            ],
+            "choose_from": [
+              "ECE 405A - Quantum Information Processing Devices (0.50)",
+              "ECE 405B - Fundamentals of Experimental Quantum Information (0.50)",
+              "ECE 405C - Programming of Quantum Computing Algorithms (0.50)",
+              "ECE 405D - Superconducting Quantum Circuits (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Environmental Engineering",
+      "specializations": [
+        {
+          "name": "Energy and Climate Change Specialization",
+          "available_to_majors": ["H-Environmental Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete at least four technical electives from Energy & Climate Change lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "AE 572/ME 572 - Building Energy Analysis (0.50)",
+              "AE 573/ME 573 - HVAC Systems, Equipment, and Energy Efficiency (0.50)",
+              "ME 452 - HVAC Load Analysis and Design Fundamentals (0.50)",
+              "CIVE 507 - Building Science and Technology (0.50)",
+              "GEOG 409 - Energy Balance Climatology (0.50)",
+              "ME 459 - Energy Conversion (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Modelling and Data Analytics Specialization",
+          "available_to_majors": ["H-Environmental Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete at least four technical electives from Modelling & Data Analytics lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "Example: ENVE 575 - Environmental Systems Modelling (0.50)",
+              "Example: SYDE 575 - Machine Learning (0.50)",
+              "Example: CIVE 422 - Finite Element Analysis (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Pollution and Restoration Specialization",
+          "available_to_majors": ["H-Environmental Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete at least four technical electives from Pollution & Restoration lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "CHE 361 - Bioprocess Engineering (0.50)",
+              "CHE 571 - Industrial Ecology (0.50)",
+              "CHE 572 - Air Pollution Control (0.50)",
+              "CHE 574 - Industrial Wastewater Pollution Control (0.50)",
+              "ENVE 577 - Engineering for Solid Waste Management (0.50)",
+              "ME 571 - Air Pollution (0.50)",
+              "ENVE 573 - Contaminant Transport (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Sustainable Cities Specialization",
+          "available_to_majors": ["H-Environmental Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete at least four technical electives from Sustainable Cities lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "PLAN 473 - Environmental Planning (0.50)",
+              "GEOG 381/PLAN 381 - Advanced Geographic Information Systems (0.50)",
+              "PLAN 453/GEOG 453 - Urban Stormwater Management (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Water Resources Specialization",
+          "available_to_majors": ["H-Environmental Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete at least four technical electives from Water Resources lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "CIVE 583/ENVE 583 - Design of Urban Water Systems (0.50)",
+              "SYDE 532 - Introduction to Complex Systems (0.50)",
+              "SYDE 533 - Conflict Resolution (0.50)",
+              "BIOL 470 - Methods of Aquatic Ecology (0.50)",
+              "EARTH 439 - Flow and Transport Through Fractured Rocks (0.50)",
+              "EARTH 444/BIOL 462 - Applied Wetland Science (0.50)",
+              "EARTH 459 - Chemical Hydrogeology (0.50)",
+              "ENVE 573 - Contaminant Transport (0.50)",
+              "GEOG 209 - Hydroclimatology (0.50)",
+              "GEOG 305 - Fluvial Geomorphology (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Geological Engineering",
+      "specializations": [
+        {
+          "name": "Geology Specialization",
+          "available_to_majors": ["H-Geological Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete a total of four courses according to the requirements below.",
+          "course_requirements": {
+            "required_courses": [
+              "EARTH 221 - Introductory Geochemistry (0.50)",
+              "EARTH 471 - Mineral Deposits (0.50)"
+            ],
+            "choose_from": [
+              "EARTH 331 - Volcanology and Igneous Petrology (0.50)",
+              "EARTH 332 - Metamorphic Petrology (0.50)",
+              "EARTH 342 - Geomorphology and GIS Applications (0.50)",
+              "EARTH 421 - Advanced Geochemistry (0.50)",
+              "EARTH 435 - Advanced Structural Geology (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Hydrogeology Specialization",
+          "available_to_majors": ["H-Geological Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete a total of four courses according to the requirements below.",
+          "course_requirements": {
+            "required_courses": [
+              "EARTH 458 - Physical Hydrogeology (0.50)"
+            ],
+            "choose_from": [
+              "EARTH 444/BIOL 462 - Applied Wetland Science (0.50)",
+              "EARTH 459 - Chemical Hydrogeology (0.50)",
+              "EARTH 439 - Flow and Transport Through Fractured Rocks (0.50)",
+              "ENVE 573 - Contaminant Transport (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Soil, Rock and Structures Specialization",
+          "available_to_majors": ["H-Geological Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Complete a total of four courses according to the requirements below.",
+          "course_requirements": {
+            "required_courses": [
+              "CIVE 354/GEOE 354 - Geotechnical Engineering 2 (0.50)"
+            ],
+            "choose_from": [
+              "CIVE 554/GEOE 554 - Geotechnical Engineering 3 (0.50)",
+              "CIVE 422 - Finite Element Analysis (0.50)",
+              "EARTH 438 - Engineering Geology (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Mechanical Engineering",
+      "specializations": [
+        {
+          "name": "Welding and Joining Specialization",
+          "available_to_majors": ["H-Mechanical Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete the five listed courses (ME 435, ME 436, ME 526, ME 535, ME 538). ME 547 is optional.",
+          "course_requirements": {
+            "required_courses": [
+              "ME 435 - Industrial Metallurgy (0.50)",
+              "ME 436 - Welding and Joining Processes (0.50)",
+              "ME 526 - Fatigue and Fracture Analysis (0.50)",
+              "ME 535 - Welding Metallurgy (0.50)",
+              "ME 538 - Welding Design, Fabrication and Quality Control (0.50)"
+            ],
+            "choose_from": [
+              "ME 547 - Robotics Manipulators: Kinematics, Dynamics, Control (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Nanotechnology Engineering",
+      "specializations": [
+        {
+          "name": "Nanobiosystems Specialization",
+          "available_to_majors": ["H-Nanotechnology Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete required number of technical electives from Nanobiosystems lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "NE 353 - Biomedical Devices and Systems (0.50)",
+              "NE 451 - Nanobiotechnology (0.50)",
+              "BME 356 - Biomechanics (0.50)",
+              "CHE 361 - Bioprocess Engineering (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Nanoelectronics Specialization",
+          "available_to_majors": ["H-Nanotechnology Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete required number of technical electives from Nanoelectronics lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "NE 343 - Semiconductor Devices (0.50)",
+              "NE 445 - Nanoelectronic Circuits (0.50)",
+              "ECE 474 - Radio and Wireless Systems (0.50)",
+              "ECE 477 - Photonic Devices and Systems (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Nanofabrication Specialization",
+          "available_to_majors": ["H-Nanotechnology Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete required number of technical electives from Nanofabrication lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "NE 332 - Micro- and Nanofabrication (0.50)",
+              "NE 432 - Advanced Micro/Nanofabrication (0.50)",
+              "NE 444 - Nanomanufacturing (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Nanomaterials Specialization",
+          "available_to_majors": ["H-Nanotechnology Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete required number of technical electives from Nanomaterials lists.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "NE 352 - Nanomaterials (0.50)",
+              "NE 441 - Materials Characterization (0.50)",
+              "CHE 516 - Polymer Science and Engineering (0.50)",
+              "ME 435 - Industrial Metallurgy (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Software Engineering",
+      "specializations": [
+        {
+          "name": "Artificial Intelligence Specialization",
+          "available_to_majors": ["BSE - Software Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete the AI specialization list for BSE/CS rules.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "CS 486 - Introduction to Artificial Intelligence (0.50)",
+              "CS 480 - Introduction to Machine Learning (0.50)",
+              "CS 489 - Applied Machine Learning (0.50)",
+              "CS 457 - Image Processing and Recognition (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Business Specialization",
+          "available_to_majors": ["BSE - Software Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete the Business specialization list for BSE.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "AFM 101 - Introduction to Financial Accounting (0.50)",
+              "AFM 102 - Introduction to Managerial Accounting (0.50)",
+              "MSCI 211 - Introduction to Management Sciences (0.50)",
+              "MSCI 263 - Managerial Economics (0.50)",
+              "MSCI 442 - Integrated Business Strategy (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Computational Fine Art Specialization",
+          "available_to_majors": ["BSE - Software Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete the Computational Fine Art specialization list for BSE.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "FINE 204 - Digital Imaging (0.50)",
+              "FINE 228 - Introduction to Digital Photography (0.50)",
+              "CS 488 - Introduction to Computer Graphics (0.50)",
+              "CS 474 - Computational Image Processing (0.50)",
+              "FINE 371 - Interactive Media Art (0.50)"
+            ]
+          }
+        },
+        {
+          "name": "Human-Computer Interaction Specialization",
+          "available_to_majors": ["BSE - Software Engineering"],
+          "minimum_average_required": null,
+          "graduation_requirements": "Complete the HCI specialization list for BSE.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "CS 349 - User Interfaces (0.50)",
+              "CS 445 - Software Requirements Specification and Analysis (0.50)",
+              "CS 446 - Software Design and Architecture (0.50)",
+              "CS 447 - Software Testing, Quality Assurance, and Maintenance (0.50)",
+              "CS 449 - Human-Computer Interaction (0.50)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "program": "Systems Design Engineering",
+      "specializations": [
+        {
+          "name": "Human Factors and Interfaces Specialization",
+          "available_to_majors": ["H-Systems Design Engineering"],
+          "minimum_average_required": 60.0,
+          "graduation_requirements": "Select the required number of technical electives mapped to the specialization; some STV electives may count.",
+          "course_requirements": {
+            "required_courses": [],
+            "choose_from": [
+              "SYDE 348 - Human Factors in Design (0.50)",
+              "SYDE 544 - Human-Computer Interaction (0.50)",
+              "SYDE 548 - Cognitive Ergonomics (0.50)",
+              "CS 349 - User Interfaces (0.50)"
+            ] 
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import { CourseRecommendation } from '@/lib/types'
+import { getBestWaterlooUrl } from '@/lib/waterloo-links'
 
 interface CourseRecommendationsProps {
   recommendations: CourseRecommendation[]
@@ -37,17 +38,27 @@ export default function CourseRecommendations({
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-              Course Recommendations
+              Course Recommendations ({recommendations.length})
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               Track the progress of your course selection
             </p>
           </div>
-          {usedWebSearch && (
-            <span className="text-xs bg-yellow-500/20 text-yellow-600 px-3 py-1 rounded-full border border-yellow-500/30">
-              Web Search Used
-            </span>
-          )}
+          <div className="flex items-center gap-3">
+            <a
+              href="https://uwaterloo.ca/search?q=engineering+electives"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 underline"
+            >
+              Browse all electives →
+            </a>
+            {usedWebSearch && (
+              <span className="text-xs bg-yellow-500/20 text-yellow-600 px-3 py-1 rounded-full border border-yellow-500/30">
+                Web Search Used
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="space-y-4">
@@ -129,8 +140,8 @@ Description: ${rec.course.description}
 Prerequisites: ${rec.course.prereqs || 'None'}
 Skills: ${rec.course.skills.join(', ')}
 Terms Offered: ${rec.course.terms_offered.join(', ')}
-Workload: Reading ${rec.course.workload.reading}h, Assignments ${rec.course.workload.assignments}h, Projects ${rec.course.workload.projects}h, Labs ${rec.course.workload.labs}h
-Assessments: Midterm ${rec.course.assessments.midterm}%, Final ${rec.course.assessments.final}%, Assignments ${rec.course.assessments.assignments}%, Labs ${rec.course.assessments.labs}%
+                    Workload: Reading ${rec.course.workload?.reading || 'N/A'}h, Assignments ${rec.course.workload?.assignments || 'N/A'}h, Projects ${rec.course.workload?.projects || 'N/A'}h, Labs ${rec.course.workload?.labs || 'N/A'}h    
+                    Assessments: Midterm ${rec.course.assessments?.midterm || 'N/A'}%, Final ${rec.course.assessments?.final || 'N/A'}%, Assignments ${rec.course.assessments?.assignments || 'N/A'}%, Labs ${rec.course.assessments?.labs || 'N/A'}%
                     `.trim()
                     alert(details)
                   }}
@@ -161,14 +172,19 @@ Assessments: Midterm ${rec.course.assessments.midterm}%, Final ${rec.course.asse
               <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-600">
                 <button
                   onClick={() => {
-                    // Generate a proper Waterloo course search URL
-                    const courseCode = rec.course.id.replace(/([A-Z]+)(\d+)/, '$1 $2') // Convert CS486 to CS 486
-                    const searchUrl = `https://uwaterloo.ca/search?q=${encodeURIComponent(courseCode + ' ' + rec.course.title)}`
-                    window.open(searchUrl, '_blank')
+                    // Use the Waterloo links utility to get the best URL
+                    const { url, type } = getBestWaterlooUrl({
+                      id: rec.course.id,
+                      title: rec.course.title,
+                      dept: rec.course.dept,
+                      number: rec.course.number
+                    })
+                    
+                    window.open(url, '_blank')
                   }}
                   className="text-sm text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 underline"
                 >
-                  View course page →
+                  View Waterloo course →
                 </button>
               </div>
             </div>

@@ -1,0 +1,6 @@
+-- Add course_code column to options table
+ALTER TABLE options ADD COLUMN IF NOT EXISTS course_code TEXT;
+ALTER TABLE options ADD COLUMN IF NOT EXISTS course_title TEXT;
+ALTER TABLE options ADD COLUMN IF NOT EXISTS dept TEXT;
+ALTER TABLE options ADD COLUMN IF NOT EXISTS number INTEGER;
+ALTER TABLE options ADD COLUMN IF NOT EXISTS level INTEGER;

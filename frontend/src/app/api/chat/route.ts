@@ -180,7 +180,7 @@ export async function POST(request: NextRequest) {
     let specializations = []
     let certificates = []
     let diplomas = []
-    let docChunks = []
+    let docChunks: any[] = []
 
     try {
       specializations = await searchSpecializations(message, programToSearch, 3)
@@ -559,7 +559,6 @@ function shouldGenerateRecommendations(message: string): boolean {
   
   console.log('🔍 Testing recommendation trigger for:', message)
   console.log('🔍 Message lowercased:', messageLower)
-  
   
   // Don't give recommendations for simple greetings
   const greetings = ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'thanks', 'thank you']

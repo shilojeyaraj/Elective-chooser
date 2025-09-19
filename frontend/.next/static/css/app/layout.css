@@ -898,11 +898,11 @@ select {
 .max-h-32 {
   max-height: 8rem;
 }
-.min-h-screen {
-  min-height: 100vh;
-}
 .min-h-\[48px\] {
   min-height: 48px;
+}
+.min-h-screen {
+  min-height: 100vh;
 }
 .w-10 {
   width: 2.5rem;
