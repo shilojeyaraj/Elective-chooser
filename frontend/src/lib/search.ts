@@ -131,10 +131,15 @@ export async function searchCourses(
     }
   }
   
-  // Apply filters (but don't restrict by term - use it as guidance only)
+  // Apply term filter if provided - use the term directly from the database
   if (filters.term) {
-    console.log('🔍 Term filter provided but not applied - showing courses for all terms')
-    // Note: We don't filter by term to allow future course recommendations
+    console.log(`🔍 Applying term filter: "${filters.term}"`)
+    
+    // Use the term directly as it appears in the database
+    const termConditions = `terms_offered.cs.{${filters.term}}`
+    console.log(`🔍 Term conditions: ${termConditions}`)
+    
+    supabaseQuery = supabaseQuery.or(termConditions)
   }
   
   if (filters.dept && filters.dept.length > 0) {
@@ -389,10 +394,19 @@ function filterDemoCourses(
     }
   }
   
-  // Apply filters (but don't restrict by term - use it as guidance only)
+  // Apply term filter if provided - use the term directly from the database
   if (filters.term) {
-    console.log('🔍 Demo data: Term filter provided but not applied - showing courses for all terms')
-    // Note: We don't filter by term to allow future course recommendations
+    console.log(`🔍 Demo data: Applying term filter: "${filters.term}"`)
+    
+    // Use the term directly as it appears in the database
+    console.log(`🔍 Demo data: Filtering for courses offered in term: ${filters.term}`)
+    
+    // Filter by terms_offered
+    filteredCourses = filteredCourses.filter(course => 
+      course.terms_offered && 
+      filters.term &&
+      course.terms_offered.includes(filters.term)
+    )
   }
   
   if (filters.dept && filters.dept.length > 0) {

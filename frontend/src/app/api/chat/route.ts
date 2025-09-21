@@ -128,11 +128,17 @@ export async function POST(request: NextRequest) {
     // Get recent conversation history
     const recentMessages = await getRecentMessages(sessionId, 6)
 
+    // Extract specific term from user message if mentioned
+    const requestedTerm = extractTermFromMessage(message)
+    const searchTerm = requestedTerm || profile.current_term
+    
+    console.log(`🔍 Search term: "${searchTerm}" (requested: "${requestedTerm}", profile: "${profile.current_term}")`)
+
     // Search for relevant information using vector search with error handling
     let searchResults = []
     try {
       searchResults = await searchCourses(message, {
-        term: profile.current_term,
+        term: searchTerm,
         skills: profile.goal_tags
       })
     } catch (error) {
@@ -252,19 +258,22 @@ export async function POST(request: NextRequest) {
       }
     ])
 
-    // Generate course recommendations if relevant
-    let recommendations = []
-    const shouldRecommend = shouldGenerateRecommendations(message)
-    console.log('🔍 Should generate recommendations?', shouldRecommend, 'for message:', message)
-    
-    if (shouldRecommend) {
-      console.log('📚 Generating recommendations...')
-      // Use the full conversation context for better search
-      const contextQuery = buildSearchQueryFromContext(message, recentMessages)
-      console.log('🔍 Using context query for search:', contextQuery)
-      recommendations = await generateRecommendations(profile, contextQuery)
-      console.log('📚 Generated recommendations:', recommendations.length, 'courses')
-    }
+  // Always generate course recommendations
+  let recommendations = []
+  console.log('📚 Always generating recommendations for message:', message)
+  
+  // Use the full conversation context for better search
+  const contextQuery = buildSearchQueryFromContext(message, recentMessages)
+  console.log('🔍 Using context query for search:', contextQuery)
+  recommendations = await generateRecommendations(profile, contextQuery)
+  console.log('📚 Generated recommendations:', recommendations.length, 'courses')
+  
+  // If no recommendations found, try with just the message
+  if (recommendations.length === 0) {
+    console.log('📚 No recommendations from context query, trying with original message')
+    recommendations = await generateRecommendations(profile, message)
+    console.log('📚 Generated recommendations with original message:', recommendations.length, 'courses')
+  }
 
     console.log('📤 API Response:', {
       responseLength: aiResponse.length,
@@ -554,15 +563,20 @@ function shouldGenerateRecommendations(message: string): boolean {
     'find courses', 'course options', 'elective options', 'robotics', 'ai', 'machine learning',
     '2a', '2b', '3a', '3b', '4a', '4b', 'plan my term', 'term planning', 'generate',
     'give me', 'list', 'show', 'find', 'search', 'looking for', 'technical', 'elective',
-    'next term', 'future terms', 'what about', 'should i take', 'what should', 'which should'
+    'next term', 'future terms', 'what about', 'should i take', 'what should', 'which should','what are',
+    'recommend me', 'suggest me', 'give me recommendations', 'give me suggestions'
   ]
   
   console.log('🔍 Testing recommendation trigger for:', message)
   console.log('🔍 Message lowercased:', messageLower)
   
-  // Don't give recommendations for simple greetings
+  // Don't give recommendations for simple greetings (but allow if they also contain course-related keywords)
   const greetings = ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'thanks', 'thank you']
-  if (greetings.some(greeting => messageLower.includes(greeting))) {
+  const isOnlyGreeting = greetings.some(greeting => messageLower.includes(greeting)) && 
+    !recommendationTriggers.some(trigger => messageLower.includes(trigger))
+  
+  if (isOnlyGreeting) {
+    console.log('🔍 Blocked: Message is only a greeting without course keywords')
     return false
   }
   
@@ -580,7 +594,8 @@ function shouldGenerateRecommendations(message: string): boolean {
     messageLower,
     hasTrigger,
     matchingTriggers,
-    totalTriggers: recommendationTriggers.length
+    totalTriggers: recommendationTriggers.length,
+    originalMessage: message
   })
   
   // Also check if message is asking for help with courses/electives
@@ -601,7 +616,8 @@ function shouldGenerateRecommendations(message: string): boolean {
     hasTrigger,
     matchingTriggers,
     hasCourseHelp,
-    shouldRecommend: hasTrigger || hasCourseHelp
+    shouldRecommend: hasTrigger || hasCourseHelp,
+    isOnlyGreeting
   })
   
   return hasTrigger || hasCourseHelp
@@ -654,15 +670,40 @@ function extractKeyTerms(message: string): string[] {
     .filter(word => word.length > 2)
 }
 
+// Extract specific term from user message (2A, 2B, 3A, 3B, 4A, 4B)
+function extractTermFromMessage(message: string): string | null {
+  const messageLower = message.toLowerCase()
+  
+  // Look for term patterns like "2a", "2b", "3a", "3b", "4a", "4b"
+  const termPattern = /(2a|2b|3a|3b|4a|4b)/i
+  const match = messageLower.match(termPattern)
+  
+  if (match) {
+    const term = match[1].toUpperCase()
+    console.log(`🎯 Extracted term from message: "${term}"`)
+    return term
+  }
+  
+  console.log(`🎯 No specific term found in message: "${message}"`)
+  return null
+}
+
 async function generateRecommendations(
   profile: UserProfile,
   query: string
 ): Promise<any[]> {
   console.log('🔍 generateRecommendations called with:', { query, profile: profile.program, term: profile.current_term })
   
-  // Search for relevant courses (don't filter by term - use it as guidance only)
+  // Extract specific term from query if mentioned
+  const requestedTerm = extractTermFromMessage(query)
+  const searchTerm = requestedTerm || profile.current_term
+  
+  console.log(`🔍 Generate recommendations for term: "${searchTerm}" (requested: "${requestedTerm}", profile: "${profile.current_term}")`)
+  
+  // Search for relevant courses with term filter
   const courses = await searchCourses(query, {
-    // Don't filter by term or skills for general searches - let the text search handle relevance
+    term: searchTerm,
+    skills: profile.goal_tags
   })
   
   console.log('📚 Found courses:', courses.length, 'courses')

@@ -1,39 +1,111 @@
-# University of Waterloo Elective Chooser
+# 🎓 University of Waterloo Elective Chooser
 
-A full-stack application for helping students choose electives at the University of Waterloo.
+A comprehensive AI-powered web application designed to help University of Waterloo Engineering students make informed decisions about their elective courses. The platform combines advanced AI technology with comprehensive course data to provide personalized recommendations based on students' academic programs, interests, and career goals.
 
-## 🏗️ Project Structure
+## 🌟 Key Features
 
-```
-├── frontend/          # Next.js React application
-│   ├── src/          # Source code
-│   ├── public/       # Static assets
-│   └── package.json  # Frontend dependencies
-├── backend/          # Data processing and scripts
-│   ├── data-to-ingest/  # CSV/JSON data files
-│   ├── scripts/         # Python processing scripts
-│   └── requirements.txt # Python dependencies
-└── package.json      # Root package.json for monorepo
-```
+### 🤖 AI-Powered Recommendations
+- **Intelligent Chat Interface**: Natural language conversation with GPT-4o-mini
+- **Personalized Suggestions**: Course recommendations based on user profile and preferences
+- **Context-Aware Responses**: Maintains conversation context using LangChain memory
+- **Vector Search**: Semantic search through course descriptions and requirements
+
+### 📚 Comprehensive Course Database
+- **284+ Courses**: Complete database of Waterloo Engineering courses
+- **11 Engineering Programs**: Support for all major engineering disciplines
+- **Detailed Course Information**: Skills, workload, assessments, prerequisites, and terms offered
+- **CSE Classification**: Proper categorization for Complementary Studies Electives
+
+### 🎯 Advanced Search & Filtering
+- **Multi-Criteria Search**: Filter by department, level, skills, workload, and more
+- **Skills-Based Matching**: Find courses that align with your interests
+- **Program-Specific Filtering**: Recommendations tailored to your engineering program
+- **JSONB Queries**: Efficient database queries for complex filtering
+
+### 👤 User Management
+- **Secure Authentication**: Supabase-powered user authentication
+- **Profile Management**: Store academic program, interests, and preferences
+- **Session Management**: Persistent chat history and user context
+- **Admin Interface**: Data management and upload capabilities
+
+## 🏗️ Technical Architecture
+
+### Frontend (Next.js 15)
+- **Framework**: Next.js 15 with TypeScript
+- **Styling**: Tailwind CSS with dark mode support
+- **UI Components**: Custom React components with responsive design
+- **State Management**: React Context for theme and user state
+- **API Integration**: RESTful API routes for backend communication
+
+### Backend (Python + Supabase)
+- **Database**: PostgreSQL with Supabase
+- **Vector Search**: pgvector extension for semantic search
+- **Data Processing**: Python scripts for data ingestion and processing
+- **AI Integration**: OpenAI GPT-4o-mini and text-embedding-3-large
+- **Web Scraping**: BeautifulSoup, Trafilatura for data extraction
+
+### AI & Machine Learning
+- **Language Model**: OpenAI GPT-4o-mini for chat responses
+- **Embeddings**: text-embedding-3-large for vector search
+- **Memory Management**: LangChain for conversation context
+- **RAG (Retrieval Augmented Generation)**: Enhanced responses with course data
+
+### Data Management
+- **Course Data**: 284 courses from 11 engineering programs
+- **Program Data**: Specializations, certificates, diplomas, and minors
+- **Vector Embeddings**: Pre-computed embeddings for semantic search
+- **Data Ingestion**: Automated CSV/JSON processing and database population
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+- Node.js 18+
 - Python 3.8+
 - Supabase account
+- OpenAI API key
 
 ### Installation
-```bash
-# Install all dependencies
-npm run install:all
 
-# Or install separately
-npm run install:frontend  # Frontend dependencies
-npm run install:backend   # Backend dependencies
-```
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd "Elective Chooser"
+   ```
+
+2. **Install dependencies**
+   ```bash
+   # Install all dependencies
+   npm run install:all
+   
+   # Or install separately
+   npm run install:frontend  # Frontend dependencies
+   npm run install:backend   # Backend dependencies
+   ```
+
+3. **Set up environment variables**
+   Create a `.env.local` file in the `frontend/` directory:
+   ```env
+   # Supabase Configuration
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   
+   # OpenAI Configuration
+   OPENAI_API_KEY=your_openai_api_key
+   ```
+
+4. **Set up the database**
+   - Go to your Supabase project dashboard
+   - Navigate to SQL Editor
+   - Copy and paste the contents of `backend/data-to-ingest/supabase-schema.sql`
+   - Click Run to create all tables
+
+5. **Upload course data**
+   - Go to `http://localhost:3000/admin`
+   - Upload `processed_courses.csv` and `processed_programs.csv`
 
 ### Development
+
 ```bash
 # Start frontend development server
 npm run dev
@@ -46,112 +118,145 @@ npm run dev:debug
 ```
 
 ### Production
+
 ```bash
 # Build and start production server
 npm run build
 npm run start
 ```
 
-## 🎨 Styling Debug
+## 📁 Project Structure
 
-The admin page includes comprehensive styling debugging:
+```
+├── frontend/                 # Next.js React application
+│   ├── src/
+│   │   ├── app/             # App router pages and API routes
+│   │   │   ├── api/         # API endpoints
+│   │   │   ├── admin/       # Admin interface
+│   │   │   ├── login/       # Authentication pages
+│   │   │   └── signup/
+│   │   ├── components/      # React components
+│   │   ├── contexts/        # React contexts
+│   │   └── lib/            # Utility libraries
+│   ├── public/             # Static assets
+│   └── package.json        # Frontend dependencies
+├── backend/                 # Data processing and scripts
+│   ├── data-to-ingest/     # CSV/JSON data files
+│   ├── scripts/            # Python processing scripts
+│   └── requirements.txt    # Python dependencies
+├── docker/                 # Docker configuration
+├── DEPLOYMENT.md          # Deployment guide
+├── SETUP_GUIDE.md         # Quick setup instructions
+└── package.json           # Root package.json for monorepo
+```
 
-1. **Visual Test Section** - Shows colored boxes to test Tailwind classes
-2. **Console Logging** - Detailed logs about CSS loading status
-3. **Status Indicator** - Real-time styling status in the header
+## 🔧 Key Technologies
 
-### Debugging Steps:
-1. Open browser console (F12)
-2. Look for `🎨` prefixed logs
-3. Check if colored test boxes are visible
-4. Verify styling status indicator
+### Frontend Stack
+- **Next.js 15**: React framework with App Router
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
+- **Lucide React**: Icon library
+- **React 18**: UI library with hooks
 
-## 📁 Data Management
+### Backend Stack
+- **Python 3.8+**: Data processing and web scraping
+- **Supabase**: Backend-as-a-Service with PostgreSQL
+- **pgvector**: Vector similarity search
+- **Pandas**: Data manipulation and analysis
+- **BeautifulSoup**: HTML parsing and web scraping
 
-### Frontend (Next.js)
-- **Admin Interface**: Upload and manage data
-- **API Routes**: Handle file uploads and processing
-- **Styling**: Tailwind CSS with debugging
+### AI & ML Stack
+- **OpenAI API**: GPT-4o-mini and text-embedding-3-large
+- **LangChain**: AI application framework
+- **Vector Search**: Semantic search capabilities
+- **RAG**: Retrieval Augmented Generation
 
-### Backend (Python)
-- **Data Processing**: CSV/JSON parsing and transformation
-- **Database Scripts**: SQL migrations and setup
-- **Data Files**: Raw and processed data storage
+### Data Processing
+- **CSV/JSON Processing**: Automated data ingestion
+- **Web Scraping**: Course data extraction
+- **PDF Processing**: Document parsing
+- **Embedding Generation**: Vector embeddings for search
 
-## 🔧 Troubleshooting
+## 🎨 Features in Detail
 
-### Styling Issues
-- Check browser console for `🎨` logs
-- Verify Tailwind CSS is loading
-- Try hard refresh (Ctrl+F5)
-- Clear browser cache
+### Chat Interface
+- Natural language conversation with AI
+- Context-aware responses based on user profile
+- Course recommendations with detailed explanations
+- Program-specific advice and guidance
 
-### Compilation Issues
-- Run `npm run clean` to clear cache
-- Check TypeScript errors with `npm run type-check`
-- Restart development server
+### Course Search
+- Advanced filtering by multiple criteria
+- Skills-based course matching
+- Department and level filtering
+- Workload and assessment type filtering
 
-### Data Upload Issues
-- Check Supabase connection
-- Verify environment variables
-- Check browser network tab for API errors
+### User Profiles
+- Academic program selection
+- Interest and skill preferences
+- Course history tracking
+- Personalized recommendations
 
-## 📊 Features
+### Admin Interface
+- Data upload and management
+- Course and program data editing
+- Database health monitoring
+- User management capabilities
 
-- **Course Management**: Upload and manage course data
-- **Program Options**: Handle different engineering programs
-- **CSE Electives**: Specialized computer science electives
-- **Technical Electives**: All engineering technical electives
-- **AI Recommendations**: Smart course recommendations
-- **Admin Interface**: Easy data management
+## 🚀 Deployment
 
-## 🎯 Next Steps
+### Vercel (Recommended)
+```bash
+# Install Vercel CLI
+npm install -g vercel
 
-1. **Test Styling**: Verify all colors and gradients are working
-2. **Upload Data**: Test all upload functionality
-3. **Debug Issues**: Use console logs to identify problems
-4. **Optimize Performance**: Use turbo mode for faster development
+# Deploy from frontend directory
+cd frontend
+vercel
 
-## 🔄 Recent Updates (Latest)
+# Set environment variables in Vercel dashboard
+# Redeploy
+vercel --prod
+```
 
-### ✅ **Fixed Issues (December 2024)**
+### Docker
+```bash
+# Build and run with Docker Compose
+docker-compose up --build
+```
 
-#### **Database Query Errors Fixed:**
-- **JSONB Query Syntax**: Fixed `jsonb && unknown` operator errors
-- **Session ID Generation**: Fixed UUID generation for chat sessions
-- **Skills Filter**: Fixed JSONB array searching for course skills
-- **Term Filter**: Fixed JSONB array searching for course terms
+## 📊 Data Sources
 
-#### **Chatbot Improvements:**
-- **Conversational Tone**: Made chatbot more friendly and chatty
-- **Smart Recommendations**: Only gives recommendations when explicitly asked
-- **Better Greetings**: Responds to "hello" with friendly greeting instead of immediate recommendations
-- **Reduced Formality**: Removed academic jargon, made responses more natural
+- **University of Waterloo**: Official course catalogs and program requirements
+- **Engineering Faculty**: Program-specific course information
+- **Course Descriptions**: Detailed course content and learning outcomes
+- **Prerequisites**: Course dependency information
+- **Assessment Methods**: Grading schemes and evaluation criteria
 
-#### **Environment Configuration:**
-- **Frontend Variables**: Added `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- **Backend Variables**: Maintained separate backend environment variables
-- **Environment Files**: Created proper `.env.local` for Next.js frontend
+## 🤝 Contributing
 
-#### **Search Functionality:**
-- **Course Search**: Fixed JSONB query operators for better course filtering
-- **Vector Search**: Temporarily disabled due to database function type mismatch
-- **Web Search**: Disabled to prevent 404 errors from non-existent URLs
-- **Skills Matching**: Improved skills-based course filtering
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-#### **Profile Setup:**
-- **Engineering Programs**: Added comprehensive list of Waterloo Engineering programs
-- **Program Names**: Included both short codes and full names (e.g., "AE - Architectural Engineering")
-- **User Experience**: Improved program selection interface
+## 📝 License
 
-### 🐛 **Known Issues:**
-- **Vector Search**: Database function needs type correction (option_id should be TEXT not UUID)
-- **Web Search**: Disabled due to 404 errors from mock URLs
-- **RLS Policies**: May need adjustment for production use
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### 🔧 **Technical Details:**
-- **Database**: Supabase with PostgreSQL
-- **Frontend**: Next.js 14 with TypeScript
-- **Backend**: Python scripts for data processing
-- **AI**: OpenAI GPT-4o-mini for chat responses
-- **Search**: Course search with JSONB filtering
+## 🙏 Acknowledgments
+
+- University of Waterloo Engineering Faculty for course data
+- OpenAI for AI capabilities
+- Supabase for backend infrastructure
+- The open-source community for various libraries and tools
+
+## 📞 Support
+
+For support, email [your-email] or create an issue in the repository.
+
+---
+
+**Built with ❤️ for Waterloo Engineering Students**

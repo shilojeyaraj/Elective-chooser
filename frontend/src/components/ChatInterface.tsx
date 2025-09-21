@@ -38,18 +38,58 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
     setSessionId(newSessionId)
   }
 
-  // Create new session on mount
+  // Load existing session or create new one on mount
   useEffect(() => {
-    const createSession = async () => {
+    const initializeSession = async () => {
+      console.log('🚀 Initializing session for user:', profile?.user_id)
       try {
-        const response = await fetch('/api/chat/session', {
+        // First, try to get the most recent session for this user
+        console.log('🔍 Fetching existing sessions...')
+        const response = await fetch(`/api/chat/sessions?userId=${profile.user_id}`)
+        console.log('📡 Sessions response status:', response.status)
+        
+        if (response.ok) {
+          const data = await response.json()
+          console.log('📦 Sessions data:', data)
+          
+          if (data.sessions && data.sessions.length > 0) {
+            // Use the most recent session
+            const recentSession = data.sessions[0]
+            setSessionId(recentSession.id)
+            console.log('✅ Loaded existing session:', recentSession.id)
+            
+            // Load existing messages for this session
+            try {
+              console.log('🔍 Loading messages for session:', recentSession.id)
+              const messagesResponse = await fetch(`/api/chat/messages?sessionId=${recentSession.id}`)
+              if (messagesResponse.ok) {
+                const messagesData = await messagesResponse.json()
+                if (messagesData.messages && messagesData.messages.length > 0) {
+                  setMessages(messagesData.messages)
+                  console.log('✅ Loaded existing messages:', messagesData.messages.length)
+                }
+              }
+            } catch (error) {
+              console.error('❌ Error loading messages:', error)
+            }
+            return
+          }
+        }
+        
+        // If no existing session, create a new one
+        console.log('🆕 Creating new session for user:', profile.user_id)
+        const createResponse = await fetch('/api/chat/session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userId: profile.user_id })
         })
-        const data = await response.json()
-        setSessionId(data.sessionId)
+        console.log('📡 Create session response status:', createResponse.status)
+        const createData = await createResponse.json()
+        console.log('📦 Create session data:', createData)
+        setSessionId(createData.sessionId)
+        console.log('✅ Created new session:', createData.sessionId)
       } catch (error) {
+        console.error('❌ Session initialization error:', error)
         // If API fails, generate a proper UUID for the session
         const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
           const r = Math.random() * 16 | 0
@@ -57,10 +97,16 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
           return v.toString(16)
         })
         setSessionId(uuid)
+        console.log('⚠️ Using fallback session ID:', uuid)
       }
     }
-    createSession()
-  }, [profile.user_id])
+    
+    if (profile?.user_id) {
+      initializeSession()
+    } else {
+      console.log('❌ No profile.user_id available for session initialization')
+    }
+  }, [profile?.user_id])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -72,7 +118,22 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!input.trim() || !sessionId || loading) return
+    console.log('🔍 Submit attempt:', { 
+      input: input.trim(), 
+      sessionId, 
+      loading, 
+      profile: profile?.user_id,
+      hasProfile: !!profile 
+    })
+    
+    if (!input.trim() || !sessionId || loading) {
+      console.log('❌ Cannot send message:', { 
+        inputEmpty: !input.trim(), 
+        noSessionId: !sessionId, 
+        isLoading: loading 
+      })
+      return
+    }
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -99,7 +160,7 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
         body: JSON.stringify({
           message: input,
           sessionId,
-          userId: (profile as any)?.id || profile?.user_id
+          userId: profile?.user_id
         })
       })
 
@@ -108,7 +169,8 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
       console.log('📥 Frontend received:', {
         responseLength: data.response?.length,
         recommendationsCount: data.recommendations?.length,
-        recommendations: data.recommendations?.map((r: any) => ({ id: r.course?.id, title: r.course?.title, score: r.score }))
+        recommendations: data.recommendations?.map((r: any) => ({ id: r.course?.id, title: r.course?.title, score: r.score })),
+        fullRecommendations: data.recommendations
       })
 
       if (response.ok) {
@@ -188,6 +250,7 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
           </div>
         </div>
       </div>
+
 
       {/* Main Content Area */}
       <div className="flex-1 flex overflow-hidden">
@@ -288,3 +351,4 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
     </div>
   )
 }
+
