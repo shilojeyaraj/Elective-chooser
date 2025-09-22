@@ -183,25 +183,25 @@ export async function POST(request: NextRequest) {
     }
     
     // Search for information with error handling
-    let searchSpecializations = []
-    let searchCertificates = []
-    let searchDiplomas = []
+    let foundSpecializations = []
+    let foundCertificates = []
+    let foundDiplomas = []
     let docChunks: any[] = []
 
     try {
-      searchSpecializations = await searchSpecializations(message, programToSearch, 3)
+      foundSpecializations = await searchSpecializations(message, programToSearch, 3)
     } catch (error) {
       console.error('❌ Error searching specializations:', error)
     }
 
     try {
-      searchCertificates = await searchCertificates(message, programToSearch, 3)
+      foundCertificates = await searchCertificates(message, programToSearch, 3)
     } catch (error) {
       console.error('❌ Error searching certificates:', error)
     }
 
     try {
-      searchDiplomas = await searchDiplomas(message, programToSearch, 3)
+      foundDiplomas = await searchDiplomas(message, programToSearch, 3)
     } catch (error) {
       console.error('❌ Error searching diplomas:', error)
     }
@@ -214,7 +214,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Build context for the LLM
-    const context = buildContext(searchResults, docChunks, profile, searchSpecializations, searchCertificates, searchDiplomas, [], null)
+    const context = buildContext(searchResults, docChunks, profile, foundSpecializations, foundCertificates, foundDiplomas, [], null)
 
     // Check if we should ask about completed electives
     const shouldAskAboutElectives = shouldAskAboutCompletedElectives(message, profile)
