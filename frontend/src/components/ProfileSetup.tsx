@@ -185,10 +185,10 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Set up your profile
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-300">
             Help us provide better elective recommendations
           </p>
         </div>
@@ -197,7 +197,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
           <div className="space-y-4">
             {/* Username */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Username
               </label>
               <input
@@ -212,7 +212,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
 
             {/* Program */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Engineering Program
               </label>
               <select
@@ -230,7 +230,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
 
             {/* Current Term */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Current Term
               </label>
               <select
@@ -248,7 +248,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
 
             {/* Interests */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                 Areas of Interest (select all that apply)
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-64 overflow-y-auto border border-gray-200 rounded-md p-3">
@@ -260,20 +260,20 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
                       onChange={() => handleArrayChange('interests', interest)}
                       className="rounded border-gray-300 text-waterloo-blue focus:ring-waterloo-blue"
                     />
-                    <span className="ml-2 text-sm text-gray-700 capitalize">
+                    <span className="ml-2 text-sm text-gray-700 dark:text-gray-300 capitalize">
                       {interest.replace('_', ' ')}
                     </span>
                   </label>
                 ))}
               </div>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                 Scroll to see all options. Select multiple interests that align with your career goals.
               </p>
             </div>
 
             {/* Goals */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                 Career Goals (select all that apply)
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto border border-gray-200 rounded-md p-3">
@@ -285,20 +285,20 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
                       onChange={() => handleArrayChange('goal_tags', goal)}
                       className="rounded border-gray-300 text-waterloo-blue focus:ring-waterloo-blue"
                     />
-                    <span className="ml-2 text-sm text-gray-700 capitalize">
+                    <span className="ml-2 text-sm text-gray-700 dark:text-gray-300 capitalize">
                       {goal.replace('_', ' ')}
                     </span>
                   </label>
                 ))}
               </div>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                 Select your career aspirations and educational goals.
               </p>
             </div>
 
             {/* Additional Comments */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Any other comments or things we should know?
               </label>
               <textarea
@@ -315,7 +315,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
 
             {/* GPA */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 GPA (optional)
               </label>
               <input
@@ -332,7 +332,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
 
             {/* Workload Preference */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Preferred Workload (1-5, where 5 is very heavy)
               </label>
               <input
@@ -346,7 +346,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
                 }))}
                 className="mt-1 block w-full"
               />
-              <div className="flex justify-between text-xs text-gray-500">
+              <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                 <span>Light (1)</span>
                 <span>Heavy (5)</span>
               </div>
