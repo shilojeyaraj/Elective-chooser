@@ -237,7 +237,7 @@ function generateNextSteps(remainingCourses: any[], completedCourses: string[]):
     
     // Simple prerequisite check - in reality this would be more sophisticated
     const prereqList = course.prereqs.split(',').map((p: string) => p.trim())
-    return prereqList.every(prereq => 
+    return prereqList.every((prereq: string) => 
       completedCourses.some(completed => 
         completed.toLowerCase().includes(prereq.toLowerCase())
       )
@@ -253,7 +253,7 @@ function generateNextSteps(remainingCourses: any[], completedCourses: string[]):
     if (!course.prereqs) return false
     
     const prereqList = course.prereqs.split(',').map((p: string) => p.trim())
-    return !prereqList.every(prereq => 
+    return !prereqList.every((prereq: string) => 
       completedCourses.some(completed => 
         completed.toLowerCase().includes(prereq.toLowerCase())
       )
