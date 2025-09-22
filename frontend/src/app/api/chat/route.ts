@@ -678,73 +678,31 @@ function shouldAskAboutCompletedElectives(message: string, profile: UserProfile)
 }
 
 function shouldGenerateRecommendations(message: string): boolean {
-  const messageLower = message.toLowerCase()
-  
-  const recommendationTriggers = [
-    'recommend', 'recomend', 'reccomend', 'reccomendations', 'recommendations', 'suggest', 'courses', 'electives', 'what courses', 'which courses',
-    'best electives', 'good courses', 'options', 'course recommendations', 'course recomendations', 'course reccomendations',
-    'elective suggestions', 'help me choose', 'what electives', 'show me courses','give me',
-    'find courses', 'course options', 'elective options', 'robotics', 'ai', 'machine learning',
-    '2a', '2b', '3a', '3b', '4a', '4b', 'plan my term', 'term planning', 'generate',
-    'give me', 'list', 'show', 'find', 'search', 'looking for', 'technical', 'elective',
-    'next term', 'future terms', 'what about', 'should i take', 'what should', 'which should','what are',
-    'recommend me', 'suggest me', 'give me recommendations', 'give me suggestions'
-  ]
+  const messageLower = message.toLowerCase().trim()
   
   console.log('🔍 Testing recommendation trigger for:', message)
   console.log('🔍 Message lowercased:', messageLower)
   
-  // Don't give recommendations for simple greetings (but allow if they also contain course-related keywords)
-  const greetings = ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'thanks', 'thank you']
-  const isOnlyGreeting = greetings.some(greeting => messageLower.includes(greeting)) && 
-    !recommendationTriggers.some(trigger => messageLower.includes(trigger))
+  // Don't give recommendations for simple greetings only
+  const simpleGreetings = ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'thanks', 'thank you', 'ok', 'okay', 'yes', 'no']
+  const isOnlySimpleGreeting = simpleGreetings.some(greeting => messageLower === greeting)
   
-  if (isOnlyGreeting) {
-    console.log('🔍 Blocked: Message is only a greeting without course keywords')
+  if (isOnlySimpleGreeting) {
+    console.log('🔍 Blocked: Message is only a simple greeting')
     return false
   }
   
-  // Check for recommendation triggers
-  const hasTrigger = recommendationTriggers.some(trigger => 
-    messageLower.includes(trigger)
-  )
-  
-  // Debug: show which triggers match
-  const matchingTriggers = recommendationTriggers.filter(trigger => 
-    messageLower.includes(trigger)
-  )
-  
-  console.log('🔍 Trigger analysis:', {
-    messageLower,
-    hasTrigger,
-    matchingTriggers,
-    totalTriggers: recommendationTriggers.length,
-    originalMessage: message
-  })
-  
-  // Also check if message is asking for help with courses/electives
-  const courseHelpPatterns = [
-    /what.*course/i,
-    /which.*course/i,
-    /help.*course/i,
-    /elective.*help/i,
-    /course.*help/i,
-    /recommendation/i,
-    /suggestion/i
-  ]
-  
-  const hasCourseHelp = courseHelpPatterns.some(pattern => pattern.test(message))
+  // Generate recommendations for any substantive message (more than 2 characters)
+  const isSubstantive = messageLower.length > 2
   
   console.log('🔍 Recommendation check:', {
     message: messageLower,
-    hasTrigger,
-    matchingTriggers,
-    hasCourseHelp,
-    shouldRecommend: hasTrigger || hasCourseHelp,
-    isOnlyGreeting
+    isOnlySimpleGreeting,
+    isSubstantive,
+    shouldRecommend: isSubstantive
   })
   
-  return hasTrigger || hasCourseHelp
+  return isSubstantive
 }
 
 // Build search query from conversation context

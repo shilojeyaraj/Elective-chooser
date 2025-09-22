@@ -69,12 +69,12 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
 
   return (
     <div className="w-full space-y-6">
-      <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             {isLogin ? 'Sign in to your account' : 'Create your account'}
           </h2>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             {isLogin ? (
               <a
@@ -96,7 +96,7 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
         <form className="space-y-4" onSubmit={handleSubmit}>
           {!isLogin && (
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Username
               </label>
               <input
@@ -114,7 +114,7 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
           )}
           
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Email address
             </label>
             <input
@@ -131,7 +131,7 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
           </div>
           
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Password
             </label>
             <input
