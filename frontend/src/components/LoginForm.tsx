@@ -107,7 +107,7 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-900 placeholder-gray-500"
                 placeholder="Choose a username"
               />
             </div>
@@ -123,10 +123,10 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
               type="email"
               autoComplete="email"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-900 placeholder-gray-500"
+              placeholder="Enter your email"
             />
           </div>
           
@@ -140,10 +140,10 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
               type="password"
               autoComplete="current-password"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-900 placeholder-gray-500"
+              placeholder="Enter your password"
             />
           </div>
 
