@@ -201,13 +201,13 @@ export async function analyzeOptionProgress(optionId: string, completedCourses: 
   }
   
   const allCourses = optionDetails.courses || []
-  const completed = allCourses.filter(course => 
+  const completed = allCourses.filter((course: any) => 
     completedCourses.some(completed => 
       completed.toLowerCase().includes(course.id.toLowerCase())
     )
   )
   
-  const remaining = allCourses.filter(course => 
+  const remaining = allCourses.filter((course: any) => 
     !completedCourses.some(completed => 
       completed.toLowerCase().includes(course.id.toLowerCase())
     )
@@ -232,7 +232,7 @@ function generateNextSteps(remainingCourses: any[], completedCourses: string[]):
   const nextSteps: string[] = []
   
   // Find courses with met prerequisites
-  const availableCourses = remainingCourses.filter(course => {
+  const availableCourses = remainingCourses.filter((course: any) => {
     if (!course.prereqs) return true
     
     // Simple prerequisite check - in reality this would be more sophisticated
@@ -249,7 +249,7 @@ function generateNextSteps(remainingCourses: any[], completedCourses: string[]):
   }
   
   // Find courses that need prerequisites
-  const needsPrereqs = remainingCourses.filter(course => {
+  const needsPrereqs = remainingCourses.filter((course: any) => {
     if (!course.prereqs) return false
     
     const prereqList = course.prereqs.split(',').map((p: string) => p.trim())
@@ -283,7 +283,7 @@ export async function getCoursesFulfillingMultipleOptions(program: string): Prom
   }
   
   // Filter courses that fulfill multiple options
-  const multiOptionCourses = (data || []).filter(course => 
+  const multiOptionCourses = (data || []).filter((course: any) => 
     course.fulfills_options && course.fulfills_options.length > 1
   )
   
@@ -656,13 +656,13 @@ function filterDemoCourses(
     
     if (isCSEQuery) {
       // For CSE queries, show courses that match CSE themes
-      filteredCourses = filteredCourses.filter(course => 
+      filteredCourses = filteredCourses.filter((course: any) => 
         course.title.toLowerCase().includes(queryLower) ||
         course.description.toLowerCase().includes(queryLower) ||
-        course.skills.some(skill => skill.toLowerCase().includes(queryLower)) ||
+        course.skills.some((skill: any) => skill.toLowerCase().includes(queryLower)) ||
         course.id.toLowerCase().includes(queryLower) ||
         // Show courses that match CSE themes
-        course.skills.some(skill => 
+        course.skills.some((skill: any) => 
           ['ethics', 'society', 'sustainability', 'social', 'environment', 'complementary studies'].some(theme => 
             skill.toLowerCase().includes(theme)
           )
@@ -675,13 +675,13 @@ function filterDemoCourses(
       )
     } else if (isElectiveQuery) {
       // For elective queries, be more permissive and show relevant courses
-      filteredCourses = filteredCourses.filter(course => 
+      filteredCourses = filteredCourses.filter((course: any) => 
         course.title.toLowerCase().includes(queryLower) ||
         course.description.toLowerCase().includes(queryLower) ||
-        course.skills.some(skill => skill.toLowerCase().includes(queryLower)) ||
+        course.skills.some((skill: any) => skill.toLowerCase().includes(queryLower)) ||
         course.id.toLowerCase().includes(queryLower) ||
         // Show courses that match common elective themes
-        course.skills.some(skill => 
+        course.skills.some((skill: any) => 
           ['programming', 'software', 'ai', 'robotics', 'data', 'algorithms', 'systems'].some(theme => 
             skill.toLowerCase().includes(theme)
           )
@@ -689,10 +689,10 @@ function filterDemoCourses(
       )
     } else {
       // For specific queries, use exact matching
-      filteredCourses = filteredCourses.filter(course => 
+      filteredCourses = filteredCourses.filter((course: any) => 
         course.title.toLowerCase().includes(queryLower) ||
         course.description.toLowerCase().includes(queryLower) ||
-        course.skills.some(skill => skill.toLowerCase().includes(queryLower)) ||
+        course.skills.some((skill: any) => skill.toLowerCase().includes(queryLower)) ||
         course.id.toLowerCase().includes(queryLower)
       )
     }
@@ -706,7 +706,7 @@ function filterDemoCourses(
     console.log(`🔍 Demo data: Filtering for courses offered in term: ${filters.term}`)
     
     // Filter by terms_offered
-    filteredCourses = filteredCourses.filter(course => 
+    filteredCourses = filteredCourses.filter((course: any) => 
       course.terms_offered && 
       filters.term &&
       course.terms_offered.includes(filters.term)
@@ -714,21 +714,21 @@ function filterDemoCourses(
   }
   
   if (filters.dept && filters.dept.length > 0) {
-    filteredCourses = filteredCourses.filter(course => 
+    filteredCourses = filteredCourses.filter((course: any) => 
       filters.dept!.includes(course.dept)
     )
   }
   
   if (filters.level && filters.level.length > 0) {
-    filteredCourses = filteredCourses.filter(course => 
+    filteredCourses = filteredCourses.filter((course: any) => 
       filters.level!.includes(course.level)
     )
   }
   
   if (filters.skills && filters.skills.length > 0) {
-    filteredCourses = filteredCourses.filter(course => 
-      course.skills.some(skill => 
-        filters.skills!.some(filterSkill => 
+    filteredCourses = filteredCourses.filter((course: any) => 
+      course.skills.some((skill: any) => 
+        filters.skills!.some((filterSkill: any) => 
           skill.toLowerCase().includes(filterSkill.toLowerCase()) ||
           filterSkill.toLowerCase().includes(skill.toLowerCase())
         )
