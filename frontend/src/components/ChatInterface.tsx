@@ -121,9 +121,9 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
       } catch (error) {
         console.error('❌ Session initialization error:', error)
         console.error('❌ Error details:', {
-          message: error.message,
-          stack: error.stack,
-          name: error.name
+          message: error instanceof Error ? error.message : String(error),
+          stack: error instanceof Error ? error.stack : undefined,
+          name: error instanceof Error ? error.name : 'Unknown'
         })
         
         // If API fails, generate a proper UUID for the session
