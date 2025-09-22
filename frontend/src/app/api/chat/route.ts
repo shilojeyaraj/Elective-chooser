@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { getChatCompletion, getEmbedding } from '@/lib/openai'
-import { searchElectiveDocs, searchCourses, searchSpecializations, searchCertificates, searchDiplomas, calculateCourseScore } from '@/lib/search'
+import { searchElectiveDocs, searchCourses, searchSpecializations, searchCertificates, searchDiplomas, calculateCourseScore, searchCoursesByOption, searchCoursesBySpecialization, getOptionsForProgram, getOptionDetails, analyzeOptionProgress, getCoursesFulfillingMultipleOptions, searchOptionsByInterests } from '@/lib/search'
 
 // Extract program from user message
 function extractProgramFromMessage(message: string): string | null {
@@ -183,25 +183,25 @@ export async function POST(request: NextRequest) {
     }
     
     // Search for information with error handling
-    let specializations = []
-    let certificates = []
-    let diplomas = []
+    let searchSpecializations = []
+    let searchCertificates = []
+    let searchDiplomas = []
     let docChunks: any[] = []
 
     try {
-      specializations = await searchSpecializations(message, programToSearch, 3)
+      searchSpecializations = await searchSpecializations(message, programToSearch, 3)
     } catch (error) {
       console.error('❌ Error searching specializations:', error)
     }
 
     try {
-      certificates = await searchCertificates(message, programToSearch, 3)
+      searchCertificates = await searchCertificates(message, programToSearch, 3)
     } catch (error) {
       console.error('❌ Error searching certificates:', error)
     }
 
     try {
-      diplomas = await searchDiplomas(message, programToSearch, 3)
+      searchDiplomas = await searchDiplomas(message, programToSearch, 3)
     } catch (error) {
       console.error('❌ Error searching diplomas:', error)
     }
@@ -214,7 +214,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Build context for the LLM
-    const context = buildContext(searchResults, docChunks, profile, specializations, certificates, diplomas)
+    const context = buildContext(searchResults, docChunks, profile, searchSpecializations, searchCertificates, searchDiplomas, [], null)
 
     // Check if we should ask about completed electives
     const shouldAskAboutElectives = shouldAskAboutCompletedElectives(message, profile)
@@ -258,8 +258,64 @@ export async function POST(request: NextRequest) {
       }
     ])
 
-  // Always generate course recommendations
+  // Check if user is asking for specializations or options
+  const isAskingForSpecializations = message.toLowerCase().includes('specialization') || 
+                                    message.toLowerCase().includes('specializations')
+  const isAskingForOptions = message.toLowerCase().includes('option') || 
+                            message.toLowerCase().includes('options')
+  const isAskingForOptionDetails = message.toLowerCase().includes('details') || 
+                                  message.toLowerCase().includes('requirements') ||
+                                  message.toLowerCase().includes('progress')
+  
   let recommendations = []
+  let specializations = []
+  let options = []
+  let optionAnalysis = null
+  
+  if (isAskingForSpecializations) {
+    console.log('🔍 User asking for specializations')
+    specializations = await searchSpecializations(message, profile.program)
+    console.log('📚 Found specializations:', specializations.length)
+  }
+  
+  if (isAskingForOptions) {
+    console.log('🔍 User asking for options')
+    
+    // Check if user is asking for specific option details
+    const extractedOption = extractOptionFromMessage(message)
+    if (extractedOption && isAskingForOptionDetails) {
+      console.log(`🔍 User asking for details about option: ${extractedOption}`)
+      try {
+        optionAnalysis = await analyzeOptionProgress(extractedOption, profile.completed_courses || [])
+        console.log('📊 Option analysis completed:', optionAnalysis.progress.percentage + '% complete')
+      } catch (error) {
+        console.error('❌ Error analyzing option progress:', error)
+        // Fallback to basic option details
+        const optionDetails = await getOptionDetails(extractedOption)
+        if (optionDetails) {
+          optionAnalysis = { option: optionDetails, progress: null }
+        }
+      }
+    } else {
+      // Get all options for the program
+      options = await getOptionsForProgram(profile.program)
+      console.log('📚 Found options:', options.length)
+      
+      // If user has interests, also search by interests
+      if (profile.interests && profile.interests.length > 0) {
+        const interestBasedOptions = await searchOptionsByInterests(profile.interests, profile.program)
+        console.log('🎯 Found interest-based options:', interestBasedOptions.length)
+        // Merge and deduplicate
+        const allOptions = [...options, ...interestBasedOptions]
+        const uniqueOptions = allOptions.filter((option, index, self) => 
+          index === self.findIndex(o => o.id === option.id)
+        )
+        options = uniqueOptions
+      }
+    }
+  }
+  
+  // Always generate course recommendations
   console.log('📚 Always generating recommendations for message:', message)
   
   // Use the full conversation context for better search
@@ -284,6 +340,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       response: aiResponse,
       recommendations,
+      specializations: specializations || [],
+      options: options || [],
+      optionAnalysis: optionAnalysis || null,
       sources: [], // No web search sources since we're using database search
       used_web_search: false
     })
@@ -303,7 +362,9 @@ function buildContext(
   profile: UserProfile,
   specializations: any[] = [],
   certificates: any[] = [],
-  diplomas: any[] = []
+  diplomas: any[] = [],
+  options: any[] = [],
+  optionAnalysis: any = null
 ): string {
   let context = ''
 
@@ -379,6 +440,53 @@ function buildContext(
     context += 'IMPORTANT: Only mention these diplomas above. Do not create or generate additional lists. Ask if they want to see more options.\n\n'
   }
 
+  // Add options information
+  if (options.length > 0) {
+    context += 'OPTIONS AVAILABLE (use ONLY these, do not generate your own list):\n'
+    options.forEach((option: any, index: number) => {
+      context += `${index + 1}. ${option.name}\n`
+      context += `   Description: ${option.description?.substring(0, 200)}...\n`
+      context += `   Program: ${option.program}\n`
+      if (option.courses && option.courses.length > 0) {
+        context += `   Courses: ${option.courses.slice(0, 5).map((c: any) => c.id).join(', ')}${option.courses.length > 5 ? '...' : ''}\n`
+      }
+      context += '\n'
+    })
+    context += 'IMPORTANT: Only mention these options above. Do not create or generate additional lists. Ask if they want to see more options.\n\n'
+  }
+
+  // Add option analysis if available
+  if (optionAnalysis) {
+    context += 'DETAILED OPTION ANALYSIS:\n'
+    context += `Option: ${optionAnalysis.option.name}\n`
+    context += `Description: ${optionAnalysis.option.description?.substring(0, 300)}...\n`
+    
+    if (optionAnalysis.progress) {
+      context += `Progress: ${optionAnalysis.progress.percentage}% complete (${optionAnalysis.progress.completed}/${optionAnalysis.progress.total} courses)\n`
+      
+      if (optionAnalysis.progress.remaining && optionAnalysis.progress.remaining.length > 0) {
+        context += `Remaining courses needed:\n`
+        optionAnalysis.progress.remaining.slice(0, 8).forEach((course: any, index: number) => {
+          context += `   ${index + 1}. ${course.id} - ${course.title}\n`
+          if (course.prereqs) {
+            context += `      Prerequisites: ${course.prereqs.substring(0, 100)}...\n`
+          }
+        })
+        if (optionAnalysis.progress.remaining.length > 8) {
+          context += `   ... and ${optionAnalysis.progress.remaining.length - 8} more courses\n`
+        }
+      }
+      
+      if (optionAnalysis.progress.next_steps && optionAnalysis.progress.next_steps.length > 0) {
+        context += `Recommended next steps:\n`
+        optionAnalysis.progress.next_steps.forEach((step: string, index: number) => {
+          context += `   ${index + 1}. ${step}\n`
+        })
+      }
+    }
+    context += '\n'
+  }
+
   // Add document chunks
   if (docChunks.length > 0) {
     context += 'Relevant Information:\n'
@@ -436,7 +544,8 @@ IMPORTANT: I use only plain text formatting - no asterisks, no bold, no italic t
 
 **COURSE CONTEXT AWARENESS:**
 - I understand that as a ${profile.current_term || 'student'}, you've likely completed certain core courses
-- If you haven't specified your completed electives, I may ask you to clarify what electives you've already taken
+- I know that ${fullProgramName} students typically don't have electives until 2A term
+- If you're in 1A or 1B, I won't ask about completed electives since you likely haven't taken any yet
 - I consider prerequisites when recommending courses - I won't suggest courses you can't take yet
 - I'm aware of typical course progression in ${fullProgramName} program
 
@@ -445,17 +554,31 @@ IMPORTANT: I use only plain text formatting - no asterisks, no bold, no italic t
 **How I can help:**
 - Chat about course options and what might interest you
 - Explain prerequisites and requirements in simple terms
-- Help you understand how courses fit into different specializations
+- Help you understand how courses fit into different specializations and options
 - Show you available specializations, certificates, and diplomas for your program
+- Analyze your progress toward specific options and specializations when you mention them
+- Recommend courses that fulfill multiple options/specializations
 - Give you the real scoop on workload and term availability
 - Share career insights and why certain courses matter
 - Ask about your completed electives when relevant for better recommendations
+- Help you plan your academic path toward specific options
+
+**OPTION ANALYSIS CAPABILITIES:**
+When users mention specific options (like "AI option", "Software Engineering option", "Biomechanics option", etc.), I can:
+- Analyze their current progress toward that option based on completed courses
+- Show which courses they still need to take
+- Identify prerequisites they need to complete first
+- Suggest the best next steps to complete the option
+- Explain the option's requirements and course structure
+- Recommend courses that fulfill multiple options simultaneously
 
 **IMPORTANT RULES:**
 - I ONLY use information provided in the context below - I never make up or generate lists
-- I show ONLY the top 3 best options from the database with their specific course requirements
+- When users ask for "all" options, specializations, or courses, I provide comprehensive lists from the database
+- When users ask for recommendations, I show the top 3 best options with their specific course requirements
 - I provide the exact course codes and names from the database (e.g., "CS 486 Introduction to Artificial Intelligence")
-- I ask if you want to see more options after showing the top 3
+- For comprehensive lists, I show all available options without limiting to top 3
+- For recommendations, I ask if you want to see more options after showing the top 3
 - I never mention programs that aren't in the context (like Aerospace Engineering)
 - I'm conversational and friendly - no formal academic jargon unless needed
 - I only give recommendations when you ask for them
@@ -464,7 +587,8 @@ IMPORTANT: I use only plain text formatting - no asterisks, no bold, no italic t
 - I NEVER use markdown formatting like **bold** or *italic* - just use plain text
 - IMPORTANT: Use only plain text, no asterisks, no bold, no italic formatting
 - I consider your academic level and likely completed courses when making recommendations
-- If I'm unsure about your completed courses, I'll ask you to clarify
+- For Mechatronics Engineering students: I know you don't have electives until 2A term, so I won't ask about completed electives if you're in 1A or 1B
+- If you're in 2A or later and haven't specified completed electives, I may ask for clarification
 
 Just chat with me naturally! Ask me anything about electives, courses, specializations, or your academic journey. I'm here to help make your course selection process less overwhelming and more exciting! 🚀`
 }
@@ -688,17 +812,54 @@ function extractTermFromMessage(message: string): string | null {
   return null
 }
 
+// Extract option/specialization from user message
+function extractOptionFromMessage(message: string): string | null {
+  const optionKeywords = {
+    'artificial-intelligence': ['ai option', 'artificial intelligence option', 'ai specialization', 'artificial intelligence', 'ai'],
+    'biomechanics': ['biomechanics option', 'biomechanics specialization', 'biomechanics'],
+    'computer-engineering': ['computer engineering option', 'computer engineering specialization', 'computer engineering'],
+    'computing': ['computing option', 'computing specialization', 'computing'],
+    'entrepreneurship': ['entrepreneurship option', 'entrepreneurship specialization', 'entrepreneurship'],
+    'environmental-engineering': ['environmental engineering option', 'environmental engineering specialization', 'environmental engineering'],
+    'life-sciences': ['life sciences option', 'life sciences specialization', 'life sciences'],
+    'management-science': ['management science option', 'management science specialization', 'management science'],
+    'mechatronics': ['mechatronics option', 'mechatronics specialization', 'mechatronics'],
+    'physical-sciences': ['physical sciences option', 'physical sciences specialization', 'physical sciences'],
+    'quantum-engineering': ['quantum engineering option', 'quantum engineering specialization', 'quantum engineering'],
+    'software-engineering': ['software engineering option', 'software engineering specialization', 'software engineering'],
+    'statistics': ['statistics option', 'statistics specialization', 'statistics']
+  }
+  
+  const messageLower = message.toLowerCase()
+  for (const [optionId, keywords] of Object.entries(optionKeywords)) {
+    if (keywords.some(keyword => messageLower.includes(keyword))) {
+      console.log(`🎯 Extracted option from message: "${optionId}"`)
+      return optionId
+    }
+  }
+  
+  console.log(`🎯 No specific option found in message: "${message}"`)
+  return null
+}
+
 async function generateRecommendations(
   profile: UserProfile,
   query: string
 ): Promise<any[]> {
   console.log('🔍 generateRecommendations called with:', { query, profile: profile.program, term: profile.current_term })
   
+  // Check if user is asking for comprehensive lists
+  const isComprehensiveList = query.toLowerCase().includes('all') || 
+                             query.toLowerCase().includes('list') ||
+                             query.toLowerCase().includes('every') ||
+                             query.toLowerCase().includes('complete')
+  
   // Extract specific term from query if mentioned
   const requestedTerm = extractTermFromMessage(query)
   const searchTerm = requestedTerm || profile.current_term
   
   console.log(`🔍 Generate recommendations for term: "${searchTerm}" (requested: "${requestedTerm}", profile: "${profile.current_term}")`)
+  console.log(`🔍 Is comprehensive list request: ${isComprehensiveList}`)
   
   // Search for relevant courses with term filter
   const courses = await searchCourses(query, {
@@ -722,8 +883,10 @@ async function generateRecommendations(
       }
     })
     .sort((a, b) => b.score - a.score)
-    .slice(0, 5)
 
-  console.log('🎯 Final recommendations:', recommendations.length, 'recommendations')
-  return recommendations
+  // For comprehensive lists, return more results; for recommendations, limit to top 5
+  const finalRecommendations = isComprehensiveList ? recommendations : recommendations.slice(0, 5)
+
+  console.log('🎯 Final recommendations:', finalRecommendations.length, 'recommendations')
+  return finalRecommendations
 }

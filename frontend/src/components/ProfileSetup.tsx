@@ -45,8 +45,37 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
     { value: 'SYDE', label: 'Systems Design Engineering' }
   ]
   const terms = ['1A', '1B', '2A', '2B', '3A', '3B', '4A', '4B']
-  const commonInterests = ['robotics', 'machine learning', 'AI', 'controls', 'embedded systems', 'software engineering', 'data science', 'entrepreneurship', 'research', 'industry']
-  const commonGoals = ['career_robotics', 'career_software', 'grad_school', 'industry_work', 'startup', 'research', 'specialization']
+  const commonInterests = [
+    // Software & Computing
+    'software engineering', 'programming', 'web development', 'mobile apps', 'data science', 'machine learning', 'AI', 'cybersecurity', 'cloud computing',
+    // Hardware & Electronics
+    'embedded systems', 'microcontrollers', 'digital circuits', 'analog circuits', 'signal processing', 'communications', 'networking',
+    // Robotics & Control
+    'robotics', 'autonomous systems', 'control systems', 'mechatronics', 'automation', 'sensors', 'actuators',
+    // Mechanical & Design
+    'mechanical design', 'CAD modeling', 'manufacturing', 'materials science', 'thermodynamics', 'fluid mechanics', 'structural analysis',
+    // Biomedical & Life Sciences
+    'biomedical engineering', 'medical devices', 'biomechanics', 'biotechnology', 'pharmaceuticals', 'healthcare technology', 'bioinformatics',
+    // Environmental & Sustainability
+    'environmental engineering', 'sustainability', 'renewable energy', 'climate change', 'water treatment', 'waste management', 'green technology',
+    // Civil & Infrastructure
+    'civil engineering', 'structural engineering', 'transportation', 'urban planning', 'construction', 'geotechnical engineering', 'infrastructure',
+    // Chemical & Process
+    'chemical engineering', 'process design', 'petroleum engineering', 'polymer science', 'nanotechnology', 'materials processing',
+    // Business & Management
+    'entrepreneurship', 'project management', 'business development', 'consulting', 'finance', 'marketing', 'leadership',
+    // Research & Academia
+    'research', 'academia', 'graduate school', 'PhD programs', 'scientific research', 'innovation', 'patents',
+    // Industry & Career
+    'industry work', 'consulting', 'startup', 'corporate career', 'government work', 'non-profit', 'international work'
+  ]
+  
+  const commonGoals = [
+    'career_software', 'career_hardware', 'career_robotics', 'career_biomedical', 'career_environmental', 'career_civil', 'career_chemical',
+    'career_mechanical', 'career_electrical', 'career_management', 'career_consulting', 'career_research', 'career_entrepreneurship',
+    'grad_school', 'masters_degree', 'phd_program', 'industry_work', 'startup_founder', 'research_scientist', 'academic_career',
+    'specialization', 'professional_development', 'leadership_role', 'international_work', 'government_work', 'non_profit_work'
+  ]
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -219,12 +248,12 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
 
             {/* Interests */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-3">
                 Areas of Interest (select all that apply)
               </label>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-64 overflow-y-auto border border-gray-200 rounded-md p-3">
                 {commonInterests.map(interest => (
-                  <label key={interest} className="flex items-center">
+                  <label key={interest} className="flex items-center hover:bg-gray-50 p-1 rounded">
                     <input
                       type="checkbox"
                       checked={formData.interests.includes(interest)}
@@ -237,16 +266,19 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
                   </label>
                 ))}
               </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Scroll to see all options. Select multiple interests that align with your career goals.
+              </p>
             </div>
 
             {/* Goals */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-3">
                 Career Goals (select all that apply)
               </label>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto border border-gray-200 rounded-md p-3">
                 {commonGoals.map(goal => (
-                  <label key={goal} className="flex items-center">
+                  <label key={goal} className="flex items-center hover:bg-gray-50 p-1 rounded">
                     <input
                       type="checkbox"
                       checked={formData.goal_tags.includes(goal)}
@@ -259,6 +291,9 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
                   </label>
                 ))}
               </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Select your career aspirations and educational goals.
+              </p>
             </div>
 
             {/* Additional Comments */}

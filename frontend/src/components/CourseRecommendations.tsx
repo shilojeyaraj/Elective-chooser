@@ -14,6 +14,13 @@ export default function CourseRecommendations({
   sources, 
   usedWebSearch 
 }: CourseRecommendationsProps) {
+  console.log('📚 CourseRecommendations rendered with:', {
+    recommendationsCount: recommendations.length,
+    sourcesCount: sources.length,
+    usedWebSearch,
+    recommendations: recommendations
+  })
+  
   if (recommendations.length === 0) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm">

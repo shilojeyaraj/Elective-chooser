@@ -125,3 +125,14 @@ export interface SearchFilters {
   skills?: string[]
   max_workload?: number
 }
+
+export interface OptionAnalysis {
+  option: Option
+  progress: {
+    completed: number
+    total: number
+    percentage: number
+    remaining: Course[]
+    next_steps: string[]
+  }
+}

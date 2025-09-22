@@ -49,6 +49,310 @@ export async function searchElectiveDocs(
   return data || []
 }
 
+// Search courses by option fulfillment
+export async function searchCoursesByOption(
+  optionId: string,
+  program?: string,
+  filters?: SearchFilters
+): Promise<Course[]> {
+  console.log(`🔍 Searching courses for option: ${optionId}`)
+  
+  let query = supabase
+    .from('courses')
+    .select('*')
+    .contains('fulfills_options', [optionId])
+  
+  // Apply additional filters
+  if (filters?.term) {
+    query = query.contains('terms_offered', [filters.term])
+  }
+  
+  if (filters?.level) {
+    query = query.eq('level', filters.level)
+  }
+  
+  if (filters?.dept) {
+    query = query.eq('dept', filters.dept)
+  }
+  
+  if (filters?.skills && filters.skills.length > 0) {
+    query = query.overlaps('skills', filters.skills)
+  }
+  
+  const { data, error } = await query.order('level', { ascending: true })
+  
+  if (error) {
+    console.error('Option search error:', error)
+    return []
+  }
+  
+  console.log(`✅ Found ${data?.length || 0} courses for option ${optionId}`)
+  return data || []
+}
+
+// Search courses by specialization
+export async function searchCoursesBySpecialization(
+  specializationId: string,
+  program?: string,
+  filters?: SearchFilters
+): Promise<Course[]> {
+  console.log(`🔍 Searching courses for specialization: ${specializationId}`)
+  
+  let query = supabase
+    .from('courses')
+    .select('*')
+    .contains('fulfills_specializations', [specializationId])
+  
+  // Apply additional filters
+  if (filters?.term) {
+    query = query.contains('terms_offered', [filters.term])
+  }
+  
+  if (filters?.level) {
+    query = query.eq('level', filters.level)
+  }
+  
+  if (filters?.dept) {
+    query = query.eq('dept', filters.dept)
+  }
+  
+  if (filters?.skills && filters.skills.length > 0) {
+    query = query.overlaps('skills', filters.skills)
+  }
+  
+  const { data, error } = await query.order('level', { ascending: true })
+  
+  if (error) {
+    console.error('Specialization search error:', error)
+    return []
+  }
+  
+  console.log(`✅ Found ${data?.length || 0} courses for specialization ${specializationId}`)
+  return data || []
+}
+
+// Get all available options for a program
+export async function getOptionsForProgram(program: string): Promise<any[]> {
+  console.log(`🔍 Getting options for program: ${program}`)
+  
+  const { data, error } = await supabase
+    .from('options')
+    .select('*')
+    .eq('program', program)
+    .order('name')
+  
+  if (error) {
+    console.error('Options fetch error:', error)
+    return []
+  }
+  
+  console.log(`✅ Found ${data?.length || 0} options for ${program}`)
+  return data || []
+}
+
+// Get detailed option information with course requirements
+export async function getOptionDetails(optionId: string): Promise<any> {
+  console.log(`🔍 Getting detailed option info for: ${optionId}`)
+  
+  const { data, error } = await supabase
+    .from('options')
+    .select('*')
+    .eq('id', optionId)
+    .single()
+  
+  if (error) {
+    console.error('Option details fetch error:', error)
+    return null
+  }
+  
+  // Get courses that fulfill this option
+  const { data: courses, error: coursesError } = await supabase
+    .from('courses')
+    .select('id, title, description, prereqs, terms_offered, level, dept, units')
+    .contains('fulfills_options', [optionId])
+    .order('level', { ascending: true })
+  
+  if (coursesError) {
+    console.error('Option courses fetch error:', coursesError)
+  }
+  
+  return {
+    ...data,
+    courses: courses || []
+  }
+}
+
+// Analyze user's progress toward an option
+export async function analyzeOptionProgress(optionId: string, completedCourses: string[]): Promise<{
+  option: any
+  progress: {
+    completed: number
+    total: number
+    percentage: number
+    remaining: any[]
+    next_steps: string[]
+  }
+}> {
+  console.log(`🔍 Analyzing progress for option: ${optionId}`)
+  
+  const optionDetails = await getOptionDetails(optionId)
+  if (!optionDetails) {
+    throw new Error(`Option ${optionId} not found`)
+  }
+  
+  const allCourses = optionDetails.courses || []
+  const completed = allCourses.filter(course => 
+    completedCourses.some(completed => 
+      completed.toLowerCase().includes(course.id.toLowerCase())
+    )
+  )
+  
+  const remaining = allCourses.filter(course => 
+    !completedCourses.some(completed => 
+      completed.toLowerCase().includes(course.id.toLowerCase())
+    )
+  )
+  
+  const progress = {
+    completed: completed.length,
+    total: allCourses.length,
+    percentage: Math.round((completed.length / allCourses.length) * 100),
+    remaining: remaining,
+    next_steps: generateNextSteps(remaining, completedCourses)
+  }
+  
+  return {
+    option: optionDetails,
+    progress
+  }
+}
+
+// Generate next steps for option completion
+function generateNextSteps(remainingCourses: any[], completedCourses: string[]): string[] {
+  const nextSteps: string[] = []
+  
+  // Find courses with met prerequisites
+  const availableCourses = remainingCourses.filter(course => {
+    if (!course.prereqs) return true
+    
+    // Simple prerequisite check - in reality this would be more sophisticated
+    const prereqList = course.prereqs.split(',').map((p: string) => p.trim())
+    return prereqList.every(prereq => 
+      completedCourses.some(completed => 
+        completed.toLowerCase().includes(prereq.toLowerCase())
+      )
+    )
+  })
+  
+  if (availableCourses.length > 0) {
+    nextSteps.push(`You can take these courses next: ${availableCourses.slice(0, 3).map(c => c.id).join(', ')}`)
+  }
+  
+  // Find courses that need prerequisites
+  const needsPrereqs = remainingCourses.filter(course => {
+    if (!course.prereqs) return false
+    
+    const prereqList = course.prereqs.split(',').map((p: string) => p.trim())
+    return !prereqList.every(prereq => 
+      completedCourses.some(completed => 
+        completed.toLowerCase().includes(prereq.toLowerCase())
+      )
+    )
+  })
+  
+  if (needsPrereqs.length > 0) {
+    nextSteps.push(`Complete prerequisites for: ${needsPrereqs.slice(0, 2).map(c => c.id).join(', ')}`)
+  }
+  
+  return nextSteps
+}
+
+// Get courses that fulfill multiple options
+export async function getCoursesFulfillingMultipleOptions(program: string): Promise<any[]> {
+  console.log(`🔍 Getting courses that fulfill multiple options for: ${program}`)
+  
+  const { data, error } = await supabase
+    .from('courses')
+    .select('id, title, description, fulfills_options, level, dept')
+    .not('fulfills_options', 'is', null)
+    .order('level', { ascending: true })
+  
+  if (error) {
+    console.error('Multi-option courses fetch error:', error)
+    return []
+  }
+  
+  // Filter courses that fulfill multiple options
+  const multiOptionCourses = (data || []).filter(course => 
+    course.fulfills_options && course.fulfills_options.length > 1
+  )
+  
+  console.log(`✅ Found ${multiOptionCourses.length} courses fulfilling multiple options`)
+  return multiOptionCourses
+}
+
+// Search for options by user interests
+export async function searchOptionsByInterests(interests: string[], program: string): Promise<any[]> {
+  console.log(`🔍 Searching options by interests: ${interests.join(', ')}`)
+  
+  const { data, error } = await supabase
+    .from('options')
+    .select('*')
+    .eq('program', program)
+    .order('name')
+  
+  if (error) {
+    console.error('Options search error:', error)
+    return []
+  }
+  
+  // Score options based on interest matching
+  const scoredOptions = (data || []).map(option => {
+    let score = 0
+    const matchedInterests: string[] = []
+    
+    interests.forEach(interest => {
+      const interestLower = interest.toLowerCase()
+      const nameLower = option.name.toLowerCase()
+      const descLower = (option.description || '').toLowerCase()
+      
+      if (nameLower.includes(interestLower) || descLower.includes(interestLower)) {
+        score += 10
+        matchedInterests.push(interest)
+      }
+    })
+    
+    return {
+      ...option,
+      score,
+      matchedInterests
+    }
+  })
+  
+  // Sort by score and return top matches
+  return scoredOptions
+    .filter(option => option.score > 0)
+    .sort((a, b) => b.score - a.score)
+}
+
+// Get all available specializations
+export async function getSpecializations(): Promise<any[]> {
+  console.log('🔍 Getting all specializations')
+  
+  const { data, error } = await supabase
+    .from('specializations')
+    .select('*')
+    .order('name')
+  
+  if (error) {
+    console.error('Specializations fetch error:', error)
+    return []
+  }
+  
+  console.log(`✅ Found ${data?.length || 0} specializations`)
+  return data || []
+}
+
 // Course search with filters
 export async function searchCourses(
   query: string,
