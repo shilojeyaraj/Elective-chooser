@@ -360,171 +360,230 @@ export async function searchCourses(
   limit: number = 20
 ): Promise<Course[]> {
   console.log('🔍 searchCourses called with:', { query, filters, limit })
-  console.log('🔍 NEW VERSION - Updated search function is running!')
-  
-        // Check if this is a CSE elective query (only when explicitly mentioned)
-        const isCSEQuery = query.toLowerCase().includes('cse') || 
-                           query.toLowerCase().includes('complementary studies')
-  
-  if (isCSEQuery) {
-    console.log('🔍 Detected CSE query, searching courses table for CSE electives')
-    try {
-      // Search for courses that are CSE electives (typically 100-200 level non-engineering courses)
-      const { data: cseCourses, error: cseError } = await supabase
-        .from('courses')
-        .select('*')
-        .or('title.ilike.%ethics%,title.ilike.%society%,title.ilike.%sustainability%,title.ilike.%social%,title.ilike.%environment%')
-        .limit(limit)
-      
-      if (!cseError && cseCourses && cseCourses.length > 0) {
-        console.log('✅ Found CSE electives:', cseCourses.length)
-        return cseCourses
-      } else {
-        console.log('⚠️ No CSE electives found in courses table')
-      }
-    } catch (error) {
-      console.log('⚠️ CSE search failed:', error)
-    }
-  }
-  
-  // Skip vector search for now - use text search directly
-  console.log('🔍 Skipping vector search, using text search directly')
-  
-  // Fallback to text search
-  let supabaseQuery = supabase
-    .from('courses')
-    .select('*')
-    .limit(limit)
-  
-  // Apply text search
-  if (query) {
-    // Extract key terms from the query for better matching
-    const keyTerms = query
-      .toLowerCase()
-      .replace(/[^\w\s]/g, ' ') // Remove special characters including commas
-      .split(/\s+/)
-      .filter(term => 
-        term.length > 2 && 
-        !['what', 'can', 'i', 'choose', 'to', 'do', 'want', 'the', 'and', 'or', 'for', 'with', 'about', 'from', 'are', 'is', 'in', 'on', 'at', 'by', 'of', 'a', 'an', 'havent', 'taken', 'any', 'give', 'me', 'please'].includes(term)
-      )
-      .slice(0, 3) // Take top 3 key terms
-    
-    console.log('🔍 Extracted key terms:', keyTerms)
-    
-    if (keyTerms.length > 0) {
-      // Build search conditions for each key term
-      const searchConditions = keyTerms.map(term => {
-        const cleanTerm = term.replace(/[%_]/g, '\\$&')
-        return `title.ilike.%${cleanTerm}%,description.ilike.%${cleanTerm}%,skills.cs.["${cleanTerm}"]`
-      }).join(',')
-      
-      supabaseQuery = supabaseQuery.or(searchConditions)
-    } else {
-      // Fallback to searching for common elective terms
-      supabaseQuery = supabaseQuery.or(
-        `title.ilike.%elective%,description.ilike.%elective%,title.ilike.%course%,description.ilike.%course%`
-      )
-    }
-    
-    // If no results found, try broader search terms
-    if (keyTerms.includes('machine') || keyTerms.includes('learning')) {
-      console.log('🔍 Adding AI/ML related search terms')
-      supabaseQuery = supabaseQuery.or(
-        `title.ilike.%artificial%,title.ilike.%intelligence%,title.ilike.%ai%,title.ilike.%ml%,description.ilike.%artificial%,description.ilike.%intelligence%,description.ilike.%ai%,description.ilike.%ml%`
-      )
-    }
-  }
-  
-  // Apply term filter if provided - use the term directly from the database
-  if (filters.term) {
-    console.log(`🔍 Applying term filter: "${filters.term}"`)
-    
-    // Use the correct JSONB contains operator for array search
-    supabaseQuery = supabaseQuery.contains('terms_offered', [filters.term])
-    console.log(`🔍 Applied term filter for: ${filters.term}`)
-  }
-  
-  if (filters.dept && filters.dept.length > 0) {
-    supabaseQuery = supabaseQuery.in('dept', filters.dept)
-  }
-  
-  if (filters.level && filters.level.length > 0) {
-    supabaseQuery = supabaseQuery.in('level', filters.level)
-  }
-  
-  if (filters.skills && filters.skills.length > 0) {
-    console.log('🔍 Applying skills filter:', filters.skills)
-    // Use the correct JSONB contains operator for array search
-    supabaseQuery = supabaseQuery.contains('skills', filters.skills)
-  }
-  
-  if (filters.max_workload) {
-    // Assuming workload is stored as a composite score
-    supabaseQuery = supabaseQuery.lte('workload->total', filters.max_workload)
-  }
-  
-  console.log('🔍 Executing database query...')
-  console.log('🔍 Query details:', { query, filters, limit })
   
   // First, let's test if we can query the database at all
   const { data: testData, error: testError } = await supabase
     .from('courses')
-    .select('id, title')
-    .limit(3)
+    .select('id, title, dept')
+    .limit(5)
   
   console.log('🔍 Database connectivity test:', { 
     testFound: testData?.length || 0, 
     testError: testError?.message || 'None',
-    sampleCourses: testData?.slice(0, 2).map(c => ({ id: c.id, title: c.title })) || []
+    sampleCourses: testData?.slice(0, 3).map(c => ({ id: c.id, title: c.title, dept: c.dept })) || []
   })
   
-  let { data, error } = await supabaseQuery
+  if (testError) {
+    console.error('❌ Database connection failed:', testError)
+    return getFallbackCourses(query, limit)
+  }
   
-  // If the main query fails or returns no results, try a simpler query
-  if (error || !data || data.length === 0) {
-    console.log('🔍 Main query failed or returned no results, trying simpler query...')
-    console.log('🔍 Error from main query:', error?.message || 'No error')
+  if (!testData || testData.length === 0) {
+    console.log('📚 No courses in database, using fallback data')
+    return getFallbackCourses(query, limit)
+  }
+  
+  // Build a simple but effective search query
+  let searchQuery = supabase
+    .from('courses')
+    .select('*')
+    .limit(limit)
+  
+  // Apply text search if query provided
+  if (query && query.trim()) {
+    const cleanQuery = query.trim().toLowerCase()
+    console.log('🔍 Searching for:', cleanQuery)
     
-    // Try a simple query without complex filters
-    const simpleQuery = supabase
+    // Create search conditions
+    const searchConditions = [
+      `title.ilike.%${cleanQuery}%`,
+      `description.ilike.%${cleanQuery}%`,
+      `dept.ilike.%${cleanQuery}%`
+    ]
+    
+    // Add specific term searches
+    if (cleanQuery.includes('elective') || cleanQuery.includes('course')) {
+      searchConditions.push(`title.ilike.%elective%`)
+    }
+    if (cleanQuery.includes('technical')) {
+      searchConditions.push(`title.ilike.%technical%`)
+    }
+    if (cleanQuery.includes('software') || cleanQuery.includes('programming')) {
+      searchConditions.push(`title.ilike.%software%,title.ilike.%programming%,dept.eq.CS,dept.eq.SE`)
+    }
+    if (cleanQuery.includes('ai') || cleanQuery.includes('machine learning') || cleanQuery.includes('artificial')) {
+      searchConditions.push(`title.ilike.%artificial%,title.ilike.%intelligence%,title.ilike.%machine%,title.ilike.%ai%`)
+    }
+    if (cleanQuery.includes('robotics') || cleanQuery.includes('mechatronics')) {
+      searchConditions.push(`title.ilike.%robotics%,title.ilike.%mechatronics%,dept.eq.MTE`)
+    }
+    if (cleanQuery.includes('data') || cleanQuery.includes('analytics')) {
+      searchConditions.push(`title.ilike.%data%,title.ilike.%analytics%,title.ilike.%statistics%`)
+    }
+    
+    searchQuery = searchQuery.or(searchConditions.join(','))
+  }
+  
+  // Apply term filter if provided
+  if (filters.term) {
+    console.log(`🔍 Applying term filter: "${filters.term}"`)
+    searchQuery = searchQuery.contains('terms_offered', [filters.term])
+  }
+  
+  // Apply department filter if provided
+  if (filters.dept && filters.dept.length > 0) {
+    searchQuery = searchQuery.in('dept', filters.dept)
+  }
+  
+  // Execute the query
+  const { data, error } = await searchQuery
+  
+  if (error) {
+    console.error('❌ Search query error:', error)
+    return getFallbackCourses(query, limit)
+  }
+  
+  console.log('📚 Search result:', { found: data?.length || 0, query })
+  if (data && data.length > 0) {
+    console.log('📚 Sample courses found:', data.slice(0, 3).map(c => ({ id: c.id, title: c.title, dept: c.dept })))
+  }
+  
+  // If no results, try a broader search
+  if (!data || data.length === 0) {
+    console.log('🔍 No results found, trying broader search...')
+    const { data: broadData, error: broadError } = await supabase
       .from('courses')
       .select('*')
       .limit(limit)
     
-    if (query) {
-      // Simple text search
-      simpleQuery.or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+    if (!broadError && broadData && broadData.length > 0) {
+      console.log('📚 Broad search found:', broadData.length, 'courses')
+      return broadData
     }
     
-    const { data: simpleData, error: simpleError } = await simpleQuery
-    console.log('🔍 Simple query result:', { found: simpleData?.length || 0, error: simpleError?.message || 'None' })
-    
-    if (simpleData && simpleData.length > 0) {
-      data = simpleData
-      error = null
-    }
+    // Final fallback
+    return getFallbackCourses(query, limit)
   }
   
-  if (error) {
-    console.error('❌ Course search error:', error)
-    return []
-  }
-  
-  console.log('📚 Database search result:', { found: data?.length || 0, query, filters })
-  if (data && data.length > 0) {
-    console.log('📚 Sample courses found:', data.slice(0, 3).map(c => ({ id: c.id, title: c.title })))
-  }
-  
-  // If no data found in database, fall back to demo data
-  if (!data || data.length === 0) {
-    console.log('📚 No courses found in database, using demo data')
-    const demoResults = filterDemoCourses(query, filters, limit)
-    console.log('📚 Demo data results:', demoResults.length)
-    return demoResults
-  }
-  
-  console.log('✅ Database search returned', data.length, 'courses')
   return data || []
+}
+
+// Fallback course data when database is unavailable
+function getFallbackCourses(query: string, limit: number): Course[] {
+  console.log('📚 Using fallback course data for query:', query)
+  
+  const fallbackCourses: Course[] = [
+    {
+      id: 'CS246',
+      title: 'Data Structures and Data Management',
+      description: 'Introduction to data structures and algorithms',
+      dept: 'CS',
+      level: 2,
+      number: 246,
+      units: 0.5,
+      terms_offered: ['2A', '2B', '3A', '3B'],
+      skills: ['programming', 'data structures', 'algorithms'],
+      workload: { reading: 2, assignments: 1, projects: 0, labs: 0 }
+    },
+    {
+      id: 'CS348',
+      title: 'Introduction to Human-Computer Interaction',
+      description: 'Design and evaluation of user interfaces',
+      dept: 'CS',
+      level: 3,
+      number: 348,
+      units: 0.5,
+      terms_offered: ['3A', '3B', '4A', '4B'],
+      skills: ['ui design', 'user experience', 'interface design'],
+      workload: { reading: 2, assignments: 1, projects: 0, labs: 0 }
+    },
+    {
+      id: 'ECE380',
+      title: 'Software Engineering',
+      description: 'Software development processes and methodologies',
+      dept: 'ECE',
+      level: 3,
+      number: 380,
+      units: 0.5,
+      terms_offered: ['3A', '3B', '4A', '4B'],
+      skills: ['software engineering', 'project management', 'development'],
+      workload: { reading: 3, assignments: 1, projects: 0, labs: 0 }
+    },
+    {
+      id: 'MTE544',
+      title: 'Autonomous Mobile Robots',
+      description: 'Design and control of autonomous mobile robots',
+      dept: 'MTE',
+      level: 4,
+      number: 544,
+      units: 0.5,
+      terms_offered: ['4A', '4B'],
+      skills: ['robotics', 'autonomous systems', 'control'],
+      workload: { reading: 3, assignments: 0, projects: 1, labs: 0 }
+    },
+    {
+      id: 'CS486',
+      title: 'Introduction to Artificial Intelligence',
+      description: 'Fundamental concepts in artificial intelligence',
+      dept: 'CS',
+      level: 4,
+      number: 486,
+      units: 0.5,
+      terms_offered: ['4A', '4B'],
+      skills: ['artificial intelligence', 'machine learning', 'algorithms'],
+      workload: { reading: 3, assignments: 1, projects: 0, labs: 0 }
+    },
+    {
+      id: 'ECE457A',
+      title: 'Co-operative and Adaptive Algorithms',
+      description: 'Advanced algorithms for cooperative systems',
+      dept: 'ECE',
+      level: 4,
+      number: 457,
+      units: 0.5,
+      terms_offered: ['4A', '4B'],
+      skills: ['algorithms', 'cooperative systems', 'optimization'],
+      workload: { reading: 3, assignments: 1, projects: 0, labs: 0 }
+    },
+    {
+      id: 'ME360',
+      title: 'Introduction to Control Systems',
+      description: 'Fundamentals of control system design',
+      dept: 'ME',
+      level: 3,
+      number: 360,
+      units: 0.5,
+      terms_offered: ['3A', '3B', '4A', '4B'],
+      skills: ['control systems', 'feedback', 'dynamics'],
+      workload: { reading: 2, assignments: 1, projects: 0, labs: 1 }
+    },
+    {
+      id: 'CHE322',
+      title: 'Numerical Methods for Process Analysis and Design',
+      description: 'Numerical methods for chemical engineering',
+      dept: 'CHE',
+      level: 3,
+      number: 322,
+      units: 0.5,
+      terms_offered: ['3A', '3B'],
+      skills: ['numerical methods', 'process design', 'simulation'],
+      workload: { reading: 2, assignments: 1, projects: 0, labs: 1 }
+    }
+  ]
+  
+  // Filter based on query if provided
+  if (query && query.trim()) {
+    const cleanQuery = query.toLowerCase()
+    return fallbackCourses
+      .filter(course => 
+        course.title.toLowerCase().includes(cleanQuery) ||
+        (course.description && course.description.toLowerCase().includes(cleanQuery)) ||
+        course.skills.some(skill => skill.includes(cleanQuery))
+      )
+      .slice(0, limit)
+  }
+  
+  return fallbackCourses.slice(0, limit)
 }
 
 // Extract meaningful keywords from query
