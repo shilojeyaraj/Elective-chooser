@@ -205,7 +205,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
                 placeholder="Choose a username"
                 value={formData.username}
                 onChange={(e) => setFormData(prev => ({ ...prev, username: e.target.value }))}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-gray-50 dark:bg-gray-700"
                 required
               />
             </div>
@@ -218,7 +218,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
               <select
                 value={formData.program}
                 onChange={(e) => setFormData(prev => ({ ...prev, program: e.target.value }))}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700"
                 required
               >
                 <option value="">Select your program</option>
@@ -236,7 +236,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
               <select
                 value={formData.current_term}
                 onChange={(e) => setFormData(prev => ({ ...prev, current_term: e.target.value }))}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700"
                 required
               >
                 <option value="">Select your current term</option>
@@ -309,7 +309,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
                   additional_comments: e.target.value
                 }))}
                 rows={4}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-gray-50 dark:bg-gray-700"
               />
             </div>
 
@@ -326,7 +326,7 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
                 placeholder="e.g., 3.5"
                 value={formData.gpa}
                 onChange={(e) => setFormData(prev => ({ ...prev, gpa: e.target.value }))}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-waterloo-blue focus:border-waterloo-blue text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-gray-50 dark:bg-gray-700"
               />
             </div>
 
