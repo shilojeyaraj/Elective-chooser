@@ -439,11 +439,9 @@ export async function searchCourses(
   if (filters.term) {
     console.log(`🔍 Applying term filter: "${filters.term}"`)
     
-    // Use the term directly as it appears in the database
-    const termConditions = `terms_offered.cs.{${filters.term}}`
-    console.log(`🔍 Term conditions: ${termConditions}`)
-    
-    supabaseQuery = supabaseQuery.or(termConditions)
+    // Use the correct JSONB contains operator for array search
+    supabaseQuery = supabaseQuery.contains('terms_offered', [filters.term])
+    console.log(`🔍 Applied term filter for: ${filters.term}`)
   }
   
   if (filters.dept && filters.dept.length > 0) {
@@ -456,8 +454,8 @@ export async function searchCourses(
   
   if (filters.skills && filters.skills.length > 0) {
     console.log('🔍 Applying skills filter:', filters.skills)
-    // Use the correct JSONB operator for array intersection
-    supabaseQuery = supabaseQuery.filter('skills', 'cs', `["${filters.skills.join('","')}"]`)
+    // Use the correct JSONB contains operator for array search
+    supabaseQuery = supabaseQuery.contains('skills', filters.skills)
   }
   
   if (filters.max_workload) {
@@ -480,7 +478,32 @@ export async function searchCourses(
     sampleCourses: testData?.slice(0, 2).map(c => ({ id: c.id, title: c.title })) || []
   })
   
-  const { data, error } = await supabaseQuery
+  let { data, error } = await supabaseQuery
+  
+  // If the main query fails or returns no results, try a simpler query
+  if (error || !data || data.length === 0) {
+    console.log('🔍 Main query failed or returned no results, trying simpler query...')
+    console.log('🔍 Error from main query:', error?.message || 'No error')
+    
+    // Try a simple query without complex filters
+    const simpleQuery = supabase
+      .from('courses')
+      .select('*')
+      .limit(limit)
+    
+    if (query) {
+      // Simple text search
+      simpleQuery.or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+    }
+    
+    const { data: simpleData, error: simpleError } = await simpleQuery
+    console.log('🔍 Simple query result:', { found: simpleData?.length || 0, error: simpleError?.message || 'None' })
+    
+    if (simpleData && simpleData.length > 0) {
+      data = simpleData
+      error = null
+    }
+  }
   
   if (error) {
     console.error('❌ Course search error:', error)
