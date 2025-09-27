@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     }
 
     const csvContent = await file.text()
-    const options = parseOptionsCSV(csvContent)
+    const options = await parseOptionsCSV(csvContent)
     
     await ingestOptions(options)
 

@@ -1,7 +1,6 @@
 import { supabaseAdmin } from './supabase'
 import { getEmbedding } from './openai'
 import { Course, Option, ElectiveDoc } from './types'
-import { parse } from 'csv-parse/sync'
 
 // Text extraction utilities
 export async function extractTextFromPDF(buffer: Buffer): Promise<string> {
@@ -158,9 +157,10 @@ export async function processDocument(
 }
 
 // CSV parsing utilities
-export function parseCoursesCSV(csvContent: string): Course[] {
+export async function parseCoursesCSV(csvContent: string): Promise<Course[]> {
   try {
     // Use proper CSV parser that handles quoted fields with newlines
+    const { parse } = await import('csv-parse/sync')
     const records = parse(csvContent, {
       columns: true,
       skip_empty_lines: true,
@@ -334,9 +334,10 @@ function processCourseField(header: string, value: string): any {
   }
 }
 
-export function parseOptionsCSV(csvContent: string): Option[] {
+export async function parseOptionsCSV(csvContent: string): Promise<Option[]> {
   try {
     // Use proper CSV parser that handles quoted fields with newlines
+    const { parse } = await import('csv-parse/sync')
     const records = parse(csvContent, {
       columns: true,
       skip_empty_lines: true,
