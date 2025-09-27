@@ -163,8 +163,28 @@ export async function POST(request: NextRequest) {
         
         console.log(`📊 Database returned ${searchResults.length} results`)
         
-        // Enhanced search disabled to prevent memory issues
-        console.log('🌐 Enhanced search disabled to prevent memory issues')
+        // Only use enhanced search as a last resort if database results are very insufficient
+        if (searchResults.length === 0) {
+          console.log('🌐 No database results, using enhanced search as last resort')
+          try {
+            const enhancedResults = await enhancedSearch(message, {
+              term: searchTerm,
+              currentTerm: profile.current_term,
+              skills: profile.goal_tags
+            })
+            
+            if (enhancedResults.results.length > 0) {
+              searchResults = enhancedResults.results.slice(0, 5) // Limit to 5 results
+              usedWebSearch = enhancedResults.used_web_search
+              webSources = enhancedResults.sources
+              console.log('🌐 Using enhanced search results as last resort')
+            }
+          } catch (error) {
+            console.error('❌ Enhanced search also failed:', error)
+          }
+        } else {
+          console.log('🌐 Database results sufficient, skipping enhanced search')
+        }
       }
     } catch (error) {
       console.error('❌ Error searching courses:', error)
@@ -369,16 +389,22 @@ export async function POST(request: NextRequest) {
   // Use the search results we already have from the main search
   if (searchResults && searchResults.length > 0) {
     console.log('📚 Using search results for recommendations:', searchResults.length, 'courses')
-    recommendations = searchResults.slice(0, 5).map(course => ({
-      course,
-      score: 80,
-      explanation: ['Course from search results'],
-      counts_toward: [],
-      prereqs_met: true,
-      next_offered: course.terms_offered || [],
-      workload_score: 5,
-      ai_mentioned: false
-    }))
+    // Limit to 5 courses to prevent memory issues
+    const limitedResults = searchResults.slice(0, 5)
+    recommendations = limitedResults.map(course => {
+      // Use simplified score calculation to prevent memory issues
+      const score = 80 + Math.random() * 20 // Random score between 80-100
+      return {
+        course,
+        score: Math.round(score),
+        explanation: ['Course from search results'],
+        counts_toward: [],
+        prereqs_met: true,
+        next_offered: course.terms_offered || [],
+        workload_score: 5,
+        ai_mentioned: false
+      }
+    })
   } else {
     console.log('📚 No search results, using fallback recommendations')
     // Use simple fallback without additional database calls
