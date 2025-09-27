@@ -1,0 +1,151 @@
+[
+  {
+    "id": "MSE121",
+    "title": "Introduction to Computer Programming",
+    "description": "An introduction to computer programming using a high level programming language. Topics include algorithms, variables, sequencing, conditionals, loops, functions, problem decomposition, abstraction, testing and debugging, pseudo-code, file I/O, use of a symbolic debugger, good coding style, pointers/references, and basic data structures.",
+    "dept": "MSE",
+    "level": 100,
+    "units": 0.5,
+    "prerequisites": [
+      "Level at least 1B Management Engineering"
+    ],
+    "corequisites": null,
+    "antirequisites": [
+      "BME121",
+      "ECE150",
+      "MTE121",
+      "GENE121",
+      "SYDE121"
+    ],
+    "terms_offered": [
+      "Fall",
+      "Winter",
+      "Spring"
+    ],
+    "skills": [
+      "programming fundamentals",
+      "problem decomposition",
+      "debugging",
+      "file I/O",
+      "data structures"
+    ],
+    "source_url": "https://ucalendar.uwaterloo.ca/2223/COURSE/course-MSCI.html#MSCI121"
+  },
+  {
+    "id": "MSE240",
+    "title": "Algorithms and Data Structures",
+    "description": "Design and analysis of data structures and algorithms. Topics include searching, sorting, stacks, queues, trees, and graphs. Comparison of algorithms on different data structures. Introduction to analysis of space and time complexity.",
+    "dept": "MSE",
+    "level": 200,
+    "units": 0.5,
+    "prerequisites": [
+      "MSE121"
+    ],
+    "corequisites": null,
+    "antirequisites": [
+      "BME122",
+      "CS240",
+      "ECE250",
+      "MTE140",
+      "SYDE223"
+    ],
+    "terms_offered": [
+      "Fall",
+      "Winter",
+      "Spring"
+    ],
+    "skills": [
+      "data structures",
+      "algorithms",
+      "complexity analysis",
+      "sorting",
+      "graphs"
+    ],
+    "source_url": "https://ucalendar.uwaterloo.ca/2223/COURSE/course-MSCI.html#MSCI240"
+  },
+  {
+    "id": "MSE245",
+    "title": "Databases and Software Design",
+    "description": "Introduces software systems that use relational database management systems (RDBMS). Covers multi-tier software architectures, design patterns, process/object/data modeling, SQL, and database interaction.",
+    "dept": "MSE",
+    "level": 200,
+    "units": 0.5,
+    "prerequisites": [
+      "MSE240"
+    ],
+    "corequisites": null,
+    "antirequisites": [
+      "CS338",
+      "CS348"
+    ],
+    "terms_offered": [
+      "Fall",
+      "Winter",
+      "Spring"
+    ],
+    "skills": [
+      "databases",
+      "SQL",
+      "software design",
+      "data modeling"
+    ],
+    "source_url": "https://ucalendar.uwaterloo.ca/2223/COURSE/course-MSCI.html#MSCI245"
+  },
+  {
+    "id": "MSE436",
+    "title": "Decision Support Systems",
+    "description": "Introduction to analysis, design and implementation of decision support systems for engineering and business applications. Integrates OR modeling, databases, and user interfaces to aid decision making.",
+    "dept": "MSE",
+    "level": 400,
+    "units": 0.5,
+    "prerequisites": [
+      "Level at least 3A Engineering"
+    ],
+    "corequisites": null,
+    "antirequisites": [],
+    "terms_offered": [
+      "Fall",
+      "Winter",
+      "Spring"
+    ],
+    "skills": [
+      "decision support",
+      "operations research",
+      "databases",
+      "system design"
+    ],
+    "source_url": "https://ucalendar.uwaterloo.ca/2223/COURSE/course-MSCI.html#MSCI436"
+  },
+  {
+    "id": "MSE446",
+    "title": "Introduction to Machine Learning",
+    "description": "Introduction to supervised and unsupervised learning, training and testing models. Topics include data cleaning, overfitting, cross-validation, regression, decision trees, neural networks, clustering.",
+    "dept": "MSE",
+    "level": 400,
+    "units": 0.5,
+    "prerequisites": [
+      "One of BME122, CS240, ECE250, MSE240, MTE140, SYDE223",
+      "One of BME213, CHE220, CIVE224, ECE306, ECE307, ENVE224, MSCI252, MSCI253, ME202, MTE201, NE215, STAT206, STAT231, STAT241, SYDE212"
+    ],
+    "corequisites": null,
+    "antirequisites": [
+      "CS480",
+      "ECE457B",
+      "SYDE522"
+    ],
+    "terms_offered": [
+      "Fall",
+      "Winter",
+      "Spring"
+    ],
+    "skills": [
+      "machine learning",
+      "supervised learning",
+      "unsupervised learning",
+      "regression",
+      "neural networks",
+      "clustering"
+    ],
+    "source_url": "https://ucalendar.uwaterloo.ca/2223/COURSE/course-MSCI.html#MSCI446"
+  }
+]

@@ -12,7 +12,6 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
   const [isLogin, setIsLogin] = useState(!isSignup)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -25,12 +24,11 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
       console.log('🚀 Starting authentication process...')
       console.log('🔍 Mode:', isLogin ? 'LOGIN' : 'REGISTRATION')
       console.log('🔍 Email:', email)
-      console.log('🔍 Username:', username || 'Not provided')
       console.log('🔍 Password length:', password.length)
 
       const response = isLogin 
         ? await authenticateUser(email, password)
-        : await registerUser(email, password, username || undefined)
+        : await registerUser(email, password)
 
       console.log('🔍 Auth response:', response)
 
@@ -48,14 +46,46 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
         
         console.log('✅ User stored, calling onLogin callback...')
         if (onLogin) {
-          onLogin(response.user)
+          onLogin(response.user) // Pass user data for login
         } else {
           // If no onLogin callback, trigger a custom event to notify parent components
           window.dispatchEvent(new CustomEvent('userAuthenticated', { detail: response.user }))
         }
       } else if (!isLogin) {
         console.log('✅ Account created successfully')
-        alert('Account created successfully! You can now sign in.')
+        // For signup, automatically log the user in after successful registration
+        if (onLogin) {
+          // Create a user object from the registration response
+          const newUser = {
+            id: (response as any).user?.id || crypto.randomUUID(),
+            email: email.trim().toLowerCase(),
+            username: email.split('@')[0], // Use email prefix as temporary username
+            program: '',
+            current_term: '',
+            interests: [],
+            goal_tags: [],
+            additional_comments: '',
+            gpa: null,
+            constraints: {
+              max_workload: 4,
+              morning_labs: false,
+              schedule_preferences: []
+            },
+            completed_courses: [],
+            planned_courses: [],
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          }
+          
+          // Store in localStorage
+          localStorage.setItem('currentUser', JSON.stringify(newUser))
+          
+          // For signup, we need to trigger the profile setup flow
+          console.log('🔧 LoginForm calling onLogin with:', { newUser })
+          onLogin(newUser) // Pass user data for signup
+        } else {
+          alert('Account created successfully! You can now sign in.')
+        }
       }
     } catch (error: any) {
       console.error('❌ Auth error:', error)
@@ -94,24 +124,6 @@ export default function LoginForm({ onLogin, isSignup = false }: LoginFormProps)
           </p>
         </div>
         <form className="space-y-4" onSubmit={handleSubmit}>
-          {!isLogin && (
-            <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Username
-              </label>
-              <input
-                id="username"
-                name="username"
-                type="text"
-                autoComplete="username"
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-gray-50 dark:bg-gray-700"
-                placeholder="Choose a username"
-              />
-            </div>
-          )}
           
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

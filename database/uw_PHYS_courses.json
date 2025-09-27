@@ -1,0 +1,298 @@
+{
+  "metadata": {
+    "generated": "2025-09-25",
+    "note": "Titles and PHYS 121 prereqs confirmed from UW sources. Remaining descriptions/prereqs left null to avoid inaccuracies; can be filled in a subsequent pass."
+  },
+  "courses": [
+    {
+      "department": "PHYS",
+      "code": "PHYS115",
+      "name": "Mechanics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS121",
+      "name": "Mechanics",
+      "description": null,
+      "prerequisites": {
+        "corequisites": "One of MATH 104, 127, 137, 147",
+        "antirequisites": "PHYS 111, PHYS 115, ECE 105",
+        "notes": "Ontario 4U Calculus & Vectors, 4U Advanced Functions, and 4U Physics expected"
+      },
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS122",
+      "name": "Waves, Electricity and Magnetism",
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS233",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS234",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS242",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS263",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS280",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS334",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS335",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS342",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS358",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS359",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS364",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS365",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS375",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS380",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS395",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS396",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS434",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS435",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS442",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS454",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS467",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS468",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS475",
+      "name": null,
+      "description": null,
+      "prerequisites": null,
+      "sources": [
+        "https://ucalendar.uwaterloo.ca/2324/COURSE/course-PHYS.html",
+        "https://uwaterloo.ca/physics-astronomy/undergraduate-students/undergraduate-phys-course-offerings"
+      ]
+    }
+  ]
+}

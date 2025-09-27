@@ -1,0 +1,112 @@
+[
+  {
+    "code": "CS115",
+    "subject": "CS",
+    "title": "Introduction to Computer Science 1",
+    "description": "Introduction to designing programs. The use of a functional programming language to teach fundamental concepts including recursion, conditionals, lists, and trees. Emphasis on systematic program design and testing.",
+    "prerequisites": "High school algebra and basic math skills",
+    "antirequisites": "CS135, CS145",
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Intended for students with little or no programming background"
+  },
+  {
+    "code": "CS116",
+    "subject": "CS",
+    "title": "Introduction to Computer Science 2",
+    "description": "Continuation of CS 115. Introduction to imperative programming, including state, assignment, loops, and input/output. Use of libraries and modular programming.",
+    "prerequisites": "CS115",
+    "antirequisites": "CS136, CS146",
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "For students who completed CS115"
+  },
+  {
+    "code": "CS135",
+    "subject": "CS",
+    "title": "Designing Functional Programs",
+    "description": "Introduction to programming and computing using a functional programming language. Emphasis on recursion, abstraction, higher-order functions, and correctness.",
+    "prerequisites": "Grade 12 U Math (or equivalent)",
+    "antirequisites": "CS115, CS145",
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "For students with strong math background"
+  },
+  {
+    "code": "CS136",
+    "subject": "CS",
+    "title": "Elementary Algorithm Design and Data Abstraction",
+    "description": "Introduction to imperative programming and elementary data structures. Topics: arrays, pointers, dynamic memory, linked lists, trees, recursion, sorting, searching, and algorithm analysis.",
+    "prerequisites": "CS135 or CS145",
+    "antirequisites": "CS116, CS146",
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "First course in systems programming"
+  },
+  {
+    "code": "CS145",
+    "subject": "CS",
+    "title": "Designing Functional Programs (Advanced)",
+    "description": "Accelerated version of CS135 for mathematically strong students. Covers functional programming, recursion, abstraction, higher-order functions, and formal proofs of program correctness.",
+    "prerequisites": "Admission by invitation or consent of instructor",
+    "antirequisites": "CS115, CS135",
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Intended for students with very strong mathematical background"
+  },
+  {
+    "code": "CS146",
+    "subject": "CS",
+    "title": "Elementary Algorithm Design and Data Abstraction (Advanced)",
+    "description": "Accelerated version of CS136. Topics include imperative programming, advanced recursion, data abstraction, and complexity analysis. More depth and breadth than CS136.",
+    "prerequisites": "CS145",
+    "antirequisites": "CS116, CS136",
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "For students who took CS145"
+  },
+  {
+    "code": "CS230",
+    "subject": "CS",
+    "title": "Introduction to Computers and Computer Systems",
+    "description": "Introduction to computer systems: hardware, operating systems, and software. Topics include representation of data, machine language, assembly programming, memory hierarchy, and basic operating system concepts.",
+    "prerequisites": "CS136 or CS146",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Core CS course"
+  },
+  {
+    "code": "CS231",
+    "subject": "CS",
+    "title": "Algorithm Design and Data Abstraction",
+    "description": "Introduction to more advanced data structures and algorithms. Topics include ADTs, abstract specification, algorithmic strategies, trees, graphs, sorting, searching, and complexity analysis.",
+    "prerequisites": "CS136 or CS146",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Core CS course"
+  },
+  {
+    "code": "CS234",
+    "subject": "CS",
+    "title": "Data Types and Structures",
+    "description": "Design and implementation of data structures, including stacks, queues, lists, trees, and graphs. Introduction to algorithm analysis and efficiency.",
+    "prerequisites": "CS136 or CS146",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Core CS course"
+  },
+  {
+    "code": "CS245",
+    "subject": "CS",
+    "title": "Logic and Computation",
+    "description": "Introduction to formal logic and its applications in computer science. Propositional and predicate logic, proofs, and logic programming.",
+    "prerequisites": "CS135 or CS145",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Required for CS majors"
+  }
+]

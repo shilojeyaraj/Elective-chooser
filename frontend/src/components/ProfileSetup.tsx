@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { UserProfile } from '@/lib/types'
 
@@ -27,9 +27,24 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
+  // Pre-populate username from localStorage if available
+  useEffect(() => {
+    const currentUser = localStorage.getItem('currentUser')
+    if (currentUser) {
+      try {
+        const userData = JSON.parse(currentUser)
+        if (userData.username) {
+          setFormData(prev => ({ ...prev, username: userData.username }))
+        }
+      } catch (error) {
+        console.error('Error parsing user data:', error)
+      }
+    }
+  }, [])
+
   const programs = [
-    { value: 'ARCH', label: 'Architecture' },
     { value: 'AE', label: 'Architectural Engineering' },
+    { value: 'ARCH', label: 'Architecture' },
     { value: 'BME', label: 'Biomedical Engineering' },
     { value: 'CHE', label: 'Chemical Engineering' },
     { value: 'CIVE', label: 'Civil Engineering' },
@@ -71,10 +86,10 @@ export default function ProfileSetup({ userId, onComplete }: ProfileSetupProps) 
   ]
   
   const commonGoals = [
-    'career_software', 'career_hardware', 'career_robotics', 'career_biomedical', 'career_environmental', 'career_civil', 'career_chemical',
-    'career_mechanical', 'career_electrical', 'career_management', 'career_consulting', 'career_research', 'career_entrepreneurship',
+    'software', 'hardware', 'robotics', 'biomedical', 'environmental', 'civil', 'chemical',
+    'mechanical', 'electrical', 'management', 'consulting', 'research', 'entrepreneurship',
     'grad_school', 'masters_degree', 'phd_program', 'industry_work', 'startup_founder', 'research_scientist', 'academic_career',
-    'specialization', 'professional_development', 'leadership_role', 'international_work', 'government_work', 'non_profit_work'
+    'specialization', 'professional_development', 'leadership_role', 'international_work', 'government_work', 'non_profit'
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {

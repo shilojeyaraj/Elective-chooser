@@ -13,25 +13,9 @@ export interface CourseInfo {
  * Generate Waterloo course search URL based on course information
  */
 export function getWaterlooCourseSearchUrl(course: CourseInfo): string {
-  const courseCode = course.id.replace(/([A-Z]+)(\d+)/, '$1 $2') // Convert CS486 to CS 486
-  
-  // Determine the best search strategy based on department
-  if (course.dept === 'CS' || course.dept === 'ECE' || course.dept === 'SE') {
-    // Computer Science, Computer Engineering, Software Engineering
-    return `https://uwaterloo.ca/search?q=${encodeURIComponent(courseCode + ' ' + course.title + ' computer science engineering')}`
-  } else if (course.dept === 'STAT' || course.dept === 'MATH') {
-    // Mathematics and Statistics
-    return `https://uwaterloo.ca/search?q=${encodeURIComponent(courseCode + ' ' + course.title + ' mathematics statistics')}`
-  } else if (['MTE', 'ME', 'SYDE', 'CIVE', 'CHE', 'BME', 'ENVE', 'GEOE', 'AE', 'NANO'].includes(course.dept)) {
-    // Engineering departments
-    return `https://uwaterloo.ca/search?q=${encodeURIComponent(courseCode + ' ' + course.title + ' engineering')}`
-  } else if (['ANTH', 'BET', 'ECON', 'ENGL', 'HIST', 'PHIL', 'PSYCH', 'SOC'].includes(course.dept)) {
-    // Arts and Humanities (CSE electives)
-    return `https://uwaterloo.ca/search?q=${encodeURIComponent(courseCode + ' ' + course.title + ' arts humanities')}`
-  } else {
-    // General search
-    return `https://uwaterloo.ca/search?q=${encodeURIComponent(courseCode + ' ' + course.title + ' course')}`
-  }
+  // Use UW Flow for course information and reviews
+  const courseCode = course.id // Keep original format (e.g., CS486)
+  return `https://uwflow.com/course/${courseCode}`
 }
 
 /**
@@ -77,16 +61,12 @@ export function getWaterlooCourseCatalogUrl(course: CourseInfo): string | null {
 }
 
 /**
- * Get the best Waterloo URL for a course (catalog if available, otherwise search)
+ * Get the best Waterloo URL for a course (UW Flow for course reviews and info)
  */
-export function getBestWaterlooUrl(course: CourseInfo): { url: string; type: 'catalog' | 'search' } {
-  const catalogUrl = getWaterlooCourseCatalogUrl(course)
-  
-  if (catalogUrl) {
-    return { url: catalogUrl, type: 'catalog' }
-  }
-  
-  return { url: getWaterlooCourseSearchUrl(course), type: 'search' }
+export function getBestWaterlooUrl(course: CourseInfo): { url: string; type: 'uwflow' | 'catalog' | 'search' } {
+  // Always use UW Flow as the primary source for course information
+  const uwflowUrl = getWaterlooCourseSearchUrl(course)
+  return { url: uwflowUrl, type: 'uwflow' }
 }
 
 /**

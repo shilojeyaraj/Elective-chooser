@@ -1,0 +1,239 @@
+{
+  "generated_on": "2025-09-25",
+  "phys": [
+    {
+      "department": "PHYS",
+      "code": "PHYS115",
+      "name": "Mechanics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS121",
+      "name": "Mechanics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS122",
+      "name": "Waves, Electricity and Magnetism",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS233",
+      "name": "Introduction to Quantum Mechanics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS234",
+      "name": "Quantum Physics 1",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS242",
+      "name": "Electricity and Magnetism 1",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS263",
+      "name": "Classical Mechanics and Special Relativity",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS280",
+      "name": "Introduction to Biophysics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS334",
+      "name": "Quantum Physics 2",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS335",
+      "name": "Condensed Matter Physics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS342",
+      "name": "Electricity and Magnetism 2",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS358",
+      "name": "Thermal Physics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS359",
+      "name": "Statistical Mechanics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS364",
+      "name": "Mathematical Physics 1",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS365",
+      "name": "Mathematical Physics 2",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS375",
+      "name": "Stars",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS380",
+      "name": "Molecular and Cellular Biophysics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS395",
+      "name": "Biophysics of Therapeutic Methods",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS396",
+      "name": "Biophysics of Imaging",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS434",
+      "name": "Quantum Physics 3",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS435",
+      "name": "Current Topics in Condensed Matter Physics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS442",
+      "name": "Electricity and Magnetism 3",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS454",
+      "name": "Quantum Theory 2",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS467",
+      "name": "Introduction to Quantum Information Processing",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS468",
+      "name": "Introduction to Implementation of Quantum Information Processing",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "PHYS",
+      "code": "PHYS475",
+      "name": "Cosmology",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    }
+  ]
+}

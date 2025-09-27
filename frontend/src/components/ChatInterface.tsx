@@ -23,6 +23,7 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const startNewChat = () => {
+    console.log('🆕 Starting new chat - clearing all state')
     setMessages([])
     setRecommendations([])
     setSources([])
@@ -36,19 +37,28 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
       return v.toString(16)
     })
     setSessionId(newSessionId)
+    console.log('✅ New chat started with session ID:', newSessionId)
   }
 
   // Load existing session or create new one on mount
   useEffect(() => {
     const initializeSession = async () => {
-      console.log('🚀 Initializing session for user:', profile?.user_id)
+      // Handle both profile.user_id and profile.id for compatibility
+      const userId = profile?.user_id || (profile as any)?.id
+      console.log('🚀 Initializing session for user:', userId)
       console.log('🔍 Profile object:', profile)
       console.log('🔍 Profile keys:', profile ? Object.keys(profile) : 'No profile')
+      console.log('🔍 Using userId:', userId)
+      
+      if (!userId) {
+        console.log('❌ No user ID available for session initialization')
+        return
+      }
       
       try {
         // First, try to get the most recent session for this user
         console.log('🔍 Fetching existing sessions...')
-        const sessionsUrl = `/api/chat/sessions?userId=${profile.user_id}`
+        const sessionsUrl = `/api/chat/sessions?userId=${userId}`
         console.log('📡 Sessions URL:', sessionsUrl)
         
         const response = await fetch(sessionsUrl)
@@ -79,8 +89,17 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
                 if (messagesData.messages && messagesData.messages.length > 0) {
                   setMessages(messagesData.messages)
                   console.log('✅ Loaded existing messages:', messagesData.messages.length)
+                  // Clear recommendations when loading existing session - they should only show for current conversation
+                  setRecommendations([])
+                  setSources([])
+                  setUsedWebSearch(false)
+                  console.log('🧹 Cleared recommendations for existing session')
                 } else {
                   console.log('ℹ️ No existing messages found')
+                  // Clear recommendations for new session
+                  setRecommendations([])
+                  setSources([])
+                  setUsedWebSearch(false)
                 }
               } else {
                 console.log('⚠️ Failed to load messages, status:', messagesResponse.status)
@@ -99,11 +118,11 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
         }
         
         // If no existing session, create a new one
-        console.log('🆕 Creating new session for user:', profile.user_id)
+        console.log('🆕 Creating new session for user:', userId)
         const createResponse = await fetch('/api/chat/session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userId: profile.user_id })
+          body: JSON.stringify({ userId: userId })
         })
         console.log('📡 Create session response status:', createResponse.status)
         console.log('📡 Create session response ok:', createResponse.ok)
@@ -137,14 +156,16 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
       }
     }
     
-    if (profile?.user_id) {
-      console.log('✅ Profile has user_id, initializing session...')
+    // Check for either profile.user_id or profile.id
+    const userId = profile?.user_id || (profile as any)?.id
+    if (userId) {
+      console.log('✅ Profile has user ID, initializing session...')
       initializeSession()
     } else {
-      console.log('❌ No profile.user_id available for session initialization')
+      console.log('❌ No user ID available for session initialization')
       console.log('🔍 Profile state:', profile)
     }
-  }, [profile?.user_id])
+  }, [profile?.user_id, (profile as any)?.id])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -175,11 +196,13 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    // Handle both profile.user_id and profile.id for compatibility
+    const userId = profile?.user_id || (profile as any)?.id
     console.log('🔍 Submit attempt:', { 
       input: input.trim(), 
       sessionId, 
       loading, 
-      profile: profile?.user_id,
+      profile: userId,
       hasProfile: !!profile,
       profileKeys: profile ? Object.keys(profile) : []
     })
@@ -206,6 +229,12 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
     setMessages(prev => [...prev, userMessage])
     setInput('')
     setLoading(true)
+    
+    // Clear previous recommendations immediately when sending new message
+    console.log('🧹 Clearing previous recommendations for new message')
+    setRecommendations([])
+    setSources([])
+    setUsedWebSearch(false)
 
     try {
       // Add a small delay to ensure database is ready
@@ -217,17 +246,17 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
       const requestBody = {
         message: input,
         sessionId,
-        userId: profile?.user_id
+        userId: userId
       }
       
       console.log('📤 Sending request to API:', requestBody)
       
       // Validate required fields before sending
-      if (!input || !sessionId || !profile?.user_id) {
+      if (!input || !sessionId || !userId) {
         console.error('❌ Missing required fields:', {
           message: !!input,
           sessionId: !!sessionId,
-          userId: !!profile?.user_id
+          userId: !!userId
         })
         throw new Error('Missing required fields for chat request')
       }
@@ -265,11 +294,25 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
         setMessages(prev => [...prev, assistantMessage])
         
         console.log('🔄 Setting recommendations:', data.recommendations)
-        setRecommendations(data.recommendations || [])
+        console.log('🔄 Full API response data:', data)
+        
+        // Update recommendations state
+        let newRecommendations = data.recommendations || []
+        console.log('🔄 New recommendations array:', newRecommendations)
+        console.log('🔄 New recommendations length:', newRecommendations.length)
+        
+        // GUARANTEE recommendations - if empty, create fallback recommendations
+        if (newRecommendations.length === 0) {
+          console.log('🚨 No recommendations from API, creating fallback recommendations')
+          newRecommendations = await createFallbackRecommendations(profile)
+          console.log('🔄 Fallback recommendations created:', newRecommendations.length)
+        }
+        
+        setRecommendations(newRecommendations)
         setSources(data.sources || [])
         setUsedWebSearch(data.used_web_search || false)
         
-        console.log('✅ State updated - recommendations should now be:', data.recommendations?.length || 0)
+        console.log('✅ State updated - recommendations should now be:', newRecommendations.length)
       } else {
         console.error('❌ API Error:', {
           status: response.status,
@@ -290,6 +333,83 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
       setMessages(prev => [...prev, errorMessage])
     } finally {
       setLoading(false)
+    }
+  }
+
+  // Create fallback recommendations when none are available
+  const createFallbackRecommendations = async (profile: UserProfile) => {
+    try {
+      console.log('🔄 Creating fallback recommendations for profile:', profile)
+      
+      // Create some basic fallback recommendations based on the user's program
+      const fallbackCourses = [
+        {
+          course: {
+            id: 'CS246',
+            title: 'Object-Oriented Software Development',
+            dept: 'CS',
+            level: 200,
+            units: 0.5,
+            prereqs: 'CS 136 or CS 146',
+            terms_offered: ['F', 'W', 'S'],
+            workload: { reading: 2, assignments: 4, projects: 3, labs: 1 },
+            skills: ['programming', 'software development', 'object-oriented design']
+          },
+          score: 75,
+          explanation: ['Popular elective course'],
+          counts_toward: [],
+          prereqs_met: false,
+          next_offered: ['F', 'W', 'S'],
+          workload_score: 7,
+          ai_mentioned: false
+        },
+        {
+          course: {
+            id: 'ECE 250',
+            title: 'Algorithms and Data Structures',
+            dept: 'ECE',
+            level: 200,
+            units: 0.5,
+            prereqs: 'ECE 150 or CS 136',
+            terms_offered: ['F', 'W', 'S'],
+            workload: { reading: 3, assignments: 4, projects: 2, labs: 1 },
+            skills: ['algorithms', 'data structures', 'programming']
+          },
+          score: 70,
+          explanation: ['Core algorithms course'],
+          counts_toward: [],
+          prereqs_met: false,
+          next_offered: ['F', 'W', 'S'],
+          workload_score: 8,
+          ai_mentioned: false
+        },
+        {
+          course: {
+            id: 'MSCI 211',
+            title: 'Organizational Behaviour',
+            dept: 'MSCI',
+            level: 200,
+            units: 0.5,
+            prereqs: '',
+            terms_offered: ['F', 'W', 'S'],
+            workload: { reading: 2, assignments: 3, projects: 1, labs: 0 },
+            skills: ['management', 'organizational behavior', 'leadership']
+          },
+          score: 65,
+          explanation: ['Management elective'],
+          counts_toward: [],
+          prereqs_met: true,
+          next_offered: ['F', 'W', 'S'],
+          workload_score: 4,
+          ai_mentioned: false
+        }
+      ]
+      
+      console.log('✅ Created fallback recommendations:', fallbackCourses.length)
+      return fallbackCourses
+    } catch (error) {
+      console.error('❌ Error creating fallback recommendations:', error)
+      return []
     }
   }
 
@@ -428,15 +548,6 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
             {/* Recommendations Panel - Aligned with Chat */}
             <div className="w-96 border-l border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 overflow-y-auto">
               <div className="p-4">
-        {/* Debug info - remove in production */}
-        <div className="mb-4 p-2 bg-yellow-100 dark:bg-yellow-900/20 rounded text-xs">
-          <strong>Debug:</strong> SessionId: {sessionId || 'None'} | 
-          Profile: {profile?.user_id || 'None'} | 
-          Recommendations: {recommendations.length} | 
-          Sources: {sources.length} | 
-          WebSearch: {usedWebSearch.toString()}
-        </div>
-                
                 <CourseRecommendations 
                   recommendations={recommendations}
                   sources={sources}

@@ -1,0 +1,112 @@
+[
+  {
+    "code": "SYDE121",
+    "subject": "SYDE",
+    "title": "Digital Computation",
+    "description": "Introduction to digital computation for engineers. Topics include number systems, logic operations, computer organization, programming fundamentals, and problem solving using computational tools.",
+    "prerequisites": null,
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "First-year Systems Design Engineering course"
+  },
+  {
+    "code": "SYDE522",
+    "subject": "SYDE",
+    "title": "Human-Computer Interaction",
+    "description": "Principles of human-computer interaction. User-centered design, interface evaluation, usability testing, cognitive models, and design of interactive systems.",
+    "prerequisites": "Level at least 4A in Engineering or CS, or permission of instructor",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course; often cross-listed with CS or SE courses"
+  },
+  {
+    "code": "SYDE542",
+    "subject": "SYDE",
+    "title": "Image Processing and Visual Communication",
+    "description": "Fundamentals of digital image processing and visual communication. Topics include sampling, enhancement, restoration, compression, and recognition applications.",
+    "prerequisites": "SYDE 322 or equivalent signals/systems course",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Graduate/advanced undergraduate elective"
+  },
+  {
+    "code": "SYDE543",
+    "subject": "SYDE",
+    "title": "Image Processing and Computer Vision",
+    "description": "Image analysis, computer vision algorithms, feature detection, segmentation, motion analysis, and pattern recognition.",
+    "prerequisites": "SYDE 542 or equivalent background in image processing",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective in vision/AI area"
+  },
+  {
+    "code": "SYDE548",
+    "subject": "SYDE",
+    "title": "Computational Neuroscience",
+    "description": "Mathematical and computational models of neural systems. Topics include spiking neurons, neural coding, network models, and simulation techniques.",
+    "prerequisites": "Consent of instructor; background in math and programming expected",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Graduate-level elective"
+  },
+  {
+    "code": "SYDE552",
+    "subject": "SYDE",
+    "title": "Systems Design Project 1",
+    "description": "Capstone design project course, part 1. Students work in teams to define, plan, and begin the design of an engineering system.",
+    "prerequisites": "Level at least 4A in Systems Design Engineering",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Capstone design project course"
+  },
+  {
+    "code": "SYDE556",
+    "subject": "SYDE",
+    "title": "Systems Design Project 2",
+    "description": "Continuation of SYDE 552. Students complete the design, implementation, and testing of their engineering system and present results.",
+    "prerequisites": "SYDE 552",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Capstone design project continuation"
+  },
+  {
+    "code": "SYDE572",
+    "subject": "SYDE",
+    "title": "Optimization Methods",
+    "description": "Optimization techniques and their applications to engineering design problems. Topics include linear, nonlinear, and combinatorial optimization methods.",
+    "prerequisites": "MATH 211, SYDE 262 or equivalent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course in design optimization"
+  },
+  {
+    "code": "SYDE575",
+    "subject": "SYDE",
+    "title": "Artificial Intelligence Applications in Engineering",
+    "description": "Applications of artificial intelligence techniques in engineering design and analysis. Topics include knowledge-based systems, expert systems, and AI optimization.",
+    "prerequisites": "SYDE 522 or equivalent AI background",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective in AI applications"
+  },
+  {
+    "code": "SYDE577",
+    "subject": "SYDE",
+    "title": "Machine Learning",
+    "description": "Principles and methods of machine learning, including supervised and unsupervised learning, neural networks, support vector machines, and probabilistic models.",
+    "prerequisites": "STAT 231 or equivalent, and programming background",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective in AI/ML area"
+  }
+]

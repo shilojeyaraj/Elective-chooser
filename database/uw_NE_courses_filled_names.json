@@ -1,0 +1,374 @@
+{
+  "generated_on": "2025-09-25",
+  "ne": [
+    {
+      "department": "NE",
+      "code": "NE100",
+      "name": "Introduction to Nanotechnology Engineering",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE101",
+      "name": "Nanotechnology Engineering Practice",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE102",
+      "name": "Introduction to Nanomaterials Health Risk; Nanotechnology Engineering Practice",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE109",
+      "name": "Societal and Environmental Impacts of Nanotechnology",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE111",
+      "name": "Introduction to Programming for Engineers",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE112",
+      "name": "Linear Algebra for Nanotechnology Engineering",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE113",
+      "name": "Introduction to Computational Methods",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE121",
+      "name": "Chemical Principles",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE125",
+      "name": "Introduction to Materials Science and Engineering",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE131",
+      "name": "Physics for Nanotechnology Engineering",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE140",
+      "name": "Linear Circuits",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE201",
+      "name": "Nanotoxicology; Nanotechnology Engineering Practice",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE202",
+      "name": "Nanomaterials and Environmental Impact; Nanotechnology Engineering Practice",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE215",
+      "name": "Probability and Statistics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE216",
+      "name": "Advanced Calculus and Numerical Methods 1",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE217",
+      "name": "Advanced Calculus and Numerical Methods 2",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE220L",
+      "name": "Materials Science and Engineering Laboratory",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE222",
+      "name": "Organic Chemistry for Nanotechnology Engineers",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE224",
+      "name": "Biochemistry for Nanotechnology Engineers",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE225",
+      "name": "Structure and Properties of Nanomaterials",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE226",
+      "name": "Characterization of Materials",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE226L",
+      "name": "Laboratory Characterization Methods",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE241",
+      "name": "Electromagnetism",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE242",
+      "name": "Semiconductor Physics and Devices",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE250",
+      "name": "Work-term Report 1",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE301",
+      "name": "Nanotechnology Engineering Practice",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE302",
+      "name": "Nanotechnology Engineering Practice",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE307",
+      "name": "Introduction to Nanosystems Design",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE318",
+      "name": "Continuum Mechanics for Nanotechnology Engineering",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE320L",
+      "name": "Characterization of Materials Laboratory",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE330L",
+      "name": "Macromolecular Science Laboratory",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE332",
+      "name": "Quantum Mechanics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE333",
+      "name": "Macromolecular Science",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE334",
+      "name": "Statistical Thermodynamics",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE336",
+      "name": "Micro and Nanosystem Computer-aided Design",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE340L",
+      "name": "Microfabrication and Thin-film Technology Laboratory",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE343",
+      "name": "Microfabrication and Thin-film Technology",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE350",
+      "name": "Work-term Report 2",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE352",
+      "name": "Surfaces and Interfaces",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE408",
+      "name": "Nanosystems Design Project",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    },
+    {
+      "department": "NE",
+      "code": "NE409",
+      "name": "Nanosystems Design Project and Symposium",
+      "description": null,
+      "prerequisites": null,
+      "sources": [],
+      "verified_on": "2025-09-25"
+    }
+  ]
+}

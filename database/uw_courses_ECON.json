@@ -1,0 +1,24 @@
+[
+  {
+    "code": "ECON201",
+    "subject": "ECON",
+    "title": "Microeconomic Theory 1",
+    "description": "Introduction to microeconomic analysis. Consumer theory, production and cost, perfectly competitive markets, welfare economics, and market failures.",
+    "prerequisites": "ECON 101, ECON 102; MATH 104/105 or equivalent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Core course for Economics majors"
+  },
+  {
+    "code": "ECON371",
+    "subject": "ECON",
+    "title": "Econometrics 1",
+    "description": "Statistical methods for economic data analysis. Topics include simple and multiple regression, hypothesis testing, model specification, and introduction to time series.",
+    "prerequisites": "ECON 221 or STAT 221; ECON 201 recommended",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Often offered in F, W terms"
+  }
+]

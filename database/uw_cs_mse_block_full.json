@@ -1,0 +1,140 @@
+[
+  {
+    "id": "CS338",
+    "title": "Computer Applications in Business: Databases",
+    "description": "Methods for storage, selection, and presentation of data using database systems; relational modeling, SQL, transactions, and recovery. Not open to CS majors.",
+    "dept": "CS",
+    "level": 300,
+    "units": 0.5,
+    "prerequisites": [
+      "One of CS230, CS234, CS246, CS330"
+    ],
+    "corequisites": null,
+    "antirequisites": [
+      "CS348",
+      "CS448",
+      "ECE456"
+    ],
+    "terms_offered": [
+      "Fall",
+      "Winter",
+      "Spring"
+    ],
+    "skills": [
+      "database design",
+      "relational modeling",
+      "SQL",
+      "transactions",
+      "recovery"
+    ],
+    "workload": {
+      "lectures": 3,
+      "tutorials": null,
+      "labs": null,
+      "assignments": null,
+      "projects": null,
+      "exams": null
+    },
+    "fulfills_options": [],
+    "fulfills_specializations": [],
+    "cse_classification": null,
+    "source_url": "https://cs.uwaterloo.ca/current/courses/course_descriptions/cDescr/CS338"
+  },
+  {
+    "id": "CS445",
+    "title": "Software Requirements Specification and Analysis",
+    "description": "Models, notations, and processes for software requirements elicitation, identification, analysis, modeling, representation, specification, and validation. Includes a group SRS project.",
+    "dept": "CS",
+    "level": 400,
+    "units": 0.5,
+    "prerequisites": [],
+    "corequisites": null,
+    "antirequisites": [],
+    "terms_offered": null,
+    "skills": [
+      "requirements engineering",
+      "elicitation",
+      "specification",
+      "validation",
+      "analysis"
+    ],
+    "workload": {
+      "lectures": null,
+      "tutorials": null,
+      "labs": 0,
+      "assignments": null,
+      "projects": 1,
+      "exams": null
+    },
+    "fulfills_options": [],
+    "fulfills_specializations": [],
+    "cse_classification": null,
+    "source_url": "https://cs.uwaterloo.ca/current/courses/course_descriptions/cDescr/CS445.shtml"
+  },
+  {
+    "id": "CS446",
+    "title": "Software Design and Architectures",
+    "description": "Software design processes and models; architectural representations; design methods; design quality assurance and verification. Team design and implementation project.",
+    "dept": "CS",
+    "level": 400,
+    "units": 0.5,
+    "prerequisites": [],
+    "corequisites": null,
+    "antirequisites": [
+      "ECE452"
+    ],
+    "terms_offered": null,
+    "skills": [
+      "software architecture",
+      "software design",
+      "quality assurance",
+      "verification",
+      "team projects"
+    ],
+    "workload": {
+      "lectures": null,
+      "tutorials": null,
+      "labs": 0,
+      "assignments": null,
+      "projects": 1,
+      "exams": null
+    },
+    "fulfills_options": [],
+    "fulfills_specializations": [],
+    "cse_classification": null,
+    "source_url": "https://cs.uwaterloo.ca/current/courses/course_descriptions/cDescr/CS446"
+  },
+  {
+    "id": "CS447",
+    "title": "Software Testing, Quality Assurance, and Maintenance",
+    "description": "Systematic testing of software systems, verification, symbolic execution, debugging, QA, reliability measurement and prediction, project management, maintenance, reuse, reverse engineering.",
+    "dept": "CS",
+    "level": 400,
+    "units": 0.5,
+    "prerequisites": [],
+    "corequisites": null,
+    "antirequisites": [
+      "ECE453"
+    ],
+    "terms_offered": null,
+    "skills": [
+      "software testing",
+      "QA",
+      "verification",
+      "maintenance",
+      "reliability"
+    ],
+    "workload": {
+      "lectures": null,
+      "tutorials": null,
+      "labs": 0,
+      "assignments": null,
+      "projects": null,
+      "exams": null
+    },
+    "fulfills_options": [],
+    "fulfills_specializations": [],
+    "cse_classification": null,
+    "source_url": "https://cs.uwaterloo.ca/current/courses/course_descriptions/cDescr/CS447.shtml"
+  }
+]

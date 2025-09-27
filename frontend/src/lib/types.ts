@@ -24,6 +24,10 @@ export interface Course {
     projects?: number
     labs?: number
   }
+  fulfills_options?: string[]
+  fulfills_specializations?: string[]
+  fulfills_certificates?: string[]
+  fulfills_diplomas?: string[]
   source_url?: string
   created_at?: string
   updated_at?: string
@@ -119,6 +123,7 @@ export interface CourseRecommendation {
 
 export interface SearchFilters {
   term?: string
+  currentTerm?: string
   option_id?: string
   dept?: string[]
   level?: number[]

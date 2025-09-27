@@ -1,0 +1,548 @@
+{
+  "courses": [
+    {
+      "department": "ME",
+      "code": "ME100",
+      "name": "Professional Development for Mechanical Engineers",
+      "description": "Fundamental knowledge and skills for academic and professional development in ME: communication, design process, problem solving, measurements/data analysis, professionalism, safety, IP.",
+      "prerequisites": "Prereq: 1A Mechanical Engineering.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME100B",
+      "name": "Engineering Communication & Critical Decision Making",
+      "description": "Communication, critical thinking and decision-making skills oriented to ME practice; oral/written formats, teamwork.",
+      "prerequisites": "Prereq: 1B Mechanical Engineering.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME101",
+      "name": "Introduction to Methods of Engineering Design",
+      "description": "Methods and skills for engineering design: problem definition, concept generation, selection, scheduling, prototyping; teamwork and communication.",
+      "prerequisites": "Prereq: 1B Mechanical Engineering.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME123",
+      "name": "Mechanics",
+      "description": "Equilibrium of rigid bodies; trusses/frames; shear/moment; friction; centroids/area moments; applications.",
+      "prerequisites": "Prereq: 1A Mechanical Engineering. Antireq: MTE 121/GENE 121.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME201",
+      "name": "Advanced Calculus for Mechanical Engineering 1",
+      "description": "Vector calculus incl. line/surface integrals; field theory; ODEs with applications.",
+      "prerequisites": "Prereq: MATH 119; Level at least 2A Mechanical Engineering.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME203",
+      "name": "Advanced Calculus for Mechanical Engineering 2",
+      "description": "Fourier series and transforms; PDEs of mathematical physics; numerical methods; applications.",
+      "prerequisites": "Prereq: ME 201; Level at least 2B Mechanical Engineering.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME219",
+      "name": "Mechanics of Deformable Solids",
+      "description": "Stress and strain; axial members; torsion; bending; shear/moment diagrams; combined loading; stability intro.",
+      "prerequisites": "Prereq: ME 123; Level at least 2A Mechanical Engineering.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME230",
+      "name": "Materials Engineering 1",
+      "description": "Microstructure of crystals/amorphous materials; deformation, fracture; phase equilibria; diffusion; strengthening; heat treatment.",
+      "prerequisites": "Prereq: CHE 102; Level at least 2A Mechanical Engineering. Antireq: MTE 111.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME240",
+      "name": "Algorithms, Numerics and Computation",
+      "description": "Algorithmic and numeric methods for engineering computation and modelling.",
+      "prerequisites": "Prereq: ME 101; Level at least 2A Mechanical Engineering.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME250",
+      "name": "Thermodynamics 1",
+      "description": "Energy and the First/Second Laws; properties, control mass/volume analyses; entropy; cycles; equilibrium criteria.",
+      "prerequisites": "Prereq: MATH 118; Level at least 2B ME. Antireq: MTE 309, SYDE 381.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME251",
+      "name": "Mechanics of Machines",
+      "description": "Kinematics and kinetics of particles and rigid bodies; work-energy and impulse-momentum methods; vibrations intro.",
+      "prerequisites": "Prereq: ME 123; Level at least 2B ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME269",
+      "name": "Electromechanical Devices and Power Processing",
+      "description": "Review of circuits; EM basics; DC machines, synchronous generators, transformers, induction motors; intro to drives and power electronics.",
+      "prerequisites": "Prereq: Level at least 2A ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME321",
+      "name": "Kinematics and Dynamics of Machines",
+      "description": "Geometry of motion, linkages, gears, cams; mechanism synthesis/analysis; vibration basics; transmissibility and isolation.",
+      "prerequisites": "Prereq: ME 219 and ME 251; Level at least 3A ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME322",
+      "name": "Mechanical Design 1",
+      "description": "Design process; static failure of ductile/brittle materials; fatigue; design of welds, bolts, springs, shafts.",
+      "prerequisites": "Prereq: ME 219; Level at least 3B ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME340",
+      "name": "Manufacturing Processes",
+      "description": "Casting, forming, machining, joining; materials-process-design interactions; cost and rates.",
+      "prerequisites": "Prereq: ME 230; Level at least 3A ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME343",
+      "name": "Heat Transfer",
+      "description": "Conduction, convection, radiation; heat exchangers; numerical methods.",
+      "prerequisites": "Prereq: ME 250; Level at least 3A ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME351",
+      "name": "Fluid Mechanics 1",
+      "description": "Properties and fundamentals; hydrostatics; conservation laws; similarity; laminar/turbulent flow; pipe flow; forces on bodies.",
+      "prerequisites": "Prereq: ME 250; Level at least 3A ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME360",
+      "name": "Introduction to Control Systems",
+      "description": "Open/closed-loop control; modelling; block diagrams; Laplace methods; stability; modes of control; analog simulation.",
+      "prerequisites": "Prereq: ME 203 and ME 321; Level at least 3B ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME362",
+      "name": "Fluid Mechanics 2",
+      "description": "Potential and viscous flows; lubrication; boundary layers; turbulence; compressible flow; turbomachinery fundamentals.",
+      "prerequisites": "Prereq: ME 351; Level at least 3B ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME375",
+      "name": "Instrumentation and Measurement",
+      "description": "Measurement systems; sensors and transducers; DAQ; uncertainty; experimental methods.",
+      "prerequisites": "Prereq: ME 240; Level at least 3B ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME380",
+      "name": "Mechanical Engineering Design Workshop",
+      "description": "Full-term team design project applying the design process; often includes prototype build/test.",
+      "prerequisites": "Prereq: Level at least 3B ME. Antireq: MTE 380.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME381",
+      "name": "Introduction to Mechatronics",
+      "description": "Sensors/actuators; signal conditioning; microcontrollers; real-time interfacing; system integration.",
+      "prerequisites": "Prereq: ME 269; Level at least 3B ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME423",
+      "name": "Mechanical Design 2",
+      "description": "Advanced machine elements (clutches, brakes, couplings, bearings, gears); reliability; optimization; synthesis project.",
+      "prerequisites": "Prereq: ME 322; Level at least 4A ME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME452",
+      "name": "HVAC Load Analysis and Design Fundamentals",
+      "description": "Psychrometrics; duct design; IAQ & comfort; heating/cooling loads; conduction; solar gains; infiltration.",
+      "prerequisites": "Prereq: Level at least 4A in Architectural, Chemical, Civil, Environmental, or Mechanical Engineering.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME459",
+      "name": "Energy Conversion",
+      "description": "Conventional, nuclear, and renewable energy conversion systems; performance and design considerations.",
+      "prerequisites": "Prereq: 4A ME (typ. with ME 343/353) or equivalent; see calendar for details.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME481",
+      "name": "Mechanical Engineering Design Project 1",
+      "description": "Capstone design project – proposal, specs, planning, initial/detailed design.",
+      "prerequisites": "Prereq: ME 380; Level at least 4A ME. Antireq: MTE 481.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME482",
+      "name": "Mechanical Engineering Design Project 2",
+      "description": "Continuation of ME 481 – final detailed design and proof of feasibility.",
+      "prerequisites": "Prereq: ME 380 and ME 481; Level at least 4B ME. Antireq: MTE 482.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME524",
+      "name": "Advanced Dynamics and Vibrations",
+      "description": "Planar & 3D rigid body motion; Newton/Lagrange methods; linear vibration; modes; stability; intro to nonlinear simulation.",
+      "prerequisites": "Prereq: ME 321; Level at least 4A ME/MTE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME547",
+      "name": "Robot Manipulators: Kinematics, Dynamics, Control",
+      "description": "DH convention; forward/inverse kinematics; Jacobians; dynamics; trajectory generation; joint control; sensing; industrial applications.",
+      "prerequisites": "Prereq: ME 360 or MTE 360; and ME 212 or SYDE 182; Level at least 4A ME/MTE. Antireq: ECE 486.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME555",
+      "name": "Computer-Aided Design",
+      "description": "Geometric modelling (wireframe, surface, solid); parametric/feature-based design; curves/surfaces (Bezier, B-splines, NURBS); labs.",
+      "prerequisites": "Prereq: ME 321 and ME 322; Level at least 4A ME/MTE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME559",
+      "name": "Finite Element Methods",
+      "description": "FEM fundamentals; element derivation; assembly; BCs; solvers; applications to heat transfer, fluid flow, stress; basic FE coding.",
+      "prerequisites": "Prereq: ME 219 and ME 240 (or equivalents); Level at least 4A ME/MTE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME561",
+      "name": "Fluid Power Control Systems",
+      "description": "Hydraulic/pneumatic circuits; valves; pumps and motors; transmissions; sealing/filtration/thermal control; applications.",
+      "prerequisites": "Prereq: ME 351 and ME 360 (or MTE 360); Level at least 4A ME/MTE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME571",
+      "name": "Air Pollution",
+      "description": "Air pollution sources, atmospheric dispersion, measurement, and control technologies.",
+      "prerequisites": "Prereq: Level at least 4A ME or permission of instructor.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "ME",
+      "code": "ME574",
+      "name": "Energy Systems Modelling and Optimization",
+      "description": "Methods for modelling, analysis, and optimization of energy systems; case studies.",
+      "prerequisites": "Prereq: Level at least 4A ME or permission of instructor.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-ME.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE101",
+      "name": "Introduction to Systems Design Engineering",
+      "description": "Introduction to systems thinking, design methods, and the SYDE program.",
+      "prerequisites": "Prereq: 1A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE101L",
+      "name": "Introduction to Systems Design Engineering Laboratory",
+      "description": "Laboratory activities supporting SYDE 101.",
+      "prerequisites": "Coreq: SYDE 101.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE111",
+      "name": "Physics 1: Mechanics",
+      "description": "Kinematics and dynamics of particles and rigid bodies; energy and momentum methods.",
+      "prerequisites": "Prereq: 1A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE121",
+      "name": "Digital Computation",
+      "description": "Programming fundamentals and numerical methods for engineering computation.",
+      "prerequisites": "Prereq: 1A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE162",
+      "name": "Human Factors in Design",
+      "description": "Human-machine systems; user needs; information processing and sensory processes; ergonomic design.",
+      "prerequisites": "Prereq: 1B SYDE. Antireq: BME 162.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE182",
+      "name": "Physics 2: Dynamics",
+      "description": "Particles and rigid-body kinematics/kinetics; energy & momentum methods; vibrations.",
+      "prerequisites": "Prereq: 1B SYDE or 2A MTE. Antireq: BME 182.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE192",
+      "name": "Digital Systems",
+      "description": "Combinational/sequential logic; state machines; microcomputer interfacing.",
+      "prerequisites": "Prereq: 1B SYDE. Antireq: BME 292/393.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE211",
+      "name": "Calculus 3",
+      "description": "Vector calculus; line/surface integrals; ODEs and systems; numerical methods for ODEs.",
+      "prerequisites": "Prereq: 2A SYDE or 2A BME.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE212",
+      "name": "Probability and Statistics",
+      "description": "Probability, random variables, common distributions, estimation, hypothesis tests, regression, goodness-of-fit.",
+      "prerequisites": "Prereq: 2B SYDE. Antireq: BME 213, CIVE 224, ECE 316, NE 115.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE221",
+      "name": "Physics 3: Electricity and Magnetism",
+      "description": "Electrostatics, circuits, magnetostatics, electromagnetic induction.",
+      "prerequisites": "Prereq: 2A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE223",
+      "name": "Data Structures and Algorithms",
+      "description": "Structured software design; ADTs; recursion; algorithm analysis; sorting/searching; hashing; NP-completeness.",
+      "prerequisites": "Prereq: 1B SYDE or CE Option. Antireq: BME 122, CS 240/241E, ECE 250, MTE 140.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE252",
+      "name": "Linear Systems and Signals",
+      "description": "Discrete/continuous-time systems; Z/Laplace/Fourier transforms; transfer functions; sampling; filters; stability.",
+      "prerequisites": "Prereq: 2B SYDE or 2B ME or 2B MTE. Antireq: BME 252.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE261",
+      "name": "Design, Systems, and Society",
+      "description": "Technology-society-environment interactions; frameworks and evidence-based analysis to inform design choices.",
+      "prerequisites": "Prereq: 2A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE262",
+      "name": "Engineering Economics of Design",
+      "description": "Business plans, pricing, production, evaluating investments, depreciation, new product economics.",
+      "prerequisites": "Prereq: 2B SYDE. Antireq: BME 364, MSCI 261.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE283",
+      "name": "Mechanics of Deformable Solids",
+      "description": "Stress-strain; axial, torsion, bending; shear/moment; instability intro.",
+      "prerequisites": "Prereq: 2A SYDE. Antireq: BME 281, CIVE 204, ME 219.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE285",
+      "name": "Circuits and Systems",
+      "description": "Circuit analysis and modelling for linear systems.",
+      "prerequisites": "Prereq: 2A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE292",
+      "name": "Statistics 2",
+      "description": "Linear models: regression and ANOVA; diagnostics; model selection; intro to non-linear regression and factorials.",
+      "prerequisites": "Prereq: BME 213 or SYDE 212 (min 70%); 3A BME or 3B SYDE. Antireq: STAT 331, 371.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE312",
+      "name": "Optimization",
+      "description": "Optimization theory and algorithms for engineering systems; linear, nonlinear, discrete; applications.",
+      "prerequisites": "Prereq: 3A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE322",
+      "name": "Software Design and Architecture",
+      "description": "Software requirements, architecture, patterns, testing, maintenance; group project.",
+      "prerequisites": "Prereq: SYDE 223.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE334",
+      "name": "Human Factors in Systems Design",
+      "description": "Advanced human factors with applications to complex systems.",
+      "prerequisites": "Prereq: SYDE 162.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE352",
+      "name": "Introduction to Control Systems",
+      "description": "Classical and state-space control; stability; root locus; frequency response; PID; labs alt weeks.",
+      "prerequisites": "Prereq: 3B SYDE. Antireq: BME 353.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE352L",
+      "name": "Control Systems Laboratory",
+      "description": "Laboratory for SYDE 352.",
+      "prerequisites": "Coreq: SYDE 352. Antireq: BME 353L.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE381",
+      "name": "Thermodynamics",
+      "description": "Classical thermodynamics with intro to heat transfer and statistical thermodynamics; energy & environment applications.",
+      "prerequisites": "Prereq: 3A SYDE. Antireq: BME 384, MTE 309, ME 250.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE383",
+      "name": "Fluid Mechanics",
+      "description": "Statics/kinematics/dynamics of fluids; conservation laws; dimensional analysis; internal flows; intro to BL/ideal/compressible flow.",
+      "prerequisites": "Prereq: 3A SYDE. Antireq: ME 351.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE411",
+      "name": "Systems Design Capstone Project Preparation",
+      "description": "Project planning, requirements, and preliminary design activities ahead of capstone.",
+      "prerequisites": "Prereq: 4A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE433",
+      "name": "Decision Analysis and Risk Management",
+      "description": "Decision analysis under uncertainty; utility, Bayesian updating, risk evaluation, and applications.",
+      "prerequisites": "Prereq: SYDE 212.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE461",
+      "name": "Systems Design Capstone Project 1",
+      "description": "First half of two-term capstone project following SYDE design sequence.",
+      "prerequisites": "Prereq: 4A SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE462",
+      "name": "Systems Design Capstone Project 2",
+      "description": "Second half of capstone project; continuation from SYDE 461.",
+      "prerequisites": "Prereq: 4B SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE531",
+      "name": "Design Optimization Under Probabilistic Uncertainty",
+      "description": "Optimization under uncertainty: stochastic/dynamic programming, chance constraints, reliability, tolerance design; applications.",
+      "prerequisites": "Prereq: Level at least 3B SYDE (recommended).",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE532",
+      "name": "Introduction to Complex Systems",
+      "description": "Nonlinear dynamics, bifurcations, power laws, statistical inference for complex systems; case studies on global issues.",
+      "prerequisites": "Prereq: Level at least 3A BME or 3B SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE533",
+      "name": "Conflict Resolution",
+      "description": "Decision-making with multiple participants/objectives; graph model, normal form, negotiation, uncertainty, MCDA; decision support & applications.",
+      "prerequisites": null,
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE544",
+      "name": "Biomedical Measurement and Signal Processing",
+      "description": "Biomedical signals (EMG, EEG, ECG), instrumentation, and signal processing for feature extraction/applications.",
+      "prerequisites": "Prereq: One of BIOL 273, BME 284, SYDE 384/584; Level at least 3A BME or 3B SYDE or 3B Life Physics (Biophysics).",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE553",
+      "name": "Rehabilitation Engineering",
+      "description": "Assistive technologies, prosthetics/orthotics, and rehabilitation system design.",
+      "prerequisites": "Prereq: 4A BME or 4A SYDE or instructor consent.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    },
+    {
+      "department": "SYDE",
+      "code": "SYDE584",
+      "name": "Biomedical Systems Modelling",
+      "description": "Mathematical modelling of physiological systems and biomedical processes.",
+      "prerequisites": "Prereq: SYDE 384 or equivalent; 4A BME/SYDE.",
+      "source": "https://ucalendar.uwaterloo.ca/2324/COURSE/course-SYDE.html"
+    }
+  ]
+}

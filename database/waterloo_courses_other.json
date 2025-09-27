@@ -1,0 +1,194 @@
+[
+  {
+    "department": "CS",
+    "code": "CS115",
+    "title": "Introduction to Computer Science 1",
+    "prerequisites": "None"
+  },
+  {
+    "department": "CS",
+    "code": "CS135",
+    "title": "Designing Functional Programs",
+    "prerequisites": "None"
+  },
+  {
+    "department": "CS",
+    "code": "CS136",
+    "title": "Elementary Algorithm Design and Data Abstraction",
+    "prerequisites": "One of: 90% in CS 115; 70% in CS 116; 60% in CS 135; or CS 145. Co-requisite: CS 136L."
+  },
+  {
+    "department": "CS",
+    "code": "CS137",
+    "title": "Programming Principles",
+    "prerequisites": "None"
+  },
+  {
+    "department": "CS",
+    "code": "CS138",
+    "title": "Introduction to Data Abstraction and Implementation",
+    "prerequisites": "Prereq: CS 137."
+  },
+  {
+    "department": "CS",
+    "code": "CS230",
+    "title": "Introduction to Computers and Computer Systems",
+    "prerequisites": "One of CS 116/136/138/146; or (60%+ in CS 114 and CS 115/135/145)."
+  },
+  {
+    "department": "CS",
+    "code": "CS231",
+    "title": "Algorithmic Problem Solving",
+    "prerequisites": "One of CS 116/136/138/146; or (60%+ in CS 114 and CS 115/135/145)."
+  },
+  {
+    "department": "CS",
+    "code": "CS240",
+    "title": "Data Structures and Data Management",
+    "prerequisites": "All of: (CS 245/245E or SE 212); (CS 241/241E/246/246E); (STAT 206/230/240)."
+  },
+  {
+    "department": "CS",
+    "code": "CS241",
+    "title": "Foundations of Sequential Programs",
+    "prerequisites": "CS 138/246/246E or (85%+ in CS 136/146)."
+  },
+  {
+    "department": "CS",
+    "code": "CS245",
+    "title": "Logic and Computation",
+    "prerequisites": "CS 136/138/146 and MATH 135/145."
+  },
+  {
+    "department": "CS",
+    "code": "CS247",
+    "title": "Software Engineering Principles",
+    "prerequisites": "CS 241/241E."
+  },
+  {
+    "department": "CS",
+    "code": "CS341",
+    "title": "Algorithms",
+    "prerequisites": "All of: CS 240/240E; (CS 245/245E or SE 212); MATH 239/249; STAT 206/230/240."
+  },
+  {
+    "department": "CS",
+    "code": "CS348",
+    "title": "Introduction to Database Management",
+    "prerequisites": "Co-requisite: CS 240."
+  },
+  {
+    "department": "CS",
+    "code": "CS349",
+    "title": "User Interfaces",
+    "prerequisites": "CS 241/241E and MATH 115/136/146."
+  },
+  {
+    "department": "CS",
+    "code": "CS452",
+    "title": "Real-Time Programming",
+    "prerequisites": "CS 350 or SE 350."
+  },
+  {
+    "department": "CS",
+    "code": "CS467",
+    "title": "Introduction to Quantum Information Processing",
+    "prerequisites": "Level at least 3A and 80% in MATH 235/245."
+  },
+  {
+    "department": "CS",
+    "code": "CS479",
+    "title": "Neural Networks",
+    "prerequisites": "All of: (CS 335/370/371 or AMATH 242); and (60%+ in STAT 206) or STAT 230/240."
+  },
+  {
+    "department": "CS",
+    "code": "CS480",
+    "title": "Introduction to Machine Learning",
+    "prerequisites": "CS 341 and STAT 206/231/241."
+  },
+  {
+    "department": "CS",
+    "code": "CS484",
+    "title": "Computational Vision",
+    "prerequisites": "STAT 206/230/240 and one of: CS 370/371; AMATH 242; MATH 235/245."
+  },
+  {
+    "department": "CS",
+    "code": "CS485",
+    "title": "Statistical and Computational Foundations of Machine Learning",
+    "prerequisites": "CS 341 and STAT 206/230/240."
+  },
+  {
+    "department": "CS",
+    "code": "CS486",
+    "title": "Introduction to Artificial Intelligence",
+    "prerequisites": "CS 341. Co-requisite: STAT 206/231/241."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE121",
+    "title": "Introduction to Computer Programming",
+    "prerequisites": "Level at least 1B Management Engineering."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE240",
+    "title": "Algorithms and Data Structures",
+    "prerequisites": "Prereq: MSCI/MSE 121; Level at least 2A Management Engineering."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE245",
+    "title": "Databases and Software Design",
+    "prerequisites": "Prereq: MSE 240; Level at least 2B Management Engineering."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE342",
+    "title": "Principles of Software Engineering",
+    "prerequisites": "Prereq: MSE 245; Level at least 3A Management Engineering."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE343",
+    "title": "Human-Computer Interaction",
+    "prerequisites": "See calendar; typically Level at least 3A and prior software design coursework."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE436",
+    "title": "Decision Support Systems",
+    "prerequisites": "MSE 332; and one of CS 348 or MSE 245; and one of CS 247, MSE 342, SYDE 322; and one of CS 449, MSE 343, SYDE 348/548."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE446",
+    "title": "Introduction to Machine Learning",
+    "prerequisites": "(One of BME 122, CS 240/240E, ECE 250, MSE 240, MTE 140, SYDE 223) AND (one of BME 213, CHE 220, CIVE 224, ECE 306/307, ENVE 224, MSE 252/253, ME 202, MTE 201, NE 215, STAT 206/231/241, SYDE 212); Level at least 3A. Antireq: CS 480, ECE 457B, SYDE 522."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE531",
+    "title": "Stochastic Processes and Decision Making",
+    "prerequisites": "MSCI/MSE 431 (Stochastic Models and Methods)."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE541",
+    "title": "Search Engines",
+    "prerequisites": "(One of BME 122, CS 240/240E, ECE 250, MSE 240, MTE 140, SYDE 223) AND (one of AE 224, BME 213, CHE 220, CIVE 224, ECE 203/306, ENVE 224, MSE 251/252, ME 202, MTE 201, NE 215, STAT 206/231/241, SYDE 212)."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE543",
+    "title": "Analytics and User Experience",
+    "prerequisites": "(One of MSE 253, SYDE 212) AND (one of MSE 343, SYDE 348/548)."
+  },
+  {
+    "department": "MSE",
+    "code": "MSE546",
+    "title": "Advanced Machine Learning",
+    "prerequisites": "MSCI/MSE 332; and one of CS 480, ECE 457B, MSE 446, SYDE 522."
+  }
+]

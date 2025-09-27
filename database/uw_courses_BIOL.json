@@ -1,0 +1,24 @@
+[
+  {
+    "code": "BIOL239",
+    "subject": "BIOL",
+    "title": "Genetics",
+    "description": "Principles of inheritance and variation. Mendelian genetics, gene interaction, linkage and mapping, molecular basis of gene function, mutation, and regulation of gene expression.",
+    "prerequisites": "BIOL 130 or equivalent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Core biology course; usually offered in F, W terms"
+  },
+  {
+    "code": "BIOL240",
+    "subject": "BIOL",
+    "title": "Cell Biology",
+    "description": "Structure and function of eukaryotic cells. Topics include membranes, organelles, cytoskeleton, intracellular transport, signal transduction, and cell cycle control.",
+    "prerequisites": "BIOL 130, CHEM 120 or CHEM 123",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Core biology course; usually offered in F, W terms"
+  }
+]

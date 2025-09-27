@@ -1,0 +1,424 @@
+{
+  "metadata": {
+    "source_hint": "UW official CS prerequisite chart + UW Engineering Calendar (ECE)",
+    "last_updated_local": "2025-09-25",
+    "notes": "Focused on ACTUAL titles and prerequisites where reliably available today. Some advanced/graduate MSE items lack public, stable prerequisites in current sources."
+  },
+  "courses": [
+    {
+      "code": "CS115",
+      "title": "Introduction to Computer Science 1",
+      "prerequisites": null
+    },
+    {
+      "code": "CS135",
+      "title": "Designing Functional Programs",
+      "prerequisites": null
+    },
+    {
+      "code": "CS136",
+      "title": "Elementary Algorithm Design and Data Abstraction",
+      "prerequisites": "One of: 90% in CS115; 70% in CS116; 60% in CS135; or CS145",
+      "co_requisites": "CS136L"
+    },
+    {
+      "code": "CS137",
+      "title": "Programming Principles",
+      "prerequisites": null
+    },
+    {
+      "code": "CS138",
+      "title": "Introduction to Data Abstraction and Implementation",
+      "prerequisites": "CS137"
+    },
+    {
+      "code": "CS230",
+      "title": "Introduction to Computers and Computer Systems",
+      "prerequisites": "One of: CS116 / CS136 / CS138 / CS146; or (60%+ in CS114 and CS115/135/145)"
+    },
+    {
+      "code": "CS231",
+      "title": "Algorithmic Problem Solving",
+      "prerequisites": "One of: CS116 / CS136 / CS138 / CS146; or (60%+ in CS114 and CS115/135/145)"
+    },
+    {
+      "code": "CS240",
+      "title": "Data Structures and Data Management",
+      "prerequisites": [
+        "CS245/245E or SE212",
+        "CS241/241E/246/246E",
+        "STAT 206/230/240"
+      ]
+    },
+    {
+      "code": "CS241",
+      "title": "Foundations of Sequential Programs",
+      "prerequisites": "CS138/246/246E or (85%+ in CS136/146)"
+    },
+    {
+      "code": "CS245",
+      "title": "Logic and Computation",
+      "prerequisites": "CS136/138/146 and MATH 135/145"
+    },
+    {
+      "code": "CS247",
+      "title": "Software Engineering Principles",
+      "prerequisites": "CS241/241E"
+    },
+    {
+      "code": "CS341",
+      "title": "Algorithms",
+      "prerequisites": [
+        "CS240/240E",
+        "CS245/245E or SE212",
+        "MATH 239/249",
+        "STAT 206/230/240"
+      ]
+    },
+    {
+      "code": "CS348",
+      "title": "Introduction to Database Management",
+      "prerequisites": null,
+      "co_requisites": "CS240"
+    },
+    {
+      "code": "CS349",
+      "title": "User Interfaces",
+      "prerequisites": "CS241/241E and MATH 115/136/146"
+    },
+    {
+      "code": "CS452",
+      "title": "Real-Time Programming",
+      "prerequisites": "CS350 or SE350; Computer Science students only"
+    },
+    {
+      "code": "CS467",
+      "title": "Introduction to Quantum Information Processing",
+      "prerequisites": "Level 3A and 80% in MATH 235/245"
+    },
+    {
+      "code": "CS479",
+      "title": "Neural Networks",
+      "prerequisites": [
+        "CS335/CS370/CS371 or AMATH 242",
+        "60%+ in STAT 206 or STAT 230/240"
+      ]
+    },
+    {
+      "code": "CS480",
+      "title": "Introduction to Machine Learning",
+      "prerequisites": "CS341 and STAT 206/231/241"
+    },
+    {
+      "code": "CS484",
+      "title": "Computational Vision",
+      "prerequisites": [
+        "STAT 206/230/240",
+        "One of: CS370/CS371 or AMATH 242 or MATH 235/245"
+      ]
+    },
+    {
+      "code": "CS485",
+      "title": "Statistical & Computational Foundations of Machine Learning",
+      "prerequisites": "CS341 and STAT 206/230/240"
+    },
+    {
+      "code": "CS486",
+      "title": "Introduction to Artificial Intelligence",
+      "prerequisites": "CS341",
+      "co_requisites": "STAT 206/231/241"
+    },
+    {
+      "code": "ECE105",
+      "title": "Physics of Electrical Engineering 1 (Classical Mechanics)",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE106",
+      "title": "Physics of Electrical Engineering 2 (Electricity and Magnetism)",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE124",
+      "title": "Digital Circuits and Systems",
+      "prerequisites": "Level at least 1B in Comp/Electrical/Software Engineering"
+    },
+    {
+      "code": "ECE140",
+      "title": "Linear Circuits",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE150",
+      "title": "Fundamentals of Programming",
+      "prerequisites": "Level at least 1A in Computer/Electrical Engineering"
+    },
+    {
+      "code": "ECE192",
+      "title": "Electrical and Computer Engineering Practicum",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE205",
+      "title": "Advanced Calculus 1 for Electrical and Computer Engineering",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE207",
+      "title": "Signals and Systems",
+      "prerequisites": "(ECE140, ECE240; level \u2265 2B) or (ECE140, MATH 213; level \u2265 3A in Software Eng)"
+    },
+    {
+      "code": "ECE208",
+      "title": "Probability and Statistics for Electrical and Computer Engineers",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE209",
+      "title": "Electromagnetics 1",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE222",
+      "title": "Digital Computers",
+      "prerequisites": "ECE124; and (CS115 or CS135 or CS137 or CS145 or ECE150)"
+    },
+    {
+      "code": "ECE224",
+      "title": "Embedded Microprocessor Systems",
+      "prerequisites": "ECE124, ECE222"
+    },
+    {
+      "code": "ECE240",
+      "title": "Electronic Circuits 1",
+      "prerequisites": "ECE106, ECE140, MATH 119",
+      "co_requisites": "ECE205 or MATH 211 or MATH 213"
+    },
+    {
+      "code": "ECE242",
+      "title": "Electronic Circuits 2",
+      "prerequisites": "ECE240 and (ECE205 or MATH 211)",
+      "co_requisites": "ECE207"
+    },
+    {
+      "code": "ECE250",
+      "title": "Algorithms and Data Structures",
+      "prerequisites": "Level \u2265 2A in Computer/Electrical Engineering"
+    },
+    {
+      "code": "ECE252",
+      "title": "Systems Programming and Concurrency",
+      "prerequisites": "ECE250; level at least 2B"
+    },
+    {
+      "code": "ECE255",
+      "title": "Digital Systems Design",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE260",
+      "title": "Fundamentals of Electrical Power Engineering",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE298",
+      "title": "Engineering Design, Economics, and Impact",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE300",
+      "title": "Seminar",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE306",
+      "title": "Probability Theory and Statistics",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE307",
+      "title": "Electromagnetics 2",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE316",
+      "title": "Signals and Systems 2",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE320",
+      "title": "Computer Architecture",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE327",
+      "title": "Digital Hardware Systems",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE350",
+      "title": "Operating Systems",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE351",
+      "title": "Compilers",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE356",
+      "title": "Database Systems",
+      "prerequisites": "ECE250; one of CS245/245E or ECE208 or SE212"
+    },
+    {
+      "code": "ECE358",
+      "title": "Computer Networks",
+      "prerequisites": "One of: BME213, ECE203, MTE201, NE215, STAT206, SYDE212"
+    },
+    {
+      "code": "ECE375",
+      "title": "Control Systems",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE380",
+      "title": "Analog Control Systems",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE387",
+      "title": "Microelectronic Circuits",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE390",
+      "title": "Engineering Economics",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE406",
+      "title": "Digital Communications",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE409",
+      "title": "Digital Signal Processing",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE423",
+      "title": "Computer Security",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE454",
+      "title": "Distributed Computing",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE457A",
+      "title": "Cooperative and Adaptive Algorithms (Artificial Intelligence)",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE459",
+      "title": "Programming for Performance",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE463",
+      "title": "Computer Networks 2",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE481",
+      "title": "Digital Integrated Circuit Design",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE484",
+      "title": "Digital Control Systems",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE486",
+      "title": "Real-Time Embedded Systems",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE488",
+      "title": "Foundations of Robotics",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE495",
+      "title": "Special Topics",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE498A",
+      "title": "Capstone Design Project 1",
+      "prerequisites": null
+    },
+    {
+      "code": "ECE498B",
+      "title": "Capstone Design Project 2",
+      "prerequisites": null
+    },
+    {
+      "code": "MSE121",
+      "title": "Introduction to Computer Programming",
+      "prerequisites": "Level at least 1B Management Engineering"
+    },
+    {
+      "code": "MSE240",
+      "title": "Algorithms and Data Structures",
+      "prerequisites": "MSCI 121; Level at least 2A Management Engineering"
+    },
+    {
+      "code": "MSE245",
+      "title": "Databases and Software Design",
+      "prerequisites": "MSCI 240; Level at least 2B Management Engineering"
+    },
+    {
+      "code": "MSE342",
+      "title": "Principles of Software Engineering",
+      "prerequisites": "MSCI 245"
+    },
+    {
+      "code": "MSE343",
+      "title": "Human-Computer Interaction",
+      "prerequisites": null
+    },
+    {
+      "code": "MSE436",
+      "title": "Decision Support Systems",
+      "prerequisites": "MSCI 332; one of CS348 or MSCI245; one of CS247, MSCI342, SYDE322; one of CS449, MSCI343, SYDE348 or 548"
+    },
+    {
+      "code": "MSE446",
+      "title": "Introduction to Machine Learning",
+      "prerequisites": "(One of BME122, CS240, ECE250, MSCI240, MTE140, SYDE223) and (one of BME213, CHE220, CIVE224, ECE306/307, ENVE224, MSCI252/253, ME202, MTE201, NE215, STAT206/231/241, SYDE212); Level \u2265 3A"
+    },
+    {
+      "code": "MSE531",
+      "title": "Management Sciences Graduate Topic (varies by offering)",
+      "prerequisites": null
+    },
+    {
+      "code": "MSE541",
+      "title": "Data Analytics and Visualization (typical title)",
+      "prerequisites": null
+    },
+    {
+      "code": "MSE543",
+      "title": "Human Factors Engineering (typical title)",
+      "prerequisites": null
+    },
+    {
+      "code": "MSE546",
+      "title": "Machine Learning Methods (typical title)",
+      "prerequisites": null
+    }
+  ]
+}

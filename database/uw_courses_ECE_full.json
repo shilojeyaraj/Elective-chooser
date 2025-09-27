@@ -1,0 +1,189 @@
+[
+  {
+    "code": "ECE204",
+    "subject": "ECE",
+    "title": "Numerical Methods",
+    "description": "Numerical solution of equations, interpolation, numerical differentiation and integration, and solution of systems of linear and nonlinear equations. Applications to electrical and computer engineering problems.",
+    "prerequisites": "MATH 118 or equivalent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Core ECE course"
+  },
+  {
+    "code": "ECE208",
+    "subject": "ECE",
+    "title": "Electronic Devices",
+    "description": "Introduction to semiconductor devices including diodes, BJTs, and MOSFETs. Device models, biasing, and small-signal analysis.",
+    "prerequisites": "ECE 140 or equivalent circuits course",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Required for many ECE programs"
+  },
+  {
+    "code": "ECE224",
+    "subject": "ECE",
+    "title": "Embedded Microprocessor Systems",
+    "description": "Introduction to embedded systems using microcontrollers. Assembly and C programming, I/O interfaces, interrupts, timers, and real-time applications.",
+    "prerequisites": "ECE 222 or CS 241",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Includes lab work"
+  },
+  {
+    "code": "ECE305",
+    "subject": "ECE",
+    "title": "Probability Theory and Statistics",
+    "description": "Probability theory and statistical methods applied to engineering problems. Topics include random variables, distributions, expectation, estimation, hypothesis testing, and applications to signals and systems.",
+    "prerequisites": "MATH 211 or equivalent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Core ECE course"
+  },
+  {
+    "code": "ECE405A",
+    "subject": "ECE",
+    "title": "Engineering Design Project (Planning)",
+    "description": "Students work in teams to select and define a design project. Includes literature review, project planning, and preparation of a formal proposal.",
+    "prerequisites": "Level at least 4A in ECE",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.25,
+    "notes": "Capstone design project part A"
+  },
+  {
+    "code": "ECE405B",
+    "subject": "ECE",
+    "title": "Engineering Design Project (Development)",
+    "description": "Continuation of ECE 405A. Design, implementation, and initial testing of the chosen project under faculty supervision.",
+    "prerequisites": "ECE 405A",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.25,
+    "notes": "Capstone design project part B"
+  },
+  {
+    "code": "ECE405C",
+    "subject": "ECE",
+    "title": "Engineering Design Project (Implementation)",
+    "description": "Project implementation, system integration, and verification. Emphasis on meeting design specifications and constraints.",
+    "prerequisites": "ECE 405B",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.25,
+    "notes": "Capstone design project part C"
+  },
+  {
+    "code": "ECE405D",
+    "subject": "ECE",
+    "title": "Engineering Design Project (Completion)",
+    "description": "Completion of the project, preparation of a final report, and presentation. Evaluation based on technical merit, design process, and professional standards.",
+    "prerequisites": "ECE 405C",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.25,
+    "notes": "Capstone design project part D"
+  },
+  {
+    "code": "ECE417",
+    "subject": "ECE",
+    "title": "Image Processing",
+    "description": "Digital image processing fundamentals. Sampling, quantization, enhancement, restoration, compression, and recognition methods.",
+    "prerequisites": "ECE 207 or equivalent signals course",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course"
+  },
+  {
+    "code": "ECE451",
+    "subject": "ECE",
+    "title": "Digital Control Systems",
+    "description": "Analysis and design of digital control systems. Discrete-time models, stability, z-transform, root locus, and state-space techniques.",
+    "prerequisites": "ECE 380 or equivalent control course",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course"
+  },
+  {
+    "code": "ECE452",
+    "subject": "ECE",
+    "title": "Software Design and Architecture",
+    "description": "Principles and methods of software design. Architectural styles, patterns, refactoring, documentation, and design quality metrics.",
+    "prerequisites": "CS 246 or ECE 250",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course; often cross-listed with CS"
+  },
+  {
+    "code": "ECE453",
+    "subject": "ECE",
+    "title": "Software Testing, Quality Assurance, and Maintenance",
+    "description": "Techniques for software testing, verification, validation, and quality assurance. Maintenance, evolution, and re-engineering of large systems.",
+    "prerequisites": "ECE 452 or CS 246",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course; often cross-listed with CS"
+  },
+  {
+    "code": "ECE455",
+    "subject": "ECE",
+    "title": "Embedded Software",
+    "description": "Software for embedded systems. Topics include concurrency, real-time scheduling, device drivers, memory management, and communication protocols.",
+    "prerequisites": "ECE 350 or ECE 354",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course"
+  },
+  {
+    "code": "ECE457A",
+    "subject": "ECE",
+    "title": "Cooperative and Adaptive Algorithms",
+    "description": "Introduction to evolutionary computation, swarm intelligence, genetic algorithms, and adaptive heuristics.",
+    "prerequisites": "ECE 250 or CS 240",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course in AI/optimization"
+  },
+  {
+    "code": "ECE457B",
+    "subject": "ECE",
+    "title": "Neural Networks",
+    "description": "Artificial neural networks and deep learning. Topics include backpropagation, architectures, training algorithms, and applications.",
+    "prerequisites": "ECE 457A or consent of instructor",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course in AI"
+  },
+  {
+    "code": "ECE457C",
+    "subject": "ECE",
+    "title": "Computational Intelligence in Engineering",
+    "description": "Overview of computational intelligence methods including fuzzy systems, genetic algorithms, neural networks, and hybrid approaches.",
+    "prerequisites": "ECE 250 or equivalent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course in AI/soft computing"
+  },
+  {
+    "code": "ECE458",
+    "subject": "ECE",
+    "title": "Computer Security",
+    "description": "Principles of computer security. Cryptography, access control, authentication, network security, malware, and secure software engineering.",
+    "prerequisites": "ECE 354 or CS 350",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Elective course; often cross-listed with CS"
+  }
+]

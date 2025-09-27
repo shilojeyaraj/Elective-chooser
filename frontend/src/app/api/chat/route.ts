@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { getChatCompletion, getEmbedding } from '@/lib/openai'
-import { searchElectiveDocs, searchCourses, searchSpecializations, searchCertificates, searchDiplomas, calculateCourseScore, searchCoursesByOption, searchCoursesBySpecialization, getOptionsForProgram, getOptionDetails, analyzeOptionProgress, getCoursesFulfillingMultipleOptions, searchOptionsByInterests } from '@/lib/search'
+import { searchElectiveDocs, searchCourses, searchSpecializations, searchCertificates, searchDiplomas, calculateCourseScore, searchCoursesByOption, searchCoursesBySpecialization, getOptionsForProgram, getOptionDetails, analyzeOptionProgress, getCoursesFulfillingMultipleOptions, searchOptionsByInterests, searchCSECourses, isProgramSpecificCoreCourse } from '@/lib/search'
 
 // Extract program from user message
 function extractProgramFromMessage(message: string): string | null {
@@ -139,6 +139,7 @@ export async function POST(request: NextRequest) {
     try {
       searchResults = await searchCourses(message, {
         term: searchTerm,
+        currentTerm: profile.current_term,
         skills: profile.goal_tags
       })
     } catch (error) {
@@ -237,6 +238,10 @@ export async function POST(request: NextRequest) {
 
     // Get AI response
     const aiResponse = await getChatCompletion(messages)
+    
+  // Extract course mentions from AI response and create recommendations
+  const mentionedCourses = await extractCourseMentions(aiResponse, profile)
+  console.log('📚 Courses mentioned in AI response:', mentionedCourses)
 
     // Save messages to database
     await supabase.from('messages').insert([
@@ -338,52 +343,142 @@ export async function POST(request: NextRequest) {
     console.log('📚 Fallback recommendations:', recommendations.length, 'courses')
   }
   
-  // Final guarantee - if still empty, create basic recommendations
+  // Final guarantee - if still empty, get real courses from database
   if (recommendations.length === 0) {
-    console.log('📚 Creating basic recommendations as final fallback')
-    recommendations = [
-      {
-        course: {
-          id: 'CS246',
-          title: 'Data Structures and Data Management',
-          description: 'Introduction to data structures and algorithms',
-          dept: 'CS',
-          level: 2,
-          number: 246,
-          units: 0.5,
-          terms_offered: ['2A', '2B', '3A', '3B'],
-          skills: ['programming', 'data structures', 'algorithms'],
-          workload: { reading: 2, assignments: 1, projects: 0, labs: 0 }
-        },
-        score: 85,
-        explanation: ['Good foundation course for software development'],
-        counts_toward: ['Software Engineering'],
-        prereqs_met: true,
-        next_offered: ['2A', '2B'],
-        workload_score: 3
-      },
-      {
-        course: {
-          id: 'CS348',
-          title: 'Introduction to Human-Computer Interaction',
-          description: 'Design and evaluation of user interfaces',
-          dept: 'CS',
-          level: 3,
-          number: 348,
-          units: 0.5,
-          terms_offered: ['3A', '3B', '4A', '4B'],
-          skills: ['ui design', 'user experience', 'interface design'],
-          workload: { reading: 2, assignments: 1, projects: 0, labs: 0 }
-        },
-        score: 80,
-        explanation: ['Great for understanding user experience design'],
-        counts_toward: ['Software Engineering'],
-        prereqs_met: true,
-        next_offered: ['3A', '3B'],
-        workload_score: 3
+    console.log('📚 No recommendations found, getting real courses from database as fallback')
+    try {
+      // Get some real courses from the database
+      const { data: fallbackCourses, error: fallbackError } = await supabase
+        .from('courses')
+        .select('*')
+        .limit(10)
+        .order('level', { ascending: true })
+      
+      if (!fallbackError && fallbackCourses && fallbackCourses.length > 0) {
+        console.log('📚 Found fallback courses from database:', fallbackCourses.length)
+        
+        // Filter out program-specific core courses and convert to recommendation format
+        recommendations = fallbackCourses
+          .filter(course => !isProgramSpecificCoreCourse(course, profile.program))
+          .map(course => {
+            const scoreData = calculateCourseScore(course, profile, profile.goal_tags)
+            return {
+              course,
+              ...scoreData
+            }
+          })
+        
+        console.log('📚 Created recommendations from database fallback:', recommendations.length)
+      } else {
+        console.log('📚 Database fallback also failed, creating hardcoded fallback')
+        // Create hardcoded fallback recommendations
+        recommendations = [
+          {
+            course: {
+              id: 'CS246',
+              title: 'Object-Oriented Software Development',
+              dept: 'CS',
+              level: 200,
+              units: 0.5,
+              prereqs: 'CS 136 or CS 146',
+              terms_offered: ['F', 'W', 'S'],
+              workload: { reading: 2, assignments: 4, projects: 3, labs: 1 },
+              skills: ['programming', 'software development', 'object-oriented design']
+            },
+            score: 75,
+            explanation: ['Popular elective course'],
+            counts_toward: [],
+            prereqs_met: false,
+            next_offered: ['F', 'W', 'S'],
+            workload_score: 7,
+            ai_mentioned: false
+          },
+          {
+            course: {
+              id: 'ECE 250',
+              title: 'Algorithms and Data Structures',
+              dept: 'ECE',
+              level: 200,
+              units: 0.5,
+              prereqs: 'ECE 150 or CS 136',
+              terms_offered: ['F', 'W', 'S'],
+              workload: { reading: 3, assignments: 4, projects: 2, labs: 1 },
+              skills: ['algorithms', 'data structures', 'programming']
+            },
+            score: 70,
+            explanation: ['Core algorithms course'],
+            counts_toward: [],
+            prereqs_met: false,
+            next_offered: ['F', 'W', 'S'],
+            workload_score: 8,
+            ai_mentioned: false
+          },
+          {
+            course: {
+              id: 'MSCI 211',
+              title: 'Organizational Behaviour',
+              dept: 'MSCI',
+              level: 200,
+              units: 0.5,
+              prereqs: '',
+              terms_offered: ['F', 'W', 'S'],
+              workload: { reading: 2, assignments: 3, projects: 1, labs: 0 },
+              skills: ['management', 'organizational behavior', 'leadership']
+            },
+            score: 65,
+            explanation: ['Management elective'],
+            counts_toward: [],
+            prereqs_met: true,
+            next_offered: ['F', 'W', 'S'],
+            workload_score: 4,
+            ai_mentioned: false
+          }
+        ]
+        console.log('📚 Created hardcoded fallback recommendations:', recommendations.length)
       }
-    ]
-    console.log('📚 Created basic fallback recommendations:', recommendations.length, 'courses')
+    } catch (error) {
+      console.error('❌ Error in database fallback:', error)
+      // Create hardcoded fallback even if database fails
+      recommendations = [
+        {
+          course: {
+            id: 'CS246',
+            title: 'Object-Oriented Software Development',
+            dept: 'CS',
+            level: 200,
+            units: 0.5,
+            prereqs: 'CS 136 or CS 146',
+            terms_offered: ['F', 'W', 'S'],
+            workload: { reading: 2, assignments: 4, projects: 3, labs: 1 },
+            skills: ['programming', 'software development', 'object-oriented design']
+          },
+          score: 75,
+          explanation: ['Popular elective course'],
+          counts_toward: [],
+          prereqs_met: false,
+          next_offered: ['F', 'W', 'S'],
+          workload_score: 7,
+          ai_mentioned: false
+        }
+      ]
+    }
+  }
+  
+  // Combine generated recommendations with mentioned courses from AI response
+  if (mentionedCourses.length > 0) {
+    console.log('📚 Adding mentioned courses to recommendations:', mentionedCourses.length)
+    
+    // Remove duplicates (courses that are already in recommendations)
+    const existingCourseIds = new Set(recommendations.map(r => r.course.id))
+    const newMentionedCourses = mentionedCourses.filter((mc: any) => !existingCourseIds.has(mc.course.id))
+    
+    // Add mentioned courses at the beginning (higher priority)
+    recommendations = [...newMentionedCourses, ...recommendations]
+    
+    // Re-sort by score to ensure AI-mentioned courses (score 95) are at the top
+    recommendations.sort((a, b) => b.score - a.score)
+    
+    console.log('📚 Final combined recommendations:', recommendations.length, 'courses')
   }
 
     console.log('📤 API Response:', {
@@ -588,25 +683,84 @@ function getSystemPrompt(profile: UserProfile): string {
   
   return `Hey! 👋 I'm your friendly elective advisor here at Waterloo Engineering. I'm here to help you navigate the maze of course options and find the perfect electives for your goals!
 
-IMPORTANT: I use only plain text formatting - no asterisks, no bold, no italic text. Just regular text.
+🚨 CRITICAL FORMATTING RULES - I MUST NEVER USE MARKDOWN 🚨
 
-**About you:**
+I AM ABSOLUTELY FORBIDDEN FROM USING:
+- Asterisks (*) anywhere in my responses
+- Double asterisks (**) anywhere in my responses  
+- Underscores (_) anywhere in my responses
+- Any markdown formatting whatsoever
+- Bold text or italic text
+- Any formatting symbols
+
+I MUST ALWAYS USE:
+- Plain text only
+- Same font size throughout
+- Same font weight throughout
+- Numbers and plain text for lists
+- No special formatting whatsoever
+
+WRONG EXAMPLES (NEVER DO THIS):
+❌ **BME121: Digital Computation** - This course...
+❌ *This is important* - Never do this
+❌ **Important:** Never use bold
+❌ 1. **Course Name** - Description
+
+CORRECT EXAMPLES (ALWAYS DO THIS):
+✅ BME121: Digital Computation - This course...
+✅ This is important - Always do this
+✅ Important: Always use plain text
+✅ 1. Course Name - Description
+
+I WILL BE PENALIZED IF I USE ANY MARKDOWN FORMATTING!
+
+About you:
 - Program: ${fullProgramName}
 - Current Term: ${profile.current_term || 'Not specified'}
 - Goals: ${profile.goal_tags.join(', ') || 'Not specified'}
 - Completed Courses: ${profile.completed_courses.join(', ') || 'None'}
 - Likely Completed (based on term): ${likelyCompletedCourses.join(', ')}
 
-**COURSE CONTEXT AWARENESS:**
+COURSE CONTEXT AWARENESS:
 - I understand that as a ${profile.current_term || 'student'}, you've likely completed certain core courses
 - I know that ${fullProgramName} students typically don't have electives until 2A term
 - If you're in 1A or 1B, I won't ask about completed electives since you likely haven't taken any yet
 - I consider prerequisites when recommending courses - I won't suggest courses you can't take yet
 - I'm aware of typical course progression in ${fullProgramName} program
 
-**IMPORTANT:** If the user's program is "Not specified", I should ask them to specify their engineering program (e.g., Software Engineering, Computer Engineering, etc.) so I can provide accurate recommendations for specializations, certificates, and diplomas.
+COURSE LEVEL INTELLIGENCE:
+- I understand course levels: 1xx = 1st year, 2xx = 2nd year, 3xx = 3rd year, 4xx = 4th year
+- For ${profile.current_term || 'students'}: I recommend appropriate level courses based on your current term
+- When you ask "what courses can I take now?" I focus on courses appropriate for your current level
+- When you ask "what should I plan for the future?" I include advanced courses with context about when you can take them
+- I explain course levels and prerequisites clearly so you understand the progression
+- I never recommend 4th year capstone courses to 2A students unless they're asking about future planning
 
-**How I can help:**
+COURSE RESTRICTION AWARENESS:
+- I understand that some courses are restricted to specific faculties or programs
+- CS246 (Data Structures) is restricted to Computer Science students in Mathematics Faculty, not available to Engineering students
+- Engineering students should take ECE250 (Algorithms and Data Structures) instead of CS246
+- I always check if courses are actually available to ${fullProgramName} students before recommending them
+- I explain any restrictions or alternative courses when relevant
+
+COURSE ACCURACY:
+- I ONLY provide course information from the official Waterloo course database
+- I never make up or invent course information
+- All course titles, descriptions, prerequisites, and details come directly from the database
+- If the database is unavailable, I clearly state that course information is not available
+- I never provide fallback or placeholder course data
+- If I'm unsure about course details, I clearly state that and suggest checking the official calendar
+
+IMPORTANT: If the user's program is "Not specified", I should ask them to specify their engineering program (e.g., Software Engineering, Computer Engineering, etc.) so I can provide accurate recommendations for specializations, certificates, and diplomas.
+
+SPECIALIZATIONS vs OPTIONS:
+- SPECIALIZATIONS are additional areas of focus within a program (like "Artificial Intelligence Specialization" in Software Engineering)
+- OPTIONS are broader program tracks within the Faculty of Engineering (like "Artificial Intelligence Option" which is available across multiple programs)
+- When users ask about "specializations", I should show them the specializations from the database
+- When users ask about "options", I should show them the engineering options from the database
+- I should never confuse these two - they are different things
+
+How I can help:
 - Chat about course options and what might interest you
 - Explain prerequisites and requirements in simple terms
 - Help you understand how courses fit into different specializations and options
@@ -617,8 +771,23 @@ IMPORTANT: I use only plain text formatting - no asterisks, no bold, no italic t
 - Share career insights and why certain courses matter
 - Ask about your completed electives when relevant for better recommendations
 - Help you plan your academic path toward specific options
+- Explain CSE (Complementary Studies Electives) requirements and List A, B, C, D classifications
 
-**OPTION ANALYSIS CAPABILITIES:**
+CSE (COMPLEMENTARY STUDIES ELECTIVES) KNOWLEDGE:
+I understand Waterloo Engineering's CSE requirements and can help with:
+- CSE courses are non-technical electives that provide breadth outside engineering, math, and science
+- Most engineering programs require 2.0 units (4 courses) of CSE electives
+- CSE courses are classified into Lists A, B, C, and D:
+  * List A: Humanities and Social Sciences (345 courses available)
+  * List B: Management and Business (8 courses available) 
+  * List C: Arts and Design (91 courses available)
+  * List D: Communication and Language (160 courses available)
+- Some courses are marked as EXCLUSION and cannot be used for CSE credit
+- Popular CSE departments include: STV (Science, Technology & Values), HIST (History), SOC (Sociology), PHIL (Philosophy), PSYCH (Psychology), ENGL (English), ANTH (Anthropology), BET (Business, Entrepreneurship & Technology)
+- STV courses are particularly popular with engineering students as they explore technology's social impact
+- I can recommend CSE courses that align with your interests and career goals
+
+OPTION ANALYSIS CAPABILITIES:
 When users mention specific options (like "AI option", "Software Engineering option", "Biomechanics option", etc.), I can:
 - Analyze their current progress toward that option based on completed courses
 - Show which courses they still need to take
@@ -627,7 +796,7 @@ When users mention specific options (like "AI option", "Software Engineering opt
 - Explain the option's requirements and course structure
 - Recommend courses that fulfill multiple options simultaneously
 
-**IMPORTANT RULES:**
+IMPORTANT RULES:
 - I ONLY use information provided in the context below - I never make up or generate lists
 - When users ask for "all" options, specializations, or courses, I provide comprehensive lists from the database
 - When users ask for recommendations, I show the top 3 best options with their specific course requirements
@@ -641,9 +810,20 @@ When users mention specific options (like "AI option", "Software Engineering opt
 - I'm honest about what I know and don't know
 - I NEVER use markdown formatting like **bold** or *italic* - just use plain text
 - IMPORTANT: Use only plain text, no asterisks, no bold, no italic formatting
+- NEVER use ** for bold text or * for italic text - always use plain text
+- When listing items, use numbers and plain text, not markdown formatting
+- CRITICAL: Never use asterisks (*) or double asterisks (**) anywhere in my responses
+- CRITICAL: Never use underscores (_) for italic text
+- CRITICAL: Always use plain text formatting only
 - I consider your academic level and likely completed courses when making recommendations
 - For Mechatronics Engineering students: I know you don't have electives until 2A term, so I won't ask about completed electives if you're in 1A or 1B
 - If you're in 2A or later and haven't specified completed electives, I may ask for clarification
+- CRITICAL: When users ask about "specializations", I must show the SPECIALIZATIONS from the context, not options
+- CRITICAL: When users ask about "options", I must show the OPTIONS from the context, not specializations
+- I must clearly distinguish between these two different types of academic programs
+
+🚨 FINAL FORMATTING REMINDER 🚨
+I must NEVER use ** or * or _ anywhere in my responses. I must use ONLY plain text formatting. This is absolutely critical and non-negotiable. I will be penalized for using any markdown formatting!
 
 Just chat with me naturally! Ask me anything about electives, courses, specializations, or your academic journey. I'm here to help make your course selection process less overwhelming and more exciting! 🚀`
 }
@@ -874,11 +1054,56 @@ async function generateRecommendations(
   console.log(`🔍 Generate recommendations for term: "${searchTerm}" (requested: "${requestedTerm}", profile: "${profile.current_term}")`)
   console.log(`🔍 Is comprehensive list request: ${isComprehensiveList}`)
   
-  // Search for relevant courses with term filter
-  const courses = await searchCourses(query, {
+  // Use different search strategies to provide variety
+  let courses = await searchCourses(query, {
     term: searchTerm,
+    currentTerm: profile.current_term,
     skills: profile.goal_tags
   })
+  
+  // If user is asking for CSE courses specifically, use CSE search
+  if (query.toLowerCase().includes('cse') || query.toLowerCase().includes('complementary studies')) {
+    console.log('🔍 User asking for CSE courses, using CSE search...')
+    const cseCourses = await searchCSECourses()
+    if (cseCourses.length > 0) {
+      courses = cseCourses
+      console.log('📚 Found CSE courses:', courses.length)
+    }
+  }
+  
+  // If user is asking for "more" or "different" recommendations, try alternative searches
+  if (query.toLowerCase().includes('more') || query.toLowerCase().includes('different') || query.toLowerCase().includes('other')) {
+    console.log('🔍 User wants more/different recommendations, trying alternative searches...')
+    
+    // Try searching by different keywords
+    const alternativeQueries = [
+      'elective course',
+      'technical elective',
+      'complementary studies',
+      'humanities',
+      'social sciences',
+      'arts',
+      'business',
+      'management'
+    ]
+    
+    for (const altQuery of alternativeQueries) {
+      if (courses.length < 10) { // Only if we need more courses
+        const altCourses = await searchCourses(altQuery, {
+          term: searchTerm,
+          currentTerm: profile.current_term,
+          skills: profile.goal_tags
+        })
+        
+        // Add courses that aren't already in the list
+        const existingIds = new Set(courses.map(c => c.id))
+        const newCourses = altCourses.filter(c => !existingIds.has(c.id))
+        courses = [...courses, ...newCourses]
+        
+        console.log(`📚 Added ${newCourses.length} courses from "${altQuery}" search`)
+      }
+    }
+  }
   
   console.log('📚 Found courses:', courses.length, 'courses')
   if (courses.length > 0) {
@@ -890,7 +1115,8 @@ async function generateRecommendations(
   if (courses.length === 0) {
     console.log('🔍 No courses found with specific search, trying broader search...')
     const broaderCourses = await searchCourses('elective course', {
-      term: searchTerm
+      term: searchTerm,
+      currentTerm: profile.current_term
     })
     finalCourses = broaderCourses
     console.log('📚 Broader search found:', broaderCourses.length, 'courses')
@@ -898,6 +1124,10 @@ async function generateRecommendations(
 
   // Calculate scores and generate recommendations
   const recommendations = finalCourses
+    .filter(course => {
+      // Filter out program-specific core courses that shouldn't be recommended as electives
+      return !isProgramSpecificCoreCourse(course, profile.program)
+    })
     .map(course => {
       const scoreData = calculateCourseScore(course, profile, profile.goal_tags)
       console.log(`📊 Course ${course.id} score:`, scoreData.score)
@@ -908,15 +1138,81 @@ async function generateRecommendations(
     })
     .sort((a, b) => b.score - a.score)
 
-  // Add some randomization to avoid always showing the same courses
-  const shuffledRecommendations = recommendations.sort(() => Math.random() - 0.5)
-  
   // For comprehensive lists, return more results; for recommendations, limit to top 5
-  const finalRecommendations = isComprehensiveList ? shuffledRecommendations : shuffledRecommendations.slice(0, 5)
+  const finalRecommendations = isComprehensiveList ? recommendations : recommendations.slice(0, 5)
 
   console.log('🎯 Final recommendations:', finalRecommendations.length, 'recommendations')
   if (finalRecommendations.length > 0) {
     console.log('🎯 Sample recommendations:', finalRecommendations.slice(0, 3).map(r => ({ id: r.course.id, title: r.course.title, score: r.score })))
   }
   return finalRecommendations
+}
+
+// Extract course mentions from AI response and create recommendations
+async function extractCourseMentions(aiResponse: string, profile: UserProfile): Promise<any[]> {
+  console.log('🔍 Extracting course mentions from AI response...')
+  
+  // Pattern to match course codes like "CS246", "ECE250", "STV205", etc.
+  const coursePattern = /\b([A-Z]{2,4}\d{3}[A-Z]?)\b/g
+  const matches = aiResponse.match(coursePattern)
+  
+  if (!matches || matches.length === 0) {
+    console.log('📚 No course codes found in AI response')
+    return []
+  }
+  
+  // Remove duplicates and get unique course codes
+  const uniqueCourseCodes = [...new Set(matches)]
+  console.log('📚 Found unique course codes:', uniqueCourseCodes)
+  
+  // Fetch course details from database
+  const courseRecommendations = []
+  
+  for (const courseCode of uniqueCourseCodes) {
+    try {
+      const { data: course, error } = await supabase
+        .from('courses')
+        .select('*')
+        .eq('id', courseCode)
+        .single()
+      
+      if (!error && course) {
+        console.log(`✅ Found course in database: ${courseCode} - ${course.title}`)
+        
+        // Check if this is a program-specific core course that shouldn't be recommended
+        if (isProgramSpecificCoreCourse(course, profile.program)) {
+          console.log(`❌ Skipping program-specific core course: ${courseCode} - ${course.title}`)
+          continue
+        }
+        
+        // Calculate actual workload intensity score (1-10)
+        let workload_score = 5 // Default to medium workload
+        if (course.workload) {
+          const total = (course.workload.reading || 0) + (course.workload.assignments || 0) + (course.workload.projects || 0) + (course.workload.labs || 0)
+          workload_score = Math.min(10, Math.max(1, Math.round(total / 2))) // Convert to 1-10 scale
+        }
+
+        // Create recommendation object
+        const recommendation = {
+          course,
+          score: 95, // Very high score since AI specifically mentioned it
+          explanation: [`AI specifically recommended this course`],
+          counts_toward: course.fulfills_options || [],
+          prereqs_met: true, // Assume met for now
+          next_offered: course.terms_offered || [],
+          workload_score,
+          ai_mentioned: true // Flag to indicate this was mentioned by AI
+        }
+        
+        courseRecommendations.push(recommendation)
+      } else {
+        console.log(`❌ Course not found in database: ${courseCode}`)
+      }
+    } catch (error) {
+      console.error(`❌ Error fetching course ${courseCode}:`, error)
+    }
+  }
+  
+  console.log(`📚 Created ${courseRecommendations.length} recommendations from AI mentions`)
+  return courseRecommendations
 }

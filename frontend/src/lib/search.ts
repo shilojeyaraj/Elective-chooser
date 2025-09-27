@@ -227,6 +227,83 @@ export async function analyzeOptionProgress(optionId: string, completedCourses: 
   }
 }
 
+// Helper function to determine appropriate course levels for a given term
+function getAppropriateCourseLevels(currentTerm: string, includeFuture: boolean = false): number[] {
+  const termToLevels: { [key: string]: number[] } = {
+    '1A': [1], // First year courses only
+    '1B': [1], // First year courses only
+    '2A': [1, 2], // First and second year courses
+    '2B': [1, 2], // First and second year courses
+    '3A': [1, 2, 3], // First, second, and third year courses
+    '3B': [1, 2, 3], // First, second, and third year courses
+    '4A': [1, 2, 3, 4], // All levels
+    '4B': [1, 2, 3, 4] // All levels
+  }
+  
+  const immediateLevels = termToLevels[currentTerm] || [1, 2, 3, 4]
+  
+  // If including future courses, expand to include ALL future levels
+  if (includeFuture) {
+    const termToFutureLevels: { [key: string]: number[] } = {
+      '1A': [1, 2, 3, 4], // Can plan for all future years
+      '1B': [1, 2, 3, 4], // Can plan for all future years
+      '2A': [1, 2, 3, 4], // Can plan for all future years
+      '2B': [1, 2, 3, 4], // Can plan for all future years
+      '3A': [1, 2, 3, 4], // Can plan for all future years
+      '3B': [1, 2, 3, 4], // Can plan for all future years
+      '4A': [1, 2, 3, 4], // All levels
+      '4B': [1, 2, 3, 4] // All levels
+    }
+    return termToFutureLevels[currentTerm] || [1, 2, 3, 4]
+  }
+  
+  return immediateLevels
+}
+
+// Helper function to extract course level from course ID
+function getCourseLevel(courseId: string): number {
+  // Extract the number from course ID (e.g., "CS486" -> 4, "ECE250" -> 2)
+  const match = courseId.match(/\d+/)
+  if (match) {
+    const num = parseInt(match[0])
+    // Map course numbers to levels: 1xx=1, 2xx=2, 3xx=3, 4xx=4
+    return Math.floor(num / 100)
+  }
+  return 1 // Default to level 1 if can't determine
+}
+
+// Helper function to detect if user is asking about future courses
+function isAskingAboutFuture(query: string): boolean {
+  const futureKeywords = [
+    'future', 'plan', 'planning', 'later', 'upcoming', 'next year', 'next term',
+    'eventually', 'down the road', 'in the future', 'for later', 'advanced',
+    'upper year', 'senior', 'capstone', 'final year', 'graduation'
+  ]
+  
+  const immediateKeywords = [
+    'now', 'current', 'this term', 'next term', 'available', 'can take',
+    'eligible', 'prerequisites met', 'ready to take'
+  ]
+  
+  const queryLower = query.toLowerCase()
+  
+  // Check for future indicators
+  const hasFutureKeywords = futureKeywords.some(keyword => queryLower.includes(keyword))
+  
+  // Check for immediate indicators
+  const hasImmediateKeywords = immediateKeywords.some(keyword => queryLower.includes(keyword))
+  
+  // If they explicitly mention future planning, include future courses
+  if (hasFutureKeywords) return true
+  
+  // If they explicitly mention immediate/current, only show current level
+  if (hasImmediateKeywords) return false
+  
+  // Default behavior: if asking about "electives" or "courses" without context,
+  // show appropriate level courses with some future planning context
+  return false
+}
+
 // Generate next steps for option completion
 function generateNextSteps(remainingCourses: any[], completedCourses: string[]): string[] {
   const nextSteps: string[] = []
@@ -375,12 +452,12 @@ export async function searchCourses(
   
   if (testError) {
     console.error('❌ Database connection failed:', testError)
-    return getFallbackCourses(query, limit)
+    return getFallbackCourses(query, limit, filters)
   }
   
   if (!testData || testData.length === 0) {
     console.log('📚 No courses in database, using fallback data')
-    return getFallbackCourses(query, limit)
+    return getFallbackCourses(query, limit, filters)
   }
   
   // Build a simple but effective search query
@@ -424,11 +501,7 @@ export async function searchCourses(
     searchQuery = searchQuery.or(searchConditions.join(','))
   }
   
-  // Apply term filter if provided
-  if (filters.term) {
-    console.log(`🔍 Applying term filter: "${filters.term}"`)
-    searchQuery = searchQuery.contains('terms_offered', [filters.term])
-  }
+  // Note: We'll apply term filter after getting results to avoid JSON syntax issues
   
   // Apply department filter if provided
   if (filters.dept && filters.dept.length > 0) {
@@ -440,7 +513,7 @@ export async function searchCourses(
   
   if (error) {
     console.error('❌ Search query error:', error)
-    return getFallbackCourses(query, limit)
+    return getFallbackCourses(query, limit, filters)
   }
   
   console.log('📚 Search result:', { found: data?.length || 0, query })
@@ -448,9 +521,61 @@ export async function searchCourses(
     console.log('📚 Sample courses found:', data.slice(0, 3).map(c => ({ id: c.id, title: c.title, dept: c.dept })))
   }
   
-  // If no results, try a broader search
-  if (!data || data.length === 0) {
-    console.log('🔍 No results found, trying broader search...')
+  // Apply term filter after getting results to avoid JSON syntax issues
+  let filteredData = data || []
+  if (filters.term) {
+    console.log(`🔍 Applying term filter after search: "${filters.term}"`)
+    filteredData = filteredData.filter((course: any) => {
+      const termsOffered = course.terms_offered
+      if (!termsOffered) return true // If no terms specified, include the course
+      
+      // Handle both array and string formats
+      let terms: string[] = []
+      if (Array.isArray(termsOffered)) {
+        terms = termsOffered
+      } else if (typeof termsOffered === 'string') {
+        try {
+          terms = JSON.parse(termsOffered)
+        } catch {
+          // If it's not JSON, treat as comma-separated
+          terms = termsOffered.split(',').map(t => t.trim())
+        }
+      }
+      
+      const hasTerm = terms.some(term => 
+        term.toLowerCase().includes(filters.term!.toLowerCase())
+      )
+      
+      if (!hasTerm) {
+        console.log(`🚫 Filtered out ${course.id} - doesn't offer term ${filters.term}`)
+      }
+      
+      return hasTerm
+    })
+    console.log(`📚 After term filtering: ${filteredData.length} courses remaining`)
+  }
+  
+  // Filter courses by level if user's current term is provided
+  if (filters.currentTerm) {
+    const includeFuture = isAskingAboutFuture(query)
+    const appropriateLevels = getAppropriateCourseLevels(filters.currentTerm, includeFuture)
+    console.log(`🔍 Filtering courses for term ${filters.currentTerm}, includeFuture: ${includeFuture}, appropriate levels:`, appropriateLevels)
+    
+    filteredData = filteredData.filter((course: any) => {
+      const courseLevel = getCourseLevel(course.id)
+      const isAppropriate = appropriateLevels.includes(courseLevel)
+      if (!isAppropriate) {
+        console.log(`🚫 Filtered out ${course.id} (level ${courseLevel}) - not appropriate for ${filters.currentTerm} (future: ${includeFuture})`)
+      }
+      return isAppropriate
+    })
+    
+    console.log(`📚 After level filtering: ${filteredData.length} courses remaining`)
+  }
+  
+  // If no results after filtering, try a broader search
+  if (filteredData.length === 0) {
+    console.log('🔍 No results found after filtering, trying broader search...')
     const { data: broadData, error: broadError } = await supabase
       .from('courses')
       .select('*')
@@ -458,132 +583,36 @@ export async function searchCourses(
     
     if (!broadError && broadData && broadData.length > 0) {
       console.log('📚 Broad search found:', broadData.length, 'courses')
+      
+      // Apply level filtering to broad search results too
+      if (filters.currentTerm) {
+        const includeFuture = isAskingAboutFuture(query)
+        const appropriateLevels = getAppropriateCourseLevels(filters.currentTerm, includeFuture)
+        const broadFiltered = broadData.filter((course: any) => {
+          const courseLevel = getCourseLevel(course.id)
+          return appropriateLevels.includes(courseLevel)
+        })
+        console.log(`📚 Broad search after level filtering: ${broadFiltered.length} courses`)
+        return broadFiltered
+      }
+      
       return broadData
     }
     
     // Final fallback
-    return getFallbackCourses(query, limit)
+    return getFallbackCourses(query, limit, filters)
   }
   
-  return data || []
+  // Shuffle the results to provide variety in recommendations
+  const shuffledResults = [...filteredData].sort(() => Math.random() - 0.5)
+  
+  return shuffledResults
 }
 
-// Fallback course data when database is unavailable
-function getFallbackCourses(query: string, limit: number): Course[] {
-  console.log('📚 Using fallback course data for query:', query)
-  
-  const fallbackCourses: Course[] = [
-    {
-      id: 'CS246',
-      title: 'Data Structures and Data Management',
-      description: 'Introduction to data structures and algorithms',
-      dept: 'CS',
-      level: 2,
-      number: 246,
-      units: 0.5,
-      terms_offered: ['2A', '2B', '3A', '3B'],
-      skills: ['programming', 'data structures', 'algorithms'],
-      workload: { reading: 2, assignments: 1, projects: 0, labs: 0 }
-    },
-    {
-      id: 'CS348',
-      title: 'Introduction to Human-Computer Interaction',
-      description: 'Design and evaluation of user interfaces',
-      dept: 'CS',
-      level: 3,
-      number: 348,
-      units: 0.5,
-      terms_offered: ['3A', '3B', '4A', '4B'],
-      skills: ['ui design', 'user experience', 'interface design'],
-      workload: { reading: 2, assignments: 1, projects: 0, labs: 0 }
-    },
-    {
-      id: 'ECE380',
-      title: 'Software Engineering',
-      description: 'Software development processes and methodologies',
-      dept: 'ECE',
-      level: 3,
-      number: 380,
-      units: 0.5,
-      terms_offered: ['3A', '3B', '4A', '4B'],
-      skills: ['software engineering', 'project management', 'development'],
-      workload: { reading: 3, assignments: 1, projects: 0, labs: 0 }
-    },
-    {
-      id: 'MTE544',
-      title: 'Autonomous Mobile Robots',
-      description: 'Design and control of autonomous mobile robots',
-      dept: 'MTE',
-      level: 4,
-      number: 544,
-      units: 0.5,
-      terms_offered: ['4A', '4B'],
-      skills: ['robotics', 'autonomous systems', 'control'],
-      workload: { reading: 3, assignments: 0, projects: 1, labs: 0 }
-    },
-    {
-      id: 'CS486',
-      title: 'Introduction to Artificial Intelligence',
-      description: 'Fundamental concepts in artificial intelligence',
-      dept: 'CS',
-      level: 4,
-      number: 486,
-      units: 0.5,
-      terms_offered: ['4A', '4B'],
-      skills: ['artificial intelligence', 'machine learning', 'algorithms'],
-      workload: { reading: 3, assignments: 1, projects: 0, labs: 0 }
-    },
-    {
-      id: 'ECE457A',
-      title: 'Co-operative and Adaptive Algorithms',
-      description: 'Advanced algorithms for cooperative systems',
-      dept: 'ECE',
-      level: 4,
-      number: 457,
-      units: 0.5,
-      terms_offered: ['4A', '4B'],
-      skills: ['algorithms', 'cooperative systems', 'optimization'],
-      workload: { reading: 3, assignments: 1, projects: 0, labs: 0 }
-    },
-    {
-      id: 'ME360',
-      title: 'Introduction to Control Systems',
-      description: 'Fundamentals of control system design',
-      dept: 'ME',
-      level: 3,
-      number: 360,
-      units: 0.5,
-      terms_offered: ['3A', '3B', '4A', '4B'],
-      skills: ['control systems', 'feedback', 'dynamics'],
-      workload: { reading: 2, assignments: 1, projects: 0, labs: 1 }
-    },
-    {
-      id: 'CHE322',
-      title: 'Numerical Methods for Process Analysis and Design',
-      description: 'Numerical methods for chemical engineering',
-      dept: 'CHE',
-      level: 3,
-      number: 322,
-      units: 0.5,
-      terms_offered: ['3A', '3B'],
-      skills: ['numerical methods', 'process design', 'simulation'],
-      workload: { reading: 2, assignments: 1, projects: 0, labs: 1 }
-    }
-  ]
-  
-  // Filter based on query if provided
-  if (query && query.trim()) {
-    const cleanQuery = query.toLowerCase()
-    return fallbackCourses
-      .filter(course => 
-        course.title.toLowerCase().includes(cleanQuery) ||
-        (course.description && course.description.toLowerCase().includes(cleanQuery)) ||
-        course.skills.some(skill => skill.includes(cleanQuery))
-      )
-      .slice(0, limit)
-  }
-  
-  return fallbackCourses.slice(0, limit)
+// No fallback courses - only use real data from database
+function getFallbackCourses(query: string, limit: number, filters: SearchFilters = {}): Course[] {
+  console.log('📚 Database unavailable - returning empty results instead of made-up data')
+  return []
 }
 
 // Extract meaningful keywords from query
@@ -610,8 +639,14 @@ export async function searchSpecializations(
     .select('*')
     .limit(limit)
   
-  // Apply text search with extracted keywords
-  if (query) {
+  // Check if this is a general specialization query
+  const isGeneralSpecializationQuery = query.toLowerCase().includes('specialization') || 
+                                      query.toLowerCase().includes('specializations') ||
+                                      query.toLowerCase().includes('what specializations') ||
+                                      query.toLowerCase().includes('available specializations')
+  
+  // Apply text search with extracted keywords (only if not a general query)
+  if (query && !isGeneralSpecializationQuery) {
     const keywords = extractSearchKeywords(query)
     if (keywords.length > 0) {
       const searchConditions = keywords.map(keyword => {
@@ -737,24 +772,31 @@ function filterDemoCourses(
     const isCSEQuery = queryLower.includes('cse') || queryLower.includes('complementary studies')
     
     if (isCSEQuery) {
-      // For CSE queries, show courses that match CSE themes
-      filteredCourses = filteredCourses.filter((course: any) => 
-        course.title.toLowerCase().includes(queryLower) ||
-        course.description.toLowerCase().includes(queryLower) ||
-        course.skills.some((skill: any) => skill.toLowerCase().includes(queryLower)) ||
-        course.id.toLowerCase().includes(queryLower) ||
-        // Show courses that match CSE themes
-        course.skills.some((skill: any) => 
-          ['ethics', 'society', 'sustainability', 'social', 'environment', 'complementary studies'].some(theme => 
-            skill.toLowerCase().includes(theme)
-          )
-        ) ||
-        course.title.toLowerCase().includes('ethics') ||
-        course.title.toLowerCase().includes('society') ||
-        course.title.toLowerCase().includes('sustainability') ||
-        course.title.toLowerCase().includes('social') ||
-        course.title.toLowerCase().includes('environment')
-      )
+      // For CSE queries, prioritize courses with CSE classifications
+      filteredCourses = filteredCourses.filter((course: any) => {
+        // First check if it has a CSE classification (A, B, C, D)
+        const hasCSEClassification = course.cse_classification && 
+          ['A', 'B', 'C', 'D'].includes(course.cse_classification)
+        
+        // Then check if it matches the query
+        const matchesQuery = course.title.toLowerCase().includes(queryLower) ||
+          course.description.toLowerCase().includes(queryLower) ||
+          course.skills.some((skill: any) => skill.toLowerCase().includes(queryLower)) ||
+          course.id.toLowerCase().includes(queryLower) ||
+          // Show courses that match CSE themes
+          course.skills.some((skill: any) => 
+            ['ethics', 'society', 'sustainability', 'social', 'environment', 'complementary studies'].some(theme => 
+              skill.toLowerCase().includes(theme)
+            )
+          ) ||
+          course.title.toLowerCase().includes('ethics') ||
+          course.title.toLowerCase().includes('society') ||
+          course.title.toLowerCase().includes('sustainability') ||
+          course.title.toLowerCase().includes('social') ||
+          course.title.toLowerCase().includes('environment')
+        
+        return hasCSEClassification && matchesQuery
+      })
     } else if (isElectiveQuery) {
       // For elective queries, be more permissive and show relevant courses
       filteredCourses = filteredCourses.filter((course: any) => 
@@ -866,8 +908,15 @@ export function calculateCourseScore(
   // Workload alignment (0-10 points)
   const workloadCheck = checkWorkloadAlignment(course, profile.constraints)
   score += workloadCheck.score
-  workload_score = workloadCheck.score
   explanation.push(...workloadCheck.explanations)
+  
+  // Calculate actual workload intensity score (1-10)
+  if (course.workload) {
+    const total = (course.workload.reading || 0) + (course.workload.assignments || 0) + (course.workload.projects || 0) + (course.workload.labs || 0)
+    workload_score = Math.min(10, Math.max(1, Math.round(total / 2))) // Convert to 1-10 scale
+  } else {
+    workload_score = 5 // Default to medium workload if no data
+  }
   
   // Level progression (0-10 points)
   const levelCheck = checkLevelProgression(course, profile.current_term)
@@ -917,6 +966,12 @@ function calculateProgramFit(course: Course, profile: UserProfile): {
   let score = 0
   const explanations: string[] = []
   
+  // Check if this is a program-specific core course that shouldn't be recommended as an elective
+  if (isProgramSpecificCoreCourse(course, profile.program)) {
+    // Don't give any points to program-specific core courses for other programs
+    return { score: 0, explanations: [`This is a core course for ${course.dept} students only`] }
+  }
+  
   // Check if course is from same department
   if (profile.program && course.dept === profile.program) {
     score += 10
@@ -938,34 +993,88 @@ function calculateProgramFit(course: Course, profile: UserProfile): {
   return { score, explanations }
 }
 
+// Helper function to identify program-specific core courses
+export function isProgramSpecificCoreCourse(course: Course, userProgram?: string): boolean {
+  if (!userProgram || !course.dept) return false
+  
+  console.log(`🔍 Checking if ${course.id} (${course.dept}) is program-specific for ${userProgram}`)
+  
+  // List of program-specific core courses that should not be recommended as electives
+  const programSpecificCourses = {
+    'BME': ['BME121', 'BME100', 'BME200', 'BME300', 'BME400'], // BME core courses
+    'ECE': ['ECE100', 'ECE150', 'ECE200', 'ECE250', 'ECE300', 'ECE350', 'ECE400'], // ECE core courses
+    'SE': ['SE101', 'SE102', 'SE200', 'SE300', 'SE400'], // SE core courses
+    'CS': ['CS115', 'CS116', 'CS135', 'CS136', 'CS200', 'CS300', 'CS400'], // CS core courses
+    'ME': ['ME100', 'ME200', 'ME300', 'ME400'], // ME core courses
+    'MTE': ['MTE100', 'MTE121', 'MTE200', 'MTE300', 'MTE400'], // MTE core courses
+    'SYDE': ['SYDE100', 'SYDE121', 'SYDE200', 'SYDE300', 'SYDE400'], // SYDE core courses
+    'CIVE': ['CIVE100', 'CIVE200', 'CIVE300', 'CIVE400'], // CIVE core courses
+    'CHE': ['CHE100', 'CHE200', 'CHE300', 'CHE400'], // CHE core courses
+    'AE': ['AE100', 'AE123', 'AE200', 'AE300', 'AE400'], // AE core courses (added AE123)
+    'NANO': ['NANO100', 'NANO200', 'NANO300', 'NANO400'], // NANO core courses
+    'ENVE': ['ENVE100', 'ENVE200', 'ENVE300', 'ENVE400'], // ENVE core courses
+    'GEOE': ['GEOE100', 'GEOE200', 'GEOE300', 'GEOE400'], // GEOE core courses
+    'MGT': ['MGT100', 'MGT200', 'MGT300', 'MGT400'], // MGT core courses
+    'ARCH': ['ARCH100', 'ARCH200', 'ARCH300', 'ARCH400'] // ARCH core courses
+  }
+  
+  // Check if the course is a core course for a different program
+  for (const [program, coreCourses] of Object.entries(programSpecificCourses)) {
+    if (program !== userProgram && coreCourses.includes(course.id)) {
+      console.log(`❌ ${course.id} is a core course for ${program} (not ${userProgram})`)
+      return true
+    }
+  }
+  
+  // Also check for 100-level courses that are typically program-specific
+  if (course.level === 1 && course.dept !== userProgram) {
+    console.log(`❌ ${course.id} is a 100-level course from ${course.dept} (not ${userProgram})`)
+    return true
+  }
+  
+  console.log(`✅ ${course.id} is not program-specific`)
+  return false
+}
+
 function checkPrerequisites(course: Course, completedCourses: string[]): {
   score: number
   met: boolean
   explanations: string[]
+  missing_prereqs: string[]
+  met_prereqs: string[]
 } {
   let score = 0
   const explanations: string[] = []
+  const missing_prereqs: string[] = []
+  const met_prereqs: string[] = []
   
-  if (!course.prereqs) {
+  if (!course.prereqs || course.prereqs.trim() === '') {
     score = 15
     explanations.push('No prerequisites required')
-    return { score, met: true, explanations }
+    return { score, met: true, explanations, missing_prereqs, met_prereqs }
   }
   
   // Simple prerequisite checking - in reality, this would be more sophisticated
   const prereqList = course.prereqs.split(',').map(p => p.trim())
-  const metPrereqs = prereqList.filter(prereq => 
-    completedCourses.some(completed => 
+  
+  prereqList.forEach(prereq => {
+    const isMet = completedCourses.some(completed => 
       completed.toLowerCase().includes(prereq.toLowerCase())
     )
-  )
+    
+    if (isMet) {
+      met_prereqs.push(prereq)
+    } else {
+      missing_prereqs.push(prereq)
+    }
+  })
   
-  if (metPrereqs.length === prereqList.length) {
+  if (met_prereqs.length === prereqList.length) {
     score = 15
     explanations.push('All prerequisites met')
-  } else if (metPrereqs.length > 0) {
+  } else if (met_prereqs.length > 0) {
     score = 8
-    explanations.push(`Some prerequisites met (${metPrereqs.length}/${prereqList.length})`)
+    explanations.push(`Some prerequisites met (${met_prereqs.length}/${prereqList.length})`)
   } else {
     score = 0
     explanations.push(`Prerequisites not met: ${course.prereqs}`)
@@ -973,8 +1082,10 @@ function checkPrerequisites(course: Course, completedCourses: string[]): {
   
   return { 
     score, 
-    met: metPrereqs.length === prereqList.length, 
-    explanations 
+    met: met_prereqs.length === prereqList.length, 
+    explanations,
+    missing_prereqs,
+    met_prereqs
   }
 }
 
@@ -1081,4 +1192,40 @@ function getNextTerm(currentTerm: string): string {
     '4A': '4B', '4B': '4B'
   }
   return termMap[currentTerm] || '2A'
+}
+
+export async function searchCSECourses(
+  classification?: 'A' | 'B' | 'C' | 'D',
+  limit: number = 20
+): Promise<any[]> {
+  try {
+    console.log('🔍 Searching CSE courses with classification:', classification)
+    
+    let query = supabase
+      .from('courses')
+      .select('*')
+      .in('cse_classification', ['A', 'B', 'C', 'D'])
+      .limit(limit * 2) // Get more results to shuffle from
+    
+    if (classification) {
+      query = query.eq('cse_classification', classification)
+    }
+    
+    const { data: courses, error } = await query
+    
+    if (error) {
+      console.error('❌ Error fetching CSE courses:', error)
+      return []
+    }
+    
+    console.log('✅ Found', courses?.length || 0, 'CSE courses')
+    
+    // Shuffle results to provide variety
+    const shuffledResults = [...(courses || [])].sort(() => Math.random() - 0.5)
+    return shuffledResults.slice(0, limit)
+    
+  } catch (error) {
+    console.error('❌ Error in searchCSECourses:', error)
+    return []
+  }
 }

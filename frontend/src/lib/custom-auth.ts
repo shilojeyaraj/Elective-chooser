@@ -33,7 +33,9 @@ export async function registerUser(
   username?: string
 ): Promise<AuthResponse> {
   try {
-    console.log('🚀 Starting registration for:', email)
+    // Normalize email (trim whitespace and convert to lowercase)
+    const normalizedEmail = email.trim().toLowerCase()
+    console.log('🚀 Starting registration for:', normalizedEmail)
     
     // Test basic Supabase connection first
     console.log('🔍 Testing Supabase connection...')
@@ -57,12 +59,12 @@ export async function registerUser(
     const hashedPassword = btoa(password)
     console.log('🔐 Password hashed')
     
-    // Check if email already exists
+    // Check if email already exists (case-insensitive)
     console.log('🔍 Checking if email exists...')
     const { data: existingProfile, error: checkError } = await supabase
       .from('profiles')
-      .select('user_id')
-      .eq('email', email)
+      .select('user_id, email')
+      .ilike('email', normalizedEmail)
       .single()
 
     if (checkError && checkError.code !== 'PGRST116') { // PGRST116 = no rows found
@@ -71,7 +73,7 @@ export async function registerUser(
     }
 
     if (existingProfile) {
-      console.log('⚠️ Email already exists')
+      console.log('⚠️ Email already exists:', existingProfile.email)
       return { success: false, error: 'Email already exists' }
     }
 
@@ -81,8 +83,8 @@ export async function registerUser(
     // Create profile with minimal data first
     const profileData = {
       user_id: userId,
-      username: username || email.split('@')[0],
-      email: email,
+      username: username || normalizedEmail.split('@')[0],
+      email: normalizedEmail,
       password_hash: hashedPassword,
       program: '',
       current_term: '',
@@ -122,7 +124,7 @@ export async function registerUser(
 
     const user: User = {
       id: insertedProfile.user_id,
-      email: email,
+      email: normalizedEmail,
       username: insertedProfile.username || '',
       program: '',
       current_term: '',
@@ -156,24 +158,26 @@ export async function authenticateUser(
   password: string
 ): Promise<AuthResponse> {
   try {
-    console.log('🔐 Authenticating user:', email)
+    // Normalize email (trim whitespace and convert to lowercase)
+    const normalizedEmail = email.trim().toLowerCase()
+    console.log('🔐 Authenticating user:', normalizedEmail)
     
     // Hash the password for comparison
     const hashedPassword = btoa(password)
     
-        // Query the profiles table by email
-        console.log('🔍 Searching for user with email:', email)
+        // Query the profiles table by email (case-insensitive)
+        console.log('🔍 Searching for user with email:', normalizedEmail)
         const { data: profileData, error: profileError } = await supabase
           .from('profiles')
           .select('*')
-          .eq('email', email)
+          .ilike('email', normalizedEmail)
           .single()
 
         console.log('🔍 Profile search result:', { profileData, profileError })
 
         if (profileError || !profileData) {
           console.error('❌ Authentication error:', profileError)
-          console.error('❌ Profile not found for email:', email)
+          console.error('❌ Profile not found for email:', normalizedEmail)
           return { success: false, error: 'Invalid email or password' }
         }
 
