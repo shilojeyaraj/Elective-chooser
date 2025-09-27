@@ -502,6 +502,50 @@ export async function searchCourses(
       searchConditions.push(`title.ilike.%data%,title.ilike.%analytics%,title.ilike.%statistics%`)
     }
     
+    // Add department-specific searches
+    if (cleanQuery.includes('syde') || cleanQuery.includes('systems design')) {
+      searchConditions.push(`dept.eq.SYDE`)
+    }
+    if (cleanQuery.includes('ece') || cleanQuery.includes('electrical')) {
+      searchConditions.push(`dept.eq.ECE`)
+    }
+    if (cleanQuery.includes('cs') || cleanQuery.includes('computer science')) {
+      searchConditions.push(`dept.eq.CS`)
+    }
+    if (cleanQuery.includes('se') || cleanQuery.includes('software engineering')) {
+      searchConditions.push(`dept.eq.SE`)
+    }
+    if (cleanQuery.includes('me') || cleanQuery.includes('mechanical')) {
+      searchConditions.push(`dept.eq.ME`)
+    }
+    if (cleanQuery.includes('mte') || cleanQuery.includes('mechatronics')) {
+      searchConditions.push(`dept.eq.MTE`)
+    }
+    if (cleanQuery.includes('cive') || cleanQuery.includes('civil')) {
+      searchConditions.push(`dept.eq.CIVE`)
+    }
+    if (cleanQuery.includes('che') || cleanQuery.includes('chemical')) {
+      searchConditions.push(`dept.eq.CHE`)
+    }
+    if (cleanQuery.includes('bme') || cleanQuery.includes('biomedical')) {
+      searchConditions.push(`dept.eq.BME`)
+    }
+    if (cleanQuery.includes('ae') || cleanQuery.includes('architectural')) {
+      searchConditions.push(`dept.eq.AE`)
+    }
+    if (cleanQuery.includes('ne') || cleanQuery.includes('nano') || cleanQuery.includes('nanotechnology')) {
+      searchConditions.push(`dept.eq.NE`)
+    }
+    if (cleanQuery.includes('enve') || cleanQuery.includes('environmental')) {
+      searchConditions.push(`dept.eq.ENVE`)
+    }
+    if (cleanQuery.includes('geoe') || cleanQuery.includes('geological')) {
+      searchConditions.push(`dept.eq.GEOE`)
+    }
+    if (cleanQuery.includes('arch') || cleanQuery.includes('architecture')) {
+      searchConditions.push(`dept.eq.ARCH`)
+    }
+    
     searchQuery = searchQuery.or(searchConditions.join(','))
   }
   
