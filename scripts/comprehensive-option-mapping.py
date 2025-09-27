@@ -53,9 +53,6 @@ def create_detailed_option_mappings():
             'CS492', 'HIST212', 'MSE442', 'SOC324', 'STV205', 'STV208', 'STV210', 'STV302',
         ]
     }
-    
-    
-    }
 
 def update_course_option_mappings():
     """Update all courses with their option fulfillment data"""

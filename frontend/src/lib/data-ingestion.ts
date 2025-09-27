@@ -18,14 +18,18 @@ export async function extractTextFromHTML(html: string): Promise<string> {
 
 // Course data ingestion
 export async function ingestCourses(courses: Course[]): Promise<void> {
-  console.log('🔧 Attempting to ingest courses with supabaseAdmin...')
-  console.log('🔧 Service role key configured:', process.env.SUPABASE_SERVICE_ROLE_KEY ? 'Yes' : 'No')
-  console.log('🔧 Service role key starts with:', process.env.SUPABASE_SERVICE_ROLE_KEY?.substring(0, 20) + '...')
-  console.log('🔧 Service role key length:', process.env.SUPABASE_SERVICE_ROLE_KEY?.length)
-  console.log('🔧 Supabase URL:', process.env.SUPABASE_URL)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔧 Attempting to ingest courses with supabaseAdmin...')
+    console.log('🔧 Service role key configured:', process.env.SUPABASE_SERVICE_ROLE_KEY ? 'Yes' : 'No')
+    console.log('🔧 Service role key starts with:', process.env.SUPABASE_SERVICE_ROLE_KEY?.substring(0, 20) + '...')
+    console.log('🔧 Service role key length:', process.env.SUPABASE_SERVICE_ROLE_KEY?.length)
+    console.log('🔧 Supabase URL:', process.env.SUPABASE_URL)
+  }
   
   // Test the connection first
-  console.log('🔧 Testing Supabase connection...')
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔧 Testing Supabase connection...')
+  }
   const { data: testData, error: testError } = await supabaseAdmin
     .from('courses')
     .select('count')
@@ -36,12 +40,14 @@ export async function ingestCourses(courses: Course[]): Promise<void> {
     throw new Error(`Failed to connect to Supabase: ${testError.message}`)
   }
   
-  console.log('✅ Connection test passed, proceeding with upload...')
-  
-  // Debug: Log the first course to see what fields are being sent
-  if (courses.length > 0) {
-    console.log('🔍 First course data:', JSON.stringify(courses[0], null, 2))
-    console.log('🔍 Course fields:', Object.keys(courses[0]))
+  if (process.env.NODE_ENV === 'development') {
+    console.log('✅ Connection test passed, proceeding with upload...')
+    
+    // Debug: Log the first course to see what fields are being sent
+    if (courses.length > 0) {
+      console.log('🔍 First course data:', JSON.stringify(courses[0], null, 2))
+      console.log('🔍 Course fields:', Object.keys(courses[0]))
+    }
   }
 
   // Filter out any fields that don't exist in the courses table schema
