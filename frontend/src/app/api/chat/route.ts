@@ -378,154 +378,48 @@ export async function POST(request: NextRequest) {
   const mentionedCourses = await extractCourseMentions(aiResponse, profile)
   console.log('📚 Courses mentioned in AI response:', mentionedCourses)
   
-  // Always generate course recommendations - GUARANTEED
-  console.log('📚 Always generating recommendations for message:', message)
+  // Generate course recommendations - SIMPLIFIED to prevent memory issues
+  console.log('📚 Generating recommendations for message:', message)
   
-  // Use the full conversation context for better search
-  const contextQuery = buildSearchQueryFromContext(message, recentMessages)
-  console.log('🔍 Using context query for search:', contextQuery)
-  recommendations = await generateRecommendations(profile, contextQuery)
-  console.log('📚 Generated recommendations:', recommendations.length, 'courses')
-  
-  // If no recommendations found, try with just the message
-  if (recommendations.length === 0) {
-    console.log('📚 No recommendations from context query, trying with original message')
-    recommendations = await generateRecommendations(profile, message)
-    console.log('📚 Generated recommendations with original message:', recommendations.length, 'courses')
-  }
-  
-  // GUARANTEE recommendations - if still empty, use fallback
-  if (recommendations.length === 0) {
-    console.log('📚 Still no recommendations, using guaranteed fallback')
-    recommendations = await generateRecommendations(profile, 'elective course')
-    console.log('📚 Fallback recommendations:', recommendations.length, 'courses')
-  }
-  
-  // Final guarantee - if still empty, get real courses from database
-  if (recommendations.length === 0) {
-    console.log('📚 No recommendations found, getting real courses from database as fallback')
-    try {
-      // Get some real courses from the database
-      const { data: fallbackCourses, error: fallbackError } = await supabase
-        .from('courses')
-        .select('*')
-        .limit(10)
-        .order('level', { ascending: true })
-      
-      if (!fallbackError && fallbackCourses && fallbackCourses.length > 0) {
-        console.log('📚 Found fallback courses from database:', fallbackCourses.length)
-        
-        // Filter out program-specific core courses and convert to recommendation format
-        recommendations = fallbackCourses
-          // Filter out program-specific core courses (simplified)
-          .filter(course => true)
-          .map(course => {
-            const scoreData = calculateCourseScore(course, profile, profile.goal_tags)
-            return {
-              course,
-              ...scoreData
-            }
-          })
-        
-        console.log('📚 Created recommendations from database fallback:', recommendations.length)
-      } else {
-        console.log('📚 Database fallback also failed, creating hardcoded fallback')
-        // Create hardcoded fallback recommendations
-        recommendations = [
-          {
-            course: {
-              id: 'CS246',
-              title: 'Object-Oriented Software Development',
-              dept: 'CS',
-              number: 246,
-              level: 200,
-              units: 0.5,
-              prereqs: 'CS 136 or CS 146',
-              terms_offered: ['F', 'W', 'S'],
-              workload: { reading: 2, assignments: 4, projects: 3, labs: 1 },
-              skills: ['programming', 'software development', 'object-oriented design']
-            },
-            score: 75,
-            explanation: ['Popular elective course'],
-            counts_toward: [],
-            prereqs_met: false,
-            next_offered: ['F', 'W', 'S'],
-            workload_score: 7,
-            ai_mentioned: false
-          },
-          {
-            course: {
-              id: 'ECE 250',
-              title: 'Algorithms and Data Structures',
-              dept: 'ECE',
-              number: 250,
-              level: 200,
-              units: 0.5,
-              prereqs: 'ECE 150 or CS 136',
-              terms_offered: ['F', 'W', 'S'],
-              workload: { reading: 3, assignments: 4, projects: 2, labs: 1 },
-              skills: ['algorithms', 'data structures', 'programming']
-            },
-            score: 70,
-            explanation: ['Core algorithms course'],
-            counts_toward: [],
-            prereqs_met: false,
-            next_offered: ['F', 'W', 'S'],
-            workload_score: 8,
-            ai_mentioned: false
-          },
-          {
-            course: {
-              id: 'MSCI 211',
-              title: 'Organizational Behaviour',
-              dept: 'MSCI',
-              number: 211,
-              level: 200,
-              units: 0.5,
-              prereqs: '',
-              terms_offered: ['F', 'W', 'S'],
-              workload: { reading: 2, assignments: 3, projects: 1, labs: 0 },
-              skills: ['management', 'organizational behavior', 'leadership']
-            },
-            score: 65,
-            explanation: ['Management elective'],
-            counts_toward: [],
-            prereqs_met: true,
-            next_offered: ['F', 'W', 'S'],
-            workload_score: 4,
-            ai_mentioned: false
-          }
-        ]
-        console.log('📚 Created hardcoded fallback recommendations:', recommendations.length)
+  // Use the search results we already have from the main search
+  if (searchResults && searchResults.length > 0) {
+    console.log('📚 Using search results for recommendations:', searchResults.length, 'courses')
+    recommendations = searchResults.map(course => {
+      const scoreData = calculateCourseScore(course, profile, profile.goal_tags)
+      return {
+        course,
+        ...scoreData
       }
-    } catch (error) {
-      console.error('❌ Error in database fallback:', error)
-      // Create hardcoded fallback even if database fails
-      recommendations = [
-        {
-          course: {
-            id: 'CS246',
-            title: 'Object-Oriented Software Development',
-            dept: 'CS',
-            number: 246,
-            level: 200,
-            units: 0.5,
-            prereqs: 'CS 136 or CS 146',
-            terms_offered: ['F', 'W', 'S'],
-            workload: { reading: 2, assignments: 4, projects: 3, labs: 1 },
-            skills: ['programming', 'software development', 'object-oriented design']
-          },
-          score: 75,
-          explanation: ['Popular elective course'],
-          counts_toward: [],
-          prereqs_met: false,
-          next_offered: ['F', 'W', 'S'],
-          workload_score: 7,
-          ai_mentioned: false
-        }
-      ]
-    }
+    }).sort((a, b) => b.score - a.score).slice(0, 5)
+  } else {
+    console.log('📚 No search results, using fallback recommendations')
+    // Use simple fallback without additional database calls
+    recommendations = [
+      {
+        course: {
+          id: 'CS246',
+          title: 'Object-Oriented Software Development',
+          dept: 'CS',
+          number: 246,
+          level: 200,
+          units: 0.5,
+          prereqs: 'CS 136 or CS 146',
+          terms_offered: ['F', 'W', 'S'],
+          workload: { reading: 2, assignments: 4, projects: 3, labs: 1 },
+          skills: ['programming', 'software development', 'object-oriented design']
+        },
+        score: 75,
+        explanation: ['Popular elective course'],
+        counts_toward: [],
+        prereqs_met: false,
+        next_offered: ['F', 'W', 'S'],
+        workload_score: 7,
+        ai_mentioned: false
+      }
+    ]
   }
+  
+  // Recommendations are already generated above - no additional fallback needed
   
   // Combine generated recommendations with mentioned courses from AI response
   if (mentionedCourses.length > 0) {
