@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { getChatCompletion, getEmbedding } from '@/lib/openai'
 import { searchElectiveDocs, searchCourses, searchSpecializations, searchCertificates, searchDiplomas, calculateCourseScore, searchCoursesByOption, searchCoursesBySpecialization, getOptionsForProgram, getOptionDetails, analyzeOptionProgress, getCoursesFulfillingMultipleOptions, searchOptionsByInterests, searchCSECourses, isProgramSpecificCoreCourse } from '@/lib/search'
+import { enhancedSearch } from '@/lib/web-search'
 
 // Extract program from user message
 function extractProgramFromMessage(message: string): string | null {
@@ -28,7 +29,6 @@ function extractProgramFromMessage(message: string): string | null {
   }
   return null
 }
-import { enhancedSearch } from '@/lib/web-search'
 import { getRecentMessages } from '@/lib/langchain-memory'
 import { UserProfile } from '@/lib/types'
 import { demoCourses, demoOptions } from '@/lib/demo-data'
@@ -139,18 +139,30 @@ export async function POST(request: NextRequest) {
                       message.toLowerCase().includes('complementary studies') ||
                       message.toLowerCase().includes('cse elective')
     
-    // Search for relevant information using vector search with error handling
+    // Search for relevant information using enhanced search (database + web search)
     let searchResults = []
+    let usedWebSearch = false
+    let webSources: string[] = []
+    
     try {
       if (isCSEQuery) {
         console.log('🔍 Detected CSE query, using searchCSECourses')
         searchResults = await searchCSECourses(undefined, 20)
       } else {
-        searchResults = await searchCourses(message, {
+        // Use enhanced search that includes web search when needed
+        const enhancedResults = await enhancedSearch(message, {
           term: searchTerm,
           currentTerm: profile.current_term,
           skills: profile.goal_tags
         })
+        
+        searchResults = enhancedResults.results
+        usedWebSearch = enhancedResults.used_web_search
+        webSources = enhancedResults.sources
+        
+        if (usedWebSearch) {
+          console.log('🌐 Web search was used to enhance results')
+        }
       }
     } catch (error) {
       console.error('❌ Error searching courses:', error)
@@ -224,54 +236,8 @@ export async function POST(request: NextRequest) {
       console.error('❌ Error searching document chunks:', error)
     }
 
-    // Build context for the LLM
-    const context = buildContext(searchResults, docChunks, profile, foundSpecializations, foundCertificates, foundDiplomas, [], null)
-
     // Check if we should ask about completed electives
     const shouldAskAboutElectives = shouldAskAboutCompletedElectives(message, profile)
-    
-    // Create conversation messages
-    const messages = [
-      {
-        role: 'system' as const,
-        content: getSystemPrompt(profile)
-      },
-      ...recentMessages.map(msg => ({
-        role: msg._getType() === 'human' ? 'user' as const : 'assistant' as const,
-        content: typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)
-      })),
-      {
-        role: 'user' as const,
-        content: `${message}\n\nContext:\n${context}${shouldAskAboutElectives ? '\n\nNOTE: The user may need to specify their completed electives for better recommendations.' : ''}`
-      }
-    ]
-
-    // Get AI response
-    const aiResponse = await getChatCompletion(messages)
-    
-  // Extract course mentions from AI response and create recommendations
-  const mentionedCourses = await extractCourseMentions(aiResponse, profile)
-  console.log('📚 Courses mentioned in AI response:', mentionedCourses)
-
-    // Save messages to database
-    await supabase.from('messages').insert([
-      {
-        session_id: sessionId,
-        role: 'user',
-        content: message,
-        tokens: Math.ceil(message.length / 4)
-      },
-      {
-        session_id: sessionId,
-        role: 'assistant',
-        content: aiResponse,
-        tokens: Math.ceil(aiResponse.length / 4),
-        citations: docChunks.map(chunk => ({
-          url: chunk.source_url,
-          text: chunk.text.substring(0, 200) + '...'
-        }))
-      }
-    ])
 
   // Check if user is asking for specializations or options
   const isAskingForSpecializations = message.toLowerCase().includes('specialization') || 
@@ -284,7 +250,7 @@ export async function POST(request: NextRequest) {
   
   let recommendations = []
   let specializations = []
-  let options = []
+  let options: any[] = []
   let optionAnalysis = null
   
   if (isAskingForSpecializations) {
@@ -314,7 +280,24 @@ export async function POST(request: NextRequest) {
     } else {
       // Get all options for the program
       options = await getOptionsForProgram(profile.program)
-      console.log('📚 Found options:', options.length)
+      console.log('📚 Found options for program:', options.length, 'for program:', profile.program)
+      
+      // If no options found for specific program, try to get all available options
+      if (options.length === 0) {
+        console.log('🔍 No options found for specific program, getting all available options')
+        try {
+          const { data: allOptions, error } = await supabase
+            .from('options')
+            .select('*')
+            .order('name')
+          if (!error && allOptions) {
+            options = allOptions
+            console.log('📚 Found all available options:', options.length)
+          }
+        } catch (error) {
+          console.error('❌ Error fetching all options:', error)
+        }
+      }
       
       // If user has interests, also search by interests
       if (profile.interests && profile.interests.length > 0) {
@@ -329,6 +312,52 @@ export async function POST(request: NextRequest) {
       }
     }
   }
+  
+  // Build context for the LLM (after options and specializations are populated)
+  const context = buildContext(searchResults, docChunks, profile, foundSpecializations, foundCertificates, foundDiplomas, options, optionAnalysis)
+  
+  // Create conversation messages
+  const messages = [
+    {
+      role: 'system' as const,
+      content: getSystemPrompt(profile)
+    },
+    ...recentMessages.map(msg => ({
+      role: msg._getType() === 'human' ? 'user' as const : 'assistant' as const,
+      content: typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)
+    })),
+    {
+      role: 'user' as const,
+      content: `${message}\n\nContext:\n${context}${shouldAskAboutElectives ? '\n\nNOTE: The user may need to specify their completed electives for better recommendations.' : ''}`
+    }
+  ]
+
+  // Get AI response
+  const aiResponse = await getChatCompletion(messages)
+  
+  // Save messages to database
+  await supabase.from('messages').insert([
+    {
+      session_id: sessionId,
+      role: 'user',
+      content: message,
+      tokens: Math.ceil(message.length / 4)
+    },
+    {
+      session_id: sessionId,
+      role: 'assistant',
+      content: aiResponse,
+      tokens: Math.ceil(aiResponse.length / 4),
+      citations: docChunks.map(chunk => ({
+        url: chunk.source_url,
+        text: chunk.text.substring(0, 200) + '...'
+      }))
+    }
+  ])
+  
+  // Extract course mentions from AI response and create recommendations
+  const mentionedCourses = await extractCourseMentions(aiResponse, profile)
+  console.log('📚 Courses mentioned in AI response:', mentionedCourses)
   
   // Always generate course recommendations - GUARANTEED
   console.log('📚 Always generating recommendations for message:', message)
@@ -771,7 +800,7 @@ SPECIALIZATIONS vs OPTIONS:
 - SPECIALIZATIONS are additional areas of focus within a program (like "Artificial Intelligence Specialization" in Software Engineering)
 - OPTIONS are broader program tracks within the Faculty of Engineering (like "Artificial Intelligence Option" which is available across multiple programs)
 - When users ask about "specializations", I should show them the specializations from the database
-- When users ask about "options", I should show them the engineering options from the database
+- When users ask about "options", I should show them the engineering options from the database and include the URL: https://uwaterloo.ca/engineering/undergraduate-students/degree-enhancement/options
 - I should never confuse these two - they are different things
 
 How I can help:

@@ -1,0 +1,20 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/admin/upload-cse-electives/route": "app/api/admin/upload-cse-electives/route.js",
+  "/api/admin/upload-courses/route": "app/api/admin/upload-courses/route.js",
+  "/api/admin/upload-options/route": "app/api/admin/upload-options/route.js",
+  "/api/admin/upload-json/route": "app/api/admin/upload-json/route.js",
+  "/api/admin/upload-technical-electives/route": "app/api/admin/upload-technical-electives/route.js",
+  "/api/chat/messages/route": "app/api/chat/messages/route.js",
+  "/api/chat/session/route": "app/api/chat/session/route.js",
+  "/api/chat/sessions/route": "app/api/chat/sessions/route.js",
+  "/api/chat/route": "app/api/chat/route.js",
+  "/api/health/route": "app/api/health/route.js",
+  "/api/profile/route": "app/api/profile/route.js",
+  "/admin/page": "app/admin/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/chatbot/page": "app/chatbot/page.js",
+  "/signup/page": "app/signup/page.js",
+  "/setprofile/page": "app/setprofile/page.js"
+}
