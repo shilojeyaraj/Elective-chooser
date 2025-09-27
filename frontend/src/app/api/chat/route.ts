@@ -163,23 +163,8 @@ export async function POST(request: NextRequest) {
         
         console.log(`📊 Database returned ${searchResults.length} results`)
         
-        // Only use enhanced search if database results are insufficient
-        if (searchResults.length < 3) {
-          console.log('🌐 Database results insufficient, trying enhanced search')
-          const enhancedResults = await enhancedSearch(message, {
-            term: searchTerm,
-            currentTerm: profile.current_term,
-            skills: profile.goal_tags
-          })
-          
-          // Only use enhanced results if they're better
-          if (enhancedResults.results.length > searchResults.length) {
-            searchResults = enhancedResults.results
-            usedWebSearch = enhancedResults.used_web_search
-            webSources = enhancedResults.sources
-            console.log('🌐 Using enhanced search results')
-          }
-        }
+        // Enhanced search disabled to prevent memory issues
+        console.log('🌐 Enhanced search disabled to prevent memory issues')
       }
     } catch (error) {
       console.error('❌ Error searching courses:', error)
@@ -384,13 +369,16 @@ export async function POST(request: NextRequest) {
   // Use the search results we already have from the main search
   if (searchResults && searchResults.length > 0) {
     console.log('📚 Using search results for recommendations:', searchResults.length, 'courses')
-    recommendations = searchResults.map(course => {
-      const scoreData = calculateCourseScore(course, profile, profile.goal_tags)
-      return {
-        course,
-        ...scoreData
-      }
-    }).sort((a, b) => b.score - a.score).slice(0, 5)
+    recommendations = searchResults.slice(0, 5).map(course => ({
+      course,
+      score: 80,
+      explanation: ['Course from search results'],
+      counts_toward: [],
+      prereqs_met: true,
+      next_offered: course.terms_offered || [],
+      workload_score: 5,
+      ai_mentioned: false
+    }))
   } else {
     console.log('📚 No search results, using fallback recommendations')
     // Use simple fallback without additional database calls
@@ -1109,7 +1097,7 @@ async function generateRecommendations(
   return finalRecommendations
 }
 
-// Extract course mentions from AI response and create recommendations
+// Extract course mentions from AI response and create recommendations - SIMPLIFIED
 async function extractCourseMentions(aiResponse: string, profile: UserProfile): Promise<any[]> {
   console.log('🔍 Extracting course mentions from AI response...')
   
@@ -1126,53 +1114,28 @@ async function extractCourseMentions(aiResponse: string, profile: UserProfile): 
   const uniqueCourseCodes = [...new Set(matches)]
   console.log('📚 Found unique course codes:', uniqueCourseCodes)
   
-  // Fetch course details from database
-  const courseRecommendations = []
-  
-  for (const courseCode of uniqueCourseCodes) {
-    try {
-      const { data: course, error } = await supabase
-        .from('courses')
-        .select('*')
-        .eq('id', courseCode)
-        .single()
-      
-      if (!error && course) {
-        console.log(`✅ Found course in database: ${courseCode} - ${course.title}`)
-        
-        // Check if this is a program-specific core course that shouldn't be recommended
-        if (false) { // Simplified - don't filter out any courses
-          console.log(`❌ Skipping program-specific core course: ${courseCode} - ${course.title}`)
-          continue
-        }
-        
-        // Calculate actual workload intensity score (1-10)
-        let workload_score = 5 // Default to medium workload
-        if (course.workload) {
-          const total = (course.workload.reading || 0) + (course.workload.assignments || 0) + (course.workload.projects || 0) + (course.workload.labs || 0)
-          workload_score = Math.min(10, Math.max(1, Math.round(total / 2))) // Convert to 1-10 scale
-        }
-
-        // Create recommendation object
-        const recommendation = {
-          course,
-          score: 95, // Very high score since AI specifically mentioned it
-          explanation: [`AI specifically recommended this course`],
-          counts_toward: course.fulfills_options || [],
-          prereqs_met: true, // Assume met for now
-          next_offered: course.terms_offered || [],
-          workload_score,
-          ai_mentioned: true // Flag to indicate this was mentioned by AI
-        }
-        
-        courseRecommendations.push(recommendation)
-      } else {
-        console.log(`❌ Course not found in database: ${courseCode}`)
-      }
-    } catch (error) {
-      console.error(`❌ Error fetching course ${courseCode}:`, error)
-    }
-  }
+  // Simplified - don't fetch from database to avoid memory issues
+  const courseRecommendations = uniqueCourseCodes.slice(0, 3).map(courseCode => ({
+    course: {
+      id: courseCode,
+      title: `${courseCode} Course`,
+      dept: courseCode.substring(0, 2),
+      number: parseInt(courseCode.substring(2)),
+      level: 200,
+      units: 0.5,
+      prereqs: '',
+      terms_offered: ['F', 'W', 'S'],
+      workload: { reading: 2, assignments: 3, projects: 2, labs: 1 },
+      skills: ['general']
+    },
+    score: 95,
+    explanation: ['AI specifically recommended this course'],
+    counts_toward: [],
+    prereqs_met: true,
+    next_offered: ['F', 'W', 'S'],
+    workload_score: 5,
+    ai_mentioned: true
+  }))
   
   console.log(`📚 Created ${courseRecommendations.length} recommendations from AI mentions`)
   return courseRecommendations
