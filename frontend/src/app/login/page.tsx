@@ -46,28 +46,25 @@ export default function LoginPage() {
 
   if (loading) {
     return (
-      <ThemeProvider>
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600 dark:text-gray-400">Loading...</p>
-          </div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
         </div>
-      </ThemeProvider>
+      </div>
     )
   }
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           {hasExistingUser ? (
             <>
               <div className="text-center">
-                <h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
+                <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
                   Welcome back!
                 </h2>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                <p className="mt-2 text-sm text-gray-600">
                   You're already signed in as <strong>{existingUser?.username || existingUser?.email}</strong>
                 </p>
               </div>
@@ -82,18 +79,18 @@ export default function LoginPage() {
                 
                 <button
                   onClick={handleSignOutAndLogin}
-                  className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700 transition-colors"
+                  className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
                 >
                   Sign out and login with different account
                 </button>
               </div>
               
               <div className="text-center">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600">
                   Don't have an account?{' '}
                   <a 
                     href="/signup" 
-                    className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                    className="font-medium text-blue-600 hover:text-blue-500"
                   >
                     Sign up here
                   </a>
@@ -103,10 +100,10 @@ export default function LoginPage() {
           ) : (
             <>
               <div className="text-center">
-                <h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
+                <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
                   Sign in to your account
                 </h2>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                <p className="mt-2 text-sm text-gray-600">
                   Welcome back! Please sign in to continue.
                 </p>
               </div>
@@ -116,11 +113,11 @@ export default function LoginPage() {
               />
               
               <div className="text-center">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600">
                   Don't have an account?{' '}
                   <a 
                     href="/signup" 
-                    className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                    className="font-medium text-blue-600 hover:text-blue-500"
                   >
                     Sign up here
                   </a>
@@ -130,6 +127,5 @@ export default function LoginPage() {
           )}
         </div>
       </div>
-    </ThemeProvider>
   )
 }
