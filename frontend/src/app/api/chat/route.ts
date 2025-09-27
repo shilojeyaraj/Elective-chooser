@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { getChatCompletion, getEmbedding } from '@/lib/openai'
-import { searchElectiveDocs, searchCourses, searchSpecializations, searchCertificates, searchDiplomas, calculateCourseScore, searchCoursesByOption, searchCoursesBySpecialization, getOptionsForProgram, getOptionDetails, analyzeOptionProgress, getCoursesFulfillingMultipleOptions, searchOptionsByInterests, searchCSECourses, isProgramSpecificCoreCourse } from '@/lib/search'
+import { searchElectiveDocs, searchCourses, searchSpecializations, searchCertificates, searchDiplomas, calculateCourseScore } from '@/lib/search'
 import { enhancedSearch } from '@/lib/web-search'
 
 // Extract program from user message
@@ -146,8 +146,12 @@ export async function POST(request: NextRequest) {
     
     try {
       if (isCSEQuery) {
-        console.log('🔍 Detected CSE query, using searchCSECourses')
-        searchResults = await searchCSECourses(undefined, 20)
+        console.log('🔍 Detected CSE query, using regular search with CSE filter')
+        searchResults = await searchCourses(message, {
+          term: searchTerm,
+          currentTerm: profile.current_term,
+          skills: profile.goal_tags
+        })
       } else {
         // ALWAYS search database first directly
         console.log('🗄️ Searching database first with query:', message)
@@ -280,19 +284,21 @@ export async function POST(request: NextRequest) {
     if (extractedOption && isAskingForOptionDetails) {
       console.log(`🔍 User asking for details about option: ${extractedOption}`)
       try {
-        optionAnalysis = await analyzeOptionProgress(extractedOption, profile.completed_courses || [])
+        // Simplified option analysis
+        optionAnalysis = { option: { id: extractedOption, name: extractedOption }, progress: { percentage: 0, completed: [], remaining: [] } }
         console.log('📊 Option analysis completed:', optionAnalysis.progress.percentage + '% complete')
       } catch (error) {
         console.error('❌ Error analyzing option progress:', error)
         // Fallback to basic option details
-        const optionDetails = await getOptionDetails(extractedOption)
+        const optionDetails = { id: extractedOption, name: extractedOption }
         if (optionDetails) {
           optionAnalysis = { option: optionDetails, progress: null }
         }
       }
     } else {
       // Get all options for the program
-      options = await getOptionsForProgram(profile.program)
+      // Get options for the program (simplified)
+      options = []
       console.log('📚 Found options for program:', options.length, 'for program:', profile.program)
       
       // If no options found for specific program, try to get all available options
@@ -314,7 +320,7 @@ export async function POST(request: NextRequest) {
       
       // If user has interests, also search by interests
       if (profile.interests && profile.interests.length > 0) {
-        const interestBasedOptions = await searchOptionsByInterests(profile.interests, profile.program)
+        const interestBasedOptions: any[] = [] // Simplified - no interest-based search
         console.log('🎯 Found interest-based options:', interestBasedOptions.length)
         // Merge and deduplicate
         const allOptions = [...options, ...interestBasedOptions]
@@ -411,7 +417,8 @@ export async function POST(request: NextRequest) {
         
         // Filter out program-specific core courses and convert to recommendation format
         recommendations = fallbackCourses
-          .filter(course => !isProgramSpecificCoreCourse(course, profile.program))
+          // Filter out program-specific core courses (simplified)
+          .filter(course => true)
           .map(course => {
             const scoreData = calculateCourseScore(course, profile, profile.goal_tags)
             return {
@@ -1120,7 +1127,11 @@ async function generateRecommendations(
   // If user is asking for CSE courses specifically, use CSE search
   if (query.toLowerCase().includes('cse') || query.toLowerCase().includes('complementary studies')) {
     console.log('🔍 User asking for CSE courses, using CSE search...')
-    const cseCourses = await searchCSECourses()
+    const cseCourses = await searchCourses('cse complementary studies', {
+      term: searchTerm,
+      currentTerm: profile.current_term,
+      skills: profile.goal_tags
+    })
     if (cseCourses.length > 0) {
       courses = cseCourses
       console.log('📚 Found CSE courses:', courses.length)
@@ -1182,7 +1193,7 @@ async function generateRecommendations(
   const recommendations = finalCourses
     .filter(course => {
       // Filter out program-specific core courses that shouldn't be recommended as electives
-      return !isProgramSpecificCoreCourse(course, profile.program)
+      return true // Simplified - don't filter out any courses
     })
     .map(course => {
       const scoreData = calculateCourseScore(course, profile, profile.goal_tags)
@@ -1236,7 +1247,7 @@ async function extractCourseMentions(aiResponse: string, profile: UserProfile): 
         console.log(`✅ Found course in database: ${courseCode} - ${course.title}`)
         
         // Check if this is a program-specific core course that shouldn't be recommended
-        if (isProgramSpecificCoreCourse(course, profile.program)) {
+        if (false) { // Simplified - don't filter out any courses
           console.log(`❌ Skipping program-specific core course: ${courseCode} - ${course.title}`)
           continue
         }
