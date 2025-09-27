@@ -504,6 +504,7 @@ export async function searchCourses(
     
     // Add department-specific searches
     if (cleanQuery.includes('syde') || cleanQuery.includes('systems design')) {
+      console.log('🎯 Detected SYDE query, adding department filter')
       searchConditions.push(`dept.eq.SYDE`)
     }
     if (cleanQuery.includes('ece') || cleanQuery.includes('electrical')) {
@@ -546,6 +547,7 @@ export async function searchCourses(
       searchConditions.push(`dept.eq.ARCH`)
     }
     
+    console.log('🔍 Search conditions:', searchConditions)
     searchQuery = searchQuery.or(searchConditions.join(','))
   }
   

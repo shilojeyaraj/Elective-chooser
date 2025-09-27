@@ -149,19 +149,32 @@ export async function POST(request: NextRequest) {
         console.log('🔍 Detected CSE query, using searchCSECourses')
         searchResults = await searchCSECourses(undefined, 20)
       } else {
-        // Use enhanced search that includes web search when needed
-        const enhancedResults = await enhancedSearch(message, {
+        // ALWAYS search database first directly
+        console.log('🗄️ Searching database first with query:', message)
+        searchResults = await searchCourses(message, {
           term: searchTerm,
           currentTerm: profile.current_term,
           skills: profile.goal_tags
         })
         
-        searchResults = enhancedResults.results
-        usedWebSearch = enhancedResults.used_web_search
-        webSources = enhancedResults.sources
+        console.log(`📊 Database returned ${searchResults.length} results`)
         
-        if (usedWebSearch) {
-          console.log('🌐 Web search was used to enhance results')
+        // Only use enhanced search if database results are insufficient
+        if (searchResults.length < 3) {
+          console.log('🌐 Database results insufficient, trying enhanced search')
+          const enhancedResults = await enhancedSearch(message, {
+            term: searchTerm,
+            currentTerm: profile.current_term,
+            skills: profile.goal_tags
+          })
+          
+          // Only use enhanced results if they're better
+          if (enhancedResults.results.length > searchResults.length) {
+            searchResults = enhancedResults.results
+            usedWebSearch = enhancedResults.used_web_search
+            webSources = enhancedResults.sources
+            console.log('🌐 Using enhanced search results')
+          }
         }
       }
     } catch (error) {
