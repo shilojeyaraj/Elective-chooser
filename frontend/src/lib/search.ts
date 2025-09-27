@@ -482,6 +482,10 @@ export async function searchCourses(
     if (cleanQuery.includes('elective') || cleanQuery.includes('course')) {
       searchConditions.push(`title.ilike.%elective%`)
     }
+    if (cleanQuery.includes('cse') || cleanQuery.includes('complementary studies')) {
+      // For CSE electives, only return courses with CSE classification
+      searchConditions.push(`cse_classification.in.(A,B,C,D)`)
+    }
     if (cleanQuery.includes('technical')) {
       searchConditions.push(`title.ilike.%technical%`)
     }
@@ -1010,7 +1014,7 @@ export function isProgramSpecificCoreCourse(course: Course, userProgram?: string
     'SYDE': ['SYDE100', 'SYDE121', 'SYDE200', 'SYDE300', 'SYDE400'], // SYDE core courses
     'CIVE': ['CIVE100', 'CIVE200', 'CIVE300', 'CIVE400'], // CIVE core courses
     'CHE': ['CHE100', 'CHE200', 'CHE300', 'CHE400'], // CHE core courses
-    'AE': ['AE100', 'AE123', 'AE200', 'AE300', 'AE400'], // AE core courses (added AE123)
+    'AE': ['AE100', 'AE123', 'AE200', 'AE300', 'AE400'], // AE core courses (AE123 is program-specific)
     'NANO': ['NANO100', 'NANO200', 'NANO300', 'NANO400'], // NANO core courses
     'ENVE': ['ENVE100', 'ENVE200', 'ENVE300', 'ENVE400'], // ENVE core courses
     'GEOE': ['GEOE100', 'GEOE200', 'GEOE300', 'GEOE400'], // GEOE core courses

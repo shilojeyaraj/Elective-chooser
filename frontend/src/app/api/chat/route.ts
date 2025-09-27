@@ -134,14 +134,24 @@ export async function POST(request: NextRequest) {
     
     console.log(`🔍 Search term: "${searchTerm}" (requested: "${requestedTerm}", profile: "${profile.current_term}")`)
 
+    // Check if user is asking for CSE electives specifically
+    const isCSEQuery = message.toLowerCase().includes('cse') || 
+                      message.toLowerCase().includes('complementary studies') ||
+                      message.toLowerCase().includes('cse elective')
+    
     // Search for relevant information using vector search with error handling
     let searchResults = []
     try {
-      searchResults = await searchCourses(message, {
-        term: searchTerm,
-        currentTerm: profile.current_term,
-        skills: profile.goal_tags
-      })
+      if (isCSEQuery) {
+        console.log('🔍 Detected CSE query, using searchCSECourses')
+        searchResults = await searchCSECourses(undefined, 20)
+      } else {
+        searchResults = await searchCourses(message, {
+          term: searchTerm,
+          currentTerm: profile.current_term,
+          skills: profile.goal_tags
+        })
+      }
     } catch (error) {
       console.error('❌ Error searching courses:', error)
       // Use demo data as fallback
