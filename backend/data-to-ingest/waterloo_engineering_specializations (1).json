@@ -1,0 +1,1103 @@
+{
+  "source_note": "Compiled from the University of Waterloo Undergraduate Studies Calendar (primarily 2023\u20132024 archive) and official department pages. Items marked TODO need confirmation or a full elective list from department advisors.",
+  "last_updated": "2025-09-25",
+  "programs": [
+    {
+      "program": "Architectural Engineering",
+      "specializations": [
+        {
+          "name": "Building Structures Specialization",
+          "eligible_majors": [
+            "Honours Architectural Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses",
+          "graduation_requirements_summary": "Complete at least 5 technical elective courses following the Building Structures lists and constraints.",
+          "course_requirements": {
+            "complete_all_of": [],
+            "select_from_lists": [
+              {
+                "rule": "Take a specified number of technical electives from departmental lists (see calendar page for exact Group A/B lists).",
+                "min_count": 5,
+                "max_count": 5,
+                "lists": [
+                  "Structures list (e.g., AE/CIVE/SYDE/ME courses related to structural engineering)"
+                ]
+              }
+            ]
+          },
+          "additional_constraints": [
+            "Exact eligible course lists and group rules are defined on the calendar page; follow group distribution constraints.",
+            "No one course may fulfill more than one requirement within the specialization."
+          ],
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Architectural-Engineering.html"
+          ],
+          "status": "PARTIAL_TODO_lists"
+        },
+        {
+          "name": "Building Systems Specialization",
+          "eligible_majors": [
+            "Honours Architectural Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses",
+          "graduation_requirements_summary": "Complete at least 5 technical elective courses following the Building Systems lists and constraints.",
+          "course_requirements": {
+            "complete_all_of": [],
+            "select_from_lists": [
+              {
+                "rule": "Take a specified number of technical electives from departmental lists (see calendar page for exact Group A/B lists).",
+                "min_count": 5,
+                "max_count": 5,
+                "lists": [
+                  "Systems list (e.g., HVAC/energy/building science courses)"
+                ]
+              }
+            ]
+          },
+          "additional_constraints": [
+            "Exact eligible course lists and group rules are defined on the calendar page; follow group distribution constraints.",
+            "No one course may fulfill more than one requirement within the specialization."
+          ],
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Architectural-Engineering.html"
+          ],
+          "status": "PARTIAL_TODO_lists"
+        }
+      ]
+    },
+    {
+      "program": "Biomedical Engineering",
+      "specializations": [
+        {
+          "name": "Biomaterials and Tissues Specialization",
+          "eligible_majors": [
+            "Honours Biomedical Engineering"
+          ],
+          "minimum_average_required": "60% in the five specialization courses; minimum 50% in each",
+          "graduation_requirements_summary": "5 courses total (1 required + 4 electives from lists).",
+          "course_requirements": {
+            "complete_all_of": [
+              "BME 589 \u2013 Special Topics in Biomedical Devices [Topic: Biomaterials and Biomedical Design] (0.50)"
+            ],
+            "select_from_lists": [
+              {
+                "rule": "Choose 2 from biomaterial science and tissue mechanics list.",
+                "min_count": 2,
+                "options": [
+                  "BME 499 \u2013 Elective Biomedical Research Project (approval required) (0.50)",
+                  "BME 588 \u2013 Special Topics in Biomechanics [Topic: Introductory Mechanics of Biomedical and Biological Materials] (0.50)",
+                  "BME 588 \u2013 Special Topics in Biomechanics [Topic: Computational Biomechanics] (0.50)",
+                  "BME 589 \u2013 Special Topics in Biomedical Devices (approval required) (0.50)",
+                  "NE 481 \u2013 Nanomedicine and Nanobiotechnology (0.50)"
+                ]
+              },
+              {
+                "rule": "Choose 2 additional approved electives (department list).",
+                "min_count": 2,
+                "options": [
+                  "See calendar page for full list"
+                ]
+              }
+            ]
+          },
+          "additional_constraints": [
+            "A minimum average of 60% in the five specialization courses; at least 50% in each course."
+          ],
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Biomedical-Engineering.html"
+          ]
+        },
+        {
+          "name": "Medical Devices Specialization",
+          "eligible_majors": [
+            "Honours Biomedical Engineering"
+          ],
+          "minimum_average_required": "60% in the five specialization courses; minimum 50% in each",
+          "graduation_requirements_summary": "5 technical electives; plus project with medical devices focus.",
+          "course_requirements": {
+            "complete_all_of": [],
+            "select_from_lists": [
+              {
+                "rule": "Select 5 approved technical electives from the Medical Devices lists.",
+                "min_count": 5,
+                "options": [
+                  "See calendar page for full list"
+                ]
+              },
+              {
+                "rule": "Capstone or research project focused on medical devices (approved).",
+                "min_count": 1,
+                "options": [
+                  "BME 461 and BME 462 \u2013 Biomedical Engineering Design Workshop 2 & 3 (0.50 each)",
+                  "GENE 403 and GENE 404 \u2013 Interdisciplinary Design Project 1 & 2 (0.50 each)",
+                  "SYDE 461 and SYDE 462 \u2013 Systems Design Capstone Project 1 & 2 (0.50 each)",
+                  "BME 499 \u2013 Elective Biomedical Research Project (0.50)"
+                ]
+              }
+            ]
+          },
+          "additional_constraints": [
+            "Project must have a medical devices focus and be approved."
+          ],
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Biomedical-Engineering.html"
+          ]
+        },
+        {
+          "name": "Medical Artificial Intelligence Specialization",
+          "eligible_majors": [
+            "Honours Biomedical Engineering"
+          ],
+          "minimum_average_required": "60% in the five specialization courses; minimum 50% in each",
+          "graduation_requirements_summary": "5 courses total (3 required + 2 electives), plus approved AI-focused project.",
+          "course_requirements": {
+            "complete_all_of": [
+              "BME 530 \u2013 The Healthcare System (0.50)",
+              "SYDE 572 \u2013 Introduction to Pattern Recognition (0.50)",
+              "SYDE 599 \u2013 Special Topics in Systems Design Engineering [Topic: Deep Learning] (0.50)"
+            ],
+            "select_from_lists": [
+              {
+                "rule": "Capstone or research project focused on medical AI (approved).",
+                "min_count": 1,
+                "options": [
+                  "BME 461 & BME 462",
+                  "GENE 403 & GENE 404",
+                  "SYDE 461 & SYDE 462",
+                  "BME 499"
+                ]
+              },
+              {
+                "rule": "One survey of AI methods.",
+                "min_count": 1,
+                "options": [
+                  "CS 486 \u2013 Introduction to Artificial Intelligence",
+                  "ECE 457B \u2013 Fundamentals of Computational Intelligence",
+                  "SYDE 522 \u2013 Foundations of Artificial Intelligence"
+                ]
+              },
+              {
+                "rule": "One additional AI/ML-related elective.",
+                "min_count": 1,
+                "options": [
+                  "CS 485 \u2013 Statistical and Computational Foundations of Machine Learning",
+                  "ECE 457C \u2013 Reinforcement Learning",
+                  "HLTH 230 \u2013 Introduction to Health Informatics",
+                  "MSCI 446 \u2013 Introduction to Machine Learning",
+                  "STV 208 \u2013 AI and Society: Impact, Ethics, and Equity",
+                  "SYDE 552/BIOL 487 \u2013 Computational Neuroscience",
+                  "SYDE 556 \u2013 Simulating Neurobiological Systems",
+                  "BME 499 \u2013 Elective Biomedical Research Project (approval required)"
+                ]
+              }
+            ]
+          },
+          "additional_constraints": [
+            "Project topic must be approved by the specialization co-ordinator."
+          ],
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Biomedical-Engineering.html"
+          ]
+        },
+        {
+          "name": "Neural Engineering Specialization",
+          "eligible_majors": [
+            "Honours Biomedical Engineering"
+          ],
+          "minimum_average_required": "60% in the five specialization courses; minimum 50% in each",
+          "graduation_requirements_summary": "5 courses including neuroscience/ML electives, plus approved neural-focused project.",
+          "course_requirements": {
+            "complete_all_of": [],
+            "select_from_lists": [
+              {
+                "rule": "Choose 1 from core neuroscience methods.",
+                "min_count": 1,
+                "options": [
+                  "SYDE 552/BIOL 487 \u2013 Computational Neuroscience",
+                  "SYDE 556 \u2013 Simulating Neurobiological Systems"
+                ]
+              },
+              {
+                "rule": "Capstone or research project focused on neural engineering (approved).",
+                "min_count": 1,
+                "options": [
+                  "BME 461 & BME 462",
+                  "GENE 403 & GENE 404",
+                  "SYDE 461 & SYDE 462",
+                  "BME 499"
+                ]
+              },
+              {
+                "rule": "Select remaining courses from list (examples).",
+                "min_count": 3,
+                "options": [
+                  "BIOL 376 \u2013 Cellular Neurophysiology",
+                  "AMATH/BIOL 382 \u2013 Computational Modelling of Cellular Systems",
+                  "AMATH 451 \u2013 Introduction to Dynamical Systems",
+                  "BME 499 \u2013 Elective Biomedical Research Project (approval required)",
+                  "BME 587 \u2013 Special Topics in Biomedical Signals",
+                  "STAT 441 \u2013 Statistical Learning - Classification",
+                  "STAT 444 \u2013 Statistical Learning - Advanced Regression",
+                  "SYDE 522 \u2013 Foundations of Artificial Intelligence",
+                  "SYDE 552/BIOL 487 \u2013 Computational Neuroscience",
+                  "SYDE 556 \u2013 Simulating Neurobiological Systems",
+                  "SYDE 572 \u2013 Introduction to Pattern Recognition"
+                ]
+              }
+            ]
+          },
+          "additional_constraints": [
+            "Project topic must be approved by the specialization co-ordinator."
+          ],
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Biomedical-Engineering.html"
+          ]
+        },
+        {
+          "name": "Sports Engineering Specialization",
+          "eligible_majors": [
+            "Honours Biomedical Engineering"
+          ],
+          "minimum_average_required": "60% in the five specialization courses; minimum 50% in each",
+          "graduation_requirements_summary": "5 courses total (2 required + 3 electives), plus approved sports-focused capstone or research project.",
+          "course_requirements": {
+            "complete_all_of": [
+              "BME 550 \u2013 Sports Engineering (0.50)",
+              "BME 551 \u2013 Biomechanics of Human Movement (0.50)"
+            ],
+            "select_from_lists": [
+              {
+                "rule": "Capstone or research project with sports engineering focus (approved).",
+                "min_count": 1,
+                "options": [
+                  "BME 461 & BME 462",
+                  "GENE 403 & GENE 404",
+                  "SYDE 461 & SYDE 462",
+                  "BME 499"
+                ]
+              },
+              {
+                "rule": "Choose 3 additional electives from list.",
+                "min_count": 3,
+                "options": [
+                  "BME 499 \u2013 Elective Biomedical Research Project (approval required) (0.50)",
+                  "BME 544 \u2013 Biomedical Measurement and Signal Processing (0.50)",
+                  "BME 588 \u2013 Special Topics in Biomechanics (0.50)",
+                  "CIVE 460 \u2013 Engineering Biomechanics (0.50)",
+                  "KIN 340 \u2013 Musculoskeletal Injuries in Sport and Activity (0.50)",
+                  "ME 362 \u2013 Fluid Mechanics 2 (0.50)",
+                  "ME 533 \u2013 Non-Metallic and Composite Materials (0.50)",
+                  "ME 559 \u2013 Finite Element Methods (0.50)",
+                  "ME 574 \u2013 Engineering Biomechanics (0.50)",
+                  "SYDE 553 \u2013 Advanced Dynamics (0.50)"
+                ]
+              },
+              {
+                "rule": "Complete no more than 1 from following imaging pair.",
+                "min_count": 0,
+                "max_count": 1,
+                "options": [
+                  "ECE 417 \u2013 Image Processing (0.50)",
+                  "SYDE 575 \u2013 Image Processing (0.50)"
+                ]
+              }
+            ]
+          },
+          "additional_constraints": [
+            "No one course may fulfill more than one requirement within the specialization.",
+            "Capstone/research project must have a sports focus and be approved by the Specialization co-ordinator."
+          ],
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Biomedical-Engineering.html"
+          ]
+        }
+      ]
+    },
+    {
+      "program": "Chemical Engineering",
+      "specializations": [
+        {
+          "name": "Energy and Environmental Systems and Processes Specialization",
+          "eligible_majors": [
+            "Honours Chemical Engineering"
+          ],
+          "minimum_average_required": "Department standard (typically 60% in specialization courses)",
+          "graduation_requirements_summary": "Take 4 approved technical electives from List 1.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 4 technical electives from List 1 (Energy & Environmental Systems and Processes).",
+                "min_count": 4,
+                "options": [
+                  "See calendar page for full List 1"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Chemical-Engineering.html"
+          ]
+        },
+        {
+          "name": "Materials and Manufacturing Processes Specialization",
+          "eligible_majors": [
+            "Honours Chemical Engineering"
+          ],
+          "minimum_average_required": "Department standard (typically 60% in specialization courses)",
+          "graduation_requirements_summary": "Take 4 approved technical electives from List 2.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 4 technical electives from List 2 (Materials & Manufacturing Processes).",
+                "min_count": 4,
+                "options": [
+                  "See calendar page for full List 2"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Chemical-Engineering.html"
+          ]
+        },
+        {
+          "name": "Chemical Process Modelling, Optimization and Control Specialization",
+          "eligible_majors": [
+            "Honours Chemical Engineering"
+          ],
+          "minimum_average_required": "Department standard (typically 60% in specialization courses)",
+          "graduation_requirements_summary": "Take 4 approved technical electives from List 3.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 4 technical electives from List 3 (Process Modelling, Optimization & Control).",
+                "min_count": 4,
+                "options": [
+                  "See calendar page for full List 3"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Chemical-Engineering.html"
+          ]
+        }
+      ]
+    },
+    {
+      "program": "Civil Engineering",
+      "specializations": [
+        {
+          "name": "Building Science Specialization",
+          "eligible_majors": [
+            "Honours Civil Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "Minimum of 4 technical electives from listed courses.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose at least 4 from the Building Science list.",
+                "min_count": 4,
+                "options": [
+                  "CIVE 332 \u2013 Hydrology",
+                  "CIVE 407 \u2013 Building Science and Technology",
+                  "ENVE 277 \u2013 Air Quality Engineering",
+                  "ENVE 279 \u2013 Energy and the Environment",
+                  "ENVE 375 \u2013 Physico-Chemical Processes in Water and Wastewater Treatment",
+                  "ENVE 376 \u2013 Biological Processes in Water and Wastewater Treatment"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Civil-Engineering.html"
+          ]
+        },
+        {
+          "name": "Geotechnical Specialization",
+          "eligible_majors": [
+            "Honours Civil Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "Minimum of 4 technical electives from listed courses.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose at least 4 from the Geotechnical list.",
+                "min_count": 4,
+                "options": [
+                  "CIVE 353 \u2013 Soil Mechanics 2",
+                  "CIVE 454 \u2013 Foundation Engineering",
+                  "CIVE 455 \u2013 Engineering Geology",
+                  "CIVE 458 \u2013 Ground Improvement",
+                  "EARTH 334 \u2013 Introduction to Geophysics",
+                  "EARTH 439 \u2013 Flow and Transport through Fractured Rocks",
+                  "ENVE 479 \u2013 Site Remediation"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Civil-Engineering.html"
+          ]
+        },
+        {
+          "name": "Structural Specialization",
+          "eligible_majors": [
+            "Honours Civil Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "Minimum of 4 technical electives from listed courses.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose at least 4 from the Structural list.",
+                "min_count": 4,
+                "options": [
+                  "CIVE 413 \u2013 Reinforced Concrete Design",
+                  "CIVE 414 \u2013 Structural Steel Design",
+                  "CIVE 415 \u2013 Prestressed Concrete Design",
+                  "CIVE 416 \u2013 Introduction to Structural Dynamics",
+                  "CIVE 417 \u2013 Structural Analysis 2",
+                  "CIVE 418 \u2013 Masonry Design",
+                  "CIVE 419 \u2013 Timber Design"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Civil-Engineering.html"
+          ]
+        },
+        {
+          "name": "Transportation Specialization",
+          "eligible_majors": [
+            "Honours Civil Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "Minimum of 4 technical electives from listed courses.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose at least 4 from the Transportation list.",
+                "min_count": 4,
+                "options": [
+                  "CIVE 343 \u2013 Transportation Engineering 2",
+                  "CIVE 440 \u2013 Transportation Systems Analysis",
+                  "CIVE 442 \u2013 Urban Transportation Planning",
+                  "CIVE 444 \u2013 Public Transportation",
+                  "CIVE 446 \u2013 Pavement Design and Management",
+                  "CIVE 448 \u2013 Traffic Operations",
+                  "ENVS 278 \u2013 Social/Cultural Aspects of the City",
+                  "PLAN 308 \u2013 Urban Design",
+                  "PLAN 441 \u2013 Transportation and Land Use"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Civil-Engineering.html"
+          ]
+        },
+        {
+          "name": "Water Resources Specialization",
+          "eligible_majors": [
+            "Honours Civil Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "Minimum of 4 technical electives from listed courses.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose at least 4 from the Water Resources list.",
+                "min_count": 4,
+                "options": [
+                  "CIVE 331 \u2013 Municipal Hydraulics",
+                  "CIVE 332 \u2013 Hydrology",
+                  "CIVE 430 \u2013 Water Supply Engineering",
+                  "CIVE 431 \u2013 Wastewater Engineering",
+                  "CIVE 432 \u2013 Open Channel Flow",
+                  "ENVE 475 \u2013 Groundwater Engineering",
+                  "ENVE 583 \u2013 Design of Urban Water Systems"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Civil-Engineering.html"
+          ]
+        }
+      ]
+    },
+    {
+      "program": "Computer Engineering",
+      "specializations": [
+        {
+          "name": "Communications and Signal Processing Specialization",
+          "eligible_majors": [
+            "Honours Computer Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "Complete all required courses listed below.",
+          "course_requirements": {
+            "complete_all_of": [
+              "ECE 414 \u2013 Communication Systems 2",
+              "ECE 417 \u2013 Image Processing",
+              "ECE 455 \u2013 Digital Communications",
+              "ECE 457A \u2013 Cooperative and Adaptive Algorithms",
+              "ECE 457B \u2013 Fundamentals of Computational Intelligence",
+              "ECE 459 \u2013 Programming for Performance",
+              "ECE 486 \u2013 Robot Dynamics and Control"
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Computer-Engineering.html"
+          ]
+        },
+        {
+          "name": "Quantum Engineering Specialization",
+          "eligible_majors": [
+            "Honours Computer Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "4 courses total (1 required + 3 from list).",
+          "course_requirements": {
+            "complete_all_of": [
+              "ECE 305 \u2013 Introduction to Quantum Mechanics"
+            ],
+            "select_from_lists": [
+              {
+                "rule": "Choose 3 of the following:",
+                "min_count": 3,
+                "options": [
+                  "ECE 405A \u2013 Quantum Information Processing Devices",
+                  "ECE 405B \u2013 Fundamentals of Experimental Quantum Information",
+                  "ECE 405C \u2013 Programming of Quantum Computing Algorithms",
+                  "ECE 405D \u2013 Superconducting Quantum Circuits"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://uwaterloo.ca/secretariat/sites/default/files/uploads/documents/suc-2023-11-21-agenda-package.pdf",
+            "https://uwaterloo.ca/secretariat/sites/default/files/uploads/documents/4-20240129-minsen.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "program": "Electrical Engineering",
+      "specializations": [
+        {
+          "name": "Communications and Signal Processing Specialization",
+          "eligible_majors": [
+            "Honours Electrical Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "Complete all required courses listed below.",
+          "course_requirements": {
+            "complete_all_of": [
+              "ECE 414 \u2013 Communication Systems 2",
+              "ECE 417 \u2013 Image Processing",
+              "ECE 455 \u2013 Digital Communications",
+              "ECE 457A \u2013 Cooperative and Adaptive Algorithms",
+              "ECE 457B \u2013 Fundamentals of Computational Intelligence",
+              "ECE 459 \u2013 Programming for Performance",
+              "ECE 486 \u2013 Robot Dynamics and Control"
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Electrical-Engineering.html"
+          ]
+        },
+        {
+          "name": "Quantum Engineering Specialization",
+          "eligible_majors": [
+            "Honours Electrical Engineering"
+          ],
+          "minimum_average_required": "60% in specialization courses; min 50% in each",
+          "graduation_requirements_summary": "4 courses total (1 required + 3 from list).",
+          "course_requirements": {
+            "complete_all_of": [
+              "ECE 305 \u2013 Introduction to Quantum Mechanics"
+            ],
+            "select_from_lists": [
+              {
+                "rule": "Choose 3 of the following:",
+                "min_count": 3,
+                "options": [
+                  "ECE 405A \u2013 Quantum Information Processing Devices",
+                  "ECE 405B \u2013 Fundamentals of Experimental Quantum Information",
+                  "ECE 405C \u2013 Programming of Quantum Computing Algorithms",
+                  "ECE 405D \u2013 Superconducting Quantum Circuits"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://uwaterloo.ca/secretariat/sites/default/files/uploads/documents/suc-2023-11-21-agenda-package.pdf",
+            "https://uwaterloo.ca/secretariat/sites/default/files/uploads/documents/4-20240129-minsen.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "program": "Environmental Engineering",
+      "specializations": [
+        {
+          "name": "Energy Specialization",
+          "eligible_majors": [
+            "Honours Environmental Engineering"
+          ],
+          "minimum_average_required": "Department standard (typically 60% in specialization courses)",
+          "graduation_requirements_summary": "Minimum 4 technical electives from lists.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 4 from TE List A/B as specified (e.g., CHE 516, CIVE 495 topics, ME 452, CIVE 507).",
+                "min_count": 4,
+                "options": [
+                  "CHE 516 \u2013 Energy Systems Engineering",
+                  "CIVE 495 \u2013 Design Intensive Special Topics in Civil Engineering (Building Energy Analysis / HVAC Energy Efficiency topics)",
+                  "ME 452 \u2013 Energy Transfer in Buildings",
+                  "CIVE 507 \u2013 Building Science and Technology"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2022-2023/page/ENG-Environmental-Engineering.html"
+          ]
+        },
+        {
+          "name": "Hydrology Specialization",
+          "eligible_majors": [
+            "Honours Environmental Engineering"
+          ],
+          "minimum_average_required": "Department standard (typically 60% in specialization courses)",
+          "graduation_requirements_summary": "Minimum 4 technical electives from lists.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 4 from TE List A/B.",
+                "min_count": 4,
+                "options": [
+                  "ENVE 583 \u2013 Design of Urban Water Systems",
+                  "SYDE 532 \u2013 Introduction to Complex Systems",
+                  "SYDE 533 \u2013 Conflict Resolution",
+                  "BIOL 470 \u2013 Methods of Aquatic Ecology",
+                  "EARTH 439 \u2013 Flow and Transport Through Fractured Rocks",
+                  "EARTH 444 \u2013 Applied Wetland Science"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2022-2023/page/ENG-Environmental-Engineering.html"
+          ]
+        },
+        {
+          "name": "Pollution Treatment and Control Specialization",
+          "eligible_majors": [
+            "Honours Environmental Engineering"
+          ],
+          "minimum_average_required": "Department standard (typically 60% in specialization courses)",
+          "graduation_requirements_summary": "Minimum 4 technical electives from lists.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 4 from TE lists (e.g., CHE 571/572/574, ENVE 375/376, etc.).",
+                "min_count": 4,
+                "options": [
+                  "See calendar page for full list"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2022-2023/page/ENG-Environmental-Engineering.html"
+          ]
+        }
+      ],
+      "notes": "Recent calendars (2023\u201324) list three formal specializations. Department marketing pages mention additional focus areas; confirm with advisor."
+    },
+    {
+      "program": "Geological Engineering",
+      "specializations": [
+        {
+          "name": "Geology Specialization",
+          "eligible_majors": [
+            "Honours Geological Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Complete 5 courses from specialization lists, following group constraints.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 5 from list (EARTH/ENVE/CIVE etc.).",
+                "min_count": 5,
+                "options": [
+                  "See calendar page for full list"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Geological-Engineering.html"
+          ],
+          "status": "PARTIAL_TODO_lists"
+        },
+        {
+          "name": "Hydrogeology Specialization",
+          "eligible_majors": [
+            "Honours Geological Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Complete 5 courses from specialization lists, following group constraints.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 5 from list (EARTH/ENVE/CIVE etc.).",
+                "min_count": 5,
+                "options": [
+                  "See calendar page for full list"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Geological-Engineering.html"
+          ],
+          "status": "PARTIAL_TODO_lists"
+        },
+        {
+          "name": "Soil, Rock and Structures Specialization",
+          "eligible_majors": [
+            "Honours Geological Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Complete 5 courses from specialization lists, following group constraints.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose 5 from list (EARTH/ENVE/CIVE etc.).",
+                "min_count": 5,
+                "options": [
+                  "See calendar page for full list"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Geological-Engineering.html"
+          ],
+          "status": "PARTIAL_TODO_lists"
+        }
+      ]
+    },
+    {
+      "program": "Mechanical Engineering",
+      "specializations": [
+        {
+          "name": "Welding and Joining Specialization",
+          "eligible_majors": [
+            "Honours Mechanical Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Complete all 5 specified ME technical electives (4A/4B).",
+          "course_requirements": {
+            "complete_all_of": [
+              "ME 435 \u2013 Industrial Metallurgy",
+              "ME 436 \u2013 Welding and Joining Processes",
+              "ME 526 \u2013 Fatigue and Fracture Analysis",
+              "ME 535 \u2013 Welding Metallurgy",
+              "ME 538 \u2013 Welding Design, Fabrication and Quality Control"
+            ],
+            "optional": [
+              "ME 547 \u2013 Robotics Manipulators: Kinematics, Dynamics, Control"
+            ]
+          },
+          "additional_constraints": [
+            "Enroll before 4A; no extra course load beyond regular TEs; welding-related ME 481 project recommended but not required."
+          ],
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/ENG-Mechanical-Engineering.html",
+            "https://uwaterloo.ca/mechanical-mechatronics-engineering/undergraduate-students/degree-planning-and-enhancement/welding-and-joining-specialization"
+          ]
+        }
+      ]
+    },
+    {
+      "program": "Nanotechnology Engineering",
+      "specializations": [
+        {
+          "name": "Nanobiosystems Specialization",
+          "eligible_majors": [
+            "Honours Nanotechnology Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Specialization approved in 2024; follow department list of required/approved electives.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose required set per department list",
+                "min_count": 4
+              }
+            ]
+          },
+          "sources": [
+            "https://uwaterloo.ca/daily-bulletin/2024-01-29",
+            "https://uwaterloo.ca/secretariat/sites/default/files/uploads/documents/4-20240129-minsen.pdf"
+          ],
+          "status": "TODO_full_course_list"
+        },
+        {
+          "name": "Nanoelectronics Specialization",
+          "eligible_majors": [
+            "Honours Nanotechnology Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Specialization approved in 2024; follow department list of required/approved electives.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose required set per department list",
+                "min_count": 4
+              }
+            ]
+          },
+          "sources": [
+            "https://uwaterloo.ca/daily-bulletin/2024-01-29",
+            "https://uwaterloo.ca/secretariat/sites/default/files/uploads/documents/4-20240129-minsen.pdf"
+          ],
+          "status": "TODO_full_course_list"
+        },
+        {
+          "name": "Nanofabrication Specialization",
+          "eligible_majors": [
+            "Honours Nanotechnology Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Specialization approved in 2024; follow department list of required/approved electives.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose required set per department list",
+                "min_count": 4
+              }
+            ]
+          },
+          "sources": [
+            "https://uwaterloo.ca/daily-bulletin/2024-01-29",
+            "https://uwaterloo.ca/secretariat/sites/default/files/uploads/documents/4-20240129-minsen.pdf"
+          ],
+          "status": "TODO_full_course_list"
+        },
+        {
+          "name": "Nanomaterials Specialization",
+          "eligible_majors": [
+            "Honours Nanotechnology Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Specialization approved in 2024; follow department list of required/approved electives.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose required set per department list",
+                "min_count": 4
+              }
+            ]
+          },
+          "sources": [
+            "https://uwaterloo.ca/daily-bulletin/2024-01-29",
+            "https://uwaterloo.ca/secretariat/sites/default/files/uploads/documents/4-20240129-minsen.pdf"
+          ],
+          "status": "TODO_full_course_list"
+        }
+      ]
+    },
+    {
+      "program": "Software Engineering",
+      "specializations": [
+        {
+          "name": "Artificial Intelligence Specialization (Computer Science)",
+          "eligible_majors": [
+            "Bachelor of Software Engineering"
+          ],
+          "minimum_average_required": "Per CS specialization rules",
+          "graduation_requirements_summary": "3 core CS courses + 4 additional (one from Math and one from Engineering).",
+          "course_requirements": {
+            "complete_all_of": [
+              "CS 486 \u2013 Introduction to Artificial Intelligence",
+              "CS 492 \u2013 The Social Implications of Computing (CS 497 may substitute depending on topic)",
+              "CS 480 \u2013 Introduction to Machine Learning OR CS 485 \u2013 Statistical and Computational Foundations of Machine Learning"
+            ],
+            "select_from_lists": [
+              {
+                "rule": "Four additional courses (\u22651 Math and \u22651 Engineering) from CS/STAT/CO/ECE/SE/SYDE lists.",
+                "min_count": 4,
+                "options": [
+                  "CO 367, CO 456, CO 463, CO 466",
+                  "CS 452, CS 479, CS 484",
+                  "STAT 341, STAT 440, STAT 441, STAT 444",
+                  "ECE 380/SE 380, ECE 423, ECE 457C, ECE 481, ECE 486, ECE 488, ECE 495",
+                  "MTE 544",
+                  "SYDE 552/BIOL 487, SYDE 556, SYDE 572"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/MATH-Computer-Science-Specializations.html"
+          ]
+        },
+        {
+          "name": "Business Specialization (Computer Science)",
+          "eligible_majors": [
+            "Bachelor of Software Engineering"
+          ],
+          "minimum_average_required": "Per CS specialization rules",
+          "graduation_requirements_summary": "2 CS business-related + 6 business/management/econ courses.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Two of:",
+                "min_count": 2,
+                "options": [
+                  "CS 348 \u2013 Introduction to Database Management",
+                  "CS 454 \u2013 Distributed Systems",
+                  "CS 490 \u2013 Information Systems Management"
+                ]
+              },
+              {
+                "rule": "Six of the approved business/management/econ list (AFM/ARBUS/BUS/COMM/ECON/HRM/MGMT/MSCI/PSYCH etc.).",
+                "min_count": 6,
+                "options": [
+                  "ACTSC 231, ACTSC 372, AFM 101/AFM 123/ARBUS 102, AFM 102, AFM 131/ARBUS 101/BUS 111W, ARBUS 302/MGMT 244, BUS 121W, BUS 362W, BUS 481W, BUS 491W, COMM 400, ECON 101, ECON 102, HRM 200, MGMT 220, MSCI 211/PSYCH 238, MSCI 311, MSCI 452"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/MATH-Computer-Sci-Business-Spec.html"
+          ]
+        },
+        {
+          "name": "Computational Fine Art Specialization (Computer Science)",
+          "eligible_majors": [
+            "Bachelor of Software Engineering"
+          ],
+          "minimum_average_required": "Per CS specialization rules",
+          "graduation_requirements_summary": "3 core courses + studio/theory requirements.",
+          "course_requirements": {
+            "complete_all_of": [
+              "CS 349 \u2013 User Interfaces",
+              "CS/FINE 383 \u2013 Computational Digital Art Studio",
+              "CS 488 \u2013 Introduction to Computer Graphics"
+            ],
+            "select_from_lists": [
+              {
+                "rule": "One first-year studio course",
+                "min_count": 1,
+                "options": [
+                  "FINE 100 \u2013 Studio Fundamentals",
+                  "FINE 130 \u2013 Introduction to Digital Imaging"
+                ]
+              },
+              {
+                "rule": "One second-year studio course",
+                "min_count": 1,
+                "options": [
+                  "FINE 228 \u2013 Design and Imaging",
+                  "FINE 247 \u2013 Expanded Media: Interaction"
+                ]
+              },
+              {
+                "rule": "One art theory course",
+                "min_count": 1,
+                "options": [
+                  "FINE 257 \u2013 Video, New Media and the Digital Turn",
+                  "VCULT 200 \u2013 Visual Studies Across the Discipline"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/MATH-Computer-Sci-Computational-Fine-Art-Spec.html"
+          ]
+        },
+        {
+          "name": "Human-Computer Interaction Specialization (Computer Science)",
+          "eligible_majors": [
+            "Bachelor of Software Engineering"
+          ],
+          "minimum_average_required": "Per CS specialization rules",
+          "graduation_requirements_summary": "3 core HCI + 2 software depth + 2 breadth courses.",
+          "course_requirements": {
+            "complete_all_of": [
+              "CS 349 \u2013 User Interfaces",
+              "CS 449 \u2013 Human-Computer Interaction",
+              "CS 492 \u2013 The Social Implications of Computing"
+            ],
+            "select_from_lists": [
+              {
+                "rule": "Two software depth courses",
+                "min_count": 2,
+                "options": [
+                  "CS 445/ECE 451 or SE 463 \u2013 Software Requirements Specification and Analysis",
+                  "CS 446/ECE 452 or SE 464 \u2013 Software Design and Architectures",
+                  "CS 447/ECE 453 or SE 465 \u2013 Software Testing/QA/Maintenance",
+                  "CS 454 \u2013 Distributed Systems",
+                  "CS 458 \u2013 Computer Security and Privacy",
+                  "CS 480 or CS 485",
+                  "CS 484 \u2013 Computational Vision",
+                  "CS 488 \u2013 Intro to Computer Graphics"
+                ]
+              },
+              {
+                "rule": "Two breadth courses",
+                "min_count": 2,
+                "options": [
+                  "ENGL 108D, ENGL 293, ENGL 295, FINE 150, FINE 257, INTEG 251, KIN 320, PSYCH 207, PSYCH 261, STAT 332, STAT 430"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://academic-calendar-archive.uwaterloo.ca/undergraduate-studies/2023-2024/page/MATH-Computer-Sci-Human-Computer-Interaction-Spec.html"
+          ]
+        }
+      ]
+    },
+    {
+      "program": "Systems Design Engineering",
+      "specializations": [
+        {
+          "name": "Human Factors and Interfaces Specialization",
+          "eligible_majors": [
+            "Honours Systems Design Engineering"
+          ],
+          "minimum_average_required": "Department standard",
+          "graduation_requirements_summary": "Take approved SYDE TE/STV courses that contribute to the specialization per department list.",
+          "course_requirements": {
+            "select_from_lists": [
+              {
+                "rule": "Choose required set from the Human Factors & Interfaces specialization TE/STV lists (e.g., SYDE 542, SYDE 543, SYDE 548, SYDE 552).",
+                "min_count": 5,
+                "options": [
+                  "See department page for current list"
+                ]
+              }
+            ]
+          },
+          "sources": [
+            "https://uwaterloo.ca/systems-design-engineering/undergraduate-students/degree-planning-and-enhancement/course-electives",
+            "https://uwaterloo.ca/engineering/future-students/systems-design-engineering"
+          ],
+          "status": "TODO_full_course_list"
+        }
+      ]
+    }
+  ]
+}

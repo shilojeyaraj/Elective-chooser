@@ -1,0 +1,80 @@
+
+[
+  {
+    "code": "CHEM123",
+    "subject": "CHEM",
+    "title": "General Chemistry 2",
+    "description": "Properties of liquids and solutions. Introduction to chemical equilibria. Principles of acid\u2011base equilibria, solubility and electrochemical processes. Chemical kinetics.",
+    "prerequisites": "CHEM 120 or CHEM 102",
+    "antirequisites": "CHEM 125",
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Science students must also take CHEM 123L; offered in W, S terms"
+  },
+  {
+    "code": "CHEM209",
+    "subject": "CHEM",
+    "title": "Introductory Spectroscopy and Structure",
+    "description": "The nature of electromagnetic radiation and an elementary outline of quantum mechanics in one dimension. For each of microwave, infrared, Raman, electronic, photoelectron, and nuclear magnetic resonance spectroscopy, the nature of the molecular energy levels involved and the type of molecular information that can be obtained using it are examined.",
+    "prerequisites": "One of CHEM 120, 121, NE 121",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Offered in Fall term"
+  },
+  {
+    "code": "CHE161",
+    "subject": "CHE",
+    "title": "Engineering Biology",
+    "description": "Introduction to molecular biology concepts relevant to chemical engineering. Topics include cell structure, proteins, nucleic acids, metabolism, enzyme kinetics, and genetic regulation.",
+    "prerequisites": null,
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Typically taken in 1B term by Chemical Engineering students"
+  },
+  {
+    "code": "CHE220",
+    "subject": "CHE",
+    "title": "Chemical Engineering Computation",
+    "description": "Application of numerical methods and computer programming to solve chemical engineering problems. Includes linear algebraic equations, nonlinear equations, ordinary differential equations, and optimization.",
+    "prerequisites": "MATH 118, CHE 102",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Lab work in MATLAB/Python required"
+  },
+  {
+    "code": "CHE225",
+    "subject": "CHE",
+    "title": "Chemical Engineering Thermodynamics 1",
+    "description": "The first and second laws of thermodynamics, properties of pure substances, thermodynamic cycles, and applications to energy systems.",
+    "prerequisites": "CHE 102, MATH 118",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "CHE230",
+    "subject": "CHE",
+    "title": "Chemical Engineering Fluid Mechanics",
+    "description": "Fluid statics and dynamics, flow in pipes and channels, dimensional analysis, and fluid machinery. Emphasis on applications to chemical engineering systems.",
+    "prerequisites": "CHE 102, MATH 118, PHYS 115 or PHYS 121",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Includes lab component"
+  },
+  {
+    "code": "CHE341",
+    "subject": "CHE",
+    "title": "Transport Processes 1",
+    "description": "Fundamentals of momentum, energy, and mass transport. Introduction to the differential formulation of transport phenomena with applications to chemical engineering systems.",
+    "prerequisites": "CHE 230, CHE 225",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Offered in 3A term"
+  }
+]

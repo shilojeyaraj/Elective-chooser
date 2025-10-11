@@ -1,0 +1,132 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import LoginForm from '@/components/LoginForm'
+import { ThemeProvider } from '@/contexts/ThemeContext'
+
+export default function SignupPage() {
+  const [loading, setLoading] = useState(true)
+  const [hasExistingUser, setHasExistingUser] = useState(false)
+  const [existingUser, setExistingUser] = useState<any>(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    // Check if user is already logged in from localStorage
+    const storedUser = localStorage.getItem('currentUser')
+    if (storedUser) {
+      try {
+        const userData = JSON.parse(storedUser)
+        setExistingUser(userData)
+        setHasExistingUser(true)
+      } catch (error) {
+        console.error('❌ Error parsing stored user:', error)
+        localStorage.removeItem('currentUser')
+      }
+    }
+    setLoading(false)
+  }, [])
+
+  const handleSignup = (userData: any) => {
+    console.log('✅ Signup successful, redirecting to profile setup')
+    router.push('/setprofile')
+  }
+
+  const handleContinueWithExisting = () => {
+    console.log('✅ Continuing with existing account')
+    router.push('/chatbot')
+  }
+
+  const handleSignOutAndCreateNew = () => {
+    console.log('✅ Signing out to create new account')
+    localStorage.removeItem('currentUser')
+    setHasExistingUser(false)
+    setExistingUser(null)
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          {hasExistingUser ? (
+            <>
+              <div className="text-center">
+                <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+                  Welcome back!
+                </h2>
+                <p className="mt-2 text-sm text-gray-600">
+                  You're already signed in as <strong>{existingUser?.username || existingUser?.email}</strong>
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <button
+                  onClick={handleContinueWithExisting}
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                >
+                  Continue to Chatbot
+                </button>
+                
+                <button
+                  onClick={handleSignOutAndCreateNew}
+                  className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                >
+                  Sign out and create new account
+                </button>
+              </div>
+              
+              <div className="text-center">
+                <p className="text-sm text-gray-600">
+                  Want to sign in with a different account?{' '}
+                  <a 
+                    href="/login" 
+                    className="font-medium text-blue-600 hover:text-blue-500"
+                  >
+                    Sign in here
+                  </a>
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="text-center">
+                <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+                  Create your account
+                </h2>
+                <p className="mt-2 text-sm text-gray-600">
+                  Join us and start planning your academic journey!
+                </p>
+              </div>
+              
+              <LoginForm 
+                isSignup={true} 
+                onLogin={handleSignup}
+              />
+              
+              <div className="text-center">
+                <p className="text-sm text-gray-600">
+                  Already have an account?{' '}
+                  <a 
+                    href="/login" 
+                    className="font-medium text-blue-600 hover:text-blue-500"
+                  >
+                    Sign in here
+                  </a>
+                </p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+  )
+}

@@ -1,0 +1,21 @@
+# Cloudflare Pages Environment Variables
+# Copy this file to .env.local and fill in your actual values
+# Then set these in your Cloudflare Pages dashboard under Settings > Environment Variables
+
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url_here
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key_here
+
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Web Search API (Tavily)
+TAVILY_API_KEY=your_tavily_api_key_here
+
+# Node Environment
+NODE_ENV=production
+
+# Next.js Configuration
+NEXTAUTH_URL=https://your-domain.pages.dev
+NEXTAUTH_SECRET=your_nextauth_secret_here

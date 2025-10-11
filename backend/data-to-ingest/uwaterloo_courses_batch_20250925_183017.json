@@ -1,0 +1,450 @@
+[
+  {
+    "department": "EARTH",
+    "code": "EARTH 121",
+    "name": "Introductory Earth Sciences",
+    "description": "Introduction to the materials of the Earth and the geological processes that shape the planet across deep time; rocks, minerals, plate tectonics, surface processes, and Earth history.",
+    "prerequisites": "None stated; corequisite for lab is EARTH 121L."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 121L",
+    "name": "Introductory Earth Sciences Laboratory",
+    "description": "Hands‑on laboratory accompanying EARTH 121 covering mineral/rock identification, topographic maps, and basic geologic problem‑solving.",
+    "prerequisites": "Coreq: EARTH 121."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 122",
+    "name": "Introductory Environmental Sciences",
+    "description": "Foundational concepts in environmental science including biogeochemical cycles, water, air, soils, energy and climate, with emphasis on human impacts and sustainability.",
+    "prerequisites": "None stated; corequisite for lab is EARTH 122L."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 122L",
+    "name": "Introductory Environmental Sciences Laboratory",
+    "description": "Laboratory exercises supporting EARTH 122 focusing on environmental sampling and analysis.",
+    "prerequisites": "Coreq: EARTH 122."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 221",
+    "name": "Structural Geology and Tectonics (introductory)",
+    "description": "Introduction to structures present in the Earth’s crust (folds, faults, fabric) and the stress/strain responsible for their development; basics of brittle/ductile deformation and plate‑tectonic context.",
+    "prerequisites": "Prereq: First‑year Earth/Geo background (typical)."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 231",
+    "name": "Mineralogy",
+    "description": "Composition, structure and physical properties of rock‑forming minerals; techniques for mineral identification (hand specimen and microscopy).",
+    "prerequisites": "Prereq: First‑year chemistry recommended."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 232",
+    "name": "Igneous and Metamorphic Petrology",
+    "description": "Description, classification and origin of igneous and metamorphic rocks; phase equilibria and tectonic settings.",
+    "prerequisites": "Prereq: EARTH 231 or equivalent."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 235",
+    "name": "Introduction to Geochemistry",
+    "description": "Fundamentals of geochemistry including thermodynamics of geochemical systems, kinetics, isotopes, and aqueous chemistry; applications to natural waters and environmental problems.",
+    "prerequisites": "Prereq: CHE 102 or 120, and MATH 118/119/128/138/148 (or equivalent)."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 333",
+    "name": "Sedimentology and Stratigraphy",
+    "description": "Principles of sediment transport and deposition; facies analysis; stratigraphic correlation; interpretation of ancient environments.",
+    "prerequisites": "Prereq: Second‑year Earth courses (typical)."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 358",
+    "name": "Applied Geophysics",
+    "description": "Overview of geophysical methods for subsurface investigation (seismic, gravity, magnetic, electrical, ground‑penetrating radar) with case studies in resource and engineering settings.",
+    "prerequisites": "Prereq: Math/physics background at 2nd year level."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 421",
+    "name": "Structural Geology of the Earth’s Crust",
+    "description": "Stress and strain in the Earth’s crust; rheology of rocks; analysis of folds, faults, shear zones and fabrics; evolution of mountain belts; introduction to plate kinematics.",
+    "prerequisites": "Prereq: EARTH 221 (or consent)."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 438",
+    "name": "Engineering Geology",
+    "description": "Application of geology to engineering: rock and soil properties, mass movements, landslides, hazards; site investigation, sampling, logging and in‑situ testing for foundations and slopes.",
+    "prerequisites": "Prereq: EARTH 221/333 (typical)."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 440",
+    "name": "Basin Analysis",
+    "description": "Processes controlling the formation and evolution of sedimentary basins; subsidence mechanisms, sediment routing, and tectono‑stratigraphic interpretation of basin fills.",
+    "prerequisites": "Prereq: EARTH 333 (or consent)."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 444",
+    "name": "Water‑Rock Interaction",
+    "description": "Thermodynamics and kinetics of mineral–fluid reactions; aqueous geochemistry; modeling of water–rock systems relevant to environmental and hydrogeological problems.",
+    "prerequisites": "Prereq: EARTH 235 (or CHEM background)."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 458",
+    "name": "Energy from the Earth",
+    "description": "Earth’s energy resources and the grid: geothermal, hydrocarbons, and emerging subsurface energy technologies; evaluation of reservoirs and environmental implications.",
+    "prerequisites": "Prereq: Upper‑year standing."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 459",
+    "name": "Geotechnical Site Investigation",
+    "description": "Methods for site investigation in soil and rock: boreholes, sampling, logging, in‑situ tests; lab testing; interpretation and reporting for geotechnical design.",
+    "prerequisites": "Prereq: EARTH 438 or equivalent."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 460",
+    "name": "Mineral Resources",
+    "description": "Nature, origin, discovery and evaluation of mineral deposits; ore‑forming processes and exploration methods; environmental and social considerations in mining.",
+    "prerequisites": "Prereq: Upper‑year EARTH courses."
+  },
+  {
+    "department": "EARTH",
+    "code": "EARTH 471",
+    "name": "Geomicrobiology",
+    "description": "Interactions between microbes and geologic processes; biogeochemical cycling of elements and applications to remediation and resource formation.",
+    "prerequisites": "Prereq: BIOL background recommended."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 150",
+    "name": "Organismal and Evolutionary Ecology",
+    "description": "Introduction to ecology and evolution at the organismal level: scientific reasoning, population genetics, life histories, population and community ecology, macroevolution, systematics.",
+    "prerequisites": "Often paired with BIOL 150 lab; Antireq sometimes BIOL 251 (see calendar)."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 201",
+    "name": "Introduction to Microbiology",
+    "description": "Structure, metabolism, genetics and ecology of microorganisms with emphasis on bacteria; laboratory introduces sterile technique and microbial analysis.",
+    "prerequisites": "Prereq: BIOL 130/130L or equivalent first‑year biology."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 241",
+    "name": "Introduction to Applied Microbiology",
+    "description": "Applied aspects of microbiology in health, environment and industry; control of microorganisms; beneficial uses in biotechnology.",
+    "prerequisites": "Prereq: BIOL 130/140 level biology (typical)."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 266",
+    "name": "Animal Physiology 1",
+    "description": "Cellular and systems physiology in animals with emphasis on homeostasis, neurophysiology, muscle, and endocrine function.",
+    "prerequisites": "Prereq: BIOL 130/273 co‑requisites vary by term (see calendar)."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 273",
+    "name": "Principles of Human Physiology 1",
+    "description": "Physiology of major organ systems at the cellular and systems levels; neural, muscular, cardiovascular, respiratory, renal and endocrine physiology with applications.",
+    "prerequisites": "Prereq: BIOL 130/130L (or equivalent)."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 280",
+    "name": "Biostatistics",
+    "description": "Statistical reasoning and analysis for biological data: experimental design, probability, estimation, hypothesis testing and regression using real datasets.",
+    "prerequisites": "Prereq: A first‑year math/stat course (varies)."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 308",
+    "name": "Evolution",
+    "description": "Evidence and mechanisms of evolution including natural selection, genetic drift, mutation, gene flow, speciation and macroevolutionary patterns.",
+    "prerequisites": "Prereq: 2nd‑year BIOL and stats background (see calendar)."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 349",
+    "name": "Microbiology of Environmental Systems",
+    "description": "Microbial communities and processes in soil, water and engineered environments; biogeochemical cycles; methods for environmental microbiology.",
+    "prerequisites": "Prereq: BIOL 241 or 240‑level microbiology."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 350",
+    "name": "Molecular Genetics",
+    "description": "Gene structure and function in prokaryotes and eukaryotes; DNA replication, transcription, translation; gene regulation; recombinant DNA techniques.",
+    "prerequisites": "Prereq: BIOL 238/239 level genetics; see calendar."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 351",
+    "name": "Eukaryotic Microbiology",
+    "description": "Biology of fungi and protists; diversity, physiology and roles in ecosystems and disease; lab emphasizes isolation and identification.",
+    "prerequisites": "Prereq: BIOL 241 (or consent)."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 382",
+    "name": "Stream and River Ecology",
+    "description": "Ecology of running waters; physical and biological processes in streams and rivers; field and analytical methods.",
+    "prerequisites": "Prereq: BIOL 150 or ENVS 200 level ecology background."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 383",
+    "name": "Tropical Ecosystems",
+    "description": "Fundamental concepts of terrestrial ecosystems in tropical climates: biophysical context, resource systems and conservation issues; case‑study based.",
+    "prerequisites": "Prereq: One of ENVS 200, BIOL 150, or BIOL 251."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 342",
+    "name": "Plant Physiology",
+    "description": "Physiology of plants including photosynthesis, water relations, mineral nutrition, growth regulators and stress physiology.",
+    "prerequisites": "Prereq: 2nd‑year BIOL and chemistry (varies)."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 434",
+    "name": "Human Molecular Genetics",
+    "description": "Genetics of human disease; mapping and identifying disease genes; genomics, functional assays and ethical considerations.",
+    "prerequisites": "Prereq: Upper‑year genetics background."
+  },
+  {
+    "department": "BIOL",
+    "code": "BIOL 462",
+    "name": "Evolutionary Ecology",
+    "description": "Evolutionary processes applied to ecological interactions and life‑history strategies; natural selection in populations, adaptation, and constraints.",
+    "prerequisites": "Prereq: BIOL 308 or consent."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 100",
+    "name": "Regional Human Anatomy",
+    "description": "Regional anatomy of the limbs and trunk, with brief introduction to CNS and cardiovascular systems; focus on bones, muscles and neurovasculature.",
+    "prerequisites": "Coreq: KIN 100L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 121",
+    "name": "Biomechanics of Human Movement",
+    "description": "Mechanical basis of human movement; functional anatomy, muscle and passive tissue mechanics, anthropometry, EMG, linked segment mechanics; applications to clinical, occupational and athletic contexts.",
+    "prerequisites": "None stated."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 121L",
+    "name": "Biomechanics of Human Movement Laboratory",
+    "description": "Laboratory supporting KIN 121 with practical tools for biomechanical assessment of human movement.",
+    "prerequisites": "Coreq/Prereq: KIN 121."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 221",
+    "name": "Advanced Biomechanics of Human Movement",
+    "description": "Measurement, analytical and computation techniques for multi‑segment, dynamic analysis of human activity; applications across occupational, clinical and sport settings.",
+    "prerequisites": "Prereq: KIN 121, KIN 121L; Coreq: KIN 221L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 221L",
+    "name": "Advanced Biomechanics of Human Movement Laboratory",
+    "description": "Laboratory providing advanced practical tools aligned with KIN 221 content.",
+    "prerequisites": "Prereq: KIN 121, KIN 121L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 255",
+    "name": "Fundamentals of Neuroscience",
+    "description": "Foundations in the nervous system control of movement, cognition and learning.",
+    "prerequisites": "Coreq for majors: KIN 255L. Prereq: BIOL 273, PSYCH 101, KIN 104L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 255L",
+    "name": "Fundamentals of Neuroscience Laboratory",
+    "description": "Practical tools to assess nervous system control of movement, cognition and learning; complements KIN 255 lectures.",
+    "prerequisites": "Prereq: BIOL 273, PSYCH 101, KIN 104L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 312",
+    "name": "Introduction to Neurological Disorders",
+    "description": "Overview of selected neurological disorders and implications for physical activity across neuromuscular, perceptual‑motor, and cardiorespiratory domains.",
+    "prerequisites": "Prereq: BIOL 273."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 320",
+    "name": "Task Analysis",
+    "description": "Methods to identify, describe and analyze how people interact with their environment and with each other; HFE applications; didactic, case‑study and experiential learning.",
+    "prerequisites": "Prereq: KIN 221, 221L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 340",
+    "name": "Musculoskeletal Injuries in Sport and Activity",
+    "description": "Mechanisms of injury, tissue biomechanics, pathophysiology, assessment, management, and prevention of sport/activity injuries.",
+    "prerequisites": "Prereq: (KIN 100 & 100L) or (BIOL 201/301); Level at least 3A Faculty of Health."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 356",
+    "name": "Sensory Systems Neuroscience",
+    "description": "Neural bases of sensory systems with applications to movement and perception; may cover vision, audition, proprioception, vestibular function.",
+    "prerequisites": "Prereq: PSYCH 101/101R; Level at least 3A."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 416",
+    "name": "Neuromuscular Integration",
+    "description": "Clinical neurophysiological concepts for control of human movement; bioelectrical origins and applications to diagnosis following nervous system injury.",
+    "prerequisites": "Prereq: BIOL 273 or PSYCH 261; Level at least 3A."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 420",
+    "name": "Aging, Health and Physical Activity",
+    "description": "Physical, mental, and social changes with aging and implications of physical activity; barriers and strategies to improve participation at different scales.",
+    "prerequisites": "Prereq: BIOL 273; Level at least 3A."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 422",
+    "name": "Human Posture, Balance and Gait",
+    "description": "Kinematics, kinetics, and neural control of standing, stepping, walking and running; measurement techniques; applications to aging and pathology.",
+    "prerequisites": "Prereq: KIN 221, 221L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 425",
+    "name": "Biomechanical Modelling",
+    "description": "Quantitative measurement and analysis of the musculoskeletal system; multi‑segment dynamics; EMG in movement control; applications to normal, athletic and pathological movement.",
+    "prerequisites": "Prereq: KIN 221, 221L."
+  },
+  {
+    "department": "CO",
+    "code": "CO 367",
+    "name": "Nonlinear Optimization",
+    "description": "First course in the mathematics of nonlinear optimization: optimality conditions for unconstrained and constrained problems, convexity and applications, computational techniques and their analysis.",
+    "prerequisites": "Prereq: One of CO 250/350/352/255/355; and MATH 128 (min 70%) or MATH 138 or 148."
+  },
+  {
+    "department": "CO",
+    "code": "CO 456",
+    "name": "Introduction to Game Theory",
+    "description": "Mathematical analysis of games and strategic behaviour; normal and extensive form games, Nash equilibria, mixed strategies, repeated and evolutionary games; applications.",
+    "prerequisites": "Prereq: CO 250 or equivalent."
+  },
+  {
+    "department": "CO",
+    "code": "CO 463",
+    "name": "Combinatorial Optimization",
+    "description": "Topics in combinatorial optimization such as matching, matroids, network flows, cuts and polyhedral methods; algorithms and proofs of optimality.",
+    "prerequisites": "Prereq: CO 250 or equivalent."
+  },
+  {
+    "department": "CO",
+    "code": "CO 466",
+    "name": "Continuous Optimization",
+    "description": "Continuous optimization theory and algorithms with applications; gradient methods, Newton and quasi‑Newton, constrained optimization.",
+    "prerequisites": "Prereq: CO 250 or equivalent."
+  },
+  {
+    "department": "CO",
+    "code": "CO 481",
+    "name": "Algorithmic Game Theory",
+    "description": "Algorithmic and computational aspects of game theory including auctions, pricing, matchings and equilibria; incentive compatibility and mechanism design basics.",
+    "prerequisites": "Prereq: CO 456 or CS/CO background; see calendar."
+  },
+  {
+    "department": "BET",
+    "code": "BET 100",
+    "name": "Introduction to Entrepreneurship",
+    "description": "Key concepts in entrepreneurship, opportunity recognition, customer discovery, value propositions, business models and communicating venture ideas.",
+    "prerequisites": "None listed."
+  },
+  {
+    "department": "BET",
+    "code": "BET 320",
+    "name": "Entrepreneurship Principles and Practice",
+    "description": "Applies entrepreneurial tools to develop, test and iterate venture concepts; customer interviews, MVPs, experiments and pitches.",
+    "prerequisites": "Prereq: Level at least 2A or consent."
+  },
+  {
+    "department": "BET",
+    "code": "BET 340",
+    "name": "Foundations of Venture Planning",
+    "description": "Business planning fundamentals for new ventures including market sizing, go‑to‑market, operations and finance; prepares for capstone planning courses.",
+    "prerequisites": "Prereq: BET 100 or experience (varies by term)."
+  },
+  {
+    "department": "BET",
+    "code": "BET 450",
+    "name": "Applied Social Entrepreneurship",
+    "description": "Students design and execute impact‑focused ventures addressing social or environmental challenges; emphasizes implementation and measurement of impact.",
+    "prerequisites": "Prereq: Upper‑year standing or consent."
+  },
+  {
+    "department": "GENE",
+    "code": "GENE 403",
+    "name": "Interdisciplinary Design Project 1",
+    "description": "First course in a two‑course interdisciplinary engineering design sequence. Teams formulate a problem/opportunity, develop a feasible proposal and plan, generate/evaluate solutions, and manage risks; deliver a report/presentation.",
+    "prerequisites": "Prereq: Level at least 4A Engineering; Instructor consent required."
+  },
+  {
+    "department": "GENE",
+    "code": "GENE 404",
+    "name": "Interdisciplinary Design Project 2",
+    "description": "Continuation of GENE 403 focusing on implementation and verification (analysis, test or prototype), and communication of the design solution; continued attention to safety, regulatory, sustainability and ethics.",
+    "prerequisites": "Prereq: GENE 403; Level at least 4A Engineering; Instructor consent required."
+  },
+  {
+    "department": "ENVE",
+    "code": "ENVE 573",
+    "name": "Sustainability for Engineers",
+    "description": "Engineering approaches to sustainability across environmental, social and economic domains; tools for assessment and design for sustainability.",
+    "prerequisites": "Prereq: Graduate or senior standing (varies)."
+  },
+  {
+    "department": "ERS",
+    "code": "ERS 383",
+    "name": "Tropical Ecosystems",
+    "description": "Biophysical aspects of tropical ecosystems, resource systems (forest and agro‑ecosystems) and current conservation issues; case‑study based. Often includes a field component.",
+    "prerequisites": "Prereq: One of ENVS 200, BIOL 150, BIOL 251; instructor consent often required for field offering."
+  },
+  {
+    "department": "PLAN",
+    "code": "PLAN 478",
+    "name": "Transit Planning and Operations",
+    "description": "Historical evolution of transit; vehicle dynamics and travel time; scheduling; system operations and measures of effectiveness; transit network planning objectives and service design.",
+    "prerequisites": "Prereq: As listed in offering; often cross‑listed with CIVE 440/641 and PLAN 678."
+  },
+  {
+    "department": "PSCI",
+    "code": "PSCI 432",
+    "name": "Global Environmental Governance",
+    "description": "International organizations and institutions addressing environmental challenges; history of international environmental politics; actors and management of particular global issues.",
+    "prerequisites": "Prereq: Level at least 3A."
+  },
+  {
+    "department": "PSYCH",
+    "code": "PSYCH 238",
+    "name": "Organizational Psychology",
+    "description": "Introduction to psychological theories and research applied to behaviour in organizations; topics typically include perception, attitudes, motivation, leadership, teamwork and decision‑making.",
+    "prerequisites": "Prereq: PSYCH 101 or 101R."
+  }
+]

@@ -1,0 +1,219 @@
+[
+  {
+    "department": "KIN",
+    "code": "KIN 100",
+    "name": "Regional Human Anatomy",
+    "description": "Regional anatomy of the limbs and trunk, including a brief introduction to the anatomy of the central nervous and cardiovascular systems. The course focuses on the bones, muscles, and neurovasculature of the limbs and trunk.",
+    "prerequisites": "Corequisite: KIN 100L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 100L",
+    "name": "Regional Human Anatomy Laboratory",
+    "description": "Laboratory accompanying KIN 100 focusing on regional human anatomy of the limbs and trunk.",
+    "prerequisites": "Corequisite: KIN 100."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 121",
+    "name": "Biomechanics of Human Movement",
+    "description": "Understanding of human movement from a mechanical perspective, enabling identification of injury risks, exercise prescription, and clinical evaluation concepts including functional anatomy, muscle and passive tissue mechanics, anthropometry, EMG, and linked-segment mechanics.",
+    "prerequisites": "Prerequisites: PHYS 111; MATH 124 or MATH 127. Corequisite: KIN 121L (for Kinesiology majors)."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 121L",
+    "name": "Biomechanics of Human Movement Laboratory",
+    "description": "Practical biomechanical tools complementing KIN 121 lectures.",
+    "prerequisites": "Prerequisites: PHYS 111, KIN 104L; MATH 124 or MATH 127."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 221",
+    "name": "Advanced Biomechanics of Human Movement",
+    "description": "Measurement, analytical and computational techniques for multi‑segment dynamic analysis of human activity; anthropometry, kinematics, kinetics, energetics, muscle mechanics, electromyography and applications in occupational, clinical, and athletic settings.",
+    "prerequisites": "Prerequisites: KIN 121, KIN 121L. Corequisite: KIN 221L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 221L",
+    "name": "Advanced Biomechanics of Human Movement Laboratory",
+    "description": "Laboratory supporting advanced biomechanical assessment from KIN 221.",
+    "prerequisites": "Prerequisites: KIN 121, KIN 121L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 255",
+    "name": "Fundamentals of Neuroscience",
+    "description": "Introduction to the nervous system control of movement, cognition, and learning; basic neural structure and function.",
+    "prerequisites": "Prerequisite: KIN 104. Corequisite: KIN 255L (for Kinesiology majors)."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 255L",
+    "name": "Fundamentals of Neuroscience Laboratory",
+    "description": "Laboratory assessments of nervous system control of movement, cognition, and learning to support KIN 255.",
+    "prerequisites": "Prerequisites: BIOL 273, PSYCH 101, KIN 104L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 312",
+    "name": "Introduction to Neurological Disorders",
+    "description": "Overview of selected neurological disorders and implications for physical activity.",
+    "prerequisites": "Prerequisite: BIOL 273; Level at least 3A."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 320",
+    "name": "Task Analysis",
+    "description": "Study of human task analysis with applications to movement, ergonomics, and performance.",
+    "prerequisites": "Prerequisite: BIOL 273."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 340",
+    "name": "Musculoskeletal Injuries in Sport and Activity",
+    "description": "Mechanisms of injury, tissue biomechanics, pathophysiology, assessment, management, and prevention of acute and chronic trauma in sport and activity.",
+    "prerequisites": "Prerequisites: (KIN 100 and KIN 100L) or (BIOL 201/301); Level at least 3A Faculty of Health students."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 356",
+    "name": "Sensory Systems Neuroscience",
+    "description": "Neural mechanisms of sensation with emphasis on systems relevant to human movement and perception.",
+    "prerequisites": "Prerequisite: KIN 255 or PSYCH 261."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 416",
+    "name": "Neuromuscular Integration",
+    "description": "Integration of neuromuscular physiology and control of human movement; applications to movement pathology and rehabilitation.",
+    "prerequisites": "Prerequisite: BIOL 273 or PSYCH 261; Level at least 3A."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 420",
+    "name": "Occupational Biomechanics",
+    "description": "Biomechanics of occupational tasks; measurement techniques; prevention of injury in workplaces.",
+    "prerequisites": "Prerequisite: KIN 320."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 422",
+    "name": "Human Posture, Balance and Gait",
+    "description": "Kinematics, kinetics, and neural control of standing, stepping, walking, and running; measurement and interpretation from biomechanical and neural perspectives; applications to aging and pathology.",
+    "prerequisites": "Prerequisites: KIN 221 and KIN 221L."
+  },
+  {
+    "department": "KIN",
+    "code": "KIN 425",
+    "name": "Biomechanical Modelling",
+    "description": "Quantitative measurement and analysis of the musculoskeletal system including multi‑segment dynamics, kinematics, kinetics, energetics, and EMG applications.",
+    "prerequisites": "Prerequisites: KIN 221 and KIN 221L."
+  },
+  {
+    "department": "BME",
+    "code": "BME 186",
+    "name": "Chemistry Principles",
+    "description": "Stoichiometry of compounds and reactions; periodicity and bonding; energy changes in chemical systems; electronic structure and reactivity; overview of organic functional groups and stereochemistry with biomedical examples.",
+    "prerequisites": "Prerequisite: Level at least 1B Biomedical Engineering."
+  },
+  {
+    "department": "BME",
+    "code": "BME 284",
+    "name": "Physiological and Biological Systems",
+    "description": "Structure, functions, and properties of major biological systems (musculoskeletal, nervous, cardiovascular) in relation to design of biomedical devices; introduction to modelling; effects of pathology on device design.",
+    "prerequisites": "Prerequisite: Level at least 2B Biomedical Engineering. Antirequisite: SYDE 384/584."
+  },
+  {
+    "department": "BME",
+    "code": "BME 285",
+    "name": "Engineering Biology",
+    "description": "Biochemistry and cell biology fundamentals including amino acids, carbohydrates, lipids, nucleic acids, proteins/enzymes, cell structure and metabolism with biomedical engineering examples.",
+    "prerequisites": "Prerequisite: Level at least 2A Biomedical Engineering."
+  },
+  {
+    "department": "BME",
+    "code": "BME 294",
+    "name": "Circuits, Instrumentation, and Measurements",
+    "description": "Hardware measurement systems for biosignals: circuit analysis, first/second order responses, frequency response, operational amplifiers, signal conditioning, transducers, instrumentation amplifiers, A/D and D/A conversion; examples from EEG, ECG, EMG.",
+    "prerequisites": "Prerequisite: Level at least 2B Biomedical Engineering. Antirequisite: BME 392, SYDE 292."
+  },
+  {
+    "department": "BME",
+    "code": "BME 461",
+    "name": "Biomedical Engineering Design Workshop 2",
+    "description": "First half of a two‑term capstone design project including prototyping and interim progress reporting; lectures on safety and risk analysis of biomedical technologies.",
+    "prerequisites": "Prerequisite: Level at least 4A Biomedical Engineering. Antirequisite: SYDE 461."
+  },
+  {
+    "department": "BME",
+    "code": "BME 462",
+    "name": "Biomedical Engineering Design Workshop 3",
+    "description": "Conclusion of the fourth‑year Biomedical Engineering design workshop sequence.",
+    "prerequisites": "Prerequisite: 4B Biomedical Engineering. Antirequisite: SYDE 462."
+  },
+  {
+    "department": "BME",
+    "code": "BME 551",
+    "name": "Biomechanics of Human Movement",
+    "description": "Biomechanics of the musculoskeletal system including motor control and rehabilitation engineering; 2D/3D multibody models; muscle dynamics; applications to assistive devices, gait, occupational biomechanics.",
+    "prerequisites": "Prerequisite: Level at least 4A Biomedical or Systems Design Engineering."
+  },
+  {
+    "department": "BME",
+    "code": "BME 588",
+    "name": "Special Topics in Biomechanics",
+    "description": "Selected topics at the undergraduate level in biofluid mechanics, tissue mechanics, sports engineering, and rehabilitation engineering.",
+    "prerequisites": "Prerequisite: Level at least 3A Biomedical Engineering."
+  },
+  {
+    "department": "CIVE",
+    "code": "CIVE 306",
+    "name": "Mechanics of Solids 3",
+    "description": "Membrane stresses in shells; buckling; beams on elastic foundations; plane elasticity; torsion of non‑circular sections.",
+    "prerequisites": "Prerequisite: CIVE 205; Level at least 3A Civil or Geological Engineering."
+  },
+  {
+    "department": "CIVE",
+    "code": "CIVE 400",
+    "name": "Civil Engineering Design Project 1",
+    "description": "First term of the two‑term independent civil engineering capstone design project: problem identification, generation and selection of solutions, planning and time management.",
+    "prerequisites": "Prerequisite: 4A Civil Engineering standing (departmental sequencing applies)."
+  },
+  {
+    "department": "CIVE",
+    "code": "CIVE 401",
+    "name": "Civil Engineering Design Project 2",
+    "description": "Continuation of CIVE 400 culminating in the final design of the proposed project.",
+    "prerequisites": "Prerequisite: CIVE 400."
+  },
+  {
+    "department": "CIVE",
+    "code": "CIVE 440",
+    "name": "Transit Planning and Operations",
+    "description": "Historical evolution of urban transit; mode technologies; vehicle motion models; transit travel time estimation under different regimes; scheduling; system performance measures; transit network planning objectives and methods.",
+    "prerequisites": "Prerequisite: Departmental standing (typically 4A/4B)."
+  },
+  {
+    "department": "CIVE",
+    "code": "CIVE 460",
+    "name": "Engineering Biomechanics",
+    "description": "Introduction to engineering technologies applicable to biomechanics, potentially including growth and form; biomaterials; gait kinematics and neurology; biotribology; joint anatomy, function and repair; occupational biomechanics; trauma prevention.",
+    "prerequisites": "Prerequisite: Level at least 4A in Biomedical, Mechanical, Mechatronics, or Systems Design Engineering. (Cross‑listed with ME 574)."
+  },
+  {
+    "department": "PLAN",
+    "code": "PLAN 478",
+    "name": "Transit Planning and Operations",
+    "description": "In‑depth exploration of transportation planning focused on public transit, including systems fundamentals, historical evolution, network/service planning, scheduling, operations, and performance measurement.",
+    "prerequisites": "Upper‑year standing in Planning or permission of the school."
+  },
+  {
+    "department": "ENVE",
+    "code": "ENVE 573",
+    "name": "Contaminant Transport",
+    "description": "Principles and modelling of contaminant transport processes in environmental systems (e.g., advection, dispersion, sorption, and reaction) with engineering applications.",
+    "prerequisites": "Prerequisite: Senior standing in Environmental or Civil Engineering (departmental lists apply)."
+  }
+]

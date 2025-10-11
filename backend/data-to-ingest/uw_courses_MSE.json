@@ -1,0 +1,167 @@
+[
+  {
+    "code": "MSE251",
+    "subject": "MSE",
+    "title": "Introduction to Materials Science",
+    "description": "Fundamental principles of structure, processing, and properties of materials. Topics include crystal structures, imperfections, diffusion, and phase diagrams.",
+    "prerequisites": "CHE 102, PHYS 115 or PHYS 121",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Typically offered in 2A term"
+  },
+  {
+    "code": "MSE253",
+    "subject": "MSE",
+    "title": "Thermodynamics of Materials",
+    "description": "Application of thermodynamic principles to materials. Includes free energy, entropy, enthalpy, and equilibria in materials systems.",
+    "prerequisites": "CHE 225 or equivalent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "MSE271",
+    "subject": "MSE",
+    "title": "Mechanical Behaviour of Materials",
+    "description": "Elastic and plastic deformation, strengthening mechanisms, creep, fatigue, and fracture of materials.",
+    "prerequisites": "MSE 251",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "MSE331",
+    "subject": "MSE",
+    "title": "Phase Transformations",
+    "description": "Principles and kinetics of phase transformations in metallic and ceramic systems. Includes diffusion, nucleation, growth, and microstructural evolution.",
+    "prerequisites": "MSE 253, MSE 271",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "MSE332",
+    "subject": "MSE",
+    "title": "Electronic Properties of Materials",
+    "description": "Electrical conductivity, semiconductors, magnetic properties, dielectric properties, and superconductivity of materials.",
+    "prerequisites": "MSE 251, PHYS 115 or PHYS 121",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "MSE431",
+    "subject": "MSE",
+    "title": "Materials Processing",
+    "description": "Processing of metals, ceramics, and polymers, including solidification, powder processing, welding, and forming techniques.",
+    "prerequisites": "MSE 331",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "MSE432",
+    "subject": "MSE",
+    "title": "Corrosion and Degradation of Materials",
+    "description": "Electrochemical principles, forms of corrosion, high-temperature oxidation, and prevention methods.",
+    "prerequisites": "MSE 253, MSE 271",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "MSE433",
+    "subject": "MSE",
+    "title": "Composite Materials",
+    "description": "Constituents, microstructure, mechanical behaviour, and applications of composite materials.",
+    "prerequisites": "MSE 271",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "MSE435",
+    "subject": "MSE",
+    "title": "Materials Selection and Design",
+    "description": "Systematic selection of materials for engineering design. Use of Ashby charts and performance indices.",
+    "prerequisites": "MSE 271, MSE 331",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Capstone-related course"
+  },
+  {
+    "code": "MSE452",
+    "subject": "MSE",
+    "title": "Advanced Materials Characterization",
+    "description": "Principles and applications of modern materials characterization techniques including X-ray diffraction, electron microscopy, and spectroscopy.",
+    "prerequisites": "MSE 251, MSE 253",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": null
+  },
+  {
+    "code": "MSE531",
+    "subject": "MSE",
+    "title": "Advanced Materials Thermodynamics",
+    "description": "Advanced topics in thermodynamics applied to multicomponent and multiphase materials systems.",
+    "prerequisites": "MSE 253, MSE 331",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Graduate-level"
+  },
+  {
+    "code": "MSE551",
+    "subject": "MSE",
+    "title": "Advanced Mechanical Behaviour of Materials",
+    "description": "Fracture mechanics, fatigue, creep, and failure analysis of advanced engineering materials.",
+    "prerequisites": "MSE 271",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Graduate-level"
+  },
+  {
+    "code": "MSE555",
+    "subject": "MSE",
+    "title": "Nanomaterials",
+    "description": "Synthesis, characterization, and applications of nanostructured materials.",
+    "prerequisites": "MSE 251, MSE 332",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Graduate-level"
+  },
+  {
+    "code": "MSE597",
+    "subject": "MSE",
+    "title": "Special Topics in Materials Engineering 1",
+    "description": "Selected advanced topics in materials science and engineering.",
+    "prerequisites": "Instructor consent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Graduate-level, variable content"
+  },
+  {
+    "code": "MSE598",
+    "subject": "MSE",
+    "title": "Special Topics in Materials Engineering 2",
+    "description": "Continuation of selected advanced topics in materials science and engineering.",
+    "prerequisites": "Instructor consent",
+    "antirequisites": null,
+    "cross_listings": null,
+    "units": 0.5,
+    "notes": "Graduate-level, variable content"
+  }
+]

@@ -191,7 +191,7 @@ export function shouldTriggerWebSearch(
 }
 
 // Enhanced search that combines database and web search
-export async function enhancedSearch(
+ export async function enhancedSearch(
   query: string,
   filters: any = {}
 ): Promise<{

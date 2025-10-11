@@ -172,3 +172,4 @@ BEGIN
     RAISE NOTICE '📈 Indexes created for optimal query performance';
     RAISE NOTICE '📝 Sample data inserted for testing';
 END $$;
+2
