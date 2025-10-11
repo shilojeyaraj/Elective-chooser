@@ -5,6 +5,11 @@ const nextConfig = {
   poweredByHeader: false,
   // Cloudflare Pages configuration
   output: 'standalone',
+  // Fix Windows file system issues
+  outputFileTracingRoot: undefined,
+  experimental: {
+    outputFileTracingRoot: undefined
+  }
 }
 
 module.exports = nextConfig

@@ -25,7 +25,7 @@ export class SupabaseChatMessageHistory extends BaseChatMessageHistory {
       return []
     }
 
-    return (data || []).map(msg => {
+    return (data || []).map((msg: any) => {
       switch (msg.role) {
         case 'user':
           return new HumanMessage(msg.content)
@@ -110,7 +110,7 @@ export async function getRecentMessages(
     return []
   }
 
-  return (data || []).reverse().map(msg => {
+  return (data || []).reverse().map((msg: any) => {
     switch (msg.role) {
       case 'user':
         return new HumanMessage(msg.content)
