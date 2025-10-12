@@ -152,3 +152,4 @@ For issues with these authentication files, check:
 3. Database schema and RLS policies
 4. Environment variable configuration
 
+
