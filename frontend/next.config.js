@@ -74,7 +74,7 @@ const nextConfig = {
   },
   // Fix Windows file system issues
   experimental: {
-    outputFileTracingRoot: undefined
+    // outputFileTracingRoot: undefined // Removed to fix warning
   }
 }
 

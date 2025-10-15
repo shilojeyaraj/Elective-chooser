@@ -5,9 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:cloudflare": "next build && next export",
+    "build:cloudflare": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vllm:deploy": "chmod +x ../scripts/deploy-vllm.sh && ../scripts/deploy-vllm.sh",
+    "vllm:test": "node ../scripts/test-vllm.js",
+    "vllm:stop": "docker-compose -f ../docker-compose.vllm.yml down",
+    "vllm:logs": "docker-compose -f ../docker-compose.vllm.yml logs -f vllm-server"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
