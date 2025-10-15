@@ -3,10 +3,76 @@ const nextConfig = {
   // Basic configuration for Vercel compatibility
   compress: true,
   poweredByHeader: false,
-  // Cloudflare Pages configuration
+  // Cloudflare Pages configuration - use standalone for API routes
   output: 'standalone',
+  trailingSlash: true,
+  images: {
+    unoptimized: true
+  },
+  // Bundle optimization
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // More aggressive chunk splitting to stay under 25MB limit
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 20000000, // 20MB max per chunk
+        cacheGroups: {
+          // Split large libraries into separate chunks
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 20,
+          },
+          supabase: {
+            test: /[\\/]node_modules[\\/]@supabase[\\/]/,
+            name: 'supabase',
+            chunks: 'all',
+            priority: 15,
+          },
+          langchain: {
+            test: /[\\/]node_modules[\\/]@langchain[\\/]/,
+            name: 'langchain',
+            chunks: 'all',
+            priority: 15,
+          },
+          openai: {
+            test: /[\\/]node_modules[\\/]openai[\\/]/,
+            name: 'openai',
+            chunks: 'all',
+            priority: 15,
+          },
+          ui: {
+            test: /[\\/]node_modules[\\/](@headlessui|@heroicons|framer-motion)[\\/]/,
+            name: 'ui',
+            chunks: 'all',
+            priority: 10,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            priority: 5,
+            maxSize: 15000000, // 15MB max for vendor chunk
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            priority: 0,
+            reuseExistingChunk: true,
+            maxSize: 10000000, // 10MB max for common chunk
+          },
+        },
+      };
+      
+      // Enable compression
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
+    }
+    return config;
+  },
   // Fix Windows file system issues
-  outputFileTracingRoot: undefined,
   experimental: {
     outputFileTracingRoot: undefined
   }

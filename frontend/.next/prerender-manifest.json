@@ -25,8 +25,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/_not-found": {
-      "initialStatus": 404,
+    "/": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -39,8 +38,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/_not-found",
-      "dataRoute": "/_not-found.rsc",
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -74,7 +73,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/": {
+    "/setprofile": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -87,8 +86,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
+      "srcRoute": "/setprofile",
+      "dataRoute": "/setprofile.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -146,7 +145,8 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/setprofile": {
+    "/_not-found": {
+      "initialStatus": 404,
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -159,8 +159,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/setprofile",
-      "dataRoute": "/setprofile.rsc",
+      "srcRoute": "/_not-found",
+      "dataRoute": "/_not-found.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -174,8 +174,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "44c08259c87dbfeba886a6d0c4982fcd",
-    "previewModeSigningKey": "a2115cbd61f2d18cf1b588ddb6c457d686d9786c68543d20d98c86bf1e0d5504",
-    "previewModeEncryptionKey": "2aedb79f9bfb241844296576dbcdb96b7e05c972d82133daaf3cb597f520e662"
+    "previewModeId": "0ca4d0022b98dd9bd21a8adf8a109929",
+    "previewModeSigningKey": "7623f9cc9f92554a5eb164c80b12a6c19e06fcec4f82eba0c976974fe9c6fefd",
+    "previewModeEncryptionKey": "02980c1db92b07054de866c475337f5c873f0919a087104942e1d2379e5dd302"
   }
 }

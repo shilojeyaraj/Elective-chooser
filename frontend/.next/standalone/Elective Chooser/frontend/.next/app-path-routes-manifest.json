@@ -1,20 +1,20 @@
 {
-  "/api/admin/upload-cse-electives/route": "/api/admin/upload-cse-electives",
-  "/_not-found/page": "/_not-found",
   "/api/admin/upload-courses/route": "/api/admin/upload-courses",
+  "/api/admin/upload-cse-electives/route": "/api/admin/upload-cse-electives",
   "/api/admin/upload-options/route": "/api/admin/upload-options",
   "/api/admin/upload-technical-electives/route": "/api/admin/upload-technical-electives",
-  "/api/admin/upload-json/route": "/api/admin/upload-json",
+  "/api/chat/route": "/api/chat",
+  "/api/chat/session/route": "/api/chat/session",
   "/api/chat/messages/route": "/api/chat/messages",
   "/api/chat/sessions/route": "/api/chat/sessions",
+  "/api/admin/upload-json/route": "/api/admin/upload-json",
   "/api/health/route": "/api/health",
   "/api/profile/route": "/api/profile",
-  "/api/chat/session/route": "/api/chat/session",
-  "/api/chat/route": "/api/chat",
+  "/_not-found/page": "/_not-found",
   "/admin/page": "/admin",
+  "/chatbot/page": "/chatbot",
+  "/login/page": "/login",
   "/page": "/",
   "/setprofile/page": "/setprofile",
-  "/chatbot/page": "/chatbot",
-  "/signup/page": "/signup",
-  "/login/page": "/login"
+  "/signup/page": "/signup"
 }
