@@ -3,8 +3,8 @@ const nextConfig = {
   // Basic configuration for Vercel compatibility
   compress: true,
   poweredByHeader: false,
-  // Cloudflare Pages configuration - use standalone for API routes
-  output: 'standalone',
+  // Cloudflare Pages configuration - use static export for better compatibility
+  output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true
