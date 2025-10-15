@@ -1,9 +1,9 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/admin/page": "app/admin/page.js",
   "/chatbot/page": "app/chatbot/page.js",
+  "/admin/page": "app/admin/page.js",
   "/login/page": "app/login/page.js",
-  "/signup/page": "app/signup/page.js",
   "/page": "app/page.js",
-  "/setprofile/page": "app/setprofile/page.js"
+  "/setprofile/page": "app/setprofile/page.js",
+  "/signup/page": "app/signup/page.js"
 }

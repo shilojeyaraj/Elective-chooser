@@ -15,19 +15,19 @@
       "static/css/fb07138e5d87bf5d.css",
       "static/chunks/app/layout-e103e7671256809d.js"
     ],
-    "/admin/page": [
-      "static/chunks/webpack-fe6ffd78da30e686.js",
-      "static/chunks/vendors-d610879c86400737.js",
-      "static/chunks/common-0744af3f5f1263a8.js",
-      "static/chunks/main-app-27cb34ecaaa98dd8.js",
-      "static/chunks/app/admin/page-6c931e0e8e007f45.js"
-    ],
     "/chatbot/page": [
       "static/chunks/webpack-fe6ffd78da30e686.js",
       "static/chunks/vendors-d610879c86400737.js",
       "static/chunks/common-0744af3f5f1263a8.js",
       "static/chunks/main-app-27cb34ecaaa98dd8.js",
       "static/chunks/app/chatbot/page-b7a20b5d70a9e0ab.js"
+    ],
+    "/admin/page": [
+      "static/chunks/webpack-fe6ffd78da30e686.js",
+      "static/chunks/vendors-d610879c86400737.js",
+      "static/chunks/common-0744af3f5f1263a8.js",
+      "static/chunks/main-app-27cb34ecaaa98dd8.js",
+      "static/chunks/app/admin/page-6c931e0e8e007f45.js"
     ],
     "/login/page": [
       "static/chunks/webpack-fe6ffd78da30e686.js",
@@ -36,14 +36,6 @@
       "static/chunks/main-app-27cb34ecaaa98dd8.js",
       "static/chunks/supabase-eba6648a05a75619.js",
       "static/chunks/app/login/page-5928baf000dd9805.js"
-    ],
-    "/signup/page": [
-      "static/chunks/webpack-fe6ffd78da30e686.js",
-      "static/chunks/vendors-d610879c86400737.js",
-      "static/chunks/common-0744af3f5f1263a8.js",
-      "static/chunks/main-app-27cb34ecaaa98dd8.js",
-      "static/chunks/supabase-eba6648a05a75619.js",
-      "static/chunks/app/signup/page-2ef8590cf59c097d.js"
     ],
     "/page": [
       "static/chunks/webpack-fe6ffd78da30e686.js",
@@ -59,6 +51,14 @@
       "static/chunks/main-app-27cb34ecaaa98dd8.js",
       "static/chunks/supabase-eba6648a05a75619.js",
       "static/chunks/app/setprofile/page-a524819d3c090974.js"
+    ],
+    "/signup/page": [
+      "static/chunks/webpack-fe6ffd78da30e686.js",
+      "static/chunks/vendors-d610879c86400737.js",
+      "static/chunks/common-0744af3f5f1263a8.js",
+      "static/chunks/main-app-27cb34ecaaa98dd8.js",
+      "static/chunks/supabase-eba6648a05a75619.js",
+      "static/chunks/app/signup/page-2ef8590cf59c097d.js"
     ]
   }
 }

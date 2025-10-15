@@ -1,9 +1,9 @@
 {
   "/_not-found/page": "/_not-found",
-  "/admin/page": "/admin",
   "/chatbot/page": "/chatbot",
+  "/admin/page": "/admin",
   "/login/page": "/login",
-  "/signup/page": "/signup",
   "/page": "/",
-  "/setprofile/page": "/setprofile"
+  "/setprofile/page": "/setprofile",
+  "/signup/page": "/signup"
 }

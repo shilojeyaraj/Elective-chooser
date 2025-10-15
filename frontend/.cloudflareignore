@@ -1,0 +1,12 @@
+# Exclude problematic directories and files
+.next/
+node_modules/
+.cache/
+.parcel-cache/
+*.log
+.env*
+.git/
+.gitignore
+README.md
+package-lock.json
+yarn.lock
