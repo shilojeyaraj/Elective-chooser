@@ -18,13 +18,13 @@
   "..\\..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
     "id": 7489,
     "files": [
-      "static/chunks/vendors-d610879c86400737.js"
+      "static/chunks/vendors-4e31038d9011b102.js"
     ]
   },
   "..\\..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
     "id": 12,
     "files": [
-      "static/chunks/vendors-d610879c86400737.js"
+      "static/chunks/vendors-4e31038d9011b102.js"
     ]
   }
 }
