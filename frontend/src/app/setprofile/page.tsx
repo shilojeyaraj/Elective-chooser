@@ -27,9 +27,12 @@ export default function SetProfilePage() {
     setLoading(false)
   }, [router])
 
-  const handleProfileComplete = (profile: any) => {
+  const handleProfileComplete = async (profile: any) => {
     console.log('✅ Profile setup completed, redirecting to chatbot')
-    router.push('/chatbot')
+    // Add a small delay to ensure database propagation
+    await new Promise(resolve => setTimeout(resolve, 500))
+    // Use window.location for full page reload to ensure profile is found
+    window.location.href = '/chatbot'
   }
 
   if (loading) {

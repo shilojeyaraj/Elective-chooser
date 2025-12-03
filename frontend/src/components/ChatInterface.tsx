@@ -462,7 +462,6 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
         </div>
       </div>
 
-
       {/* Main Content Area */}
       <div className="flex-1 flex overflow-hidden">
         {/* Chat Panel */}
@@ -548,8 +547,8 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
           </form>
         </div>
 
-            {/* Recommendations Panel - Aligned with Chat */}
-            <div className="w-96 border-l border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 overflow-y-auto">
+        {/* Recommendations Panel - Aligned with Chat */}
+        <div className="w-96 border-l border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 overflow-y-auto">
               <div className="p-4">
                 <CourseRecommendations 
                   recommendations={recommendations}
@@ -557,7 +556,7 @@ export default function ChatInterface({ user, profile, onProfileUpdate }: ChatIn
                   usedWebSearch={usedWebSearch}
                 />
               </div>
-            </div>
+        </div>
       </div>
     </div>
   )

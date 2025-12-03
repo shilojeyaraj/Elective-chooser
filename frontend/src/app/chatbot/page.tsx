@@ -31,25 +31,37 @@ export default function ChatbotPage() {
     setLoading(false)
   }, [router])
 
-  const checkProfile = async (userId: string) => {
-    try {
-      const response = await fetch(`/api/profile?userId=${userId}`)
-      if (response.ok) {
-        const profileData = await response.json()
-        if (profileData && profileData.user_id) {
-          setProfile(profileData)
-        } else {
-          // No profile found, redirect to profile setup
-          router.push('/setprofile')
+  const checkProfile = async (userId: string, retries = 3) => {
+    for (let attempt = 0; attempt < retries; attempt++) {
+      try {
+        const response = await fetch(`/api/profile?userId=${userId}`)
+        if (response.ok) {
+          const profileData = await response.json()
+          if (profileData && profileData.user_id) {
+            setProfile(profileData)
+            return // Success, exit function
+          }
         }
-      } else {
-        // Error fetching profile, redirect to profile setup
-        router.push('/setprofile')
+        
+        // If not found and not the last attempt, wait before retrying
+        if (attempt < retries - 1) {
+          console.log(`Profile not found, retrying in ${(attempt + 1) * 500}ms... (attempt ${attempt + 1}/${retries})`)
+          await new Promise(resolve => setTimeout(resolve, (attempt + 1) * 500))
+          continue
+        }
+      } catch (error) {
+        console.error(`Error checking profile (attempt ${attempt + 1}/${retries}):`, error)
+        // If not the last attempt, wait before retrying
+        if (attempt < retries - 1) {
+          await new Promise(resolve => setTimeout(resolve, (attempt + 1) * 500))
+          continue
+        }
       }
-    } catch (error) {
-      console.error('Error checking profile:', error)
-      router.push('/setprofile')
     }
+    
+    // All retries failed, redirect to profile setup
+    console.log('Profile not found after all retries, redirecting to profile setup')
+    router.push('/setprofile')
   }
 
   const handleProfileUpdate = (updatedProfile: any) => {

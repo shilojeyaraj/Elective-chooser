@@ -3,9 +3,12 @@ const nextConfig = {
   // Basic configuration for Vercel compatibility
   compress: true,
   poweredByHeader: false,
-  // Cloudflare Pages configuration - use static export for better compatibility
-  output: 'export',
-  trailingSlash: true,
+  // Only use static export for Cloudflare Pages, not for Vercel (which supports API routes)
+  // Set CLOUDFLARE_BUILD=true environment variable to enable static export
+  ...(process.env.CLOUDFLARE_BUILD === 'true' ? {
+    output: 'export',
+    trailingSlash: true,
+  } : {}),
   images: {
     unoptimized: true
   },
@@ -66,9 +69,12 @@ const nextConfig = {
         },
       };
       
-      // Enable compression
-      config.optimization.usedExports = true;
-      config.optimization.sideEffects = false;
+      // Note: usedExports removed - incompatible with Next.js 15 cacheUnaffected
+      // Next.js handles tree-shaking automatically, so this isn't needed
+      // config.optimization.sideEffects can stay as it doesn't conflict
+      if (config.optimization.sideEffects === undefined) {
+        config.optimization.sideEffects = false;
+      }
     }
     return config;
   },
