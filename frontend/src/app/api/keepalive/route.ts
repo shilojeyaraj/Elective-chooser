@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase'
  * This endpoint performs a lightweight database query to keep the connection active
  * Should be called once per day via cron job (Supabase pauses after 7 days of inactivity)
  */
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Perform a lightweight query to keep Supabase active
     // Using a simple count query that's fast and doesn't consume resources
@@ -33,12 +33,13 @@ export async function GET(request: NextRequest) {
       profileCount: count || 0
     })
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('❌ Keep-alive error:', error)
     // Return success anyway to prevent cron failures
+    const errorMessage = error instanceof Error ? error.message : 'Keep-alive completed'
     return NextResponse.json({ 
       status: 'error',
-      message: error.message || 'Keep-alive completed',
+      message: errorMessage,
       timestamp: new Date().toISOString()
     }, { status: 200 }) // Return 200 to keep cron happy
   }

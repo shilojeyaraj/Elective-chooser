@@ -32,10 +32,11 @@ export async function GET(request: NextRequest) {
     console.log('✅ Found messages:', messages?.length || 0)
     return NextResponse.json({ messages: messages || [] })
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('❌ Messages fetch error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error'
     return NextResponse.json(
-      { error: error.message || 'Internal server error' },
+      { error: errorMessage },
       { status: 500 }
     )
   }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { ChatOpenAI } from '@langchain/openai'
-import { HumanMessage, AIMessage, SystemMessage } from '@langchain/core/messages'
+import { HumanMessage, SystemMessage } from '@langchain/core/messages'
 import { createChatMemory, getRecentMessages } from '@/lib/langchain-memory'
 import { searchCourses, calculateCourseScore } from '@/lib/search'
 import { supabase } from '@/lib/supabase'
@@ -113,16 +113,6 @@ Provide helpful, personalized advice about elective courses. Be conversational a
       openAIApiKey: process.env.OPENAI_API_KEY
     })
 
-    // Build message history for LangChain
-    const langchainMessages = [
-      { role: 'system' as const, content: systemPrompt },
-      ...recentMessages.map(msg => ({
-        role: msg._getType() === 'human' ? 'user' as const : 'assistant' as const,
-        content: typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)
-      })),
-      { role: 'user' as const, content: message }
-    ]
-
     // Get AI response using proper LangChain message format
     const langchainMessageArray = [
       new SystemMessage(systemPrompt),
@@ -154,10 +144,11 @@ Provide helpful, personalized advice about elective courses. Be conversational a
       used_web_search: false
     })
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('❌ Chat API error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error'
     return NextResponse.json(
-      { error: error.message || 'Internal server error' },
+      { error: errorMessage },
       { status: 500 }
     )
   }

@@ -35,10 +35,11 @@ export async function POST(request: NextRequest) {
     console.log('✅ Session created:', session.id)
     return NextResponse.json({ sessionId: session.id })
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('❌ Session creation error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error'
     return NextResponse.json(
-      { error: error.message || 'Internal server error' },
+      { error: errorMessage },
       { status: 500 }
     )
   }
